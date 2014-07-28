@@ -1,0 +1,20 @@
+
+#inputs for removeboard dialog
+tag "removeboard_dialog" {
+    guard    { return state == "removeboard_dialog" }
+    adapter {
+        testcode.resetCursor()
+    }
+    input "click_removeboard_dialog_remove" {
+        adapter    { testcode.clickRemoveBoardDialogRemove() }
+        body {
+            state = "boardmenu"
+        }
+    }
+    input "click_removeboard_dialog_cancel" {
+        adapter    { testcode.clickRemoveBoardDialogCancel() }
+        body {
+            state = "boardmenu"
+        }
+    }
+}

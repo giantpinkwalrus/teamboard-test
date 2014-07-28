@@ -1,0 +1,29 @@
+
+#inputs for addboard dialog
+tag "addboard_dialog" {
+    guard    { return state == "addboard_dialog" }
+    adapter {
+        testcode.resetCursor()
+    }
+    input "click_addboard_dialog_create" {
+        adapter    { testcode.clickAddBoardDialogCreate() }
+        body {
+            state = "boardmenu"
+        }
+    }
+    input "click_addboard_dialog_cancel" {
+        adapter    { testcode.clickAddBoardDialogCancel() }
+        body {
+            state = "boardmenu"
+        }
+    }
+    input "typetext_addboard" {
+        adapter    { testcode.typeBoardName() }
+    }
+    input "click_public" {
+        adapter    { testcode.clickPublic() }
+    }
+    input "click_private" {
+        adapter    { testcode.clickPrivate() }
+    }
+}

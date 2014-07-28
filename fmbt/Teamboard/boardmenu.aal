@@ -1,0 +1,147 @@
+
+#inputs for boardmenu
+tag "boardmenu" {
+    guard    { return state == "boardmenu" }
+    adapter {
+        testcode.resetCursor()
+        # boards load slowly when there are a lot of them
+        testcode.wait()
+    }
+    # inputs for navigation
+    input "press_pageup" {
+        # TODO position checks don't work in current teamboard version
+        #guard    { return page_position != "up" } 
+        adapter  {
+            testcode.scrollUp()
+       }
+    }
+    input "press_pagedown" {
+        # TODO position checks don't work in current teamboard version
+        #guard    { return page_position != "down" }
+        adapter  {
+            testcode.scrollDown()
+        }
+    }
+    input "click_board" {
+        guard    { return is_board }
+        adapter { testcode.clickBoard() }
+        body {
+            state = "board"
+        }
+    }
+    input "click_removeboard" {
+        guard    { return is_board }
+        adapter    {
+            testcode.clickRemoveBoard()
+        }
+        body {
+            state = "removeboard_dialog"
+        }
+    }
+    input "click_addboard" {
+        adapter    {
+            testcode.clickAddBoard()
+        }
+        body {
+            state = "addboard_dialog"
+        }
+    }
+    input "click_logout" {
+        adapter {
+            testcode.clickLogout()
+        }
+        body {
+            logged = False
+            state = "login"
+        }
+    }
+    input "click_publicheading" {
+        guard { return is_publicboard }
+        adapter {
+            testcode.clickPublicHeading()
+        }
+        body {
+            state = "editboard_dialog"
+        }
+    }
+    input "click_privateheading" {
+        guard { return is_privateboard }
+        adapter {
+            testcode.clickPrivateHeading()
+        }
+        body {
+            state = "editboard_dialog"
+        }
+    }
+
+    
+    # this is nonsense? but it works somehow(?) #brainfreeze
+    output "set_board_true" {
+        guard    { return state == "boardmenu" and is_board == False }
+        adapter {
+            if state == "boardmenu" and is_board == False and testcode.checkBoard():
+                is_board = True
+                return True
+        }
+        body {
+            is_board = True
+        }
+    }
+    output "set_board_false" {
+        guard    { return state == "boardmenu" and is_board == True }
+        adapter {
+            if state == "boardmenu" and is_board == True and testcode.checkBoard() == False:
+                is_board = False
+                return True
+        }
+        body {
+            is_board = False
+        }
+    }
+
+    output "set_privateboard_true" {
+        guard    { return state == "boardmenu" and is_privateboard == False }
+        adapter {
+            if state == "boardmenu" and is_privateboard == False and testcode.checkPrivateBoard():
+                is_privateboard = True
+                return True
+        }
+        body {
+            is_privateboard = True
+        }
+    }
+    output "set_privateboard_false" {
+        guard    { return state == "boardmenu" and is_privateboard == True }
+        adapter {
+            if state == "boardmenu" and is_privateboard == True and testcode.checkPrivateBoard() == False:
+                is_privateboard = False
+                return True
+        }
+        body {
+            is_privateboard = False
+        }
+    }
+
+    output "set_publicboard_true" {
+        guard    { return state == "boardmenu" and is_publicboard == False }
+        adapter {
+            if state == "boardmenu" and is_publicboard == False and testcode.checkPublicBoard():
+                is_publicboard = True
+                return True
+        }
+        body {
+            is_publicboard = True
+        }
+    }
+    output "set_publicboard_false" {
+        guard    { return state == "boardmenu" and is_publicboard == True }
+        adapter {
+            if state == "boardmenu" and is_publicboard == True and testcode.checkPublicBoard() == False:
+                is_publicboard = False
+                return True
+        }
+        body {
+            is_publicboard = False
+        }
+    }
+}

@@ -1,0 +1,106 @@
+##ääääää important comment dont remove ääääää
+##
+#
+#   Test model for testing Teamboard 2.0
+#   
+#
+##
+# preview-show-vars: state
+# preview-depth: 100
+# preview-hide-states: statechange
+##
+aal "test" {
+    language "python" {
+        # use one of these:
+        from adapters import x11adapter as testcode
+        #from adapters import seleniumadapter as testcode
+    }
+
+    variables {
+        state, oldState, registered, try_login, try_register, logged, account, page_position, temp, is_ticket, is_board, is_privateboard, is_publicboard
+    }
+    initial_state {
+        # initial states for variables
+        state = "login"
+        oldState = "login"
+        try_login = False
+        try_register = False
+        logged = False
+        registered = False
+        account = ""
+        page_position = "up"
+        is_ticket = False
+        is_board = False
+        is_privateboard = False
+        is_publicboard = False
+    }
+    adapter_init {
+        # initialize testcode
+        testcode.init()
+
+        testcode.wait(1.0)
+        account = testcode.getAccount()
+        
+        # determine initial state of teamboard
+        if testcode.checkState("login"):
+            state = "login"
+            if account != "":
+                registered = True
+        elif testcode.checkState("boardmenu"):
+            state = "boardmenu"
+            logged = True
+            registered = True
+        else:
+            state = "undetermined"
+        
+        oldState = state
+    }
+    adapter_exit {
+        testcode.cleanup()
+    }
+    
+    # detect state change
+    tag "statechange" {
+        guard { return oldState != state }
+        output "check_statechange" {
+            adapter {
+                if oldState != state and state not in ["try_login", "try_register"]:
+                    if testcode.verifyStateChangeTo(state):
+                        oldState = state
+                        return True
+                    else:
+                        state = "timeout"
+                        oldState = state
+                        return False
+            }
+            body {
+                oldState = state
+            }
+        }
+    }
+    
+    # include test model parts here
+    
+    ^include "login.aal"
+    ^include "register.aal"
+    ^include "boardmenu.aal"
+    ^include "removeboard.aal"
+    ^include "addboard.aal"
+    ^include "board.aal"
+    ^include "createticket.aal"
+    ^include "editticket.aal"
+    ^include "editboard.aal"
+    
+    tag "timeout_error" {
+        guard { return state == "timeout" }
+        adapter {
+            print '\033[91m' + "        <error>Error: state change timed out.</error>" + '\033[0m'
+        }
+    }
+    tag "state_error" {
+        guard { return state == "undetermined" }
+        adapter {
+            print '\033[91m' +"        <error>Error: undetermined state (lag?).</error>" + '\033[0m'
+        }
+    }
+}

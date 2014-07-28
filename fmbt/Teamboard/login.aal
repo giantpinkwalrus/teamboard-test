@@ -1,0 +1,83 @@
+
+#inputs for login dialog
+tag "login" {
+    guard    { return state == "login" }
+    adapter {
+        testcode.resetCursor()
+    }
+    input "click_signin" {
+        guard { return registered == True and try_login == True }
+        adapter {
+            testcode.clickSignin()
+            testcode.wait()
+        }
+        body {
+            try_login = True
+            state = "try_login"
+        }
+    }
+    input "click_createaccount" {
+        guard { return registered == False and try_login == False }
+        adapter { testcode.clickCreateaccount() }
+        body {
+            try_login = False
+            state = "register"
+        }
+    }
+    input "type_logininfo" {
+        guard { return registered == True and try_login == False }
+        adapter {
+            testcode.typeLoginInfo()
+            testcode.wait()
+        }
+        body {
+            try_login = True
+        }
+    }
+    input "delete_account" {
+        guard { return registered == True }
+        adapter {
+            testcode.deleteAccount()
+        }
+        body {
+            try_login = False
+            account = ""
+            logged = False
+            registered = False
+        }
+    }
+}
+
+tag "try_login" {
+    guard { return state == "try_login" and try_login == True }
+    output "login_success" {
+        guard { return state == "try_login" and try_login == True }
+        adapter {
+            if state == "try_login" and try_login == True and testcode.checkState("boardmenu"):
+                try_login = False
+                logged = True
+                state = "boardmenu"
+                return True
+        }
+        body {
+            try_login = False
+            logged = True
+            state = "boardmenu"
+        }
+    }
+    output "login_fail" {
+        guard { return state == "try_login" and try_login == True }
+        adapter {
+            if state == "try_login" and try_login == True and testcode.checkState("login"):
+                try_login = True
+                logged = False
+                state = "login"
+                return True
+        }
+        body {
+            try_login = True
+            logged = False
+            state = "login"
+        }
+    }
+}

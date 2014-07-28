@@ -1,0 +1,82 @@
+
+#inputs for boards
+tag "board" {
+    guard { return state == "board" }
+    adapter {
+        testcode.resetCursor()
+        testcode.wait()
+    }
+    input "click_workspace" {
+        adapter    {
+            testcode.clickWorkspace()
+            testcode.wait() # boards load slowly
+        }
+        body {
+            state = "boardmenu"
+        }
+    }
+    input "click_addticket" {
+        adapter {
+            testcode.clickAddTicket()
+        }
+        body {
+            state = "createticket_dialog"
+        }
+    }
+    input "click_removeticket" {
+        guard    { return is_ticket }
+        adapter {
+            testcode.clickRemoveTicket()
+        }
+    }
+    input "drag_ticket" {
+        guard    { return is_ticket }
+        adapter {
+            testcode.dragTicket()
+        }
+    }
+    input "click_ticket" {
+        guard    { return is_ticket }
+        adapter {
+            testcode.clickTicket()
+        }
+    }
+    input "edit_ticket" {
+        guard   { return is_ticket }
+        adapter {
+            testcode.clickEdit()
+        }
+        body {
+            state = "editticket_dialog"
+        }
+    }
+    input "click_snap" {
+        adapter {
+            testcode.clickSnap()
+        }
+    }
+    
+
+    output "set_ticket_true" {
+        guard    { return state == "board" and is_ticket == False }
+        adapter {
+            if state == "board" and is_ticket == False and testcode.checkTicket():
+                is_ticket = True
+                return True
+        }
+        body {
+            is_ticket = True
+        }
+    }
+    output "set_ticket_false" {
+        guard    { return state == "board" and is_ticket == True }
+        adapter {
+            if state == "board" and is_ticket == True and testcode.checkTicket() == False:
+                is_ticket = False
+                return True
+        }
+        body {
+            is_ticket = False
+        }
+    }
+}

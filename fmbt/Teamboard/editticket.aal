@@ -1,0 +1,29 @@
+
+#inputs for editticket dialog
+tag "editticket_dialog" {
+    guard { return state == "editticket_dialog" }
+    adapter {
+        testcode.resetCursor()
+    }
+    input "click_cancelticket_edit" {
+        adapter {
+            testcode.clickCancelTicket()
+        }
+        body {
+            state = "board"
+        }
+    }
+    input "click_applyticket_edit" {
+        adapter {
+            testcode.clickApplyTicket()
+        }
+        body {
+            state = "board"
+        }
+    }
+    input "typetext_edit" {
+        adapter {
+            testcode.typeTicketContent()
+        }
+    }
+}

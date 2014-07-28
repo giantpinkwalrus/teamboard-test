@@ -1,0 +1,31 @@
+
+#inputs for creteticket dialog
+tag "createticket_dialog" {
+    guard    { return state == "createticket_dialog" }
+    adapter {
+        testcode.resetCursor()
+    }
+    input "click_applyticket" {
+        adapter    { testcode.clickApplyTicket() }
+        body {
+            state = "board"
+        }
+    }
+    input "click_cancelticket" {
+        adapter    { testcode.clickCancelTicket() }
+        body {
+            state = "board"
+        }
+    }
+    input "typetext_ticket" {
+        adapter    { testcode.typeTicketName() }
+    }
+    input "click_color" {
+        adapter { testcode.clickColor() }
+    }
+    input "typetext_ticketcontent" {
+        adapter {
+            testcode.typeTicketContent()
+        }
+    }
+}

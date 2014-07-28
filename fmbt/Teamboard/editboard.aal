@@ -1,0 +1,34 @@
+#inputs for editboard dialog
+tag "editboard_dialog" {
+    guard { return state == "editboard_dialog" }
+    adapter {
+        testcode.resetCursor()
+    }
+    input "click_cancel_editboard" {
+        adapter {
+            testcode.clickCancel()
+        }
+        body {
+            state = "boardmenu"
+        }
+    }
+    input "click_apply_editboard" {
+        adapter {
+            testcode.clickApply()
+        }
+        body {
+            state = "boardmenu"
+        }
+    }
+    input "typetext_editboard" {
+        adapter {
+            testcode.typeBoardName() # use same adapter as in addboard_dialog
+        }
+    }
+    input "click_public_editboard" {
+        adapter    { testcode.clickPublic() } 
+    }
+    input "click_private_editboard" {
+        adapter    { testcode.clickPrivate() }
+    }
+}

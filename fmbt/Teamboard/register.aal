@@ -1,0 +1,76 @@
+
+#inputs for register dialog
+tag "register" {
+    guard    { return state == "register" }
+    adapter {
+        testcode.resetCursor()
+    }
+    input "click_register" {
+        guard { return registered == False and try_register == True }
+        adapter {
+            testcode.clickRegister()
+            testcode.wait()
+        }
+        body { 
+            try_register = True
+            state = "try_register"
+        }
+    }
+    input "click_logintext" {
+        guard { return try_register == False }
+        adapter { testcode.clickLogintext() }
+        body {
+            try_register = False
+            state = "login"
+        }
+    }
+    input "type_registerinfo" {
+        guard { return registered == False and try_register == False }
+        adapter {
+            testcode.typeRegisterInfo()
+            testcode.wait()
+        }
+        body {
+            try_register = True
+        }
+    }
+}
+
+tag "try_register" {
+    guard { return state == "try_register" and try_register == True }
+    output "register_success" {
+        guard { return state == "try_register" and try_register == True }
+        adapter {
+            if state == "try_register" and try_register == True and testcode.checkState("login"):
+                try_register = False
+                registered = True
+                state = "login"
+                account = testcode.getAccount()
+                return True
+        }
+        body {
+            try_register = False
+            registered = True
+            state = "login"
+        }
+    }
+    output "register_fail" {
+        guard { return state == "try_register" and try_register == True }
+        adapter {
+            if state == "try_register" and try_register == True and testcode.checkState("register"):
+                try_register = True
+                registered = False
+                #assume the account was already used or of wrong format
+                account = ""
+                testcode.deleteAccount()
+                testcode.refreshPage()
+                state = "register"
+                return True
+        }
+        body {
+            try_register = False
+            registered = False
+            state = "register"
+        }
+    }
+}
