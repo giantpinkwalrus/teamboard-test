@@ -32,14 +32,12 @@ point of use
 Main Idea ?
 -----------
 
-
 Main idea is to collect most important funtions as collection of usage secenario test around reference product ContriBoard
 
 ContriBoard ?
 -------------
 
 ContriBoard is a reference product which is used as on target context of N4S@JAMK project deliverables
-
 
 Robot Framework overview
 ------------------------
@@ -57,7 +55,6 @@ Reference Service
 
 The sample service for this test suite is a variation on a classic post-it wall as a virtual version.
 The application allows a user to do three things:
-
 
   Login
   Create new board
@@ -99,14 +96,9 @@ ContriBoard as a tool was sold as an idea to her by his neighbour Dave Lawson.
    :alt: alternate text
    :align: right
 
-
-
-
 Let's start our journey!
 
-
 Take a look at this journey map to get on right track!
-
 
 .. image:: https://www.dropbox.com/s/lopv5zjj3pvgba9/user_journeys-02.png?dl=1 
    :height: 100px
@@ -115,16 +107,8 @@ Take a look at this journey map to get on right track!
    :alt: alternate text
    :align: right
 
-
 Evelyn has created user account for Contriboard few weeks ago when Dave Lawson was visting her. 
 Dave helped Evelyn to create account and password. They also created a board called "Birthday Party Arragements"
-
-
-
-
-
-
-
 
 .. code:: robotframework
 
@@ -164,9 +148,9 @@ Evelyn has forget her user account and tryes first login in using another accoun
     		Submit Credentials
     		Login Should Have Failed
 
-===
+
 Evelyn remembers corrent account but does typo with password..
-===
+
 
 .. code:: robotframework
 
@@ -177,11 +161,9 @@ Evelyn remembers corrent account but does typo with password..
     		Submit Credentials
     		Login Should Have Failed
 
-===
+
 Evelyn Is little bit out of ideas why login is not working. She tries to login with another account
 and password
-===
-
 
 
 
@@ -202,11 +184,9 @@ Phone ringing
 
 RING RING! Phone is ringing!
 
-===
 Evelyn goes to the phone and Wallace who is wisiting his grand mother takes a place from computer
 Peter plays with a computer and writes some crap account names on login screen 
 Amazingly he can also press Enter
-===
 
 .. code:: robotframework
 
@@ -232,9 +212,8 @@ Evelyns phone call takes a 5 minutes so Wallace has plenty of time to play with 
 
 Login at Last!
 --------------
-===
+
 At last Evelyn is comes back and Wallace has cleared all values from login screen
-===
 
 .. code:: robotframework
 
