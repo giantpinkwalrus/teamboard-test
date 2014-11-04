@@ -65,17 +65,29 @@ The application allows a user to do three things:
 Customer/Users During Scenario
 -------------------------------
 
+Evelyn Holmes
+
 .. image:: https://www.dropbox.com/s/9tkaawsvn2gmw7m/evelyn_card%20copy.png?dl=1 
    :height: 100px
    :width: 200 px
    :scale: 50 %
    :alt: alternate text
    :align: right
-   
-   
-   
-   
-.. image:: https://www.dropbox.com/s/mucdlbvj85y57vm/wallace_card%20copy.png?dl=0
+
+Evelyn Holmes is 67 years old retired woman who is going to arrange birthday party to his daughters son Peter Morrison.
+
+.. image:: https://www.dropbox.com/s/mucdlbvj85y57vm/wallace_card%20copy.png?dl=1
+   :height: 100px
+   :width: 200 px
+   :scale: 50 %
+   :alt: alternate text
+   :align: right
+
+To make everthing happen ok, Evelyn is going to use ContriBoard as collect important notes on one place.
+Evelen was working as a secretary in her previous work, so she is able to coordinate many items and using latest technology
+ContriBoard as a tool was sold as an idea to her by his neighbour Dave Lawson.
+
+.. image:: https://www.dropbox.com/s/1sob7ixq0wvyfrl/dave_card%20copy5.png?dl=1
    :height: 100px
    :width: 200 px
    :scale: 50 %
@@ -84,23 +96,11 @@ Customer/Users During Scenario
 
 
 
-Evelyn Holmes is 67 years old retired woman who is going to arrange birthday party to his daughters son Peter.
-To make everthing happen ok, Evelyn is going to use ContriBoard as collect important notes on one place.
-
-Evelen was working as a secretary in her previous work, so she is able to coordinate many items and using latest technology
-ContriBoard as a tool was sold as an idea to her by his neighbour Dave Lawson.
 
 Let's start our journey!
 
 
 Take a look at this journey map to get on right track!
-
-.. image:: https://www.dropbox.com/s/mucdlbvj85y57vm/wallace_card%20copy.png?dl=0
-   :height: 100px
-   :width: 200 px
-   :scale: 50 %
-   :alt: alternate text
-   :align: right
 
 
 
