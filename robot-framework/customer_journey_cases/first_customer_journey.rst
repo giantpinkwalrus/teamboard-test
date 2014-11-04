@@ -65,7 +65,7 @@ The application allows a user to do three things:
 Focus User Group
 ----------------
 
-.. image:: https://www.dropbox.com/s/9tkaawsvn2gmw7m/evelyn_card%20copy.png?dl=0 
+.. image:: https://www.dropbox.com/s/9tkaawsvn2gmw7m/evelyn_card%20copy.png?dl=1 
    :height: 100px
    :width: 200 px
    :scale: 50 %
