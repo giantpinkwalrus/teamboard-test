@@ -1,14 +1,14 @@
 .. default-role:: code
 
-============================================================================
-  Contriboard Reference Product - Acceptance Testing for Customer Journey
-============================================================================
+==============================================================================================
+  Contriboard Reference Product - Demostration for Customer Journey for Contriboard Service
+==============================================================================================
 
-Customer/User: Evelyn Holmes
+Primary Actor: Evelyn Holmes
 
 Other Actors: Wallace and Dave
 
-Role: Common user
+Roles: Common User 
 
 
 
