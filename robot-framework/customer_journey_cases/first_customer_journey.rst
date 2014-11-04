@@ -6,7 +6,7 @@
 
 Customer/User: Evelyn Holmes
 
-Other Actors: Peter and Dave
+Other Actors: Wallace and Dave
 
 Role: Common user
 
