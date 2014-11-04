@@ -133,9 +133,8 @@ Dave helped Evelyn to create account and password. They also created a board cal
 Problems with login
 -------------------
 
-=======================================================================================
 Evelyn has forget her user account and tryes first login in using another account name.
-=======================================================================================
+
 
 .. code:: robotframework
 
