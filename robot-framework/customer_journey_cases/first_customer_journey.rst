@@ -79,7 +79,7 @@ Evelyn Holmes
    :alt: alternate text
    :align: right
 
-Evelyn Holmes is 67 years old retired woman who is going to arrange birthday party to his daughters son Peter Morrison.
+Evelyn Holmes is 67 years old retired woman who is going to arrange birthday party to his daughters son Wallace Morrison.
 
 .. image:: https://www.dropbox.com/s/mucdlbvj85y57vm/wallace_card%20copy.png?dl=1
    :height: 100px
