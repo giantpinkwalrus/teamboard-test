@@ -65,7 +65,7 @@ The application allows a user to do three things:
 Focus User Group
 ----------------
 
-. image:: https://camo.githubusercontent.com/c657ef2096f1bc8c522337e3e181ab9a2113c490/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f6e7a3763786a753275656c697174362f63617264732e706e673f646c3d31 
+. image:: https://www.dropbox.com/s/9tkaawsvn2gmw7m/evelyn_card%20copy.png?dl=0 
 
 
 
