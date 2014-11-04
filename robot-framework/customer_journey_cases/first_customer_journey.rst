@@ -1,8 +1,8 @@
 .. default-role:: code
 
-==============================================================================================
-  Contriboard Reference Product - Demostration for Customer Journey for Contriboard Service
-==============================================================================================
+=======================================================================
+  Contriboard Reference Product - Demostration for Customer Journey 
+=======================================================================
 
 Primary Actor: Evelyn Holmes
 
