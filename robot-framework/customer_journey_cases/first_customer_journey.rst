@@ -131,7 +131,7 @@ Dave helped Evelyn to create account and password. They also created a board cal
 
 
 	*** Settings ***
-	Documentation     A test suite containing tests related to invalid login.
+	Documentation     A test suite containing tests related to the first customer journey map.
 	...
 	...               These tests are data-driven by they nature. They use a single
 	...               keyword, specified with Test Template setting, that is called
@@ -149,9 +149,9 @@ Dave helped Evelyn to create account and password. They also created a board cal
 Problems with login
 -------------------
 
-====
+=======================================================================================
 Evelyn has forget her user account and tryes first login in using another account name.
-====
+=======================================================================================
 
 .. code:: robotframework
 
