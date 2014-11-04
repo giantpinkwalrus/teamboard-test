@@ -103,7 +103,12 @@ Let's start our journey!
 Take a look at this journey map to get on right track!
 
 
-
+.. image:: https://www.dropbox.com/s/lopv5zjj3pvgba9/user_journeys-02.png?dl=1 
+   :height: 100px
+   :width: 200 px
+   :scale: 50 %
+   :alt: alternate text
+   :align: right
 
 
 .. code:: robotframework
