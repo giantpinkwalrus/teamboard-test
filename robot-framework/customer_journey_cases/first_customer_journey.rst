@@ -1,8 +1,8 @@
 .. default-role:: code
 
-=========================================================
+============================================================================
   Contriboard Reference Product - Acceptance Testing for Customer Journey
-=========================================================
+============================================================================
 
 Customer/User: Evelyn Holmes
 
@@ -17,7 +17,7 @@ Role: Common user
    :local:
    :depth: 2
 
-
+============
 Introduction
 ============
 
@@ -149,8 +149,9 @@ Dave helped Evelyn to create account and password. They also created a board cal
 Problems with login
 -------------------
 
+====
 Evelyn has forget her user account and tryes first login in using another account name.
-
+====
 
 .. code:: robotframework
 
@@ -163,8 +164,9 @@ Evelyn has forget her user account and tryes first login in using another accoun
     		Submit Credentials
     		Login Should Have Failed
 
+===
 Evelyn remembers corrent account but does typo with password..
-
+===
 
 .. code:: robotframework
 
@@ -175,9 +177,10 @@ Evelyn remembers corrent account but does typo with password..
     		Submit Credentials
     		Login Should Have Failed
 
-Evelyn Is little bit out of idea why login is not working. She tries to login with another account
+===
+Evelyn Is little bit out of ideas why login is not working. She tries to login with another account
 and password
-
+===
 
 
 
@@ -191,15 +194,19 @@ and password
     		Submit Credentials
     		Login Should Have Failed
 
+
+
 Phone ringing
 -------------
 
 
 RING RING! Phone is ringing!
 
+===
 Evelyn goes to the phone and Peter who is wisiting his grand mother takes a place from computer
 Peter plays with a computer and writes some crap account names on login screen 
 Amazingly he can also press Enter
+===
 
 .. code:: robotframework
 
@@ -225,8 +232,9 @@ Evelyns phone call takes a 5 minutes so Peter has plenty of time to play with lo
 
 Login at Last!
 --------------
-
+===
 At last Evelyn is comes back and Peter has cleared all values from login screen
+===
 
 .. code:: robotframework
 
