@@ -1,7 +1,7 @@
 .. default-role:: code
 
 =========================================================
-  ContriBoard Acceptance Testing for Customer Journey 1
+  ContriBoard Reference Product - Acceptance Testing for Customer Journey
 =========================================================
 
 Customer: Evelyn Scott
@@ -111,6 +111,14 @@ Take a look at this journey map to get on right track!
    :align: right
 
 
+Evelyn has created user account for Contriboard few weeks ago when Dave Lawson was visting her. 
+Dave helped Evelyn to create account and password. They also created a board called "Birthday Party Arragements"
+
+
+
+
+
+
 .. code:: robotframework
 
 
@@ -130,7 +138,7 @@ Take a look at this journey map to get on right track!
 	#Test Template     Login With Invalid Credentials Should Fail
 	Resource          resource.txt
 
-Evelyn Scot has forget her user account and tryes first login in using another account name.
+Evelyn has forget her user account and tryes first login in using another account name.
 
 
 .. code:: robotframework
@@ -170,8 +178,8 @@ and password
     		Login Should Have Failed
 
 
-Evelyn goes to the phone and 3 year old son Joseph takes a place from computer
-Joseph plays with a computer and writes some crap account names on login screen 
+Evelyn goes to the phone and 10 year old daughters son Peter takes a place from computer
+Peter plays with a computer and writes some crap account names on login screen 
 Amazingly he can also press Enter
 
 .. code:: robotframework
@@ -183,7 +191,7 @@ Amazingly he can also press Enter
     		Submit Credentials
     		Login Should Have Failed
 
-Evelyns phone call takes a 5 minutes so Josep has plenty of time to play with login screen
+Evelyns phone call takes a 5 minutes so Peter has plenty of time to play with login screen
 
 
 .. code:: robotframework
@@ -196,7 +204,7 @@ Evelyns phone call takes a 5 minutes so Josep has plenty of time to play with lo
     		Login Should Have Failed
 
 
-At last Evelyn is comes back and Joseph has cleared all values from login screen
+At last Evelyn is comes back and Peter has cleared all values from login screen
 
 .. code:: robotframework
 
