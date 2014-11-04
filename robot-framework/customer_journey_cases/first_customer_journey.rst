@@ -1,11 +1,16 @@
 .. default-role:: code
 
 =========================================================
-  ContriBoard Reference Product - Acceptance Testing for Customer Journey
+  Contriboard Reference Product - Acceptance Testing for Customer Journey
 =========================================================
 
-Customer: Evelyn Scott
+Customer/User: Evelyn Holmes
+
+Other Actors: Peter and Dave
+
 Role: Common user
+
+
 
 
 .. contents:: Table of contents
