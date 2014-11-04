@@ -79,7 +79,7 @@ Evelyn Holmes
    :alt: alternate text
    :align: right
 
-Evelyn Holmes is 67 years old retired woman who is going to arrange birthday party to his daughters son Wallace Morrison.
+Evelyn Holmes is 67 years old retired woman who is going to arrange birthday party to his daughters son Wallace Coleman.
 
 .. image:: https://www.dropbox.com/s/mucdlbvj85y57vm/wallace_card%20copy.png?dl=1
    :height: 100px
@@ -203,7 +203,7 @@ Phone ringing
 RING RING! Phone is ringing!
 
 ===
-Evelyn goes to the phone and Peter who is wisiting his grand mother takes a place from computer
+Evelyn goes to the phone and Wallace who is wisiting his grand mother takes a place from computer
 Peter plays with a computer and writes some crap account names on login screen 
 Amazingly he can also press Enter
 ===
@@ -217,7 +217,7 @@ Amazingly he can also press Enter
     		Submit Credentials
     		Login Should Have Failed
 
-Evelyns phone call takes a 5 minutes so Peter has plenty of time to play with login screen
+Evelyns phone call takes a 5 minutes so Wallace has plenty of time to play with login screen
 
 
 .. code:: robotframework
@@ -233,7 +233,7 @@ Evelyns phone call takes a 5 minutes so Peter has plenty of time to play with lo
 Login at Last!
 --------------
 ===
-At last Evelyn is comes back and Peter has cleared all values from login screen
+At last Evelyn is comes back and Wallace has cleared all values from login screen
 ===
 
 .. code:: robotframework
