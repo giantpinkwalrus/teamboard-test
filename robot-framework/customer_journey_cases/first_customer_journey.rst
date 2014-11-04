@@ -119,6 +119,8 @@ Dave helped Evelyn to create account and password. They also created a board cal
 
 
 
+
+
 .. code:: robotframework
 
 
@@ -137,6 +139,10 @@ Dave helped Evelyn to create account and password. They also created a board cal
 	Test Setup        Go To Login Page
 	#Test Template     Login With Invalid Credentials Should Fail
 	Resource          resource.txt
+
+
+Problems with login
+-------------------
 
 Evelyn has forget her user account and tryes first login in using another account name.
 
@@ -168,6 +174,9 @@ Evelyn Is little bit out of idea why login is not working. She tries to login wi
 and password
 
 
+
+
+
 .. code:: robotframework
 
         *** Test Cases ***
@@ -177,8 +186,13 @@ and password
     		Submit Credentials
     		Login Should Have Failed
 
+Phone ringing
+-------------
 
-Evelyn goes to the phone and 10 year old daughters son Peter takes a place from computer
+
+RING RING! Phone is ringing!
+
+Evelyn goes to the phone and Peter who is wisiting his grand mother takes a place from computer
 Peter plays with a computer and writes some crap account names on login screen 
 Amazingly he can also press Enter
 
