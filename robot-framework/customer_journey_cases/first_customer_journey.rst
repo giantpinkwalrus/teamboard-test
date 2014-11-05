@@ -230,8 +230,8 @@ Because of empty login screen Evelyn remembers now correct account and password
 
         *** Test Cases ***
 	Valid Login
-    		Input Username    testuser@tester.org
-    		Input Password    testuseri
+    		Input Username    evelyn.holmes@kmail.com	
+    		Input Password    EveHo100$
     		Submit Credentials
     		Welcome Page Should Be Open
 
