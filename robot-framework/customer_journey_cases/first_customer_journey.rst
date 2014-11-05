@@ -209,10 +209,9 @@ Evelyns phone call takes a 5 minutes so Wallace has plenty of time to play with 
     		Login Should Have Failed
 
 
-Login at Last!
---------------
+Wallace hears Evelyn closed the phone! In panic Wallace cleans login form values and pressed by mistake enter...
+Wallace runs to the backyard
 
-At last Evelyn is comes back and Wallace has cleared all values from login screen
 
 .. code:: robotframework
 
@@ -223,7 +222,10 @@ At last Evelyn is comes back and Wallace has cleared all values from login scree
    		Submit Credentials
     		Login Should Have Failed
 
+Login at Last!
+--------------
 
+At last Evelyn is comes back and Wallace has vanished. There is only login screen to Contriboard with empty values from login screen
 Because of empty login screen Evelyn remembers now correct account and password
 
 .. code:: robotframework
@@ -234,5 +236,5 @@ Because of empty login screen Evelyn remembers now correct account and password
     		Input Password    EveHo100$
     		Submit Credentials
     		Welcome Page Should Be Open
-    		Delay 100
+    		Sleep 5
 
