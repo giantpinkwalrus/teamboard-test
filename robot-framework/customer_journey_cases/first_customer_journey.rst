@@ -234,5 +234,5 @@ Because of empty login screen Evelyn remembers now correct account and password
     		Input Password    EveHo100$
     		Submit Credentials
     		Welcome Page Should Be Open
-    		Sleep 100
+    		Delay 100
 
