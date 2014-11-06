@@ -66,6 +66,6 @@ Login Should Have Failed
 
 
 Observing Screen For a While
-    Sleep 5
+    Sleep  5
 
 
