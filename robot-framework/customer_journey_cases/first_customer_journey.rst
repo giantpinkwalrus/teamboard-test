@@ -236,5 +236,5 @@ Because of empty login screen Evelyn remembers now correct account and password
     		Input Password    EveHo100$
     		Submit Credentials
     		Welcome Page Should Be Open
-    		Observing Screen For a While
+    		Sleep 2
 
