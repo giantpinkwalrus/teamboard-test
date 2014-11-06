@@ -65,5 +65,7 @@ Login Should Have Failed
 #    Element Should Be Visible  xpath=//*[@id="app"]/div/div/form/div[2]/div/div/p[1]
 
 
+Observing Screen For a While
+    Sleep 5
 
 
