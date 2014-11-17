@@ -1,0 +1,48 @@
+digraph default_model {
+//States
+b
+_1
+_1_1
+_1_1_1
+_1_1_2
+_1_1_2_1
+_1_1_2_2
+_1_1_2_3
+_1_1_2_4
+_1_1_2_4_1
+_1_1_2_4_2
+_1_1_2_4_3
+_1_2
+//Transitions
+b -> _1[ label = "1.0 / 2 / action_b()"]
+_1 -> _1_1[ label = "0.5 / 0 / open_application.open_application_url()"]
+_1_1 -> _1_1_1[ label = "0.1 / 0 / login.click_register()"]
+_1_1 -> _1_1_2[ label = "0.9 / 0 / login.sign_in()"]
+_1_1_1 -> _1_1[ label = "0.01 / 0 / register.register()"]
+_1_1_1 -> _1_1[ label = "0.99 / 0 / register.click_sign_in()"]
+_1_1_2 -> _1_1_2_1[ label = "0.05 / 0 / workspace.create_board()"]
+_1_1_2 -> _1_1[ label = "0.05 / 0 / workspace.log_out()"]
+_1_1_2 -> _1_1_2_2[ label = "0.2 / 0 / workspace.edit_board()"]
+_1_1_2_1 -> _1_1_2[ label = "0.1 / 0 / create_board.cancel()"]
+_1_1_2_1 -> _1_1_2[ label = "0.9 / 0 / create_board.create()"]
+_1_1_2 -> _1_1_2_3[ label = "0.2 / 0 / workspace.delete_board()"]
+_1_1_2_2 -> _1_1_2[ label = "0.1 / 0 / edit_board.cancel()"]
+_1_1_2_2 -> _1_1_2[ label = "0.9 / 0 / edit_board.edit()"]
+_1_1_2 -> _1_1_2_4[ label = "0.5 / 0 / workspace.enter_board()"]
+_1_1_2_3 -> _1_1_2[ label = "0.1 / 0 / delete_board.cancel()"]
+_1_1_2_3 -> _1_1_2[ label = "0.9 / 0 / delete_board.delete()"]
+_1_1_2_4 -> _1_1_2_4_1[ label = "0.2 / 0 / board.create_ticket()"]
+_1_1_2_4 -> _1_1[ label = "0.05 / 0 / board.log_out()"]
+_1_1_2_4 -> _1_1_2_4[ label = "0.3 / 0 / board.move_ticket()"]
+_1_1_2_4 -> _1_1_2[ label = "0.05 / 0 / board.enter_workspace()"]
+_1_1_2_4 -> _1_1_2_4_2[ label = "0.25 / 0 / board.edit_ticket()"]
+_1_1_2_4_1 -> _1_1_2_4[ label = "0.1 / 0 / create_ticket.cancel()"]
+_1_1_2_4_1 -> _1_1_2_4[ label = "0.9 / 0 / create_ticket.create()"]
+_1_1_2_4 -> _1_1_2_4_3[ label = "0.15 / 0 / board.delete_ticket()"]
+_1_1_2_4_2 -> _1_1_2_4[ label = "0.1 / 0 / edit_ticket.cancel()"]
+_1_1_2_4_2 -> _1_1_2_4[ label = "0.9 / 0 / edit_ticket.edit()"]
+_1 -> _1_2[ label = "0.5 / 0 / open_application.open_application_url()"]
+_1_1_2_4_3 -> _1_1_2_4[ label = "0.1 / 0 / delete_ticket.cancel()"]
+_1_1_2_4_3 -> _1_1_2_4[ label = "0.9 / 0 / delete_ticket.delete()"]
+_1_2 -> _1_1_2_4[ label = "1.0 / 0 / guest_login.login()"]
+}

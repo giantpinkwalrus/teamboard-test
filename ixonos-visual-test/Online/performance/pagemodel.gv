@@ -1,0 +1,11 @@
+digraph default_model {
+//States
+b
+_1
+_1_1
+_1_1_1
+//Transitions
+b -> _1[ label = "1.0 / 2 / action_b()"]
+_1 -> _1_1[ label = "1.0 / 0 / "]
+_1_1 -> _1_1_1[ label = "1.0 / 0 / "]
+}

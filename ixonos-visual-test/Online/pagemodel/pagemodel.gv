@@ -1,0 +1,46 @@
+digraph default_model {
+//States
+_1
+_1_1
+_1_1_1
+_1_1_2
+_1_1_2_1
+_1_1_2_2
+_1_1_2_3
+_1_1_2_4
+_1_1_2_4_1
+_1_1_2_4_2
+_1_1_2_4_3
+_1_2
+//Transitions
+_1 -> _1_1[ label = "open_application.open_application_url()/0.5", probability = "0.5", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1 -> _1_1_1[ label = "login.click_register()/0.1", probability = "0.1", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1 -> _1_1_2[ label = "login.sign_in()/0.9", probability = "0.9", set_guard = "('logged', 'true')", check_guard = "('registered', 'true')"]
+_1_1_1 -> _1_1[ label = "register.register()/0.01", probability = "0.01", set_guard = "('registered', 'true')", check_guard = "('', '')"]
+_1_1_1 -> _1_1[ label = "register.click_sign_in()/0.99", probability = "0.99", set_guard = "('', '')", check_guard = "('registered', 'true')"]
+_1_1_2 -> _1_1_2_1[ label = "workspace.create_board()/0.05", probability = "0.05", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1_2 -> _1_1[ label = "workspace.log_out()/0.05", probability = "0.05", set_guard = "('logged', 'false')", check_guard = "('', '')"]
+_1_1_2 -> _1_1_2_2[ label = "workspace.edit_board()/0.2", probability = "0.2", set_guard = "('', '')", check_guard = "('board_created', 'true')"]
+_1_1_2_1 -> _1_1_2[ label = "create_board.cancel()/0.1", probability = "0.1", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1_2_1 -> _1_1_2[ label = "create_board.create()/0.9", probability = "0.9", set_guard = "('board_created', 'true')", check_guard = "('', '')"]
+_1_1_2 -> _1_1_2_3[ label = "workspace.delete_board()/0.2", probability = "0.2", set_guard = "('', '')", check_guard = "('board_created', 'true')"]
+_1_1_2_2 -> _1_1_2[ label = "edit_board.cancel()/0.1", probability = "0.1", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1_2_2 -> _1_1_2[ label = "edit_board.edit()/0.9", probability = "0.9", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1_2 -> _1_1_2_4[ label = "workspace.enter_board()/0.5", probability = "0.5", set_guard = "('ticket_created', 'false')", check_guard = "('board_created', 'true')"]
+_1_1_2_3 -> _1_1_2[ label = "delete_board.cancel()/0.1", probability = "0.1", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1_2_3 -> _1_1_2[ label = "delete_board.delete()/0.9", probability = "0.9", set_guard = "('board_created', 'false')", check_guard = "('', '')"]
+_1_1_2_4 -> _1_1_2_4_1[ label = "board.create_ticket()/0.2", probability = "0.2", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1_2_4 -> _1_1[ label = "board.log_out()/0.05", probability = "0.05", set_guard = "('logged', 'false')", check_guard = "('', '')"]
+_1_1_2_4 -> _1_1_2_4[ label = "board.move_ticket()/0.3", probability = "0.3", set_guard = "('', '')", check_guard = "('ticket_created', 'true')"]
+_1_1_2_4 -> _1_1_2[ label = "board.enter_workspace()/0.05", probability = "0.05", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1_2_4 -> _1_1_2_4_2[ label = "board.edit_ticket()/0.25", probability = "0.25", set_guard = "('', '')", check_guard = "('ticket_created', 'true')"]
+_1_1_2_4_1 -> _1_1_2_4[ label = "create_ticket.cancel()/0.1", probability = "0.1", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1_2_4_1 -> _1_1_2_4[ label = "create_ticket.create()/0.9", probability = "0.9", set_guard = "('ticket_created', 'true')", check_guard = "('', '')"]
+_1_1_2_4 -> _1_1_2_4_3[ label = "board.delete_ticket()/0.15", probability = "0.15", set_guard = "('', '')", check_guard = "('ticket_created', 'true')"]
+_1_1_2_4_2 -> _1_1_2_4[ label = "edit_ticket.cancel()/0.1", probability = "0.1", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1_2_4_2 -> _1_1_2_4[ label = "edit_ticket.edit()/0.9", probability = "0.9", set_guard = "('', '')", check_guard = "('', '')"]
+_1 -> _1_2[ label = "open_application.open_application_url()/0.5", probability = "0.5", set_guard = "('', '')", check_guard = "('not_yet_implemented', 'not_yet_implemented')"]
+_1_1_2_4_3 -> _1_1_2_4[ label = "delete_ticket.cancel()/0.1", probability = "0.1", set_guard = "('', '')", check_guard = "('', '')"]
+_1_1_2_4_3 -> _1_1_2_4[ label = "delete_ticket.delete()/0.9", probability = "0.9", set_guard = "('ticket_created', 'false')", check_guard = "('', '')"]
+_1_2 -> _1_1_2_4[ label = "guest_login.login()/1.0", probability = "1.0", set_guard = "('', '')", check_guard = "('', '')"]
+}

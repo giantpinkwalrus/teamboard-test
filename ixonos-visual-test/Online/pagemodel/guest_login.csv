@@ -1,0 +1,4 @@
+OBJECT_NAME,LOCATOR,VALUE,X_COORD,Y_COORD,WIDTH,HEIGHT
+LOGIN_TEXT,By.CSS_SELECTOR,h2.ng-binding,695,99,290,33
+USERNAME_INPUT,By.CSS_SELECTOR,input[name="username"].form-control.ng-pristine.ng-invalid.ng-invalid-required,695,155,290,34
+SIGN_IN_BUTTON,By.CLASS_NAME,btn-login,695,213,290,64

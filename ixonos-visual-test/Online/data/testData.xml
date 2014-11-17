@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testset>
+	<testcase name="guest">
+		<parameter name="username" value="guest_user"/>
+	</testcase>
+	<testcase name="url">
+		<parameter name="login" value="http://80.242.17.165/login"/>
+	</testcase>
+	<testcase name="dynamic">
+		<parameter name="open_url" value="null"/>
+		<parameter name="board_count" value="0"/>
+		<parameter name="board_last_count" value="0"/>
+		<parameter name="ticket_count" value="0"/>
+		<parameter name="ticket_last_count" value="0"/>
+	</testcase>
+	<testcase name="board">
+		<parameter name="new_name" value="new_board"/>
+		<parameter name="edited_name" value="modified_board"/>
+	</testcase>
+	<testcase name="ticket">
+		<parameter name="new_name" value="new_ticket"/>
+		<parameter name="edited_name" value="modified_ticket"/>
+		<parameter name="new_content" value="some_content"/>
+		<parameter name="edited_content" value="something_else"/>
+	</testcase>
+	<testcase name="user">
+		<parameter name="email" value="online@tester.com"/>
+		<parameter name="password" value="passupassu"/>
+	</testcase>
+</testset>

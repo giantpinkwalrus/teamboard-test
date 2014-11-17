@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<canvas align="left" id="myCanvas" width="1920" height="5200"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');  
+      var imageObj = new Image();
+      var urlVars = getUrlVars();
+      
+    function resize_canvas() {
+    canvas.width  = imageObj.width;
+    canvas.height = imageObj.height;
+    }  
+      
+    function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+    }
+      imageObj.onload = function() {
+        console.log(imageObj.width, imageObj.height);
+        resize_canvas();
+        context.drawImage(imageObj, 0, 0);
+        context.beginPath();
+        context.lineWidth="2";
+        context.strokeStyle=urlVars["border"];
+        
+        context.globalAlpha=0.5;
+        context.rect(urlVars["x"],urlVars["y"],urlVars["w"],urlVars["h"]); 
+        context.fillStyle=urlVars["fill"];
+        context.fill();
+        context.stroke();
+        
+        
+      };
+      imageObj.src = urlVars["png"];
+      // Red rectangle
+
+    </script>
+</body>
+</html>
