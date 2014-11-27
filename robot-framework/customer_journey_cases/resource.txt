@@ -7,11 +7,11 @@ Documentation     A resource file with reusable keywords and variables.
 Library           Selenium2Library
 
 *** Variables ***
-${SERVER}          teamboard.n4sjamk.org
+${SERVER}          contriboard.n4sjamk.org
 ${BROWSER}         firefox
 ${DELAY}           0 
-${VALID USER}      testuser@tester.org
-${VALID PASSWORD}  testuseri
+${VALID USER}      evelyn.holmes@n4sjamk.org
+${VALID PASSWORD}  muumi510kg
 ${LOGIN URL}       http://${SERVER}/login
 ${WELCOME URL}     http://${SERVER}/main/workspace
 ${ERROR URL}       http://${SERVER}/login
@@ -61,7 +61,7 @@ Login With Invalid Credentials Should Fail
 
 Login Should Have Failed
     Location Should Be    ${ERROR URL}
-    Title Should Be  Teamboard
+    Title Should Be  Contriboard
 #    Element Should Be Visible  xpath=//*[@id="app"]/div/div/form/div[2]/div/div/p[1]
 
 

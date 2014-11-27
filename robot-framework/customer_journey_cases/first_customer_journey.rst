@@ -29,6 +29,9 @@ About this customer journey
 This test case collection is trying to create a simple customer journey visible from service desing
 point of use
 
+
+
+
 Main Idea ?
 -----------
 
@@ -232,9 +235,53 @@ Because of empty login screen Evelyn remembers now correct account and password
 
         *** Test Cases ***
 	Valid Login
-    		Input Username    evelyn.holmes@kmail.com	
+    		Input Username    evelyn.holmes@n4sjamk.org	
     		Input Password    EveHo100$
     		Submit Credentials
     		Welcome Page Should Be Open
-    		Sleep 2
+    		Sleep  2
+
+How should I use it ?
+---------------------
+
+After login in Evelyn try to click some buttons to be able to recover how Contriboard was used. All what Dave was told her last week were foggy memories. There is nice button I should try to click some!
+
+
+.. code:: robotframework
+
+	*** Test Cases ***
+        Living in Workspace
+		Go To    ${LOGIN URL}
+    		Login Page Should Be Open
+		Input Username    evelyn.holmes@n4sjamk.org       
+                Input Password    EveHo100$
+                Submit Credentials
+                Welcome Page Should Be Open
+                Sleep  2
+                Click Element  xpath=//*[@id="sidebar-container"]/div[1]/div[4]/div[1]         
+                Sleep  2
+		Click Element  xpath=//*[@id="sidebar-container"]/div[1]/div[4]/div[1]
+		Sleep  2
+		Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[3]/div/nav/ul/a[2]/li
+		Sleep  2
+		Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[3]/div/nav/ul/a[1]/li
+		Sleep  2
+		Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[5]
+		Sleep  1
+		Click Button  xpath=//*[@id="topbar-container"]/div/div/div/div[3]/button
+		Sleep  1
+		Input Text  headingInput  Hire the Clown
+	 	Click Button  Create
+		Sleep  1
+		Click Element  xpath=//*[@id="545b6355905bc10f00a94f0f"]/div[1]/div[2]/i
+		Click Element  xpath=//*[@id="topbar-container"]/div/div/div/div[2]/div/div[1]
+		Click Buttun  Delete
+		
+How should I use it ?
+---------------------
+
+After login in Evelyn try to click some buttons to be able to recover how Contriboard was used. All what Dave was told her last week were foggy memories. There is nice button I should try to click some!
+
+
+
 
