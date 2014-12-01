@@ -1,0 +1,102 @@
+*** Settings ***
+Documentation     A resource file with reusable keywords and variables.
+...
+...               The system specific keywords created here form our own
+...               domain specific language. They utilize keywords provided
+...               by the imported Selenium2Library.
+Library           Selenium2Library
+
+*** Variables ***
+${BROWSER}         firefox
+${DELAY}           0
+ 
+${VALID USER}           evelyn.holmes@n4sjamk.org
+${INVALID USER}         invalid
+
+${VALID PASSWORD}       EveHo100$
+${INVALID PASSWORD}     invalid
+
+${SERVER}          contriboard.n4sjamk.org
+${LOGIN URL}       http://${SERVER}/login
+${WELCOME URL}     http://${SERVER}/main/workspace
+${ERROR URL}       http://${SERVER}/login
+${TITLEPAGE}	   Teamboard
+${EMPTY}           
+
+
+*** Keywords ***
+
+Input Valid Username
+	Input Text  email  ${VALID USER}
+
+Input Invalid Username
+	Input Text  email  ${INVALID_USERNAME}
+
+Empty Username
+    Input Text  email  ${EMPTY}
+
+Input Valid Password
+	Input Text  password  ${VALID PASSWORD}
+
+Input Invalid Password
+	Input Text  password  invalid
+
+Empty Password
+    Input Text  password  ${EMPTY}
+
+
+
+
+
+
+Open Browser To Login Page
+    Open Browser    ${LOGIN URL}    ${BROWSER}
+#    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Login Page Should Be Open
+
+Login Page Should Be Open
+    Title Should Be  Teamboard 
+
+Go To Login Page
+    Go To    ${LOGIN URL}
+    Login Page Should Be Open
+
+Input Username
+    [Arguments]    ${username}
+    Input Text    email    ${username}
+
+Input Password
+    [Arguments]    ${password}
+    Input Text    password    ${password}
+
+Submit Credentials
+    Click Button    Sign in 
+    Sleep  1
+
+
+Welcome Page Should Be Open
+    Location Should Be    ${WELCOME URL}
+    Title Should Be    Teamboard
+
+
+Login With Invalid Credentials Should Fail
+    [Arguments]       ${username}    ${password}
+    Input Username    ${username}
+    Input Password    ${password}
+    Submit Credentials
+    Sleep  1
+    Login Should Have Failed
+
+
+Login Should Have Failed
+    Location Should Be    ${ERROR URL}
+    Title Should Be  Teamboard
+#    Element Should Be Visible  xpath=//*[@id="app"]/div/div/form/div[2]/div/div/p[1]
+
+
+Observing Screen For a While
+    Sleep  5
+
+
+
