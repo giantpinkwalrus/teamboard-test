@@ -115,8 +115,6 @@ Dave helped Evelyn to create account and password. They also created a board cal
 
 .. code:: robotframework
 
-
-
 	*** Settings ***
 	Documentation     A test suite containing tests related to the first customer journey map.
 	...
@@ -126,7 +124,7 @@ Dave helped Evelyn to create account and password. They also created a board cal
 	...
 	...               This suite also demonstrates using setups and teardowns in
 	...               different levels.
-	Suite Setup       Open Browser To Login Page
+	Suite Setup       Open Browser To Main Page
 	Suite Teardown    Close Browser
 	Test Setup        Go To Login Page
 	#Test Template     Login With Invalid Credentials Should Fail
@@ -141,41 +139,39 @@ Evelyn has forgotten which email she used for Contriboard and tries to login usi
 
 .. code:: robotframework
 
-	*** Test Cases ***
-
-	Invalid Username
+    *** Test Cases ***
+    Invalid Username
     		Input Valid Username
     		Input Invalid Password
     		Submit Credentials
-    		Login Should Have Failed
+    		Login Should Fail
 
 
-Evelyn remembers she created a email just for Contriboard. Evelyn uses the correct account but does typo with password..
-
-
-.. code:: robotframework
-
-        *** Test Cases ***
-	Ivalid Password
-    		Input Username    evelyn.holmes@n4sjamk.org
-    		Input Password    invalid
-    		Submit Credentials
-    		Login Should Have Failed
-
-
-Evelyn Is little bit out of ideas why login is not working. She tries to login with another email and password
-
+Evelyn remembers she created a email just for Contriboard. Evelyn uses the correct account but does typo with password.
 
 
 .. code:: robotframework
 
-        *** Test Cases ***
-	Invalid Username And Password
-    		Input Username    muusipeikko@xmail.com
-    		Input Password    sikaposse
-    		Submit Credentials
-    		Login Should Have Failed
+    *** Test Cases ***
+    Invalid Password
+    		Input Valid Username
+            Input Invalid Password
+            Submit Credentials
+            Login Should Fail
 
+
+Evelyn Is little bit out of ideas why login is not working. She tries to login with another email and password.
+
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+    Invalid Username And Password
+    		Input Invalid Username
+            Input Invalid Password
+            Submit Credentials
+            Login Should Fail
 
 
 Phone ringing
@@ -190,24 +186,25 @@ Wallace uses his considerable powers of guessing to try crack the login. Sadly h
 
 .. code:: robotframework
 
-        *** Test Cases ***
-	Empty Username
-    		Input Username    ${EMPTY}   
-    		Input Password    invalid
+    *** Test Cases ***
+    Empty Username
+    		Empty Username   
+    		Input Valid Password
     		Submit Credentials
-    		Login Should Have Failed
+    		Login Should Fail
+
 
 Evelyns phone call takes a 5 minutes so Wallace has plenty of time to play with login screen
 
 
 .. code:: robotframework
 
-        *** Test Cases ***
-	Empty Password
-    		Input Username    ${VALID USER}
-    		Input Password    invalid
+    *** Test Cases ***
+    Empty Password
+    		Input Valid Username
+    		Input Invalid Password
     		Submit Credentials
-    		Login Should Have Failed
+    		Login Should Fail
 
 
 Wallace hears Evelyn closed the phone! In panic Wallace cleans login form values and pressed by mistake enter...
@@ -216,12 +213,13 @@ Wallace runs to the backyard
 
 .. code:: robotframework
 
-        *** Test Cases ***
-	Empty User Name And Password
-    		Input Username    ${EMPTY}     
-    		Input Password    ${EMPTY}   
-   		Submit Credentials
-    		Login Should Have Failed
+    *** Test Cases ***
+    Empty Username And Password
+    		Empty Username    
+    		Empty Password  
+   		    Submit Credentials
+    		Login Should Fail
+
 
 Login at Last!
 --------------
@@ -231,13 +229,13 @@ Because of empty login screen Evelyn remembers now correct account and password
 
 .. code:: robotframework
 
-        *** Test Cases ***
-	Valid Login
-    		Input Username    evelyn.holmes@n4sjamk.org	
-    		Input Password    EveHo100$
+    *** Test Cases ***
+    Valid Login
+    		Input Valid Username	
+    		Input Valid Password
     		Submit Credentials
-    		Welcome Page Should Be Open
-    		Sleep  2
+    		Login Should Succeed
+
 
 How should I use it ?
 ---------------------
@@ -247,33 +245,32 @@ After login in Evelyn try to click some buttons to be able to recover how Contri
 
 .. code:: robotframework
 
-	*** Test Cases ***
-        Living in Workspace
-		Go To    ${LOGIN URL}
-    		Login Page Should Be Open
-		Input Username    evelyn.holmes@n4sjamk.org       
-                Input Password    EveHo100$
-                Submit Credentials
-                Welcome Page Should Be Open
-                Sleep  2
-                Click Element  xpath=//*[@id="sidebar-container"]/div[1]/div[4]/div[1]         
-                Sleep  2
-		Click Element  xpath=//*[@id="sidebar-container"]/div[1]/div[4]/div[1]
-		Sleep  2
-		Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[3]/div/nav/ul/a[2]/li
-		Sleep  2
-		Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[3]/div/nav/ul/a[1]/li
-		Sleep  2
-		Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[5]
-		Sleep  1
-		Click Button  xpath=//*[@id="topbar-container"]/div/div/div/div[3]/button
-		Sleep  1
-		Input Text  headingInput  Hire the Clown
-	 	Click Button  Create
-		Sleep  1
-		Click Element  xpath=//*[@id="545b6355905bc10f00a94f0f"]/div[1]/div[2]/i
-		Click Element  xpath=//*[@id="topbar-container"]/div/div/div/div[2]/div/div[1]
-		Click Buttun  Delete
+    *** Test Cases ***
+    Living in Workspace
+            Input Valid Username       
+            Input Valid Password
+            Submit Credentials
+            Login Should Succeed
+            Sleep  2
+            Click Element  xpath=//*[@id="sidebar-container"]/div[1]/div[4]/div[1]         
+            Sleep  2
+		    Click Element  xpath=//*[@id="sidebar-container"]/div[1]/div[4]/div[1]
+		    Sleep  2
+		    Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[3]/div/nav/ul/a[2]/li
+		    Sleep  2
+		    Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[3]/div/nav/ul/a[1]/li
+		    Sleep  2
+		    Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[5]
+	    	Sleep  1
+		    
+            Click Button  xpath=//*[@id="topbar-container"]/div/div/div/div[3]/button
+		    Sleep  1
+		    Input Text  headingInput  Hire the Clown
+	 	    Click Button  Create
+		    Sleep  1
+		    Click Element  xpath=/html/body/div/div[3]/div/div[2]/div/div/div/div/div[2]/i
+		    Click Element  xpath=/html/body/div/div[2]/div/div/div/div[2]/div/div/i
+		    Click Button  Delete
 		
 How should I use it ?
 ---------------------
