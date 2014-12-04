@@ -141,13 +141,13 @@ Evelyn has forgotten which email she used for Contriboard and tries to login usi
 
     *** Test Cases ***
     Invalid Username
-    		Input Valid Username
-    		Input Invalid Password
+    		Input Invalid Username
+    		Input Valid Password
     		Submit Credentials
     		Login Should Fail
 
 
-Evelyn remembers she created a email just for Contriboard. Evelyn uses the correct account but does typo with password.
+Evelyn remembers she created a email just for Contriboard. Evelyn uses the correct account but does a typo with password.
 
 
 .. code:: robotframework
@@ -217,7 +217,7 @@ Wallace runs to the backyard
     Empty Username And Password
     		Empty Username    
     		Empty Password  
-   		    Submit Credentials
+            Submit Credentials
     		Login Should Fail
 
 
@@ -247,31 +247,15 @@ After login in Evelyn try to click some buttons to be able to recover how Contri
 
     *** Test Cases ***
     Living in Workspace
-            Input Valid Username       
-            Input Valid Password
-            Submit Credentials
-            Login Should Succeed
-            Sleep  2
-            Click Element  xpath=//*[@id="sidebar-container"]/div[1]/div[4]/div[1]         
-            Sleep  2
-		    Click Element  xpath=//*[@id="sidebar-container"]/div[1]/div[4]/div[1]
-		    Sleep  2
-		    Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[3]/div/nav/ul/a[2]/li
-		    Sleep  2
-		    Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[3]/div/nav/ul/a[1]/li
-		    Sleep  2
-		    Mouse Over  xpath=//*[@id="sidebar-container"]/div[1]/div[5]
-	    	Sleep  1
-		    
-            Click Button  xpath=//*[@id="topbar-container"]/div/div/div/div[3]/button
-		    Sleep  1
-		    Input Text  headingInput  Hire the Clown
-	 	    Click Button  Create
-		    Sleep  1
-		    Click Element  xpath=/html/body/div/div[3]/div/div[2]/div/div/div/div/div[2]/i
-		    Click Element  xpath=/html/body/div/div[2]/div/div/div/div[2]/div/div/i
-		    Click Button  Delete
+        Input Valid Username       
+        Input Valid Password
+        Submit Credentials
+        Login Should Succeed
+        Check Localization Options
+        Add Board
+        Remove Board
 		
+        
 How should I use it ?
 ---------------------
 
