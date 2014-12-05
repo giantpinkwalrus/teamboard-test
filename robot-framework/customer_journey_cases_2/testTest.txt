@@ -1,0 +1,15 @@
+*** Settings ***
+Resource    resource.txt
+*** Test Cases ***
+test Test
+    Open Browser To Main Page
+    Input Valid Username       
+    Input Valid Password
+    Submit Credentials
+    Login Should Succeed
+    Click Element  xpath=/html/body/div/div[3]/div/div/div/div/div
+    Create ticket  xpath=/html/body/div/div[2]/div/div/div/div[3]/button
+    Add Heading  xpath=/html/body/div[3]/div/div/div[2]/div/input
+    Create  xpath=/html/body/div[3]/div/div/div[3]/div/div/div[2]/button
+    Cancel  xpath=/html/body/div[3]/div/div/div[3]/div/div/div
+    Ticket  xpath=/html/body/div/div[3]/div/div/div/div[2]

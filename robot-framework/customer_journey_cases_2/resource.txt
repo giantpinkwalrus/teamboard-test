@@ -1,5 +1,6 @@
 *** Settings ***
 Library           Selenium2Library
+Library           ClipBoardTest
 
 *** Variables ***
 ${BROWSER}         firefox
@@ -20,11 +21,12 @@ ${MainPage}        Teamboard
 ${LoginPage}       Teamboard
 ${BoardPage}       Teamboard
 ${Empty}
-${BoardLink}           
+${BoardLink}
+
+        
 
 
 *** Keywords ***
-
 Input Valid Username
 	Input Text  email  ${ValidUser}
 
@@ -80,28 +82,29 @@ Add Board
     Click Button  xpath=/html/body/div/div[2]/div/div/div/div[3]/button
     Input Text  board-name  Hire the Clown
     Click Button  Create
+    Click Element  xpath=/html/body/div/div[3]/div/div[1]/div/div/div[1]/div[1]/div[2]/i 
     Click Element  xpath=/html/body/div/div[3]/div/div[1]/div/div/div[1]/div[1]/div[2]/i
-    Sleep  1
-    Click Element  xpath=/html/body/div/div[3]/div/div[1]/div/div/div[1]/div[1]/div[2]/i
-    Sleep  1
     
 Remove Board
     Click Element  xpath=/html/body/div/div[3]/div/div[1]/div/div/div[1]/div[1]/div[2]/i
-    Click Element  xpath=/html/body/div/div[2]/div/div/div/div[2]/div/div[1]/i
+    Click Element  xpath=/html/body/div/div[2]/div/div/div/div[2]/div/div/i
     Click Button  Delete
     
 Share Board Link
     #Click Element  xpath=/html/body/div/div[3]/div/div[1]/div/div/div[1]/div[1]/div[2]/i
-    #Sleep  1
+    Sleep  1
     Click Element  xpath=/html/body/div[1]/div[2]/div/div/div/div[2]/div/div[2]/i
     Sleep  1
     Click Button  xpath=/html/body/div[3]/div/div/div[3]/div/form/div[2]/div[2]/button
+    Mouse Down  xpath=/html/body/div[5]/div/div/div[3]/div/form/div[2]/div/div/span/button
+    Sleep  1
+    Mouse Up    xpath=/html/body/div[5]/div/div/div[3]/div/form/div[2]/div/div/span/button
+    #Sleep  2
+    #Click Button  Copy
     Sleep  2
-    Click Button  xpath=/html/body/div[3]/div/div/div[3]/div/form/div[2]/div[1]/div/span/button
+    ${BoardLink}=  Paste Clipboard
     Sleep  2
-    ${BoardLink}=  Execute Javascript  return ZeroClipboard.getData()
-    Sleep  2
-    Element Text Should Be  xpath=/html/body/div[3]/div/div/div[3]/div/form/div[2]/div[1]/div/input  ${BoardLink}
+    Element Text Should Be  board-url  ${BoardLink}
     Click Button  xpath=/html/body/div[3]/div/div/div[5]/div/button
     
     
