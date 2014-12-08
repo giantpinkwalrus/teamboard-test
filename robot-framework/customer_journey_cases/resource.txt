@@ -1,71 +1,142 @@
 *** Settings ***
-Documentation     A resource file with reusable keywords and variables.
-...
-...               The system specific keywords created here form our own
-...               domain specific language. They utilize keywords provided
-...               by the imported Selenium2Library.
 Library           Selenium2Library
+Library           ClipBoardTest
 
 *** Variables ***
-${SERVER}          contriboard.n4sjamk.org
 ${BROWSER}         firefox
-${DELAY}           0 
-${VALID USER}      evelyn.holmes@n4sjamk.org
-${VALID PASSWORD}  muumi510kg
-${LOGIN URL}       http://${SERVER}/login
-${WELCOME URL}     http://${SERVER}/main/workspace
+${DELAY}           0
+ 
+${ValidUser}           evelyn.holmes@n4sjamk.org
+${InvalidUser}         invalid
+
+${ValidPassword}       EveHo100$
+${InvalidPassword}     invalid
+
+${SERVER}          contriboard.n4sjamk.org
+${MainUrl}         http://${SERVER}/login
+${LoginUrl}        http://${SERVER}/login
+${WelcomeUrl}      http://${SERVER}/main/workspace
 ${ERROR URL}       http://${SERVER}/login
-${TITLEPAGE}	   Teamboard
+${MainPage}        Contriboard
+${LoginPage}       Contriboard
+${BoardPage}       Contriboard
+${Empty}
+${BoardLink}
+
+        
 
 
 *** Keywords ***
-Open Browser To Login Page
-    Open Browser    ${LOGIN URL}    ${BROWSER}
-#    Maximize Browser Window
-    Set Selenium Speed    ${DELAY}
-    Login Page Should Be Open
+Input Valid Username
+	Input Text  email  ${ValidUser}
 
-Login Page Should Be Open
-    Title Should Be  Teamboard 
+Input Invalid Username
+	Input Text  email  ${InvalidUser}
 
-Go To Login Page
-    Go To    ${LOGIN URL}
-    Login Page Should Be Open
+Empty Username
+    Input Text  email  ${Empty}
 
-Input Username
-    [Arguments]    ${username}
-    Input Text    email    ${username}
+Input Valid Password
+	Input Text  password  ${ValidPassword}
 
-Input Password
-    [Arguments]    ${password}
-    Input Text    password    ${password}
+Input Invalid Password
+	Input Text  password  ${InvalidPassword}
 
+Empty Password
+    Input Text  password  ${Empty}
+
+Login Should Fail
+#No way to tell if login is failing Date:02.12.14
+#Place holder logic
+    Title Should Be  ${LoginPage}
+
+Login Should Succeed
+    Wait Until Page Contains    Boards
+        
 Submit Credentials
-    Click Button    Sign in 
+    Click Button    Sign in
+
+Open Browser To Main Page
+    Open Browser  ${MainUrl}  ${Browser}
+    Set Selenium Speed  ${Delay}
+    Title Should Be  ${MainPage}
+
+Revert Changes And Close Browser
+    Close Browser
+
+Check Localization Options
+    Wait Until Page Contains  Boards
+    Click Element  xpath=/html/body/div/div[1]/div[1]/div[4]/div[1]/div/i
+    Click Element  xpath=/html/body/div/div[1]/div[1]/div[4]/div[2]/div[4]/img
+    Wait Until Page Contains  Доски
+    Click Element  xpath=/html/body/div/div[1]/div[1]/div[4]/div[2]/div[3]/img
+    Wait Until Page Contains  Brädor
+    Click Element  xpath=/html/body/div/div[1]/div[1]/div[4]/div[2]/div[2]/img
+    Wait Until Page Contains  Lankut
+    Click Element  xpath=/html/body/div/div[1]/div[1]/div[4]/div[2]/div[1]/img
+    Wait Until Page Contains  Boards
+	Click Element  xpath=/html/body/div/div[1]/div[1]/div[4]/div[1]/div/i
+	Sleep  2
+
+Add Board
+    Click Button  xpath=/html/body/div/div[2]/div/div/div/div[3]/button
+    Input Text  board-name  Hire the Clown
+    Click Button  Create
+    Click Element  xpath=/html/body/div/div[3]/div/div[1]/div/div/div[1]/div[1]/div[2]/i 
+    Click Element  xpath=/html/body/div/div[3]/div/div[1]/div/div/div[1]/div[1]/div[2]/i
+    
+Remove Board
+    Click Element  xpath=/html/body/div/div[3]/div/div[1]/div/div/div[1]/div[1]/div[2]/i
+    Click Element  xpath=/html/body/div/div[2]/div/div/div/div[2]/div/div/i
+    Click Button  Delete
+    
+Share Board Link
+    #Click Element  xpath=/html/body/div/div[3]/div/div[1]/div/div/div[1]/div[1]/div[2]/i
     Sleep  1
-
-
-Welcome Page Should Be Open
-    Location Should Be    ${WELCOME URL}
-    Title Should Be    Teamboard
-
-
-Login With Invalid Credentials Should Fail
-    [Arguments]       ${username}    ${password}
-    Input Username    ${username}
-    Input Password    ${password}
-    Submit Credentials
+    Click Element  xpath=/html/body/div[1]/div[2]/div/div/div/div[2]/div/div[2]/i
     Sleep  1
-    Login Should Have Failed
+    Click Button  xpath=/html/body/div[3]/div/div/div[3]/div/form/div[2]/div[2]/button
+    Mouse Down  xpath=/html/body/div[5]/div/div/div[3]/div/form/div[2]/div/div/span/button
+    Sleep  1
+    Mouse Up    xpath=/html/body/div[5]/div/div/div[3]/div/form/div[2]/div/div/span/button
+    #Sleep  2
+    #Click Button  Copy
+    Sleep  2
+    ${BoardLink}=  Paste Clipboard
+    Sleep  2
+    Element Text Should Be  board-url  ${BoardLink}
+    Click Button  xpath=/html/body/div[3]/div/div/div[5]/div/button
+    
+    
+    
+    
+Go To Login Page
+    Go To    ${LoginUrl}
+    Title Should Be  ${LoginPage}
 
-
-Login Should Have Failed
-    Location Should Be    ${ERROR URL}
-    Title Should Be  Contriboard
+#Welcome Page Should Be Open
+#    Wait Until Page Contains    Boards
+#    Location Should Be    ${WelcomeUrl}
+#    Title Should Be    Teamboard
+#
+#
+#Login With Invalid Credentials Should Fail
+#    [Arguments]       ${username}    ${password}
+#    Input Username    ${username}
+#    Input Password    ${password}
+#    Submit Credentials
+#    Sleep  1
+#    Login Should Have Failed
+#
+#
+#Login Should Have Failed
+#    Location Should Be    ${ERROR URL}
+#    Title Should Be  Teamboard
 #    Element Should Be Visible  xpath=//*[@id="app"]/div/div/form/div[2]/div/div/p[1]
+#
+#
+#Observing Screen For a While
+#    Sleep  5
 
-
-Observing Screen For a While
-    Sleep  5
 
 
