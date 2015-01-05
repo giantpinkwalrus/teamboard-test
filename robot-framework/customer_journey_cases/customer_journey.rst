@@ -256,10 +256,9 @@ After login in Evelyn try to click some buttons to be able to recover how Contri
         Remove Board
 		
         
-How should I use it ?
+And what now?....
 ---------------------
 
-After login in Evelyn try to click some buttons to be able to recover how Contriboard was used. All what Dave was told her last week were foggy memories. There is nice button I should try to click some!
 
 
 
