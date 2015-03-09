@@ -1,0 +1,122 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Variables ***
+${BROWSER}        firefox
+${DELAY}          0.1
+${ValidUser}      testbaboon@test.com
+${ValidPassword}    t3stmonkey
+${NewUser}        new16@test.com
+${NewPassword}    t3stmonkey
+${SERVER}         localhost:8000
+${LoginUrl}       http://${SERVER}/login
+${BoardUrl}       http://${SERVER}/boards
+${RegUrl}         http://${SERVER}/register
+
+*** Keywords ***
+Register User
+    Assign Id To Element    //div[@class='application']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Element Text Should Be    //button[@data-reactid='${rid}.1.1.1']    Register    Erronr= Wrong button
+    Click Button    //button[@data-reactid='${rid}.1.1.1']
+    Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
+    Location Should Be    ${RegUrl}
+    Assign Id To Element    //div[@class='application']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Input Text    //input[@type='email']    ${NewUser}
+    Input Text    //input[@type='password']    ${NewPassword}
+    Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Register    Error= Wrong Button
+    Click Button    //button[@data-reactid='${rid}.1.0.2']
+    Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
+    Location Should Be    ${LoginUrl}
+
+Login New User
+    Assign Id To Element    //div[@class='application']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
+    Input Text    //input[@type='email']    ${NewUser}
+    Input Text    //input[@type='password']    ${NewPassword}
+    Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Login    Error= Wrong Button
+    Click Button    //button[@data-reactid='${rid}.1.0.2']
+    Wait Until Page Contains Element    //div[@class='board-list']    timeout=2    error=Board list Not Found
+    Location Should Be    ${BoardUrl}
+
+Login User
+    Assign Id To Element    //div[@class='application']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Input Text    //input[@type='email']    ${ValidUser}
+    Input Text    //input[@type='password']    ${ValidPassword}
+    Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Login    Error= Wrong Button
+    Click Button    //button[@data-reactid='${rid}.1.0.2']
+    Wait Until Page Contains Element    //div[@class='board-list']    timeout=2    error=Board list Not Found
+    Location Should Be    ${BoardUrl}
+
+New Board
+    Assign Id To Element    //div[@class='new-board-preview']    NewBoard
+    ${nid}    Get Element Attribute    NewBoard@data-reactid
+    Click Element    //div[@data-reactid='${nid}.0']
+
+Edit Board
+    Click Element    //i[@class='fa fa-lg fa-pencil']
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Input Text    //input[@placeholder='Name']    Board
+    Click Element    //button[@data-reactid='${rid}.0.2.0.0']
+
+Open Board
+    Assign Id To Element    //div[@class='minimap-container']    Board
+    ${bid}    Get Element Attribute    Board@data-reactid
+    Click Element    //div[@data-reactid='${bid}']
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Found
+
+Delete Board
+    Click Element    //i[@class='fa fa-lg fa-pencil']
+    Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
+    Click Button    //button[@class='btn red']
+
+Close Board
+    Click Element    //div[@class='logo-content-area']
+    Wait Until Page Contains Element    //div[@class='board-list']    timeout=2    error=Board list Not Found
+    Location Should Be    ${BoardUrl}
+
+Create Ticket
+    Double Click Element    //div[@class='board']
+    Assign Id To Element    //div[@class='content']    ticket
+    Drag And Drop By Offset    ticket    100    -200
+
+Delete Ticket
+    Double Click Element    ticket
+    Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
+    Click Button    //button[@class='btn red']
+
+Log Out
+    Assign Id To Element    //div[@class='application']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Click Element    //img[@data-reactid='${rid}.1.1.0']
+    Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
+    Click Button    //button[@class='btn red']
+    Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
+    Location Should Be    ${LoginUrl}
+
+Input Username
+    [Arguments]    ${username}
+    Input Text    //input[@type='email']    ${username}
+
+Input Password
+    [Arguments]    ${password}
+    Input Text    //input[@type='password']    ${password}
+
+Submit Credentials
+    Assign Id To Element    //div[@class='application']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Click Button    //button[@data-reactid='${rid}.1.0.2']
+
+Open Browser To Login Page
+    Open Browser    ${LoginUrl}    ${Browser}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Location Should Be    ${LoginUrl}
+
+Go To Login Page
+    Go To    ${LoginUrl}
+    Location Should Be    ${LoginUrl}

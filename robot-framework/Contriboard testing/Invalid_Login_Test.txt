@@ -1,0 +1,39 @@
+*** Settings ***
+Suite Setup       Open Browser To Login Page
+Suite Teardown    Close Browser
+Test Setup        Go To Login Page
+Test Template     Login With Invalid Credentials Should Fail
+Resource          resource.txt
+
+*** Test Cases ***    User Email      Password
+Invalid Username      [Tags]          invalid
+                      invalid         ${ValidPassword}
+
+Invalid Password      [Tags]          invalid
+                      ${ValidUser}    invalid
+
+Invalid Username And Password
+                      [Tags]          invalid
+                      invalid         invalid
+
+Empty Username        [Tags]          invalid
+                      ${EMPTY}        ${ValidPassword}
+
+Empty Password        [Tags]          invalid
+                      ${ValidUser}    ${EMPTY}
+
+Empty Username And Password
+                      [Tags]          invalid
+                      ${EMPTY}        ${EMPTY}
+
+*** Keywords ***
+Login With Invalid Credentials Should Fail
+    [Arguments]    ${username}    ${password}
+    Input Username    ${username}
+    Input Password    ${password}
+    Submit Credentials
+    Login Should Have Failed
+
+Login Should Have Failed
+    Location Should Be    ${LoginUrl}
+    Element Should Be Visible    //div[@class='alert']    message=Alert Not Visible

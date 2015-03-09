@@ -1,0 +1,36 @@
+*** Settings ***
+Resource          resource.txt
+
+*** Test Cases ***
+Login user
+    [Tags]    old    log
+    Open Browser To Login Page
+    Login User
+
+Create New Board
+    [Tags]    old
+    New Board
+    Edit Board
+
+Create Ticket Into Board
+    [Tags]    old
+    Open Board
+    Create Ticket
+
+Delete Ticket From Board
+    [Tags]    old
+    Delete Ticket
+
+Delete Board
+    [Tags]    old
+    Close Board
+    Delete Board
+
+Log Out
+    [Tags]    old    log
+    Log Out
+
+Close
+    [Tags]    old    log
+    Close Browser
+    [Teardown]
