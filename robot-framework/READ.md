@@ -7,7 +7,54 @@ higher-level keywords from existing ones using the same syntax that is used for 
 
 ### How to install?
   There are many ways to install robot framework to your computer. 
-  But here is Robot Frameworks own [installation instructions](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst)
+  But here is Robot Frameworks own [installation instructions](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst) or you can follow fast guide(shown below) how to install it. 
+  
+###Fast Guide to install Robot Framework
+####1. Preconditions
+Robot Framework is supported on Python, Jython (JVM) and IronPython (.NET)
+and runs also on PyPy. The interpreter you want to use should be 
+installed before installing the framework.
+    
+On most UNIX-like systems such as Linux and OS X you have Python installed by default. 
+If you are on Windows or otherwise need to install Python yourself, 
+a good place to start is [python.org](http://python.org).
+
+On this guide we are using python, so the commands are for python.
+   
+####2. Installing Robot Framework
+Easiest way to install Robot Framework is using package manager like [pip](https://pip.pypa.io/en/latest/index.html).
+
+Install pip if you don't already have it installed.
+```
+python get-pip.py
+```
+Using pip to install Robot Framework
+```
+# Install the latest version
+pip install robotframework
+```
+Now you have Robot Framework installed! 
+
+
+If you want use specific version of Robot Framework or upgrade it, 
+you can use these commands:
+```
+# Upgrade to the latest version
+pip install --upgrade robotframework
+
+# Install a specific version
+pip install robotframework==2.8.5
+
+# Uninstall
+pip uninstall robotframework
+```
+
+####3.Robot Framework is installed
+Now you can start runnig test from your terminal. 
+
+You can also use [RIDE](https://github.com/robotframework/RIDE/wiki) which is easy to use tool for running tests and creating tests
+
+  
   
 ### How to run tests
 Once you have Robot Framework in working condition you can run your tests using pybot command.
