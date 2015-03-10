@@ -48,27 +48,36 @@ pip install robotframework==2.8.5
 # Uninstall
 pip uninstall robotframework
 ```
+####3. Installing Selenium2Library for RobotFramework
+[Selenium2Library](https://github.com/rtomac/robotframework-selenium2library) is a web testing library for Robot Framework. That you'll be using for creating tests.
 
-####3.Robot Framework is installed
+Install Selenium2Library using pip
+```
+pip install robotframework-selenium2library
+```
+####4.Robot Framework is ready to use
 Now you can start runnig test from your terminal. 
 
 You can also use [RIDE](https://github.com/robotframework/RIDE/wiki) which is easy to use tool for running tests and creating tests
 
-  
-  
+
 ### How to run tests
 Once you have Robot Framework in working condition you can run your tests using pybot command.
 
-Here are examples.
 
-Run a test from Contriboard testing repository:
+Run a test:
 ```
 pybot New_User_Test.txt
 ```
-or run all tests from Contriboard repository
-
+Run all tests from folder:
 ```
 pybot Contriboard Testing
 ```
+### Useful links for creating tests
 
+- [Robot Framework](http://robotframework.org/)
+- [Robot Framework User Guide](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html)
+- [Selenium2Library keywords](https://code.google.com/p/robotframework-seleniumlibrary/wiki/LibraryDocumentation)
+- [RF Builtin keywords](http://robotframework.org/robotframework/latest/libraries/BuiltIn.html)
+- [RF Collections keywords](http://robotframework.org/robotframework/latest/libraries/Collections.html)
 
