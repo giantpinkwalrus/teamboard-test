@@ -64,6 +64,15 @@ You can also use [RIDE](https://github.com/robotframework/RIDE/wiki) which is ea
 ### How to run tests
 Once you have Robot Framework in working condition you can run your tests using pybot command.
 
+These test are from Contriboard Testing folder. Before running them check that variables are correct for your Contriboard configuration.
+
+
+Open resource.txt and edit these lines to match your Contriboard server url and user:
+```
+${ValidUser} testbaboon@test.com
+${ValidPassword} t3stmonkey
+${SERVER} localhost:8000
+```
 
 Run a test:
 ```
