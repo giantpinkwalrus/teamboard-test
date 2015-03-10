@@ -62,7 +62,7 @@ You can also use [RIDE](https://github.com/robotframework/RIDE/wiki) which is ea
 
 
 ### How to run tests
-Once you have Robot Framework in working condition you can run your tests using pybot command.
+Once you have Robot Framework in working condition you can run your tests using `pybot` command.
 
 ####1. Preconditions
 These test are from Contriboard Testing folder. Before running them check that variables are correct for your Contriboard configuration.
