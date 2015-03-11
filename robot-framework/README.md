@@ -89,7 +89,7 @@ pybot Contriboard Testing
 
 - [Robot Framework](http://robotframework.org/)
 - [Robot Framework User Guide](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html)
-- [Selenium2Library keywords](https://code.google.com/p/robotframework-seleniumlibrary/wiki/LibraryDocumentation)
+- [Selenium2Library keywords](http://rtomac.github.io/robotframework-selenium2library/doc/Selenium2Library.html)
 - [RF Builtin keywords](http://robotframework.org/robotframework/latest/libraries/BuiltIn.html)
 - [RF Collections keywords](http://robotframework.org/robotframework/latest/libraries/Collections.html)
 
