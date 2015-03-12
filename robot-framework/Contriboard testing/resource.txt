@@ -6,7 +6,7 @@ ${BROWSER}        firefox
 ${DELAY}          0.1
 ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
-${NewUser}        new16@test.com
+${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
 ${SERVER}         localhost:8000
 ${LoginUrl}       http://${SERVER}/login
@@ -56,6 +56,25 @@ New Board
     ${nid}    Get Element Attribute    NewBoard@data-reactid
     Click Element    //div[@data-reactid='${nid}.0']
 
+Random Edit Board
+    Get Edit Xpath
+    Click Element    ${Expath}
+    Input Text    //input[@placeholder='Name']    Board
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Click Element    //button[@data-reactid='${rid}.0.2.0.0']
+
+Random Open Board
+    Get Board Xpath
+    Click Element    ${Bxpath}
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Found
+
+Random Delete Board
+    Get Edit Xpath
+    Click Element    ${Expath}
+    Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
+    Click Button    //button[@class='btn red']
+
 Edit Board
     Click Element    //i[@class='fa fa-lg fa-pencil']
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
@@ -78,6 +97,13 @@ Close Board
     Click Element    //div[@class='logo-content-area']
     Wait Until Page Contains Element    //div[@class='board-list']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
+
+Random Create Ticket
+    #Get X Coordinate
+    #Get Y Coordinate
+    Double Click Element    //div[@class='board']    # ${x},${y}
+    Get Ticket Xpath
+    Drag And Drop By Offset    ${Txpath}    100    -200
 
 Create Ticket
     Double Click Element    //div[@class='board']
@@ -120,3 +146,29 @@ Open Browser To Login Page
 Go To Login Page
     Go To    ${LoginUrl}
     Location Should Be    ${LoginUrl}
+
+Get Board Xpath
+    [Arguments]    ${min}=1    ${max}=5
+    ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
+    Set Test Variable    ${Bxpath}    xpath=/html/body/div/div[3]/div/div[${int}]/div[1]
+
+Get Ticket Xpath
+    #[Arguments]    ${min}=1    ${max}=10
+    #${int}    Evaluate    random.randint(${min}, ${max})    random,sys
+    Set Test Variable    ${int}    1
+    Set Test Variable    ${Txpath}    xpath=/html/body/div/div[3]/div[2]/div[${int}]/div/div/div[2]
+
+Get Edit Xpath
+    [Arguments]    ${min}=1    ${max}=5
+    ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
+    Set Test Variable    ${Expath}    xpath=/html/body/div/div[3]/div/div[${int}]/div[2]/i
+
+Get Y Coordinate
+    [Arguments]    ${min}=0    ${max}=1920
+    ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
+    Set Test Variable    ${y}    ${int}
+
+Get X Coordinate
+    [Arguments]    ${min}=0    ${max}=1080
+    ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
+    Set Test Variable    ${x}    ${int}
