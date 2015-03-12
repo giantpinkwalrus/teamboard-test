@@ -10,21 +10,21 @@ Login user
 Create New Board
     [Tags]    old
     New Board
-    Edit Board
+    Random Edit Board
 
 Create Ticket Into Board
     [Tags]    old
-    Open Board
-    Create Ticket
+    Random Open Board
+    Random Create Ticket
 
 Delete Ticket From Board
     [Tags]    old
-    Delete Ticket
+    Random Delete Ticket
 
 Delete Board
     [Tags]    old
     Close Board
-    Delete Board
+    Random Delete Board
 
 Log Out
     [Tags]    old    log
