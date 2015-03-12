@@ -14,6 +14,7 @@ Login New User
 Create New Board
     [Tags]    new
     New Board
+    Edit Board
 
 Create Ticket Into Board
     [Tags]    new
