@@ -105,6 +105,12 @@ Random Create Ticket
     Get Ticket Xpath
     Drag And Drop By Offset    ${Txpath}    100    -200
 
+Random Delete Ticket
+    Get Ticket Xpath
+    Double Click Element    ${Txpath}
+    Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
+    Click Button    //button[@class='btn red']
+
 Create Ticket
     Double Click Element    //div[@class='board']
     Assign Id To Element    //div[@class='content']    ticket
