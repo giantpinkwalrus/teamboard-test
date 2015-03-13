@@ -20,6 +20,7 @@ Create Ticket Into Board
     [Tags]    new
     Open Board
     Create Ticket
+    Edit Ticket
 
 Delete Ticket From Board
     [Tags]    new

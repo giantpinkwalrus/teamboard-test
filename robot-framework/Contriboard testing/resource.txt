@@ -1,12 +1,12 @@
 *** Settings ***
-Library           Selenium2Library
+Library           ExtendedSelenium2Library
 
 *** Variables ***
 ${BROWSER}        firefox
 ${DELAY}          0.1
 ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
-${NewUser}        new@test.com
+${NewUser}        new45@test.com
 ${NewPassword}    t3stmonkey
 ${SERVER}         localhost:8000
 ${LoginUrl}       http://${SERVER}/login
@@ -99,11 +99,15 @@ Close Board
     Location Should Be    ${BoardUrl}
 
 Random Create Ticket
-    #Get X Coordinate
-    #Get Y Coordinate
-    Double Click Element    //div[@class='board']    # ${x},${y}
+    Get X Coordinate
+    Get Y Coordinate
+    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
+
+Random Move Ticket
     Get Ticket Xpath
-    Drag And Drop By Offset    ${Txpath}    100    -200
+    Get X Move
+    Get Y Move
+    Drag And Drop By Offset    ${Txpath}    ${yMove}    ${xMove}
 
 Random Delete Ticket
     Get Ticket Xpath
@@ -111,10 +115,24 @@ Random Delete Ticket
     Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
     Click Button    //button[@class='btn red']
 
+Random Edit Ticket
+    Get Ticket Xpath
+    Double Click Element    ${Txpath}
+    Wait Until Page Contains Element    //button[@class="btn turquoise"]    timeout=2    error=Delete Button Not Found
+    Input Text    xpath=/html/body/div[2]/div/div/div[2]/div/textarea    Typing somenthing
+    Click Button    //button[@class="btn turquoise"]
+
 Create Ticket
     Double Click Element    //div[@class='board']
+    Wait Until Page Contains Element    //div[@class="content"]    timeout=2    error=Delete Button Not Found
     Assign Id To Element    //div[@class='content']    ticket
     Drag And Drop By Offset    ticket    100    -200
+
+Edit Ticket
+    Double Click Element    ticket
+    Wait Until Page Contains Element    //button[@class='btn turquoise']    timeout=2    error=Delete Button Not Found
+    Input Text    xpath=/html/body/div[2]/div/div/div[2]/div/textarea    Typing somenthing
+    Click Button    //button[@class="btn turquoise"]
 
 Delete Ticket
     Double Click Element    ticket
@@ -159,22 +177,31 @@ Get Board Xpath
     Set Test Variable    ${Bxpath}    xpath=/html/body/div/div[3]/div/div[${int}]/div[1]
 
 Get Ticket Xpath
-    #[Arguments]    ${min}=1    ${max}=10
-    #${int}    Evaluate    random.randint(${min}, ${max})    random,sys
-    Set Test Variable    ${int}    1
-    Set Test Variable    ${Txpath}    xpath=/html/body/div/div[3]/div[2]/div[${int}]/div/div/div[2]
+    [Arguments]    ${min}=1    ${max}=5
+    ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
+    Set Test Variable    ${Txpath}    xpath=/html/body/div/div[3]/div[2]/div[1]/div/div[${int}]/div[2]
 
 Get Edit Xpath
     [Arguments]    ${min}=1    ${max}=5
     ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
     Set Test Variable    ${Expath}    xpath=/html/body/div/div[3]/div/div[${int}]/div[2]/i
 
+Get X Move
+    [Arguments]    ${min}=-500    ${max}=500
+    ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
+    Set Test Variable    ${xMove}    ${int}
+
+Get Y Move
+    [Arguments]    ${min}=-500    ${max}=500
+    ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
+    Set Test Variable    ${yMove}    ${int}
+
 Get Y Coordinate
-    [Arguments]    ${min}=0    ${max}=1920
+    [Arguments]    ${min}=-500    ${max}=500
     ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
     Set Test Variable    ${y}    ${int}
 
 Get X Coordinate
-    [Arguments]    ${min}=0    ${max}=1080
+    [Arguments]    ${min}=-200    ${max}=200
     ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
     Set Test Variable    ${x}    ${int}
