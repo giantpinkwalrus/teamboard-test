@@ -2,7 +2,7 @@
 Resource          resource.txt
 
 *** Test Cases ***
-Login user
+Login User
     [Tags]    old    log
     Open Browser To Login Page
     Login User
@@ -15,7 +15,13 @@ Create New Board
 Create Ticket Into Board
     [Tags]    old
     Random Open Board
-    Random Create Ticket
+    Repeat Keyword    5    Random Create Ticket
+
+Move Ticket On Board
+    Random Move Ticket
+
+Edit Created Ticket
+    Random Edit Ticket
 
 Delete Ticket From Board
     [Tags]    old
@@ -26,7 +32,7 @@ Delete Board
     Close Board
     Random Delete Board
 
-Log Out
+Log Out User
     [Tags]    old    log
     Log Out
 
