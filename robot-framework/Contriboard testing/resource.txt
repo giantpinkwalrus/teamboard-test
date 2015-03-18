@@ -6,22 +6,23 @@ ${BROWSER}        firefox
 ${DELAY}          0.1
 ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
-${NewUser}        new45@test.com
+${NewUser}        new6@test.com
 ${NewPassword}    t3stmonkey
 ${SERVER}         localhost:8000
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
 ${RegUrl}         http://${SERVER}/register
+${LoginTitle}     Contriboard
 
 *** Keywords ***
 Register User
-    Assign Id To Element    //div[@class='application']    reactID
+    Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Element Text Should Be    //button[@data-reactid='${rid}.1.1.1']    Register    Erronr= Wrong button
-    Click Button    //button[@data-reactid='${rid}.1.1.1']
+    Element Text Should Be    //button[@data-reactid='${rid}.1.0.3.1']    Register    Erronr= Wrong button
+    Click Button    //button[@data-reactid='${rid}.1.0.3.1']
     Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
     Location Should Be    ${RegUrl}
-    Assign Id To Element    //div[@class='application']    reactID
+    Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Input Text    //input[@type='email']    ${NewUser}
     Input Text    //input[@type='password']    ${NewPassword}
@@ -31,38 +32,36 @@ Register User
     Location Should Be    ${LoginUrl}
 
 Login New User
-    Assign Id To Element    //div[@class='application']    reactID
+    Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
     Input Text    //input[@type='email']    ${NewUser}
     Input Text    //input[@type='password']    ${NewPassword}
     Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Login    Error= Wrong Button
     Click Button    //button[@data-reactid='${rid}.1.0.2']
-    Wait Until Page Contains Element    //div[@class='board-list']    timeout=2    error=Board list Not Found
+    Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
 Login User
-    Assign Id To Element    //div[@class='application']    reactID
+    Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Input Text    //input[@type='email']    ${ValidUser}
     Input Text    //input[@type='password']    ${ValidPassword}
     Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Login    Error= Wrong Button
     Click Button    //button[@data-reactid='${rid}.1.0.2']
-    Wait Until Page Contains Element    //div[@class='board-list']    timeout=2    error=Board list Not Found
+    Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
 New Board
-    Assign Id To Element    //div[@class='new-board-preview']    NewBoard
-    ${nid}    Get Element Attribute    NewBoard@data-reactid
-    Click Element    //div[@data-reactid='${nid}.0']
+    Click Element    //span[@class='fa fa-fw fa-plus']
 
 Random Edit Board
     Get Edit Xpath
     Click Element    ${Expath}
-    Input Text    //input[@placeholder='Name']    Board
+    Input Text    //input[@placeholder='Board Name']    Board
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Click Element    //button[@data-reactid='${rid}.0.2.0.0']
+    Click Element    //button[@data-reactid='${rid}.0.2.0']
 
 Random Open Board
     Get Board Xpath
@@ -70,32 +69,32 @@ Random Open Board
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Found
 
 Random Delete Board
-    Get Edit Xpath
-    Click Element    ${Expath}
-    Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
-    Click Button    //button[@class='btn red']
+    Get Delete Xpath
+    Click Element    ${Dxpath}
+    Wait Until Page Contains Element    //button[@class='btn-danger']    timeout=2    error=Delete Button Not Found
+    Click Button    //button[@class='btn-danger']
 
 Edit Board
-    Click Element    //i[@class='fa fa-lg fa-pencil']
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Input Text    //input[@placeholder='Board Name']    Board
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Input Text    //input[@placeholder='Name']    Board
-    Click Element    //button[@data-reactid='${rid}.0.2.0.0']
+    Click Element    //button[@data-reactid='${rid}.0.2.0']
 
 Open Board
-    Assign Id To Element    //div[@class='minimap-container']    Board
+    Assign Id To Element    //div[@class='minimap']    Board
     ${bid}    Get Element Attribute    Board@data-reactid
     Click Element    //div[@data-reactid='${bid}']
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Found
 
 Delete Board
-    Click Element    //i[@class='fa fa-lg fa-pencil']
-    Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
-    Click Button    //button[@class='btn red']
+    Click Element    //span[@class='fa fa-fw fa-trash']
+    Wait Until Page Contains Element    //button[@class='btn-danger']    timeout=2    error=Delete Button Not Found
+    Click Button    //button[@class='btn-danger']
 
 Close Board
-    Click Element    //div[@class='logo-content-area']
-    Wait Until Page Contains Element    //div[@class='board-list']    timeout=2    error=Board list Not Found
+    Click Element    //span[@class='fa fa-fw fa-arrow-left']
+    Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
 Random Create Ticket
@@ -112,39 +111,39 @@ Random Move Ticket
 Random Delete Ticket
     Get Ticket Xpath
     Double Click Element    ${Txpath}
-    Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
-    Click Button    //button[@class='btn red']
+    Wait Until Page Contains Element    //button[@class='btn-danger']    timeout=2    error=Delete Button Not Found
+    Click Button    //button[@class='btn-danger']
 
 Random Edit Ticket
     Get Ticket Xpath
     Double Click Element    ${Txpath}
-    Wait Until Page Contains Element    //button[@class="btn turquoise"]    timeout=2    error=Delete Button Not Found
-    Input Text    xpath=/html/body/div[2]/div/div/div[2]/div/textarea    Typing somenthing
-    Click Button    //button[@class="btn turquoise"]
+    Wait Until Page Contains Element    //button[@class='btn-primary']    timeout=2    error=Done Button Not Found
+    Input Text    xpath=/html/body/div[2]/div/div/section[2]/textarea    Typing somenthing
+    Click Button    //button[@class='btn-primary']
 
 Create Ticket
     Double Click Element    //div[@class='board']
-    Wait Until Page Contains Element    //div[@class="content"]    timeout=2    error=Delete Button Not Found
-    Assign Id To Element    //div[@class='content']    ticket
+    Wait Until Page Contains Element    //div[@class="content"]    timeout=2    error=Ticket Button Not Found
+    Assign Id To Element    //div[@class='ticket']    ticket
     Drag And Drop By Offset    ticket    100    -200
 
 Edit Ticket
     Double Click Element    ticket
-    Wait Until Page Contains Element    //button[@class='btn turquoise']    timeout=2    error=Delete Button Not Found
-    Input Text    xpath=/html/body/div[2]/div/div/div[2]/div/textarea    Typing somenthing
-    Click Button    //button[@class="btn turquoise"]
+    Wait Until Page Contains Element    //button[@class='btn-primary']    timeout=2    error=Done Button Not Found
+    Input Text    xpath=/html/body/div[2]/div/div/section[2]/textarea    Typing somenthing
+    Click Button    //button[@class="btn-primary"]
 
 Delete Ticket
     Double Click Element    ticket
-    Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
-    Click Button    //button[@class='btn red']
+    Wait Until Page Contains Element    //button[@class='btn-danger']    timeout=2    error=Delete Button Not Found
+    Click Button    //button[@class='btn-danger']
 
 Log Out
-    Assign Id To Element    //div[@class='application']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
-    Click Element    //img[@data-reactid='${rid}.1.1.0']
-    Wait Until Page Contains Element    //button[@class='btn red']    timeout=2    error=Delete Button Not Found
-    Click Button    //button[@class='btn red']
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown list Not Found
+    Assign Id To Element    //ul[@class='dropdown']    Board
+    ${did}    Get Element Attribute    Board@data-reactid
+    Click Element    //li[@data-reactid='${did}.$3']
     Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
     Location Should Be    ${LoginUrl}
 
@@ -157,7 +156,7 @@ Input Password
     Input Text    //input[@type='password']    ${password}
 
 Submit Credentials
-    Assign Id To Element    //div[@class='application']    reactID
+    Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Button    //button[@data-reactid='${rid}.1.0.2']
 
@@ -166,25 +165,31 @@ Open Browser To Login Page
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    ${LoginUrl}
+    Title Should Be    ${LoginTitle}
 
 Go To Login Page
     Go To    ${LoginUrl}
     Location Should Be    ${LoginUrl}
 
 Get Board Xpath
-    [Arguments]    ${min}=1    ${max}=5
+    [Arguments]    ${min}=2    ${max}=5
     ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
-    Set Test Variable    ${Bxpath}    xpath=/html/body/div/div[3]/div/div[${int}]/div[1]
+    Set Test Variable    ${Bxpath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[1]/div
 
 Get Ticket Xpath
     [Arguments]    ${min}=1    ${max}=5
     ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
-    Set Test Variable    ${Txpath}    xpath=/html/body/div/div[3]/div[2]/div[1]/div/div[${int}]/div[2]
+    Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[1]/div/div[1]/div[${int}]
 
 Get Edit Xpath
-    [Arguments]    ${min}=1    ${max}=5
+    [Arguments]    ${min}=2    ${max}=5
     ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
-    Set Test Variable    ${Expath}    xpath=/html/body/div/div[3]/div/div[${int}]/div[2]/i
+    Set Test Variable    ${Expath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[3]/div[2]/span
+
+Get Delete Xpath
+    [Arguments]    ${min}=2    ${max}=5
+    ${int}    Evaluate    random.randint(${min}, ${max})    random,sys
+    Set Test Variable    ${Dxpath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[3]/div[1]/span
 
 Get X Move
     [Arguments]    ${min}=-500    ${max}=500

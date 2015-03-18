@@ -9,7 +9,7 @@ Login User
 
 Create New Board
     [Tags]    old
-    New Board
+    Repeat Keyword    5    New Board
     Random Edit Board
 
 Create Ticket Into Board
@@ -18,10 +18,12 @@ Create Ticket Into Board
     Repeat Keyword    5    Random Create Ticket
 
 Move Ticket On Board
-    Random Move Ticket
+    [Tags]    old
+    Repeat Keyword    5    Random Move Ticket
 
 Edit Created Ticket
-    Random Edit Ticket
+    [Tags]    old
+    Repeat Keyword    5    Random Edit Ticket
 
 Delete Ticket From Board
     [Tags]    old
