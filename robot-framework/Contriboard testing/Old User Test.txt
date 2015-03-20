@@ -3,18 +3,28 @@ Resource          resource.txt
 
 *** Test Cases ***
 Login User
-    [Tags]    old    log
+    [Tags]    old    log    edit    feed    share
     Open Browser To Login Page
     Login User
 
 Create New Board
-    [Tags]    old
+    [Tags]    old    edit
     Repeat Keyword    5    New Board
     Random Edit Board
+    Set Board Background
+
+Share Board Url
+    [Tags]    old    share
+    Share Board
 
 Create Ticket Into Board
     [Tags]    old
     Random Open Board
+    Edit Board From Board
+    Click Magnet On
+    Click Globe On
+    Click Magnet Off
+    Click Globe Off
     Repeat Keyword    5    Random Create Ticket
 
 Move Ticket On Board
@@ -34,11 +44,15 @@ Delete Board
     Close Board
     Random Delete Board
 
+Send Feedback
+    [Tags]    old    feed
+    Send Feedback
+
 Log Out User
-    [Tags]    old    log
+    [Tags]    old    log    edit    feed    share
     Log Out
 
 Close
-    [Tags]    old    log
+    [Tags]    old    log    edit    feed    share
     Close Browser
     [Teardown]

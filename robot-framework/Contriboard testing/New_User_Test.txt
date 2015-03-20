@@ -15,10 +15,16 @@ Create New Board
     [Tags]    new
     New Board
     Edit Board
+    Set Board Background
+
+Share Board Url
+    [Tags]    new
+    Share Board
 
 Create Ticket Into Board
     [Tags]    new
     Open Board
+    Edit Board From Board
     Create Ticket
     Edit Ticket
 
@@ -30,6 +36,10 @@ Delete Board
     [Tags]    new
     Close Board
     Delete Board
+
+Send Feedback
+    [Tags]    new
+    Send Feedback
 
 Log Out
     [Tags]    new
