@@ -133,8 +133,8 @@ Dave helped Evelyn creating the account and password. They also created a board 
 	Resource          resource.txt
 
 
-Problems with login
--------------------
+Problems with logging in
+------------------------
 
 Evelyn has forgotten her user account and at first tries logging in by using another account name.
 
@@ -212,8 +212,8 @@ Evelyn's phone call takes about 5 minutes so Wallace has plenty of time to play 
     		Login Should Have Failed
 
 
-Wallace hears Evelyn ending the call! He panics and clears the login form, and pressed enter by accident...
-Wallace makes a quick escape to the backyard.
+Wallace hears Evelyn ending the call! He panics and clears the login form, and presses enter by accident...
+He makes his quick escape to the backyard.
 
 
 .. code:: robotframework
@@ -225,8 +225,8 @@ Wallace makes a quick escape to the backyard.
    		Submit Credentials
     		Login Should Have Failed
 
-Login at Last!
---------------
+Logged in at Last!
+------------------
 
 By the time Evelyn comes back, Wallace is already gone. There's only an empty login form to Contriboard visible on the computer screen.
 Because of the empty login form Evelyn suddenly remembers the correct login credentials.
@@ -245,7 +245,7 @@ How should I use it ?
 ---------------------
 
 After logging in Evelyn tries clicking some buttons in order to remember how Contriboard was used. Everything Dave had told her were only mere foggy memories now. 
-Maybe I should try what happens from that button?
+!Maybe I should try what happens from that button?"
 
 
 .. code:: robotframework
