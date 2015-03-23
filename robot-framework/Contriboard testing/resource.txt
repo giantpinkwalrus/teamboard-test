@@ -10,6 +10,7 @@ ${ValidPassword}    t3stmonkey
 ${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
 ${SERVER}         localhost:8000
+${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
 ${RegUrl}         http://${SERVER}/register
@@ -80,6 +81,8 @@ Set Board Background
     ${rid}    Get Element Attribute    Content@data-reactid
     Get Random Background
     Select From List By Value    //select[@data-reactid='${rid}.0.1.4.2.0']    ${background}
+    ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.4.0.0']@src
+    Should Be Equal    ${check}    ${MainUrl}/dist/assets/img/bg/${bcheck}.png
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Open Board
@@ -203,15 +206,32 @@ Click Globe Off
     Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
 
 Share Board
-    #Share Board not finished. SharedUrl isn't used anywhere
     Click Element    //span[@class='fa fa-fw fa-pencil']
     Wait Until Page Contains Element    //section[@class='dialog-content']
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Button    //button[@data-reactid='${rid}.0.1.3.1']
     ${SharedUrl}    Get Value    //input[@placeholder='Shared URL']
+    Set Suite Variable    ${Shared}    ${SharedUrl}
+    Click Button    //button[@data-reactid='${rid}.0.2.0']
+
+Stop Share Board
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //section[@class='dialog-content']
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
     Click Button    //button[@data-reactid='${rid}.0.1.3.1']
     Click Button    //button[@data-reactid='${rid}.0.2.0']
+
+Open Shared Board
+    Open Browser    ${Shared}    ${Browser}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Location Should Be    http://${Shared}
+    Wait Until Page Contains Element    //input[@name='username']
+    Input Text    //input[@name='username']    TesterTester
+    Click Button    //button[@class='btn-primary']
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
 
 Send Feedback
     Click Element    //span[@class='fa fa-fw fa-user']
@@ -225,8 +245,9 @@ Send Feedback
     Element Text Should Be    //button[@class='button primary']    Next    error=Next Button Missing
     Click Button    //button[@class='button primary']
     Element Text Should Be    //h1[@class='pane-title mb1']    Additional details    erron=Send message page not open
-    Input Text    //input[@placeholder='Email address']    testbaboon@test.com
-    Select From List By Value    //select[@class='selectbox full-width']    Other
+    Input Text    //input[@placeholder='Email address']    ${ValidUser}
+    Get Random Type
+    Select From List By Value    //select[@class='selectbox full-width']    ${type}
     Element Text Should Be    //button[@class='button primary']    Send message    error=Send Button Missing
     Click Button    //button[@class='button primary']
     Wait Until Element Is Visible    //div[@class='thank-you-text pt2']    timeout=5    error=Message not send to send
@@ -316,3 +337,14 @@ Get Random Background
     ...    KEEP_DROP_TRY    CUSTOMER_JOURNEY_MAP    BUSINESS_MODEL_CANVAS
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    ${background}    ${item}
+    ${list2}    Create List    blank    play    swot    scrum    kanban
+    ...    keep_drop_try    customer_journey_map    business_model_canvas
+    ${item2}    Get From List    ${list2}    ${int}
+    Set Test Variable    ${bcheck}    ${item2}
+
+Get Random Type
+    [Arguments]    ${min}=0    ${max}=2
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    Support Request    Bug Report    Other
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    ${type}    ${item}
