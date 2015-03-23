@@ -26,8 +26,8 @@ Register User
     Location Should Be    ${RegUrl}
     Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Input Text    //input[@type='email']    ${NewUser}
-    Input Text    //input[@type='password']    ${NewPassword}
+    Input Username    ${NewUser}
+    Input Password    ${NewPassword}
     Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Register    Error=Register button missing
     Click Button    //button[@data-reactid='${rid}.1.0.2']
     Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
@@ -37,8 +37,8 @@ Login New User
     Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
-    Input Text    //input[@type='email']    ${NewUser}
-    Input Text    //input[@type='password']    ${NewPassword}
+    Input Username    ${NewUser}
+    Input Password    ${NewPassword}
     Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Login    Error=Login button missing
     Click Button    //button[@data-reactid='${rid}.1.0.2']
     Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
@@ -47,8 +47,8 @@ Login New User
 Login User
     Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Input Text    //input[@type='email']    ${ValidUser}
-    Input Text    //input[@type='password']    ${ValidPassword}
+    Input Username    ${ValidUser}
+    Input User Password    ${ValidPassword}
     Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Login    Error=Login button missing
     Click Button    //button[@data-reactid='${rid}.1.0.2']
     Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
@@ -212,6 +212,7 @@ Share Board
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Button    //button[@data-reactid='${rid}.0.1.3.1']
     ${SharedUrl}    Get Value    //input[@placeholder='Shared URL']
+    Should Not Be Equal    ${SharedUrl}    ${EMPTY}
     Set Suite Variable    ${Shared}    ${SharedUrl}
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
@@ -221,6 +222,8 @@ Stop Share Board
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Button    //button[@data-reactid='${rid}.0.1.3.1']
+    ${SharedUrl}    Get Value    //input[@placeholder='Shared URL']
+    Should Be Equal    ${SharedUrl}    ${EMPTY}
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Open Shared Board
@@ -270,9 +273,9 @@ Input Username
     [Arguments]    ${username}
     Input Text    //input[@type='email']    ${username}
 
-Input Password
+Input User Password
     [Arguments]    ${password}
-    Input Text    //input[@type='password']    ${password}
+    Input Password    //input[@type='password']    ${password}
 
 Submit Credentials
     Assign Id To Element    //div[@class='view view-form']    reactID
