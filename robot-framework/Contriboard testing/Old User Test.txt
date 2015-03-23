@@ -55,4 +55,18 @@ Log Out User
 Close
     [Tags]    old    log    edit    feed    share
     Close Browser
+
+Open Share Board
+    [Tags]    share
+    Open Shared Board
+    Log Out
+    Close Browser
+
+Close Board Sharing
+    [Tags]    share
+    Open Browser To Login Page
+    Login User
+    Stop Share Board
+    Log Out
+    Close Browser
     [Teardown]

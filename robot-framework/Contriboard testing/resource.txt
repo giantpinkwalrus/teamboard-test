@@ -206,15 +206,32 @@ Click Globe Off
     Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
 
 Share Board
-    #Share Board not finished. SharedUrl isn't used anywhere
     Click Element    //span[@class='fa fa-fw fa-pencil']
     Wait Until Page Contains Element    //section[@class='dialog-content']
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Button    //button[@data-reactid='${rid}.0.1.3.1']
     ${SharedUrl}    Get Value    //input[@placeholder='Shared URL']
+    Set Suite Variable    ${Shared}    ${SharedUrl}
+    Click Button    //button[@data-reactid='${rid}.0.2.0']
+
+Stop Share Board
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //section[@class='dialog-content']
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
     Click Button    //button[@data-reactid='${rid}.0.1.3.1']
     Click Button    //button[@data-reactid='${rid}.0.2.0']
+
+Open Shared Board
+    Open Browser    ${Shared}    ${Browser}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Location Should Be    http://${Shared}
+    Wait Until Page Contains Element    //input[@name='username']
+    Input Text    //input[@name='username']    TesterTester
+    Click Button    //button[@class='btn-primary']
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
 
 Send Feedback
     Click Element    //span[@class='fa fa-fw fa-user']
