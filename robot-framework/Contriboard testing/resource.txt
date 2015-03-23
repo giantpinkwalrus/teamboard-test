@@ -78,9 +78,8 @@ Set Board Background
     Wait Until Page Contains Element    //section[@class='dialog-content']
     Assign Id To Element    //div[@class='dialog-overlay']    Content
     ${rid}    Get Element Attribute    Content@data-reactid
-    Click Element    //div[@data-reactid='${rid}.0.1.4.2']
     Get Random Background
-    Click Element    //option[@value='${background}']
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.4.2.0']    ${background}
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Open Board
@@ -215,7 +214,6 @@ Share Board
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Send Feedback
-    #Send Feedback not finished. Doesn't really send anything (Type option isn't selected for somereason)
     Click Element    //span[@class='fa fa-fw fa-user']
     Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
     Click Element    //div[@class='user-voice-trigger']
@@ -228,11 +226,11 @@ Send Feedback
     Click Button    //button[@class='button primary']
     Element Text Should Be    //h1[@class='pane-title mb1']    Additional details    erron=Send message page not open
     Input Text    //input[@placeholder='Email address']    testbaboon@test.com
-    Click Element    //select[@class='selectbox full-width']
-    Click Element    //option[@value='Other']
+    Select From List By Value    //select[@class='selectbox full-width']    Other
     Element Text Should Be    //button[@class='button primary']    Send message    error=Send Button Missing
-    #Click Button    //button[@class='button primary']
-    Click Button    //button[@class='flat-button text-wrap']
+    Click Button    //button[@class='button primary']
+    Wait Until Element Is Visible    //div[@class='thank-you-text pt2']    timeout=5    error=Message not send to send
+    Wait Until Element Is Visible    //button[@class='button primary icon-button']    timeout=5    error=Message not send
     Click Element    //i[@class='icon close-icon']
     Element Should Not Be Visible    //article[@class='widget large-widget']    error=Widget Not Closed
     Unselect Frame
