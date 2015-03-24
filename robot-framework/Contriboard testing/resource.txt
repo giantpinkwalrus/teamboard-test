@@ -258,7 +258,7 @@ Open Shared Board
     Set Selenium Speed    ${DELAY}
     Location Should Be    http://${Shared}
     Wait Until Page Contains Element    //input[@name='username']
-    Input Text    //input[@name='username']    TesterTester
+    Input Text    //input[@name='username']    Tester
     Click Button    //button[@class='btn-primary']
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
 
