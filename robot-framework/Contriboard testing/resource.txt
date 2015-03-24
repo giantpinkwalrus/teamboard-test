@@ -118,17 +118,17 @@ Close Board
 Create Ticket
     Double Click Element    //div[@class='board']
     Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Found
-    Assign Id To Element    //div[@class='ticket']    ticket
+    Assign Id To Element    //div[@class='ticket']    Ticket
     Drag And Drop By Offset    ticket    100    -200
 
 Edit Ticket
-    Double Click Element    ticket
+    Double Click Element    Ticket
     Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Ticket Edit Dialog Not Found
     Input Text    xpath=/html/body/div[2]/div/div/section[2]/textarea    Typing somenthing
     Click Button    //button[@class="btn-primary"]
 
 Delete Ticket
-    Double Click Element    ticket
+    Double Click Element    Ticket
     Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Ticket Edit Dialog Not Found
     Click Button    //button[@class='btn-danger']
     Element Should Not Be Visible    ticket    Ticket Not Deleted
@@ -180,7 +180,7 @@ Random Move Ticket
 
 Random Delete Ticket
     Get Ticket Xpath
-    Assign Id To Element    ${Txpath}    ticket
+    Assign Id To Element    ${Txpath}    Ticket
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Click Button    //button[@class='btn-danger']
