@@ -26,10 +26,10 @@ Register User
     Location Should Be    ${RegUrl}
     Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Input Text    //input[@type='email']    ${NewUser}
-    Input Text    //input[@type='password']    ${NewPassword}
+    Input Username    ${NewUser}
+    Input User Password    ${NewPassword}
     Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Register    Error=Register button missing
-    Click Button    //button[@data-reactid='${rid}.1.0.2']
+    Submit Credentials
     Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
     Location Should Be    ${LoginUrl}
 
@@ -37,20 +37,20 @@ Login New User
     Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
-    Input Text    //input[@type='email']    ${NewUser}
-    Input Text    //input[@type='password']    ${NewPassword}
+    Input Username    ${NewUser}
+    Input User Password    ${NewPassword}
     Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Login    Error=Login button missing
-    Click Button    //button[@data-reactid='${rid}.1.0.2']
+    Submit Credentials
     Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
 Login User
     Assign Id To Element    //div[@class='view view-form']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Input Text    //input[@type='email']    ${ValidUser}
-    Input Text    //input[@type='password']    ${ValidPassword}
+    Input Username    ${ValidUser}
+    Input User Password    ${ValidPassword}
     Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Login    Error=Login button missing
-    Click Button    //button[@data-reactid='${rid}.1.0.2']
+    Submit Credentials
     Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
@@ -81,6 +81,19 @@ Set Board Background
     ${rid}    Get Element Attribute    Content@data-reactid
     Get Random Background
     Select From List By Value    //select[@data-reactid='${rid}.0.1.4.2.0']    ${background}
+    Run Keyword If    '${background}'=='NONE'    Empty Background
+    Run Keyword Unless    '${background}'=='NONE'    Check Background
+
+Empty Background
+    Assign Id To Element    //div[@class='dialog-overlay']    Content
+    ${rid}    Get Element Attribute    Content@data-reactid
+    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.4.0.0']@class
+    Should Be Equal    ${check}    blanko
+    Click Button    //button[@data-reactid='${rid}.0.2.0']
+
+Check Background
+    Assign Id To Element    //div[@class='dialog-overlay']    Content
+    ${rid}    Get Element Attribute    Content@data-reactid
     ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.4.0.0']@src
     Should Be Equal    ${check}    ${MainUrl}/dist/assets/img/bg/${bcheck}.png
     Click Button    //button[@data-reactid='${rid}.0.2.0']
@@ -129,6 +142,17 @@ Random Edit Board
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Element    //button[@data-reactid='${rid}.0.2.0']
 
+Random Set Board Background
+    Get Edit Xpath
+    Click Element    ${Expath}
+    Wait Until Page Contains Element    //section[@class='dialog-content']
+    Assign Id To Element    //div[@class='dialog-overlay']    Content
+    ${rid}    Get Element Attribute    Content@data-reactid
+    Get Random Background
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.4.2.0']    ${background}
+    Run Keyword If    '${background}'=='NONE'    Empty Background
+    Run Keyword Unless    '${background}'=='NONE'    Check Background
+
 Random Open Board
     Get Board Xpath
     Click Element    ${Bxpath}
@@ -156,11 +180,11 @@ Random Move Ticket
 
 Random Delete Ticket
     Get Ticket Xpath
-    Assign Id To Element    ${Txpath}    Ticket
+    Assign Id To Element    ${Txpath}    ticket
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Click Button    //button[@class='btn-danger']
-    Element Should Not Be Visible    Ticket    Ticket Not Deleted
+    Element Should Not Be Visible    ticket    Ticket Not Deleted
 
 Random Edit Ticket
     Get Ticket Xpath
@@ -205,22 +229,27 @@ Click Globe Off
     Should Match    ${class}    control
     Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
 
-Share Board
-    Click Element    //span[@class='fa fa-fw fa-pencil']
+Random Share Board
+    Get Edit Xpath    2    5
+    Click Element    ${Expath}
     Wait Until Page Contains Element    //section[@class='dialog-content']
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Button    //button[@data-reactid='${rid}.0.1.3.1']
     ${SharedUrl}    Get Value    //input[@placeholder='Shared URL']
+    Should Not Be Equal    ${SharedUrl}    ${EMPTY}
     Set Suite Variable    ${Shared}    ${SharedUrl}
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
-Stop Share Board
-    Click Element    //span[@class='fa fa-fw fa-pencil']
+Random Stop Share Board
+    Get Edit Xpath    5    5
+    Click Element    ${Expath}
     Wait Until Page Contains Element    //section[@class='dialog-content']
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Button    //button[@data-reactid='${rid}.0.1.3.1']
+    ${SharedUrl}    Get Value    //input[@placeholder='Shared URL']
+    Should Be Equal    ${SharedUrl}    ${EMPTY}
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Open Shared Board
@@ -260,7 +289,7 @@ Send Feedback
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
     Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
-    Assign Id To Element    //ul[@class='dropdown']    Board
+    Assign Id To Element    //ul[@class='dropdown']    Dropdown
     ${did}    Get Element Attribute    Board@data-reactid
     Click Element    //li[@data-reactid='${did}.$3']
     Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Login Form not found
@@ -270,9 +299,9 @@ Input Username
     [Arguments]    ${username}
     Input Text    //input[@type='email']    ${username}
 
-Input Password
+Input User Password
     [Arguments]    ${password}
-    Input Text    //input[@type='password']    ${password}
+    Input Password    //input[@type='password']    ${password}
 
 Submit Credentials
     Assign Id To Element    //div[@class='view view-form']    reactID

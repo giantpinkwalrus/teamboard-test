@@ -17,10 +17,6 @@ Create New Board
     Edit Board
     Set Board Background
 
-Share Board Url
-    [Tags]    new
-    Share Board
-
 Create Ticket Into Board
     [Tags]    new
     Open Board
@@ -38,7 +34,6 @@ Delete Board
     Delete Board
 
 Send Feedback
-    [Tags]    new
     Send Feedback
 
 Log Out
