@@ -26,8 +26,8 @@ Introduction
 About this customer journey
 ---------------------------
 
-This test case collection is trying to create a simple customer journey visible from service desing
-point of use
+This test case collection is a demonstration of how to create a simple customer journey visible from service desing
+point of view
 
 
 
@@ -35,12 +35,12 @@ point of use
 Main Idea ?
 -----------
 
-Main idea is to collect most important funtions as collection of usage secenario test around reference product ContriBoard
+the main idea is to collect most important functions as a collection of use secenario test around the reference product ContriBoard
 
 ContriBoard ?
 -------------
 
-ContriBoard is a reference product which is used as on target context of N4S@JAMK project deliverables
+ContriBoard is a reference product used as a target context of N4S@JAMK project deliverables
 
 Robot Framework overview
 ------------------------
@@ -56,8 +56,8 @@ test cases.
 Reference Service
 -----------------
 
-The sample service for this test suite is a variation on a classic post-it wall as a virtual version.
-The application allows a user to do three things:
+The sample service for this test suite is a variation of a classic post-it wall as a virtual version.
+The application allows the user to do the following things:
 
   Login
   Create new board
@@ -79,7 +79,7 @@ Evelyn Holmes
    :alt: alternate text
    :align: right
 
-Evelyn Holmes is 67 years old retired woman who is going to arrange birthday party to his daughters son Wallace Coleman.
+Evelyn Holmes is 67 years old retired woman who is going to arrange birthday party to her daughters son Wallace Coleman.
 
 .. image:: https://www.dropbox.com/s/mucdlbvj85y57vm/wallace_card%20copy.png?dl=1
    :height: 100px
@@ -88,9 +88,9 @@ Evelyn Holmes is 67 years old retired woman who is going to arrange birthday par
    :alt: alternate text
    :align: right
 
-To make everthing happen ok, Evelyn is going to use ContriBoard as collect important notes on one place.
-Evelen was working as a secretary in her previous work, so she is able to coordinate many items and using latest technology
-ContriBoard as a tool was sold as an idea to her by his neighbour Dave Lawson.
+To make everything go as smoothly as possible, Evelyn is going to use ContriBoard to collect all the important notes in one place.
+Evelyn used to work as a secretary before retiring, so she is able to keep track of many things and use recent technology effectively.
+She had heard about ContriBoard by her neighbour Dave Lawson, who had recommended it.
 
 .. image:: https://www.dropbox.com/s/1sob7ixq0wvyfrl/dave_card%20copy5.png?dl=1
    :height: 100px
@@ -99,9 +99,9 @@ ContriBoard as a tool was sold as an idea to her by his neighbour Dave Lawson.
    :alt: alternate text
    :align: right
 
-Let's start our journey!
+Now it's time to start our journey!
 
-Take a look at this journey map to get on right track!
+Let's take a look at this journey map to get on the right track!
 
 .. image:: https://www.dropbox.com/s/lopv5zjj3pvgba9/user_journeys-02.png?dl=1 
    :height: 100px
@@ -110,8 +110,8 @@ Take a look at this journey map to get on right track!
    :alt: alternate text
    :align: right
 
-Evelyn has created user account for Contriboard few weeks ago when Dave Lawson was visting her. 
-Dave helped Evelyn to create account and password. They also created a board called "Birthday Party Arragements"
+Evelyn had created a user account for Contriboard a few weeks ago when Dave Lawson was visiting her. 
+Dave helped Evelyn creating the account and password. They also created a board called "Birthday Party Arrangements"
 
 .. code:: robotframework
 
@@ -120,8 +120,8 @@ Dave helped Evelyn to create account and password. They also created a board cal
 	*** Settings ***
 	Documentation     A test suite containing tests related to the first customer journey map.
 	...
-	...               These tests are data-driven by they nature. They use a single
-	...               keyword, specified with Test Template setting, that is called
+	...               These tests are data-driven by their nature. They use a single
+	...               keyword, specified with Test Template setting, which is called
 	...               with different arguments to cover different scenarios.
 	...
 	...               This suite also demonstrates using setups and teardowns in
@@ -133,10 +133,10 @@ Dave helped Evelyn to create account and password. They also created a board cal
 	Resource          resource.txt
 
 
-Problems with login
--------------------
+Problems with logging in
+------------------------
 
-Evelyn has forget her user account and tryes first login in using another account name.
+Evelyn has forgotten her user account and at first tries logging in by using another account name.
 
 
 .. code:: robotframework
@@ -151,7 +151,7 @@ Evelyn has forget her user account and tryes first login in using another accoun
     		Login Should Have Failed
 
 
-Evelyn remembers corrent account but does typo with password..
+After this Evelyn remembers the corrent account name but mistypes the password...
 
 
 .. code:: robotframework
@@ -164,7 +164,7 @@ Evelyn remembers corrent account but does typo with password..
     		Login Should Have Failed
 
 
-Evelyn Is little bit out of ideas why login is not working. She tries to login with another account
+Evelyn gets a little bit confused by why the login is not working. She tries logging in with different account
 and password
 
 
@@ -184,11 +184,11 @@ Phone ringing
 -------------
 
 
-RING RING! Phone is ringing!
+RING RING! The phone is ringing!
 
-Evelyn goes to the phone and Wallace who is wisiting his grand mother takes a place from computer
-Peter plays with a computer and writes some crap account names on login screen 
-Amazingly he can also press Enter
+Evelyn goes to answer the phone and Wallace who happens to be visiting his grand mother takes her place on the computer
+Wallace plays with the computer and tries writing some crap account names on the login screen.
+Amazingly he also realizes to press Enter after every try
 
 .. code:: robotframework
 
@@ -199,7 +199,7 @@ Amazingly he can also press Enter
     		Submit Credentials
     		Login Should Have Failed
 
-Evelyns phone call takes a 5 minutes so Wallace has plenty of time to play with login screen
+Evelyn's phone call takes about 5 minutes so Wallace has plenty of time to play with the login screen
 
 
 .. code:: robotframework
@@ -212,8 +212,8 @@ Evelyns phone call takes a 5 minutes so Wallace has plenty of time to play with 
     		Login Should Have Failed
 
 
-Wallace hears Evelyn closed the phone! In panic Wallace cleans login form values and pressed by mistake enter...
-Wallace runs to the backyard
+Wallace hears Evelyn ending the call! He panics and clears the login form, and presses enter by accident...
+He makes his quick escape to the backyard.
 
 
 .. code:: robotframework
@@ -225,11 +225,11 @@ Wallace runs to the backyard
    		Submit Credentials
     		Login Should Have Failed
 
-Login at Last!
---------------
+Logged in at Last!
+------------------
 
-At last Evelyn is comes back and Wallace has vanished. There is only login screen to Contriboard with empty values from login screen
-Because of empty login screen Evelyn remembers now correct account and password
+By the time Evelyn comes back, Wallace is already gone. There's only an empty login form to Contriboard visible on the computer screen.
+Because of the empty login form Evelyn suddenly remembers the correct login credentials.
 
 .. code:: robotframework
 
@@ -244,7 +244,8 @@ Because of empty login screen Evelyn remembers now correct account and password
 How should I use it ?
 ---------------------
 
-After login in Evelyn try to click some buttons to be able to recover how Contriboard was used. All what Dave was told her last week were foggy memories. There is nice button I should try to click some!
+After logging in Evelyn tries clicking some buttons in order to remember how Contriboard was used. Everything Dave had told her were only mere foggy memories now. 
+!Maybe I should try what happens from that button?"
 
 
 .. code:: robotframework
@@ -280,8 +281,7 @@ After login in Evelyn try to click some buttons to be able to recover how Contri
 How should I use it ?
 ---------------------
 
-After login in Evelyn try to click some buttons to be able to recover how Contriboard was used. All what Dave was told her last week were foggy memories. There is nice button I should try to click some!
-
+Let's see how you would use it :)
 
 
 
