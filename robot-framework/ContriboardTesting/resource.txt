@@ -7,7 +7,7 @@ ${Browser}        firefox
 ${DELAY}          0.1
 ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
-${NewUser}        new9@test.com
+${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
 ${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
@@ -27,18 +27,17 @@ Register User
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
     Should Be Equal    ${check}    Register    error=Register button missing
     Submit Credentials
-    Wait Until Page Contains Element    //div[@class='broadcast-container']    timeout=2    error=Form not found
+    Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
+    Wait Until Page Contains Element    //div[@class='item broadcast']    timeout=2    error=Welcome Not Found
     Location Should Be    ${BoardUrl}
 
 Login User
-    Assign Id To Element    //div[@class='view view-form']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
     Input Username    ${ValidUser}
     Input User Password    ${ValidPassword}
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
     Should Be Equal    ${check}    Login    error=Login button missing
     Submit Credentials
-    Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
+    Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
 New Board
