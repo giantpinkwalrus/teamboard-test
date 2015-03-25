@@ -22,7 +22,7 @@ Roles: Common Users
 Evelyn is going to arrange birthday party to his daughters son Wallace Coleman.
 
 
-To make everthing happen ok, Evelyn is going to use ContriBoard as collect important notes on one place. 
+To make everything happen ok, Evelyn is going to use ContriBoard as collect important notes on one place. 
 Evelyn was working as a secretary in her previous work, so she is able to coordinate many items and using latest technology 
 ContriBoard as a tool was sold as an idea to her by his neighbour Dave Lawson.
 
