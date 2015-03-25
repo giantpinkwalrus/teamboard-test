@@ -36,4 +36,4 @@ Login With Invalid Credentials Should Fail
 
 Login Should Have Failed
     Location Should Be    ${LoginUrl}
-    Element Should Be Visible    //div[@class='item error']    Alert Not Visible
+    Element Should Be Visible    //div[@class='item error']    error=Alert Not Visible
