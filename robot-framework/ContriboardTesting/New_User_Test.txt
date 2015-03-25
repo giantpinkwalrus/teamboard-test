@@ -10,25 +10,25 @@ Register User and Login
 Create New Board
     [Tags]    new
     New Board
-    Edit Board
-    Set Board Background
+    Edit Board    2    2
+    Set Board Background    2    2
 
 Create Ticket Into Board
     [Tags]    new
-    Open Board
+    Open Board    2    2
     Edit Board From Board
     Create Ticket
-    Move Ticket
-    Edit Ticket
+    Move Ticket    1    1
+    Edit Ticket    1    1
 
 Delete Ticket From Board
     [Tags]    new
-    Delete Ticket
+    Delete Ticket    1    1
 
 Delete Board
     [Tags]    new
     Close Board
-    Delete Board
+    Delete Board    2    2
 
 Send Feedback
     Send Feedback
