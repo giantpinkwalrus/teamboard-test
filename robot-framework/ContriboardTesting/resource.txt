@@ -43,14 +43,6 @@ Login User
 New Board
     Click Element    //span[@class='fa fa-fw fa-plus']
 
-Edit Board
-    Click Element    //span[@class='fa fa-fw fa-pencil']
-    Wait Until Page Contains Element    //section[@class='dialog-content']    timeout=2    error=Board Edit Dialog Not Open
-    Input Text    //input[@placeholder='Board Name']    Typing board name
-    Assign Id To Element    //div[@class='dialog-overlay']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
-    Click Button    //button[@data-reactid='${rid}.0.2.0']
-
 Edit Board From Board
     Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
     Click Element    //span[@class='fa fa-fw fa-pencil']
@@ -59,16 +51,6 @@ Edit Board From Board
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Button    //button[@data-reactid='${rid}.0.2.0']
-
-Set Board Background
-    Click Element    //span[@class='fa fa-fw fa-pencil']
-    Wait Until Page Contains Element    //section[@class='dialog-content']    timeout=2    error=Board Edit Dialog Not Open
-    Assign Id To Element    //div[@class='dialog-overlay']    Content
-    ${rid}    Get Element Attribute    Content@data-reactid
-    Get Random Background
-    Select From List By Value    //select[@data-reactid='${rid}.0.1.4.2.0']    ${background}
-    Run Keyword If    '${background}'=='NONE'    Empty Background
-    Run Keyword Unless    '${background}'=='NONE'    Check Background
 
 Empty Background
     Assign Id To Element    //div[@class='dialog-overlay']    Content
@@ -84,45 +66,14 @@ Check Background
     Should Be Equal    ${check}    ${MainUrl}/dist/assets/img/bg/${bcheck}.png    error=Background Not Changed
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
-Open Board
-    Assign Id To Element    //div[@class='minimap']    Board
-    ${bid}    Get Element Attribute    Board@data-reactid
-    Click Element    //div[@data-reactid='${bid}']
-    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
-
-Delete Board
-    Click Element    //span[@class='fa fa-fw fa-trash']
-    Wait Until Page Contains Element    //button[@class='btn-danger']    timeout=2    error=Delete Button Not Found
-    Click Button    //button[@class='btn-danger']
-    Element Should Not Be Visible    //div[@class='board-preview']    error=Board Not Deleted
-
 Close Board
     Click Element    //span[@class='fa fa-fw fa-arrow-left']
     Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
-Create Ticket
-    Double Click Element    //div[@class='board']
-    Wait Until Page Contains Element    //div[@class='ticket']    timeout=2    error=Ticket Not Found
-    Assign Id To Element    //div[@class='ticket']    Ticket
-
-Move Ticket
-    Drag And Drop By Offset    Ticket    100    -200
-
-Edit Ticket
-    Double Click Element    Ticket
-    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Ticket Edit Dialog Not Found
-    Input Text    xpath=/html/body/div[2]/div/div/section[2]/textarea    Typing somenthing
-    Click Button    //button[@class="btn-primary"]
-
-Delete Ticket
-    Double Click Element    Ticket
-    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Ticket Edit Dialog Not Found
-    Click Button    //button[@class='btn-danger']
-    Element Should Not Be Visible    Ticket    error=Ticket Not Deleted
-
-Random Edit Board
-    Get Edit Xpath
+Edit Board
+    [Arguments]    ${min}=2    ${max}=6
+    Get Edit Xpath    ${min}    ${max}
     Click Element    ${Expath}
     Wait Until Page Contains Element    //div[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
     Input Text    //input[@placeholder='Board Name']    Typing board name
@@ -130,8 +81,9 @@ Random Edit Board
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Element    //button[@data-reactid='${rid}.0.2.0']
 
-Random Set Board Background
-    Get Edit Xpath
+Set Board Background
+    [Arguments]    ${min}=2    ${max}=6
+    Get Edit Xpath    ${min}    ${max}
     Click Element    ${Expath}
     Wait Until Page Contains Element    //section[@class='dialog-content']    timeout=2    error=Board Edit Dialog Not Found
     Assign Id To Element    //div[@class='dialog-overlay']    Content
@@ -141,41 +93,46 @@ Random Set Board Background
     Run Keyword If    '${background}'=='NONE'    Empty Background
     Run Keyword Unless    '${background}'=='NONE'    Check Background
 
-Random Open Board
-    Get Board Xpath
+Open Board
+    [Arguments]    ${min}=2    ${max}=6
+    Get Board Xpath    ${min}    ${max}
     Click Element    ${Bxpath}
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
 
-Random Delete Board
-    Get Delete Xpath
+Delete Board
+    [Arguments]    ${min}=2    ${max}=6
+    Get Delete Xpath    ${min}    ${max}
     Assign Id To Element    ${Dxpath}    Board
     Click Element    ${Dxpath}
     Wait Until Page Contains Element    //div[@class='dialog dialog-remove-board']    timeout=2    error=Board Edit Dialog Not Found
     Click Button    //button[@class='btn-danger']
     Element Should Not Be Visible    Board    error=Board Not Deleted
 
-Random Create Ticket
+Create Ticket
     Get X Coordinate
     Get Y Coordinate
     Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
     Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
 
-Random Move Ticket
-    Get Ticket Xpath
+Move Ticket
+    [Arguments]    ${min}=1    ${max}=5
+    Get Ticket Xpath    ${min}    ${max}
     Get X Move
     Get Y Move
     Drag And Drop By Offset    ${Txpath}    ${xMove}    ${yMove}
 
-Random Delete Ticket
-    Get Ticket Xpath
+Delete Ticket
+    [Arguments]    ${min}=1    ${max}=5
+    Get Ticket Xpath    ${min}    ${max}
     Assign Id To Element    ${Txpath}    Ticket
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Click Button    //button[@class='btn-danger']
     Element Should Not Be Visible    ticket    error=Ticket Not Deleted
 
-Random Edit Ticket
-    Get Ticket Xpath
+Edit Ticket
+    [Arguments]    ${min}=1    ${max}=5
+    Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Input Text    xpath=/html/body/div[2]/div/div/section[2]/textarea    Typing somenthing
@@ -217,8 +174,9 @@ Click Globe Off
     Should Match    ${class}    control
     Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
 
-Random Share Board
-    Get Edit Xpath    2    5
+Share Board
+    [Arguments]    ${min}=2    ${max}=5
+    Get Edit Xpath    ${min}    ${max}
     #Set Suite Variable    ${SharedBoard}    ${Expath}
     Click Element    ${Expath}
     Wait Until Page Contains Element    //section[@class='dialog-content']    timeout=2    error=Board Edit Dialog Not Found
@@ -230,8 +188,9 @@ Random Share Board
     Set Suite Variable    ${Shared}    ${SharedUrl}
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
-Random Stop Share Board
-    Get Edit Xpath    5    5
+Stop Share Board
+    [Arguments]    ${min}=5    ${max}=5
+    Get Edit Xpath    ${min}    ${max}
     Click Element    ${Expath}
     #Click Element    ${SharedBoard}
     Wait Until Page Contains Element    //section[@class='dialog-content']    timeout=2    error=Board Edit Dialog Not Found
@@ -309,22 +268,22 @@ Go To Login Page
     Location Should Be    ${LoginUrl}
 
 Get Board Xpath
-    [Arguments]    ${min}=2    ${max}=6
+    [Arguments]    ${min}    ${max}
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${Bxpath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[1]/div
 
 Get Edit Xpath
-    [Arguments]    ${min}=2    ${max}=6
+    [Arguments]    ${min}    ${max}
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${Expath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[3]/div[2]/span
 
 Get Delete Xpath
-    [Arguments]    ${min}=2    ${max}=6
+    [Arguments]    ${min}    ${max}
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${Dxpath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[3]/div[1]/span
 
 Get Ticket Xpath
-    [Arguments]    ${min}=1    ${max}=5
+    [Arguments]    ${min}    ${max}
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[1]/div/div[1]/div[${int}]
 

@@ -10,39 +10,39 @@ Login User
 Create New Board
     [Tags]    old    edit
     Repeat Keyword    5    New Board
-    Random Edit Board
-    Random Set Board Background
+    Edit Board
+    Set Board Background
 
 Create Ticket Into Board
     [Tags]    old
-    Random Open Board
+    Open Board
     Edit Board From Board
     Click Magnet On
     Click Globe On
     Click Magnet Off
     Click Globe Off
-    Repeat Keyword    5    Random Create Ticket
+    Repeat Keyword    5    Create Ticket
 
 Move Ticket On Board
     [Tags]    old
-    Repeat Keyword    5    Random Move Ticket
+    Repeat Keyword    5    Move Ticket
 
 Edit Created Ticket
     [Tags]    old
-    Repeat Keyword    5    Random Edit Ticket
+    Repeat Keyword    5    Edit Ticket
 
 Delete Ticket From Board
     [Tags]    old
-    Random Delete Ticket
+    Delete Ticket
 
 Delete Board
     [Tags]    old
     Close Board
-    Random Delete Board
+    Delete Board
 
 Share Board Url
     [Tags]    old    share
-    Random Share Board
+    Share Board
 
 Send Feedback
     [Tags]    feed
@@ -60,8 +60,8 @@ Open Share Board
     [Tags]    old    share
     Open Shared Board
     Create Ticket
-    Edit Ticket
-    Move Ticket
+    Edit Ticket    1    1
+    Move Ticket    1    1
     Log Out
     Close Browser
 
@@ -69,7 +69,7 @@ Close Board Sharing
     [Tags]    old    share
     Open Browser To Login Page
     Login User
-    Random Stop Share Board
+    Stop Share Board
     Log Out
     Close Browser
     [Teardown]
