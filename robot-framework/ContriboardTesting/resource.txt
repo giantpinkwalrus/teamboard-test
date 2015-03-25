@@ -7,7 +7,7 @@ ${Browser}        firefox
 ${DELAY}          0.1
 ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
-${NewUser}        new@test.com
+${NewUser}        new8@test.com
 ${NewPassword}    t3stmonkey
 ${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
@@ -18,30 +18,16 @@ ${LoginTitle}     Contriboard
 
 *** Keywords ***
 Register User
-    Assign Id To Element    //div[@class='view view-form']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
-    Element Text Should Be    //button[@data-reactid='${rid}.1.0.3.1']    Register    Erronr=Register button missing
-    Click Button    //button[@data-reactid='${rid}.1.0.3.1']
-    Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
+    Element Text Should Be    //button[@class='btn-secondary']    Register    Register button missing
+    Click Button    //button[@class='btn-secondary']
+    Wait Until Page Contains Element    //form[@class='form']    timeout=2    Form not found
     Location Should Be    ${RegUrl}
-    Assign Id To Element    //div[@class='view view-form']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
     Input Username    ${NewUser}
     Input User Password    ${NewPassword}
-    Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Register    Error=Register button missing
+    ${check}    Get Element Attribute    //input[@class='btn-primary']@value
+    Should Be Equal    ${check}    Register    Register button missing
     Submit Credentials
-    Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
-    Location Should Be    ${LoginUrl}
-
-Login New User
-    Assign Id To Element    //div[@class='view view-form']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
-    Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Form not found
-    Input Username    ${NewUser}
-    Input User Password    ${NewPassword}
-    Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Login    Error=Login button missing
-    Submit Credentials
-    Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
+    Wait Until Page Contains Element    //div[@class='broadcast-container']    timeout=2    Form not found
     Location Should Be    ${BoardUrl}
 
 Login User
@@ -49,9 +35,10 @@ Login User
     ${rid}    Get Element Attribute    reactID@data-reactid
     Input Username    ${ValidUser}
     Input User Password    ${ValidPassword}
-    Element Text Should Be    //button[@data-reactid='${rid}.1.0.2']    Login    Error=Login button missing
+    ${check}    Get Element Attribute    //input[@class='btn-primary']@value
+    Should Be Equal    ${check}    Login    Login button missing
     Submit Credentials
-    Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
+    Wait Until Page Contains Element    //div[@class='content']    timeout=2    Board list Not Found
     Location Should Be    ${BoardUrl}
 
 New Board
@@ -66,7 +53,7 @@ Edit Board
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Edit Board From Board
-    Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
+    Wait Until Page Contains Element    //div[@class='controls']    timeout=2    Controls Not Found
     Click Element    //span[@class='fa fa-fw fa-pencil']
     Wait Until Page Contains Element    //section[@class='dialog-content']
     Input Text    //input[@placeholder='Board Name']    Typing new board name
@@ -102,41 +89,43 @@ Open Board
     Assign Id To Element    //div[@class='minimap']    Board
     ${bid}    Get Element Attribute    Board@data-reactid
     Click Element    //div[@data-reactid='${bid}']
-    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    Board Not Open
 
 Delete Board
     Click Element    //span[@class='fa fa-fw fa-trash']
-    Wait Until Page Contains Element    //button[@class='btn-danger']    timeout=2    error=Delete Button Not Found
+    Wait Until Page Contains Element    //button[@class='btn-danger']    timeout=2    Delete Button Not Found
     Click Button    //button[@class='btn-danger']
     Element Should Not Be Visible    //div[@class='board-preview']    Board Not Deleted
 
 Close Board
     Click Element    //span[@class='fa fa-fw fa-arrow-left']
-    Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
+    Wait Until Page Contains Element    //div[@class='content']    timeout=2    Board list Not Found
     Location Should Be    ${BoardUrl}
 
 Create Ticket
     Double Click Element    //div[@class='board']
-    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Found
+    Wait Until Page Contains Element    //div[@class='ticket']    timeout=2    Ticket Not Found
     Assign Id To Element    //div[@class='ticket']    Ticket
-    Drag And Drop By Offset    ticket    100    -200
+
+Move Ticket
+    Drag And Drop By Offset    Ticket    100    -200
 
 Edit Ticket
     Double Click Element    Ticket
-    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Ticket Edit Dialog Not Found
+    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    Ticket Edit Dialog Not Found
     Input Text    xpath=/html/body/div[2]/div/div/section[2]/textarea    Typing somenthing
     Click Button    //button[@class="btn-primary"]
 
 Delete Ticket
     Double Click Element    Ticket
-    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Ticket Edit Dialog Not Found
+    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    Ticket Edit Dialog Not Found
     Click Button    //button[@class='btn-danger']
-    Element Should Not Be Visible    ticket    Ticket Not Deleted
+    Element Should Not Be Visible    Ticket    Ticket Not Deleted
 
 Random Edit Board
     Get Edit Xpath
     Click Element    ${Expath}
-    Wait Until Page Contains Element    //div[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
+    Wait Until Page Contains Element    //div[@class='dialog dialog-edit-board']    timeout=2    Board Edit Dialog Not Found
     Input Text    //input[@placeholder='Board Name']    Typing board name
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
@@ -156,13 +145,13 @@ Random Set Board Background
 Random Open Board
     Get Board Xpath
     Click Element    ${Bxpath}
-    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    Board Not Open
 
 Random Delete Board
     Get Delete Xpath
     Assign Id To Element    ${Dxpath}    Board
     Click Element    ${Dxpath}
-    Wait Until Page Contains Element    //div[@class='dialog dialog-remove-board']    timeout=2    error=Board Edit Dialog Not Found
+    Wait Until Page Contains Element    //div[@class='dialog dialog-remove-board']    timeout=2    Board Edit Dialog Not Found
     Click Button    //button[@class='btn-danger']
     Element Should Not Be Visible    Board    Board Not Deleted
 
@@ -170,7 +159,7 @@ Random Create Ticket
     Get X Coordinate
     Get Y Coordinate
     Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
-    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Found
+    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    Ticket Not Created
 
 Random Move Ticket
     Get Ticket Xpath
@@ -182,14 +171,14 @@ Random Delete Ticket
     Get Ticket Xpath
     Assign Id To Element    ${Txpath}    Ticket
     Double Click Element    ${Txpath}
-    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    Edit Ticket Dialog Not Found
     Click Button    //button[@class='btn-danger']
     Element Should Not Be Visible    ticket    Ticket Not Deleted
 
 Random Edit Ticket
     Get Ticket Xpath
     Double Click Element    ${Txpath}
-    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    Edit Ticket Dialog Not Found
     Input Text    xpath=/html/body/div[2]/div/div/section[2]/textarea    Typing somenthing
     Click Button    //button[@class='btn-primary']
 
@@ -231,6 +220,7 @@ Click Globe Off
 
 Random Share Board
     Get Edit Xpath    2    5
+    #Set Suite Variable    ${SharedBoard}    ${Expath}
     Click Element    ${Expath}
     Wait Until Page Contains Element    //section[@class='dialog-content']
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
@@ -244,6 +234,7 @@ Random Share Board
 Random Stop Share Board
     Get Edit Xpath    5    5
     Click Element    ${Expath}
+    #Click Element    ${SharedBoard}
     Wait Until Page Contains Element    //section[@class='dialog-content']
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
@@ -259,40 +250,40 @@ Open Shared Board
     Location Should Be    http://${Shared}
     Wait Until Page Contains Element    //input[@name='username']
     Input Text    //input[@name='username']    Tester
-    Click Button    //button[@class='btn-primary']
-    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
+    Click Button    //input[@class='btn-primary']
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    Board Not Open
 
 Send Feedback
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    Dropdown List Not Found
     Click Element    //div[@class='user-voice-trigger']
     Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
-    Wait Until Element Is Visible    //article[@class='widget large-widget']    timeout=2    error=Widget Not Open
-    Element Text Should Be    //h1[@class='pane-title']    Send us a message    error=Write message page not open
+    Wait Until Element Is Visible    //article[@class='widget large-widget']    timeout=2    Widget Not Open
+    Element Text Should Be    //h1[@class='pane-title']    Send us a message    Write message page not open
     Input Text    //textarea[@class='faux-textbox-textarea']    Typing feedback...
     Click Element    //input[@class='checkbox-input']
-    Element Text Should Be    //button[@class='button primary']    Next    error=Next Button Missing
+    Element Text Should Be    //button[@class='button primary']    Next    Next Button Missing
     Click Button    //button[@class='button primary']
-    Element Text Should Be    //h1[@class='pane-title mb1']    Additional details    erron=Send message page not open
+    Element Text Should Be    //h1[@class='pane-title mb1']    Additional details    Send message page not open
     Input Text    //input[@placeholder='Email address']    ${ValidUser}
     Get Random Type
     Select From List By Value    //select[@class='selectbox full-width']    ${type}
-    Element Text Should Be    //button[@class='button primary']    Send message    error=Send Button Missing
+    Element Text Should Be    //button[@class='button primary']    Send message    Send Button Missing
     Click Button    //button[@class='button primary']
-    Wait Until Element Is Visible    //div[@class='thank-you-text pt2']    timeout=5    error=Message not send to send
-    Wait Until Element Is Visible    //button[@class='button primary icon-button']    timeout=5    error=Message not send
+    Wait Until Element Is Visible    //div[@class='thank-you-text pt2']    timeout=5    Message not sent to send
+    Wait Until Element Is Visible    //button[@class='button primary icon-button']    timeout=5    Message not sent
     Click Element    //i[@class='icon close-icon']
-    Element Should Not Be Visible    //article[@class='widget large-widget']    error=Widget Not Closed
+    Element Should Not Be Visible    //article[@class='widget large-widget']    Widget Not Closed
     Unselect Frame
     Click Element    //span[@class='fa fa-fw fa-user']
 
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    Dropdown List Not Found
     Assign Id To Element    //ul[@class='dropdown']    Dropdown
-    ${did}    Get Element Attribute    Board@data-reactid
+    ${did}    Get Element Attribute    Dropdown@data-reactid
     Click Element    //li[@data-reactid='${did}.$3']
-    Wait Until Page Contains Element    //div[@class='form']    timeout=2    error=Login Form not found
+    Wait Until Page Contains Element    //form[@class='form']    timeout=2    Login Form not found
     Location Should Be    ${LoginUrl}
 
 Input Username
@@ -304,9 +295,7 @@ Input User Password
     Input Password    //input[@type='password']    ${password}
 
 Submit Credentials
-    Assign Id To Element    //div[@class='view view-form']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
-    Click Button    //button[@data-reactid='${rid}.1.0.2']
+    Click Button    //input[@class='btn-primary']
 
 Open Browser To Login Page
     Open Browser    ${LoginUrl}    ${Browser}

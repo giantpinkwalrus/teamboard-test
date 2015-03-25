@@ -59,6 +59,9 @@ Close
 Open Share Board
     [Tags]    old    share
     Open Shared Board
+    Create Ticket
+    Edit Ticket
+    Move Ticket
     Log Out
     Close Browser
 
