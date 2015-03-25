@@ -2,14 +2,10 @@
 Resource          resource.txt
 
 *** Test Cases ***
-Register User
-    [Tags]    new    reg
+Register User and Login
+    [Tags]    new
     Open Browser To Login Page
     Register User
-
-Login New User
-    [Tags]    new
-    Login New User
 
 Create New Board
     [Tags]    new
@@ -22,6 +18,7 @@ Create Ticket Into Board
     Open Board
     Edit Board From Board
     Create Ticket
+    Move Ticket
     Edit Ticket
 
 Delete Ticket From Board
