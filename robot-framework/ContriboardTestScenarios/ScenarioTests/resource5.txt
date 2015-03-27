@@ -1,0 +1,311 @@
+*** Settings ***
+Library           ExtendedSelenium2Library
+Library           Collections
+
+*** Variables ***
+${Browser}        firefox
+${DELAY}          0
+${ValidUser}      testrobot@test.com
+${ValidPassword}    testrobot
+${InvalidUser}    invalid@test.com
+${InvalidPassword}    Invalid1
+${SERVER}         localhost:8000
+${MainUrl}        http://${SERVER}
+${LoginUrl}       http://${SERVER}/login
+${BoardUrl}       http://${SERVER}/boards
+${RegUrl}         http://${SERVER}/register
+${LoginTitle}     Contriboard
+
+*** Keywords ***
+Login User
+    Input Username    ${ValidUser}
+    Input User Password    ${ValidPassword}
+    ${check}    Get Element Attribute    //input[@class='btn-primary']@value
+    Should Be Equal    ${check}    Login    error=Login button missing
+    Submit Credentials
+    Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
+    Location Should Be    ${BoardUrl}
+
+New Board
+    Click Element    //span[@class='fa fa-fw fa-plus']
+
+Edit Board From Board
+    Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //section[@class='dialog-content']
+    Input Text    //input[@placeholder='Board Name']    Typing new board name
+    Click Button    //button[@class='btn-primary']
+
+Close Board
+    Click Element    //span[@class='fa fa-fw fa-arrow-left']
+    Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
+    Location Should Be    ${BoardUrl}
+
+Random Edit Board
+    [Arguments]    ${min}=2    ${max}=16
+    Get Edit Xpath    ${min}    ${max}
+    Click Element    ${Expath}
+    Wait Until Page Contains Element    //div[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
+    Input Text    //input[@placeholder='Board Name']    Typing board name
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Click Element    //button[@data-reactid='${rid}.0.2.0']
+
+Random Set Board Background
+    [Arguments]    ${min}=2    ${max}=16
+    Get Edit Xpath    ${min}    ${max}
+    Click Element    ${Expath}
+    Wait Until Page Contains Element    //section[@class='dialog-content']    timeout=2    error=Board Edit Dialog Not Found
+    Assign Id To Element    //div[@class='dialog-overlay']    Content
+    ${rid}    Get Element Attribute    Content@data-reactid
+    Get Random Background
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.4.2.0']    ${background}
+    Run Keyword If    '${background}'=='NONE'    Empty Background
+    Run Keyword Unless    '${background}'=='NONE'    Check Background
+
+Empty Background
+    Assign Id To Element    //div[@class='dialog-overlay']    Content
+    ${rid}    Get Element Attribute    Content@data-reactid
+    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.4.0.0']@class
+    Should Be Equal    ${check}    blanko    error=Background Not Empty
+    Click Button    //button[@data-reactid='${rid}.0.2.0']
+
+Check Background
+    Assign Id To Element    //div[@class='dialog-overlay']    Content
+    ${rid}    Get Element Attribute    Content@data-reactid
+    ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.4.0.0']@src
+    Should Be Equal    ${check}    ${MainUrl}/dist/assets/img/bg/${bcheck}.png    error=Background Not Changed
+    Click Button    //button[@data-reactid='${rid}.0.2.0']
+
+Random Open Board
+    [Arguments]    ${min}=2    ${max}=16
+    Get Board Xpath    ${min}    ${max}
+    Click Element    ${Bxpath}
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
+
+Random Delete Board
+    [Arguments]    ${min}=2    ${max}=11
+    Get Delete Xpath    ${min}    ${max}
+    Assign Id To Element    ${Dxpath}    Board
+    Click Element    ${Dxpath}
+    Wait Until Page Contains Element    //div[@class='dialog dialog-remove-board']    timeout=2    error=Board Edit Dialog Not Found
+    Click Button    //button[@class='btn-danger']
+    Element Should Not Be Visible    Board    error=Board Not Deleted
+
+Random Create Ticket
+    Get X Coordinate
+    Get Y Coordinate
+    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
+    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
+
+Random Move Ticket
+    [Arguments]    ${min}=1    ${max}=15
+    Get Ticket Xpath    ${min}    ${max}
+    Get X Move
+    Get Y Move
+    Drag And Drop By Offset    ${Txpath}    ${xMove}    ${yMove}
+
+Random Delete Ticket
+    [Arguments]    ${min}=1    ${max}=10
+    Get Ticket Xpath    ${min}    ${max}
+    Assign Id To Element    ${Txpath}    Ticket
+    Double Click Element    ${Txpath}
+    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    Click Button    //button[@class='btn-danger']
+    Element Should Not Be Visible    ticket    error=Ticket Not Deleted
+
+Random Edit Ticket
+    [Arguments]    ${min}=1    ${max}=15
+    Get Ticket Xpath    ${min}    ${max}
+    Double Click Element    ${Txpath}
+    Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Input Text    //textarea[@data-reactid='${rid}.0.1.0']    Typing somenthing
+    Click Button    //button[@class='btn-primary']
+
+Click Magnet On
+    Assign Id To Element    //div[@class='view view-board']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Click Element    //span[@class='fa fa-fw fa-magnet']
+    Assign Id To Element    //div[@data-reactid='${rid}.3.$2']    magnetOnID
+    ${class}    Get Element Attribute    magnetOnID@class
+    Should Match    ${class}    active control
+
+Click Magnet Off
+    Assign Id To Element    //div[@class='view view-board']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Click Element    //span[@class='fa fa-fw fa-magnet']
+    Assign Id To Element    //div[@data-reactid='${rid}.3.$2']    magnetOffID
+    ${class}    Get Element Attribute    magnetOffID@class
+    Should Match    ${class}    control
+
+Click Globe On
+    Assign Id To Element    //div[@class='view view-board']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
+    Click Element    //span[@class='fa fa-fw fa-globe']
+    Assign Id To Element    //div[@data-reactid='${rid}.3.$3']    globeOnID
+    ${class}    Get Element Attribute    globeOnID@class
+    Should Match    ${class}    active control
+    Element Should Be Visible    //div[@data-reactid='${rid}.1.0.1']
+
+Click Globe Off
+    Assign Id To Element    //div[@class='view view-board']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Element Should Be Visible    //div[@data-reactid='${rid}.1.0.1']
+    Click Element    //span[@class='fa fa-fw fa-globe']
+    Assign Id To Element    //div[@data-reactid='${rid}.3.$3']    globeOffID
+    ${class}    Get Element Attribute    globeOffID@class
+    Should Match    ${class}    control
+    Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
+
+Random Share Board
+    [Arguments]    ${min}=2    ${max}=11
+    Get Edit Xpath    ${min}    ${max}
+    Click Element    ${Expath}
+    Wait Until Page Contains Element    //section[@class='dialog-content']    timeout=2    error=Board Edit Dialog Not Found
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Click Button    //button[@data-reactid='${rid}.0.1.3.1']
+    ${SharedUrl}    Get Value    //input[@placeholder='Shared URL']
+    Should Not Be Equal    ${SharedUrl}    ${EMPTY}
+    Set Suite Variable    ${Shared}    ${SharedUrl}
+    Click Button    //button[@data-reactid='${rid}.0.2.0']
+
+Open Shared Board
+    Open Browser    ${Shared}    ${Browser}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Location Should Be    http://${Shared}
+    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form Not Found
+    Input Text    //input[@name='username']    Tester
+    Click Button    //input[@class='btn-primary']
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
+
+Send Feedback
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Click Element    //div[@class='user-voice-trigger']
+    Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
+    Wait Until Element Is Visible    //article[@class='widget large-widget']    timeout=2    error=Widget Not Open
+    Element Text Should Be    //h1[@class='pane-title']    Send us a message    error=Write message page not open
+    Input Text    //textarea[@class='faux-textbox-textarea']    Typing feedback...
+    Click Element    //input[@class='checkbox-input']
+    Element Text Should Be    //button[@class='button primary']    Next    error=Next Button Missing
+    Click Button    //button[@class='button primary']
+    Element Text Should Be    //h1[@class='pane-title mb1']    Additional details    error=Send message page not open
+    Input Text    //input[@placeholder='Email address']    ${ValidUser}
+    Get Random Type
+    Select From List By Value    //select[@class='selectbox full-width']    ${type}
+    Element Text Should Be    //button[@class='button primary']    Send message    error=Send Button Missing
+    Click Button    //button[@class='button primary']
+    Wait Until Element Is Visible    //div[@class='thank-you-text pt2']    timeout=5    error=Message not sent to send
+    Wait Until Element Is Visible    //button[@class='button primary icon-button']    timeout=5    error=Message not sent
+    Click Element    //i[@class='icon close-icon']
+    Element Should Not Be Visible    //article[@class='widget large-widget']    error=Widget Not Closed
+    Unselect Frame
+    Click Element    //span[@class='fa fa-fw fa-user']
+
+Log Out
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Assign Id To Element    //ul[@class='dropdown']    Dropdown
+    ${did}    Get Element Attribute    Dropdown@data-reactid
+    Click Element    //li[@data-reactid='${did}.$3']
+    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
+    Location Should Be    ${LoginUrl}
+
+Input Username
+    [Arguments]    ${username}
+    Input Text    //input[@type='email']    ${username}
+
+Input User Password
+    [Arguments]    ${password}
+    Input Password    //input[@type='password']    ${password}
+
+Submit Credentials
+    Click Button    //input[@class='btn-primary']
+
+Invalid Login
+    [Arguments]    ${username}    ${password}
+    Input Username    ${username}
+    Input User Password    ${password}
+    Submit Credentials
+    Login Should Have Failed
+
+Login Should Have Failed
+    Location Should Be    ${LoginUrl}
+    #Temporary fix for new login alerts
+    Element Should Not Be Visible    //div[@class='view view-workspace']    error=Login Succeeded
+
+Open Browser To Login Page
+    Open Browser    ${LoginUrl}    ${Browser}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Location Should Be    ${LoginUrl}
+    Title Should Be    ${LoginTitle}
+    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form Not Found
+
+Go To Login Page
+    Go To    ${LoginUrl}
+    Location Should Be    ${LoginUrl}
+
+Get Board Xpath
+    [Arguments]    ${min}    ${max}
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${Bxpath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[1]/div
+
+Get Edit Xpath
+    [Arguments]    ${min}    ${max}
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${Expath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[3]/div[2]/span
+
+Get Delete Xpath
+    [Arguments]    ${min}    ${max}
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${Dxpath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[3]/div[1]/span
+
+Get Ticket Xpath
+    [Arguments]    ${min}    ${max}
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[1]/div/div[1]/div[${int}]
+
+Get X Move
+    [Arguments]    ${min}=-768    ${max}=768
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${xMove}    ${int}
+
+Get Y Move
+    [Arguments]    ${min}=-432    ${max}=432
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${yMove}    ${int}
+
+Get Y Coordinate
+    [Arguments]    ${min}=-432    ${max}=432
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${y}    ${int}
+
+Get X Coordinate
+    [Arguments]    ${min}=-768    ${max}=768
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${x}    ${int}
+
+Get Random Background
+    [Arguments]    ${min}=0    ${max}=7
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    NONE    PLAY    SWOT    SCRUM    KANBAN
+    ...    KEEP_DROP_TRY    CUSTOMER_JOURNEY_MAP    BUSINESS_MODEL_CANVAS
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    ${background}    ${item}
+    ${list2}    Create List    blank    play    swot    scrum    kanban
+    ...    keep_drop_try    customer_journey_map    business_model_canvas
+    ${item2}    Get From List    ${list2}    ${int}
+    Set Test Variable    ${bcheck}    ${item2}
+
+Get Random Type
+    [Arguments]    ${min}=0    ${max}=2
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    Support Request    Bug Report    Other
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    ${type}    ${item}

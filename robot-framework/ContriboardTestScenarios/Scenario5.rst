@@ -70,7 +70,7 @@ Test Editing Tickets
 Edit Random Tickets
 -----------------------
 
-Test moving tickets
+Test move tickets
 -----------------------
 Move Random Tickets
 -----------------------
@@ -84,15 +84,6 @@ Create Boards
 Click Globe
 Click Magnet
 Edit Board from Board
----------------------------
-
-Test Board sharing
----------------------------
-Share Board
-Open Shared Board
-Create Ticket on shared board
-Move Tikcet on shared board
-Close shared board
 ---------------------------
 
 Test ticket deletion
@@ -111,9 +102,24 @@ Click Profile
 Send Feedback
 ---------------------------
 
-End Test
+Test Board sharing
+---------------------------
+Share Board
+Open Shared Board
+Create Ticket on shared board
+Move Tikcet on shared board
+Close shared board
+---------------------------
+
+Test Log Out
 ---------------------------
 Log Out
+Valid Login
+Log Out
+Valid Login
+Log Out
 ---------------------------
+
+End Test
 
 Contriboard testing complete --->  SELF SHUTDOWN

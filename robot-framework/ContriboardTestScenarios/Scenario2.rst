@@ -68,7 +68,7 @@ Jenny sends the board url to her friends using facebook group conversation. And 
 Jenny goes for coffee break.
 
 ----------------------
-WAIT 15min
+Log Out
 ----------------------
 
 While Jenny is on a coffee break her friends starts editing the board.
@@ -111,6 +111,8 @@ Move Tickets
 Jenny gets back. Jenny and her friends talk about who does what and when.
 
 -----------------------
+Valid Login
+Open Board "Party TODO-list"
 WAIT 30min
 -----------------------
 
