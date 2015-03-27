@@ -4,11 +4,11 @@ Library           Collections
 
 *** Variables ***
 ${Browser}        firefox
-${DELAY}          0.1
-${ValidUser}      testbaboon@test.com
-${ValidPassword}    t3stmonkey
-${NewUser}        new@test.com
-${NewPassword}    t3stmonkey
+${DELAY}          0
+${ValidUser}      testrobot@test.com
+${ValidPassword}    testrobot
+${InvalidUser}    invalid@test.com
+${InvalidPassword}    Invalid1
 ${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
@@ -17,20 +17,6 @@ ${RegUrl}         http://${SERVER}/register
 ${LoginTitle}     Contriboard
 
 *** Keywords ***
-Register User
-    Element Text Should Be    //button[@class='btn-secondary']    Register    error=Register button missing
-    Click Button    //button[@class='btn-secondary']
-    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Form not found
-    Location Should Be    ${RegUrl}
-    Input Username    ${NewUser}
-    Input User Password    ${NewPassword}
-    ${check}    Get Element Attribute    //input[@class='btn-primary']@value
-    Should Be Equal    ${check}    Register    error=Register button missing
-    Submit Credentials
-    Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
-    Wait Until Page Contains Element    //div[@class='item broadcast']    timeout=2    error=Welcome Not Found
-    Location Should Be    ${BoardUrl}
-
 Login User
     Input Username    ${ValidUser}
     Input User Password    ${ValidPassword}
@@ -43,13 +29,20 @@ Login User
 New Board
     Click Element    //span[@class='fa fa-fw fa-plus']
 
+Edit Board From Board
+    Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //section[@class='dialog-content']
+    Input Text    //input[@placeholder='Board Name']    Typing new board name
+    Click Button    //button[@class='btn-primary']
+
 Close Board
     Click Element    //span[@class='fa fa-fw fa-arrow-left']
     Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
-Edit Board
-    [Arguments]    ${min}=2    ${max}=6
+Random Edit Board
+    [Arguments]    ${min}=2    ${max}=16
     Get Edit Xpath    ${min}    ${max}
     Click Element    ${Expath}
     Wait Until Page Contains Element    //div[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
@@ -58,20 +51,11 @@ Edit Board
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Element    //button[@data-reactid='${rid}.0.2.0']
 
-Edit Board From Board
-    Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
-    Click Element    //span[@class='fa fa-fw fa-pencil']
-    Wait Until Page Contains Element    //div[@class='dialog dialog-edit-board']
-    Input Text    //input[@placeholder='Board Name']    Typing new board name
-    Assign Id To Element    //div[@class='dialog-overlay']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
-    Click Button    //button[@data-reactid='${rid}.0.2.0']
-
-Set Board Background
-    [Arguments]    ${min}=2    ${max}=6
+Random Set Board Background
+    [Arguments]    ${min}=2    ${max}=16
     Get Edit Xpath    ${min}    ${max}
     Click Element    ${Expath}
-    Wait Until Page Contains Element    //div[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
+    Wait Until Page Contains Element    //section[@class='dialog-content']    timeout=2    error=Board Edit Dialog Not Found
     Assign Id To Element    //div[@class='dialog-overlay']    Content
     ${rid}    Get Element Attribute    Content@data-reactid
     Get Random Background
@@ -80,23 +64,27 @@ Set Board Background
     Run Keyword Unless    '${background}'=='NONE'    Check Background
 
 Empty Background
+    Assign Id To Element    //div[@class='dialog-overlay']    Content
+    ${rid}    Get Element Attribute    Content@data-reactid
     ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.4.0.0']@class
     Should Be Equal    ${check}    blanko    error=Background Not Empty
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Check Background
+    Assign Id To Element    //div[@class='dialog-overlay']    Content
+    ${rid}    Get Element Attribute    Content@data-reactid
     ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.4.0.0']@src
     Should Be Equal    ${check}    ${MainUrl}/dist/assets/img/bg/${bcheck}.png    error=Background Not Changed
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
-Open Board
-    [Arguments]    ${min}=2    ${max}=6
+Random Open Board
+    [Arguments]    ${min}=2    ${max}=16
     Get Board Xpath    ${min}    ${max}
     Click Element    ${Bxpath}
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
 
-Delete Board
-    [Arguments]    ${min}=2    ${max}=6
+Random Delete Board
+    [Arguments]    ${min}=2    ${max}=11
     Get Delete Xpath    ${min}    ${max}
     Assign Id To Element    ${Dxpath}    Board
     Click Element    ${Dxpath}
@@ -104,21 +92,21 @@ Delete Board
     Click Button    //button[@class='btn-danger']
     Element Should Not Be Visible    Board    error=Board Not Deleted
 
-Create Ticket
+Random Create Ticket
     Get X Coordinate
     Get Y Coordinate
     Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
     Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
 
-Move Ticket
-    [Arguments]    ${min}=1    ${max}=5
+Random Move Ticket
+    [Arguments]    ${min}=1    ${max}=15
     Get Ticket Xpath    ${min}    ${max}
     Get X Move
     Get Y Move
     Drag And Drop By Offset    ${Txpath}    ${xMove}    ${yMove}
 
-Delete Ticket
-    [Arguments]    ${min}=1    ${max}=5
+Random Delete Ticket
+    [Arguments]    ${min}=1    ${max}=10
     Get Ticket Xpath    ${min}    ${max}
     Assign Id To Element    ${Txpath}    Ticket
     Double Click Element    ${Txpath}
@@ -126,12 +114,14 @@ Delete Ticket
     Click Button    //button[@class='btn-danger']
     Element Should Not Be Visible    ticket    error=Ticket Not Deleted
 
-Edit Ticket
-    [Arguments]    ${min}=1    ${max}=5
+Random Edit Ticket
+    [Arguments]    ${min}=1    ${max}=15
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //div[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    Input Text    xpath=/html/body/div[2]/div/div/section[2]/textarea    Typing somenthing
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Input Text    //textarea[@data-reactid='${rid}.0.1.0']    Typing somenthing
     Click Button    //button[@class='btn-primary']
 
 Click Magnet On
@@ -170,10 +160,9 @@ Click Globe Off
     Should Match    ${class}    control
     Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
 
-Share Board
-    [Arguments]    ${min}=2    ${max}=5
+Random Share Board
+    [Arguments]    ${min}=2    ${max}=11
     Get Edit Xpath    ${min}    ${max}
-    Set Suite Variable    ${SharedBoard}    ${Expath}
     Click Element    ${Expath}
     Wait Until Page Contains Element    //section[@class='dialog-content']    timeout=2    error=Board Edit Dialog Not Found
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
@@ -182,19 +171,6 @@ Share Board
     ${SharedUrl}    Get Value    //input[@placeholder='Shared URL']
     Should Not Be Equal    ${SharedUrl}    ${EMPTY}
     Set Suite Variable    ${Shared}    ${SharedUrl}
-    Click Button    //button[@data-reactid='${rid}.0.2.0']
-
-Stop Share Board
-    #[Arguments]    ${min}=5    ${max}=5
-    #Get Edit Xpath    ${min}    ${max}
-    #Click Element    ${Expath}
-    Click Element    ${SharedBoard}
-    Wait Until Page Contains Element    //section[@class='dialog-content']    timeout=2    error=Board Edit Dialog Not Found
-    Assign Id To Element    //div[@class='dialog-overlay']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
-    Click Button    //button[@data-reactid='${rid}.0.1.3.1']
-    ${SharedUrl}    Get Value    //input[@placeholder='Shared URL']
-    Should Be Equal    ${SharedUrl}    ${EMPTY}
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Open Shared Board
@@ -209,7 +185,7 @@ Open Shared Board
 
 Send Feedback
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
     Click Element    //div[@class='user-voice-trigger']
     Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
     Wait Until Element Is Visible    //article[@class='widget large-widget']    timeout=2    error=Widget Not Open
@@ -233,7 +209,7 @@ Send Feedback
 
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
     Assign Id To Element    //ul[@class='dropdown']    Dropdown
     ${did}    Get Element Attribute    Dropdown@data-reactid
     Click Element    //li[@data-reactid='${did}.$3']
@@ -250,6 +226,18 @@ Input User Password
 
 Submit Credentials
     Click Button    //input[@class='btn-primary']
+
+Invalid Login
+    [Arguments]    ${username}    ${password}
+    Input Username    ${username}
+    Input User Password    ${password}
+    Submit Credentials
+    Login Should Have Failed
+
+Login Should Have Failed
+    Location Should Be    ${LoginUrl}
+    #Temporary fix for new login alerts
+    Element Should Not Be Visible    //div[@class='view view-workspace']    error=Login Succeeded
 
 Open Browser To Login Page
     Open Browser    ${LoginUrl}    ${Browser}

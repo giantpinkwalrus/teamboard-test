@@ -1,0 +1,110 @@
+*** Settings ***
+Resource          resource5.txt
+
+*** Test Cases ***
+Open Login Page
+    [Tags]    sc5    log5
+    Open Browser To Login Page
+
+Test Invalid Login
+    [Tags]    sc5
+    Invalid Login    ${InvalidUser}    ${InvalidPassword}
+    Go To Login Page
+    Invalid Login    ${InvalidUser}    ${ValidPassword}
+    Go To Login Page
+    Invalid Login    ${ValidUser}    ${EMPTY}
+    Go To Login Page
+    Invalid Login    ${ValidUser}    ${InvalidPassword}
+    Go To Login Page
+    Invalid Login    ${EMPTY}    ${EMPTY}
+    Go To Login Page
+    Invalid Login    ${EMPTY}    ${ValidPassword}
+    Go To Login Page
+
+Test Valid Login
+    [Tags]    sc5    log5
+    Login User
+
+Test Creating Boards
+    [Tags]    sc5
+    Repeat Keyword    15    New Board
+
+Test Editing Boards
+    [Tags]    sc5
+    Repeat Keyword    15    Random Edit Board
+    Repeat Keyword    15    Random Set Board Background
+
+Test Opening Boards
+    [Tags]    sc5
+    Random Open Board
+    Close Board
+    Random Open Board
+    Close Board
+    Random Open Board
+    Close Board
+    Random Open Board
+    Close Board
+    Random Open Board
+    Close Board
+
+Test Creating Tickets
+    [Tags]    sc5
+    Random Open Board
+    Repeat Keyword    15    Random Create Ticket
+
+Test Editing Tickets
+    [Tags]    sc5
+    Repeat Keyword    15    Random Edit Ticket
+
+Test Move Tickets
+    [Tags]    sc5
+    Repeat Keyword    15    Random Move Ticket
+
+Test Board Functionalities
+    [Tags]    sc5
+    Click Magnet On
+    Click Globe On
+    Repeat Keyword    15    Random Move Ticket
+    Click Magnet Off
+    Click Globe Off
+    Edit Board From Board
+
+Test Ticket Deletion
+    [Tags]    sc5
+    Repeat Keyword    5    Random Delete Ticket
+
+Test Board Deletion
+    [Tags]    sc5
+    Close Board
+    Repeat Keyword    5    Random Delete Board
+
+Test Feedback Sending
+    [Tags]
+    Send Feedback
+
+Test Board sharing
+    [Tags]    sc5
+    Random Share Board
+    Log Out
+    Close Browser
+    Open Shared Board
+    Random Create Ticket
+    Random Edit Ticket    1    1
+    Random Move Ticket    1    1
+    Log Out
+    Close Browser
+    Open Browser To Login Page
+    Login User
+
+Test Log Out
+    [Tags]    sc5
+    Log Out
+    Login User
+    Log Out
+    Login User
+    Log Out
+
+End Test
+    [Tags]    sc5
+    Close Browser
+    [Teardown]

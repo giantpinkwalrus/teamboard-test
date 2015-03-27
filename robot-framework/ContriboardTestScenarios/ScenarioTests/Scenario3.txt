@@ -1,0 +1,115 @@
+*** Settings ***
+Resource          resource3.txt
+
+*** Test Cases ***
+Evelyn Opens Computer
+    [Tags]    sc3    log3
+    Open Browser To Login Page
+
+Evelyn Invalid Login
+    [Tags]    sc3
+    Invalid Login    ${InvalidUser}    ${InvalidPassword}
+    Go To Login Page
+    Invalid Login    ${ValidUser}    ${InvalidPassword}
+    Go To Login Page
+    Invalid Login    ${InvalidUser}    ${InvalidPassword}
+    Go To Login Page
+
+Wallace Invalid Login
+    [Tags]    sc3
+    Invalid Login    ${EMPTY}    ${InvalidPassword}
+    Go To Login Page
+    Invalid Login    ${InvalidUser}    ${InvalidPassword}
+    Go To Login Page
+    Invalid Login    ${EMPTY}    ${EMPTY}
+    Go To Login Page
+
+Evelyn Valid Login
+    [Tags]    sc3    log3
+    Login User
+
+Evelyn Explores Everything
+    [Tags]    sc3
+    Click Profile
+    Click Feedback
+    Close Profile
+    Create Board
+    Click Edit Board    2    2
+    Click Done Board Edit
+    Open Board    2    2
+    Create Ticket
+    Move Ticket    1    1
+    Click Magnet On
+    Click Globe On
+    Click Magnet Off
+    Click Globe Off
+    Click Edit Board From Board
+    Click Done Board Edit
+    Edit Ticket    1    1
+    Delete Ticket    1    1
+    Close Board
+    Delete Board    2    2
+
+Evelyn Opens Board That Was Created Before
+    [Tags]    sc3
+    Open Board    2    2
+
+Evelyn Creates And Edits Tickets
+    [Tags]    sc3
+    Repeat Keyword    6    Create Ticket
+    Open Ticket Edit    1    1
+    Input Ticket Text    Cake
+    Click Done Ticket Edit
+    Open Ticket Edit    2    2
+    Input Ticket Text    Clown
+    Click Done Ticket Edit
+    Open Ticket Edit    3    3
+    Input Ticket Text    Other foods
+    Click Done Ticket Edit
+    Open Ticket Edit    4    4
+    Input Ticket Text    Drinks
+    Click Done Ticket Edit
+    Open Ticket Edit    5    5
+    Input Ticket Text    Invites
+    Click Done Ticket Edit
+    Open Ticket Edit    6    6
+    Input Ticket Text    Other Entertaiment
+    Click Done Ticket Edit
+
+Evelyn Organizes Tickets
+    [Tags]    sc3
+    Click Magnet On
+    Move Ticket    1    1
+    Move Ticket    2    2
+    Move Ticket    3    3
+    Move Ticket    4    4
+    Move Ticket    5    5
+    Move Ticket    6    6
+
+Evelyn Edits Tickets
+    [Tags]    sc3
+    Open Ticket Edit    1    1
+    Input Ticket Text    Cake: Chocolate
+    Click Done Ticket Edit
+    Open Ticket Edit    2    2
+    Input Ticket Text    Clown: No Need
+    Click Done Ticket Edit
+    Open Ticket Edit    3    3
+    Input Ticket Text    Other foods: Chips and Candy
+    Click Done Ticket Edit
+    Open Ticket Edit    4    4
+    Input Ticket Text    Drinks: Coke, Sprite, Fanta, Water and Juice
+    Click Done Ticket Edit
+    Open Ticket Edit    5    5
+    Input Ticket Text    Invites: Classmates
+    Click Done Ticket Edit
+    Open Ticket Edit    6    6
+    Input Ticket Text    Other Entertaiment: Games
+    Click Done Ticket Edit
+
+Evelyn Is Ready
+    [Tags]    sc3
+    Close Board
+    Log Out
+    CLose Browser
+    [Teardown]

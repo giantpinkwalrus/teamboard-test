@@ -1,0 +1,186 @@
+*** Settings ***
+Resource          resource2.txt
+
+*** Test Cases ***
+Jenny Login
+    [Tags]    sc2    log2
+    Open Browser To Login Page
+    Login User
+
+Jenny Creates a Board
+    [Tags]    sc2
+    Create Board
+    Edit Board    2    2
+    Change Background    4    4
+
+Jenny Opens Board and Create Tickets
+    [Tags]    sc2
+    Open Board    2    2
+    Repeat Keyword    6    Create Ticket
+    Open Ticket Edit    1    1
+    Input Ticket Text    Clean before party
+    Click Done Ticket Edit
+    Open Ticket Edit    2    2
+    Input Ticket Text    Get food?
+    Click Done Ticket Edit
+    Open Ticket Edit    3    3
+    Input Ticket Text    Get drinks?
+    Click Done Ticket Edit
+    Open Ticket Edit    4    4
+    Input Ticket Text    Select music
+    Click Done Ticket Edit
+    Open Ticket Edit    5    5
+    Input Ticket Text    Who to invite?
+    Click Done Ticket Edit
+    Open Ticket Edit    6    6
+    Input Ticket Text    Clean after party
+    Click Done Ticket Edit
+
+Jenny Organizes Tickets
+    [Tags]    sc2
+    Move Ticket    1    1
+    Move Ticket    2    2
+    Move Ticket    3    3
+    Move Ticket    4    4
+    Move Ticket    5    5
+    Move Ticket    6    6
+
+Jenny Shares Board
+    [Tags]    sc2
+    Share Board From Board
+    Click Done Board Edit
+
+Jenny Goes For Coffee
+    [Tags]    sc2
+    Log Out
+    Close Browser
+
+Friend1 Creates Tickets
+    [Tags]    sc2
+    Open Shared Board    Friend1
+    Create Ticket
+    Open Ticket Edit    7    7
+    Input Ticket Text    Friend1 suggestion
+    Click Done Ticket Edit
+    Move Ticket    7    7
+    Log Out
+    Close Browser
+
+Friend2 Creates Tickets
+    [Tags]    sc2
+    Open Shared Board    Friend2
+    Create Ticket
+    Open Ticket Edit    8    8
+    Input Ticket Text    Friend2 suggestion
+    Click Done Ticket Edit
+    Move Ticket    8    8
+    Log Out
+    Close Browser
+
+Friend3 Creates Tickets
+    [Tags]    sc2
+    Open Shared Board    Friend3
+    Create Ticket
+    Open Ticket Edit    9    9
+    Input Ticket Text    Friend3 suggestion
+    Click Done Ticket Edit
+    Move Ticket    9    9
+    Log Out
+    Close Browser
+
+Friend4 Creates Tickets
+    [Tags]    sc2
+    Open Shared Board    Friend4
+    Create Ticket
+    Open Ticket Edit    10    10
+    Input Ticket Text    Friend4 suggestion
+    Click Done Ticket Edit
+    Move Ticket    10    10
+    Log Out
+    Close Browser
+
+Friend5 Creates Tickets
+    [Tags]    sc2
+    Open Shared Board    Friend5
+    Create Ticket
+    Open Ticket Edit    11    11
+    Input Ticket Text    Friend5 suggestion
+    Click Done Ticket Edit
+    Move Ticket    11    11
+    Log Out
+    Close Browser
+
+Jenny Comes Back
+    [Tags]    sc2
+    Open Browser To Login Page
+    Login User
+    Open Board    2    2
+
+Jenny Edit Tickets
+    [Tags]    sc2
+    Open Ticket Edit    1    1
+    Input Ticket Text    Clean before party: Jenny
+    Click Done Ticket Edit
+    Move Ticket    1    1
+    Log Out
+    Close Browser
+
+Friend 1 Edit Tickets
+    [Tags]    sc2
+    Open Shared Board    Friend1
+    Open Ticket Edit    7    7
+    Input Ticket Text    Friend1 suggestion: Friend 1
+    Click Done Ticket Edit
+    Move Ticket    7    7
+    Log Out
+    Close Browser
+
+Friend 2 Edit Tickets
+    [Tags]    sc2
+    Open Shared Board    Friend2
+    Open Ticket Edit    8    8
+    Input Ticket Text    Friend2 suggestion: Friend 2
+    Click Done Ticket Edit
+    Move Ticket    8    8
+    Log Out
+    Close Browser
+
+Friend 3 Edit Tickets
+    [Tags]    sc2
+    Open Shared Board    Friend3
+    Open Ticket Edit    9    9
+    Input Ticket Text    Friend3 suggestion: Friend 3
+    Click Done Ticket Edit
+    Move Ticket    9    9
+    Log Out
+    Close Browser
+
+Friend 4 Edit Tickets
+    [Tags]    sc2
+    Open Shared Board    Friend4
+    Open Ticket Edit    10    10
+    Input Ticket Text    Friend4 suggestion: Friend 4
+    Click Done Ticket Edit
+    Move Ticket    7    7
+    Log Out
+    Close Browser
+
+Friend 5 Edit Tickets
+    [Tags]    sc2
+    Open Shared Board    Friend5
+    Open Ticket Edit    11    11
+    Input Ticket Text    Friend5 suggestion: Friend 5
+    Click Done Ticket Edit
+    Move Ticket    11    11
+    Log Out
+    Close Browser
+
+TODO-List is finished
+    [Tags]    sc2
+    Open Browser To Login Page
+    Login User
+    Open Board    2    2
+    Close Board
+    Log Out
+    Close Browser
+    [Teardown]
