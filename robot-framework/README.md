@@ -25,6 +25,12 @@ On this guide we are using python, so the commands are for python.
 Easiest way to install Robot Framework is using package manager like [pip](https://pip.pypa.io/en/latest/index.html).
 
 Install pip if you don't already have it installed.
+
+First download pip.py:
+```
+wget https://bootstrap.pypa.io/get-pip.py
+```
+Then install:
 ```
 python get-pip.py
 ```
