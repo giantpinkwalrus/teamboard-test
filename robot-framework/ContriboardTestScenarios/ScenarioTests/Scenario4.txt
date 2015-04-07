@@ -12,20 +12,20 @@ James Creates SWOT Board
     Create Board
     Click Edit Board    2    2
     Input Board Name    SWOT of Cool Game
-    Change Background    2    2
+    Change Background    3    3
     Click Done Board Edit
 
 James Creates Sprint Plan Board
     [Tags]    sc4
     Create Board
-    Click Edit Board    2    2
+    Click Edit Board    3    3
     Input Board Name    Sprint Plan of Cool Game
-    Change Background    4    4
+    Change Background    5    5
     Click Done Board Edit
 
 James Opens SWOT Board
     [Tags]    sc4
-    Open Board    3    3
+    Open Board    2    2
 
 James Creates Tickets To SWOT Board
     [Tags]    sc4
@@ -77,7 +77,7 @@ James Deletes Obselete Tickets
 James Changes Board
     [Tags]    sc4
     Close Board
-    Open Board    2    2
+    Open Board    3    3
 
 James Creates Tickets To Sprint Plan
     [Tags]    sc4
@@ -108,7 +108,7 @@ James Creates Tickets To Sprint Plan
 James Closes Board and Board is Deleted
     [Tags]    sc4
     Close Board
-    Delete Board    2    2
+    Delete Board    3    3
 
 James Log Out and Login
     [Tags]    sc4
@@ -121,14 +121,14 @@ James Sends Angry Feedback
 James Creates Sprint Plan Board Again
     [Tags]    sc4
     Create Board
-    Click Edit Board    2    2
+    Click Edit Board    3    3
     Input Board Name    Sprint Plan of Cool Game
-    Change Background    4    4
+    Change Background    5    5
     Click Done Board Edit
 
 James Creates Tickets to Sprint Plan Board Again
     [Tags]    sc4
-    Open Board    2    2
+    Open Board    3    3
     Click Magnet On
     Repeat Keyword    5    Create Ticket
     Open Ticket Edit    1    1

@@ -13,14 +13,20 @@ Create New Board
     Edit Board
     Set Board Background
 
-Create Ticket Into Board
+Edit Board From Board
     [Tags]    old
     Open Board
     Edit Board From Board
+
+Test Controls From Board
+    [Tags]    old
     Click Magnet On
     Click Globe On
     Click Magnet Off
     Click Globe Off
+
+Create Tickets
+    [Tags]    old
     Repeat Keyword    5    Create Ticket
 
 Move Ticket On Board

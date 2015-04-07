@@ -34,9 +34,9 @@ Evelyn Explores Everything
     Click Feedback
     Close Profile
     Create Board
-    Click Edit Board    2    2
+    Click Edit Board    3    3
     Click Done Board Edit
-    Open Board    2    2
+    Open Board    3    3
     Create Ticket
     Move Ticket    1    1
     Click Magnet On
@@ -48,7 +48,7 @@ Evelyn Explores Everything
     Edit Ticket    1    1
     Delete Ticket    1    1
     Close Board
-    Delete Board    2    2
+    Delete Board    3    3
 
 Evelyn Opens Board That Was Created Before
     [Tags]    sc3

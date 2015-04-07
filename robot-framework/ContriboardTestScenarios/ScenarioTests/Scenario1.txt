@@ -3,7 +3,7 @@ Resource          resource1.txt
 
 *** Test Cases ***
 Wallace opens computer
-    [Tags]    sc1    log1
+    [Tags]    sc1
     Open Browser To Login Page
 
 Wallace Invalid Login
@@ -18,8 +18,9 @@ Wallace Invalid Login
     Go To Login Page
 
 Wallace Registers
-    [Tags]    sc1    log1
-    Register User    wallace.coleman@test.com    wallacecoleman
+    [Tags]    sc1
+    Login User
+    #Register User    wallace.coleman@test.com    wallacecoleman
 
 Wallace Explores part 1
     [Tags]    sc1
@@ -48,18 +49,19 @@ Wallace Edits board
     Change Background    5    5
     Change Background    6    6
     Change Background    7    7
+    Change Background    8    8
     Change Background    0    0
 
 Wallace Sets Background and clicks cancel
     [Tags]    sc1
-    Change Background    5    5
+    Change Background    6    6
     Click Cancel Edit
 
 Wallce Edit Board Again
     [Tags]    sc1
     Click Edit Board    3    3
     Input Wrong Board Name
-    Change Background    5    5
+    Change Background    6    6
     Click Done Board Edit
 
 Wallace Opens Board

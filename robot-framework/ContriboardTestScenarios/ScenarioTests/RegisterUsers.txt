@@ -12,12 +12,12 @@ Register Jenny
     Log Out
 
 Register Evelyn
-    [Tags]    reg
+    [Tags]
     Register User    evelyn.holmes@test.com    evelynholmes
     Create Board
     Click Edit Board    2    2
     Input Board Name
-    Change Background    4    4
+    Change Background    5    5
     Click Done Board Edit
     Log Out
 
