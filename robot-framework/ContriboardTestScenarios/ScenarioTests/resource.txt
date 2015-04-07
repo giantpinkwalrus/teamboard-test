@@ -33,9 +33,7 @@ Register User
     Should Be Equal    ${check}    Register    error=Register button missing
     Click Button    //input[@class='btn-primary']
     Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
-    Wait Until Page Contains Element    //div[@class='item broadcast']    timeout=2    error=Welcome Not Found
     Location Should Be    ${BoardUrl}
-    Click Element    //div[@class='item broadcast']
 
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
@@ -53,14 +51,14 @@ Click Edit Board
     [Arguments]    ${min}=2    ${max}=6
     Get Edit Xpath    ${min}    ${max}
     Click Element    ${Expath}
-    Wait Until Page Contains Element    //div[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
 
 Input Board Name
     Input Text    //input[@placeholder='Board Name']    Birthday Party!
 
 Click Done Board Edit
     Click Button    //button[@class='btn-primary']
-    Element Should Not Be Visible    //div[@class='dialog dialog-edit-board']    error=Edit Not Closed
+    Element Should Not Be Visible    //form[@class='dialog dialog-edit-board']    error=Edit Not Closed
 
 Change Background
     [Arguments]    ${min}=0    ${max}=7
@@ -69,11 +67,17 @@ Change Background
     ${rid}    Get Element Attribute    Content@data-reactid
     Select From List By Value    //select[@data-reactid='${rid}.0.1.4.2.0']    ${background}
     Run Keyword If    '${background}'=='NONE'    Empty Background
-    Run Keyword Unless    '${background}'=='NONE'    Check Background
+    Run Keyword If    '${background}'=='CUSTOM'    Custom Background
+    Run Keyword Unless    '${background}'=='NONE' or '${background}'=='CUSTOM'    Check Background
 
 Empty Background
     ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.4.0.0']@class
     Should Be Equal    ${check}    blanko    error=Background Not Empty
+
+Custom Background
+    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.4.0.0']@class
+    Should Be Equal    ${check}    blanko    error=Background Not Empty
+    Element Should Be Visible    //input[@type='url']
 
 Check Background
     ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.4.0.0']@src
@@ -87,11 +91,11 @@ Get Edit Xpath
 Get Random Background
     [Arguments]    ${min}    ${max}
     ${int}    Evaluate    random.randint(${min}, ${max})    random
-    ${list}    Create List    NONE    PLAY    SWOT    SCRUM    KANBAN
-    ...    KEEP_DROP_TRY    CUSTOMER_JOURNEY_MAP    BUSINESS_MODEL_CANVAS
+    ${list}    Create List    NONE    CUSTOM    PLAY    SWOT    SCRUM
+    ...    KANBAN    KEEP_DROP_TRY    CUSTOMER_JOURNEY_MAP    BUSINESS_MODEL_CANVAS
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    ${background}    ${item}
-    ${list2}    Create List    blank    play    swot    scrum    kanban
-    ...    keep_drop_try    customer_journey_map    business_model_canvas
+    ${list2}    Create List    blank    custom    play    swot    scrum
+    ...    kanban    keep_drop_try    customer_journey_map    business_model_canvas
     ${item2}    Get From List    ${list2}    ${int}
     Set Test Variable    ${bcheck}    ${item2}

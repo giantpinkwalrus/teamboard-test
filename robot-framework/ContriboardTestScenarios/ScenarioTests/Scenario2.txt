@@ -11,7 +11,7 @@ Jenny Creates a Board
     [Tags]    sc2
     Create Board
     Edit Board    2    2
-    Change Background    4    4
+    Change Background    5    5
 
 Jenny Opens Board and Create Tickets
     [Tags]    sc2
