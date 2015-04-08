@@ -48,7 +48,7 @@ James has a existing account for Contriboard so he logs in.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Opens Computer And Login
 		Open Browser To Login Page
 		Login User
@@ -59,7 +59,7 @@ James succeeds to log in. James needs to do a SWOT plan and sprint plan so he cr
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Creates SWOT Board
 		Create Board
 		Click Edit Board    2    2
@@ -80,7 +80,7 @@ James has created his boards so now he needs to start making his plans.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Opens SWOT Board
 		Open Board    2    2
 
@@ -91,7 +91,7 @@ Now he his ready start to work. James start creating tickets, writing his things
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Creates Tickets To SWOT Board
 		Click Magnet On
 		Repeat Keyword    5    Create Ticket
@@ -124,7 +124,7 @@ James makes some additions on his plans and removes some that he thinks are obse
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Edits Tickets
 		Repeat Keyword    3    Create Ticket
 		Open Ticket Edit    6    6
@@ -151,7 +151,7 @@ Now he is done his SWOT. So he continues to his sprint plan.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Changes Board
 		Close Board
 		Open Board    3    3
@@ -164,7 +164,7 @@ As he had thinked his plan through in his head he starts creating tickets.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Creates Tickets To Sprint Plan
 		Click Magnet On
 		Repeat Keyword    5    Create Ticket
@@ -197,7 +197,7 @@ James looks at his plan and thinks that it is ready. So he closes the board.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Closes Board and Board is Deleted
 		Close Board
 		Delete Board    3    3
@@ -210,7 +210,7 @@ James is furios. He tries to logout and login again if that returns his board.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Log Out and Login
 		Log Out
 		Login User
@@ -221,7 +221,7 @@ James doesn't see his board. It's gone! So James starts to write angry feedback 
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Sends Angry Feedback
 		Send Feedback
 			
@@ -234,7 +234,7 @@ So James has no other choice than create it again.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Creates Sprint Plan Board Again
 		Create Board
 		Click Edit Board    3    3
@@ -248,7 +248,7 @@ James starts to creating tickets to the board. Luckily he remembers what he had 
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Creates Tickets to Sprint Plan Board Again
 		Open Board    3    3
 		Click Magnet On
@@ -284,7 +284,7 @@ Board closes as it should. James checks both boards before leaving to do other t
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Checks both Boards
 		Open Board    3    3
 		Close Board
@@ -297,7 +297,7 @@ James has checked his boards as seems like everything is ready. So James logout 
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	James Is Ready
 		Log Out
 		Close Browser
