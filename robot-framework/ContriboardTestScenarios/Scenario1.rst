@@ -48,7 +48,7 @@ Wallace opens computer, starts internet browser and goes to the webpage where sc
 .. code:: robotframework
 
     	*** Test Cases ***
-	 Wallace opens computer
+	Wallace opens computer
 		Open Browser To Login Page
 
 
