@@ -176,7 +176,7 @@ Input Ticket Text
     [Arguments]    ${Ttext}=Typing Something
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Input Text    //textarea[@data-reactid='${rid}.1.0']    Typing somenthing
+    Input Text    //textarea[@data-reactid='${rid}.1.0']    ${Ttext}
 
 Delete Ticket
     [Arguments]    ${min}=1    ${max}=5

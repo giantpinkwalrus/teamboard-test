@@ -1,0 +1,37 @@
+*** Settings ***
+Resource          resource.txt
+
+*** Test Cases ***
+Open Login Page
+    [Tags]    reg
+    Open Browser To Login Page
+
+Register Jenny
+    [Tags]    reg
+    Register User    jenny.porter@test.com    jennyporter
+    Log Out
+
+Register Evelyn
+    [Tags]
+    Register User    evelyn.holmes@test.com    evelynholmes
+    Create Board
+    Click Edit Board    2    2
+    Input Board Name
+    Change Background    5    5
+    Click Done Board Edit
+    Log Out
+
+Register James
+    [Tags]    reg
+    Register User    james.nicholson@test.com    jamesnicholson
+    Log Out
+
+Register Robot
+    [Tags]    reg
+    Register User    testrobot@test.com    testrobot
+    Log Out
+
+Close
+    [Tags]    reg
+    Close Browser
+    [Teardown]
