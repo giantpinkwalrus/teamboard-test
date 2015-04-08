@@ -46,7 +46,7 @@ She starts to do the TODO-list:
 
 .. code:: robotframework
 
-    *** Test Cases ***
+	*** Test Cases ***
 	Jenny Login
 		Open Browser To Login Page
 		Login User
@@ -57,7 +57,7 @@ As she has logged in she creates new board as a basis for their party plan
 
 .. code:: robotframework
 
-    *** Test Cases ***
+	*** Test Cases ***
 	Jenny Creates a Board
 		Create Board
 		Edit Board    2    2
@@ -68,7 +68,7 @@ Now she add couple tasks to the board before sharing it to friends.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Jenny Opens Board and Create Tickets
 		Open Board    2    2
 		Repeat Keyword    6    Create Ticket
@@ -97,7 +97,7 @@ Jenny organizes tickets.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Jenny Organizes Tickets
 		Move Ticket    1    1
 		Move Ticket    2    2
@@ -111,7 +111,7 @@ Jenny has organized tickets. Now she shares the board to her friends.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Jenny Shares Board
 		Share Board From Board
 		Click Done Board Edit
@@ -124,7 +124,7 @@ Jenny goes for coffee break.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Jenny Goes For Coffee
 		Log Out
 		Close Browser
@@ -135,7 +135,7 @@ While Jenny is on a coffee break her friends starts editing the board.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Friend1 Creates Tickets
 		Open Shared Board    Friend1
 		Create Ticket
@@ -192,7 +192,7 @@ Jenny gets back. Jenny and her friends talk about who does what and when.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Jenny Comes Back
 		Open Browser To Login Page
 		Login User
@@ -204,7 +204,7 @@ on their correct places. So they can see what has been done and what need to be 
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Jenny Edit Tickets
 		Open Ticket Edit    1    1
 		Input Ticket Text    Clean before party: Jenny
@@ -264,7 +264,7 @@ TODO-list is ready. So they log out and update the list when they are done tasks
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	TODO-List is finished
 		Open Browser To Login Page
 		Login User
