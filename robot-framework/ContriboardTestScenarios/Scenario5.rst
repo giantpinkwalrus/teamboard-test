@@ -28,7 +28,7 @@ Roles: Testing robot
 
 
 =================
-Scenario 4 Tests
+Scenario 5 Tests
 =================
 
 
@@ -45,7 +45,7 @@ Test invalid login options
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Invalid Login
 		Invalid Login    ${InvalidUser}    ${InvalidPassword}
 		Go To Login Page
@@ -66,7 +66,7 @@ Test valid login
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Valid Login
 		Login User
 
@@ -76,7 +76,7 @@ Test creating boards
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Creating Boards
 		Repeat Keyword    15    New Board
 
@@ -86,7 +86,7 @@ Test editing boards
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Editing Boards
 		Repeat Keyword    15    Random Edit Board
 		Repeat Keyword    15    Random Set Board Background
@@ -97,7 +97,7 @@ Test opening boards
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Opening Boards
 		Random Open Board
 		Close Board
@@ -116,7 +116,7 @@ Test creating tickets
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Creating Tickets
 		Random Open Board
 		Repeat Keyword    15    Random Create Ticket
@@ -127,7 +127,7 @@ Test Editing Tickets
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Editing Tickets
 		Repeat Keyword    15    Random Edit Ticket
 
@@ -137,7 +137,7 @@ Test move tickets
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Move Tickets
 		Repeat Keyword    15    Random Move Ticket
 
@@ -147,7 +147,7 @@ Test board functionalities
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Board Functionalities
 		Click Magnet On
 		Click Globe On
@@ -161,7 +161,7 @@ Test ticket deletion
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Ticket Deletion
 		Repeat Keyword    5    Random Delete Ticket
 
@@ -171,7 +171,7 @@ Test board deletion
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Board Deletion
 		Close Board
 		Repeat Keyword    5    Random Delete Board
@@ -182,7 +182,7 @@ Test feedback sending
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Feedback Sending
 		Send Feedback
 
@@ -192,7 +192,7 @@ Test Board sharing
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Board sharing
 		Random Share Board
 		Log Out
@@ -212,7 +212,7 @@ Test Log Out
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Test Log Out
 		Log Out
 		Login User
@@ -227,7 +227,7 @@ Contriboard testing complete --->  SELF SHUTDOWN
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	End Test
 		Close Browser
 		[Teardown]
