@@ -47,8 +47,8 @@ Wallace opens computer, starts internet browser and goes to the webpage where sc
 
 .. code:: robotframework
 
-    *** Test Cases ***
-	Wallace opens computer
+    	*** Test Cases ***
+	 Wallace opens computer
 		Open Browser To Login Page
 
 
@@ -58,7 +58,7 @@ Wallace didn't remember what he needed to do first. So he starts trying to login
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Invalid Login
 		Invalid Login    ${InvalidUser}    ${InvalidPassword}
 		Go To Login Page
@@ -76,7 +76,7 @@ Dad thinks for a moment and tells Wallace to try registering. So Wallace clicks 
 
 .. code:: robotframework
 
-    *** Test Cases ***
+	 *** Test Cases ***
 	Wallace Registers
 		Register User 	wallace.coleman@test.com 	wallacecoleman
 
@@ -91,7 +91,7 @@ Wallace start to explore the page and clicking different things
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Explores part 1
 		First Try
 
@@ -102,7 +102,7 @@ and he just does logs back in.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace ReLogin
 		Login User
 
@@ -112,7 +112,7 @@ And Wallace is back on the page where he accidently left before. Wallace continu
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Explores Part 2
 		Repeat Keyword    3    Create Board
 
@@ -125,7 +125,7 @@ Wallace deleted a board. He clicks pen icon on other board.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Tries Board buttons
 		Delete Board    4    4
 		Click Edit Board    3    3
@@ -137,7 +137,7 @@ Wallace writes name for the board: "Ideas of Wallace" and tries to change backgr
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Edits board
 		Input Board Name
 		Change Background    1    1
@@ -157,7 +157,7 @@ But bird flies into window and Wallace accidently clicks cancel button.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Sets Background and clicks cancel
 		Change Background    6    6
 		Click Cancel Edit
@@ -168,7 +168,7 @@ Board naming and background setting was all in vain. So Wallace has to start edi
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Edit Board Again
 		Click Edit Board    3    3
 		Input Wrong Board Name
@@ -181,7 +181,7 @@ Wallace has named his board, changed background and successfully clicked done bu
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Opens Board
 		Open Board    3    3
 
@@ -194,7 +194,7 @@ Half hour later Wallace comes back and starts to explore and clicking things.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+	 *** Test Cases ***
 	Wallace Explores Part 3
 		Click Magnet On
 		Click Globe On
@@ -208,7 +208,7 @@ When Wallace clicked pen he noticed that he had written his board name wrong. So
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Changes Wrong Board Name
 		Input Board Name
 		Click Done Board Edit
@@ -229,7 +229,7 @@ Wallace noticed that by double clicking board he created tickets. Wallace tries 
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Tries to move ticket
 		Move Ticket    1    1
 
@@ -240,7 +240,7 @@ Nothing seems to happen so Wallace moves tickets and triest to find what magnet 
 
 .. code:: robotframework
 
-    *** Test Cases ***
+	 *** Test Cases ***
 	Wallace Tries Magnet
 		Click Magnet On
 		Repeat Keyword    3    Move Ticket
@@ -253,7 +253,7 @@ Wallace learned what magnet do and creates more ticket and organizes them.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Creates And Moves New Tickets
 		Create Ticket
 		Move Ticket    6    6
@@ -269,7 +269,7 @@ Wallace founds out that by double clicking ticket it opens ticket and he can wri
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Learns to Edit Ticket
 		Open Ticket Edit    1    1
 		Input Ticket Text    Idea Of Wallace1
@@ -281,7 +281,7 @@ Wallace has written his first idea on a ticket. So writes he more on other ticke
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Edits Tickets
 		Open Ticket Edit    2    2
 		Input Ticket Text    Idea Of Wallace2
@@ -308,7 +308,7 @@ Wallace succesfully deleted empty ticket and starts deleting rest of the empty t
 
 .. code:: robotframework
 
-    *** Test Cases ***	
+    	*** Test Cases ***	
 	Wallace Deletes Obselete Tickets	
 		Delete Ticket    7    7
 		Delete Ticket    7    7
@@ -320,7 +320,7 @@ He thinks how he can close his board and sees arrow icon.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Closes Board
 		Close Board
 
@@ -331,7 +331,7 @@ And everything seems to be there.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Checks The Board
 		Open Board    3    3
 		Close Board
@@ -343,7 +343,7 @@ So he calls his dad for help. Dad helps Wallace to close the page.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Is Done
 		Log Out
 		Close Browser
