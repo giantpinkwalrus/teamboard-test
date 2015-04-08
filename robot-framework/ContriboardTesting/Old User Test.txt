@@ -14,9 +14,10 @@ Create New Board
     Set Board Background
 
 Edit Board From Board
-    [Tags]    old
+    [Tags]    old    edit
     Open Board
-    Edit Board From Board
+    Run Keyword If    '${background}'=='CUSTOM'    Change Custom Background from Board
+    Run Keyword Unless    '${background}'=='CUSTOM'    Edit Board From Board
 
 Test Controls From Board
     [Tags]    old
@@ -42,7 +43,7 @@ Delete Ticket From Board
     Delete Ticket
 
 Delete Board
-    [Tags]    old
+    [Tags]    old    edit
     Close Board
     Delete Board
 
