@@ -1,4 +1,8 @@
+.. default-role:: code
+
+============
 Scenario5
+============
 
 Browser: Firefox
 Operation System: Ubuntu 14.04
@@ -10,116 +14,220 @@ Age: Unknown
 
 Full product test.
 
--------------------------------------------------------------------------------------
+
 Primary Actor: ErrorRobot404
 
 Other Actors: NONE
 
 Roles: Testing robot
------------------------------------------------------------------------------------------------------
+
+
+.. contents:: Table of contents
+   :local:
+   :depth: 2
+
+
+=================
+Scenario 4 Tests
+=================
+
+
+.. code:: robotframework
+
+	*** Settings ***
+	Resource 		ScenarioTests/resource5.txt
+
 
 Primary function: Test Contriboard functionality
 
 Test invalid login options
---------------------------------------------
-Invalid Login: InvalidEmail InvalidPassword
-Invalid Login: InvalidEmail ValidPassword
-Invalid Login: ValidEmail Empty Password
-Invalid Login: ValidEmail InvalidPassword
-Invalid Login: EmptyEmail EmptyPassword
-Invalid Login: EmptyEmail ValidPassword
-------------------------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Invalid Login
+		Invalid Login    ${InvalidUser}    ${InvalidPassword}
+		Go To Login Page
+		Invalid Login    ${InvalidUser}    ${ValidPassword}
+		Go To Login Page
+		Invalid Login    ${ValidUser}    ${EMPTY}
+		Go To Login Page
+		Invalid Login    ${ValidUser}    ${InvalidPassword}
+		Go To Login Page
+		Invalid Login    ${EMPTY}    ${EMPTY}
+		Go To Login Page
+		Invalid Login    ${EMPTY}    ${ValidPassword}
+		Go To Login Page
+
 
 Test valid login
------------------------
-Valid Login
------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Valid Login
+		Login User
+
 
 Test creating boards
------------------------
-Create Boards
------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Creating Boards
+		Repeat Keyword    15    New Board
+
 
 Test editing boards
------------------------
-Edit Random Boards
------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Editing Boards
+		Repeat Keyword    15    Random Edit Board
+		Repeat Keyword    15    Random Set Board Background
+
 
 Test opening boards
------------------------
-Random Open Board
-Close Board
-Random Open Board
-Close Board
-Random Open Board
-Close Board
-Random Open Board
-Close Board
-Random Open Board
-Close Board
------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Opening Boards
+		Random Open Board
+		Close Board
+		Random Open Board
+		Close Board
+		Random Open Board
+		Close Board
+		Random Open Board
+		Close Board
+		Random Open Board
+		Close Board
+
 
 Test creating tickets
------------------------
-Open Random Board
-Create Tickets
------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Creating Tickets
+		Random Open Board
+		Repeat Keyword    15    Random Create Ticket
+
 
 Test Editing Tickets
------------------------
-Edit Random Tickets
------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Editing Tickets
+		Repeat Keyword    15    Random Edit Ticket
+
 
 Test move tickets
------------------------
-Move Random Tickets
------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Move Tickets
+		Repeat Keyword    15    Random Move Ticket
+
 
 Test board functionalities
----------------------------
-Click Globe
-Click Magnet
-Move Random Boards
-Create Boards
-Click Globe
-Click Magnet
-Edit Board from Board
----------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Board Functionalities
+		Click Magnet On
+		Click Globe On
+		Repeat Keyword    15    Random Move Ticket
+		Click Magnet Off
+		Click Globe Off
+		Edit Board From Board
+
 
 Test ticket deletion
----------------------------
-Delete Random Tickets
----------------------------
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Ticket Deletion
+		Repeat Keyword    5    Random Delete Ticket
+
 
 Test board deletion
----------------------------
-Delete Random Boards
----------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Board Deletion
+		Close Board
+		Repeat Keyword    5    Random Delete Board
+
 
 Test feedback sending
----------------------------
-Click Profile
-Send Feedback
----------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Feedback Sending
+		Send Feedback
+
 
 Test Board sharing
----------------------------
-Share Board
-Open Shared Board
-Create Ticket on shared board
-Move Tikcet on shared board
-Close shared board
----------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Board sharing
+		Random Share Board
+		Log Out
+		Close Browser
+		Open Shared Board
+		Random Create Ticket
+		Random Edit Ticket    1    1
+		Random Move Ticket    1    1
+		Log Out
+		Close Browser
+		Open Browser To Login Page
+		Login User
+
 
 Test Log Out
----------------------------
-Log Out
-Valid Login
-Log Out
-Valid Login
-Log Out
----------------------------
+
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	Test Log Out
+		Log Out
+		Login User
+		Log Out
+		Login User
+		Log Out
+
 
 End Test
 
 Contriboard testing complete --->  SELF SHUTDOWN
+
+.. code:: robotframework
+
+    *** Test Cases ***
+	End Test
+		Close Browser
+		[Teardown]

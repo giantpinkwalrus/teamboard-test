@@ -19,8 +19,7 @@ Wallace Invalid Login
 
 Wallace Registers
     [Tags]    sc1
-    Login User
-    #Register User    wallace.coleman@test.com    wallacecoleman
+    Register User    wallace.coleman@test.com    wallacecoleman
 
 Wallace Explores part 1
     [Tags]    sc1
