@@ -59,7 +59,7 @@ Evelyn Is little bit out of ideas why login is not working. She tries to login w
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Evelyn Invalid Login
 		Invalid Login    ${InvalidUser}    ${InvalidPassword}
 		Go To Login Page
@@ -85,7 +85,7 @@ Wallace hears Evelyn closed the phone! In panic Wallace cleans login form values
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Wallace Invalid Login
 		Invalid Login    ${EMPTY}    ${InvalidPassword}
 		Go To Login Page
@@ -101,7 +101,7 @@ from login screen Because of empty login screen Evelyn remembers now correct acc
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Evelyn Valid Login
 		Login User
 
@@ -112,7 +112,7 @@ All what Dave was told her last week were foggy memories. "There is nice button 
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Evelyn Explores Everything
 		Click Profile
 		Click Feedback
@@ -140,7 +140,7 @@ Now that she has clicked some buttons she has somekind on idea what she need to 
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Evelyn Opens Board That Was Created Before
 		Open Board    2    2
 
@@ -149,7 +149,7 @@ Evelyn starts creating ticket as tasks what she need to do for the birthday part
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Evelyn Creates And Edits Tickets
 		Repeat Keyword    6    Create Ticket
 		Open Ticket Edit    1    1
@@ -177,7 +177,7 @@ Evelyn organizes tasks on priorities order which need to do first.
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Evelyn Organizes Tickets
 		Click Magnet On
 		Move Ticket    1    1
@@ -194,7 +194,7 @@ What kind of cake? What foods he wants? Who to Invite? What kind of entertaiment
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Evelyn Edits Tickets
 		Open Ticket Edit    1    1
 		Input Ticket Text    Cake: Chocolate
@@ -221,7 +221,7 @@ Now that Wallace and Evelyn had added everything on the tickets. Evelyn stops pl
 
 .. code:: robotframework
 
-    *** Test Cases ***
+    	*** Test Cases ***
 	Evelyn Is Ready
 		Close Board
 		Log Out
