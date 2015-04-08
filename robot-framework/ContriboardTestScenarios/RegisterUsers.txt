@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          resource.txt
+Resource          ScenarioTests/resource.txt
 
 *** Test Cases ***
 Open Login Page
