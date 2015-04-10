@@ -216,7 +216,7 @@ Share Board
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Stop Share Board
-    [Arguments]    ${min}=5    ${max}=5
+    [Arguments]    ${min}=2    ${max}=2
     Get Edit Xpath    ${min}    ${max}
     Click Element    ${Expath}
     #Click Element    ${SharedBoard}

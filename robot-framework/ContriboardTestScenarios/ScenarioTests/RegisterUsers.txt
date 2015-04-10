@@ -12,7 +12,7 @@ Register Jenny
     Log Out
 
 Register Evelyn
-    [Tags]
+    [Tags]    reg
     Register User    evelyn.holmes@test.com    evelynholmes
     Create Board
     Click Edit Board    2    2

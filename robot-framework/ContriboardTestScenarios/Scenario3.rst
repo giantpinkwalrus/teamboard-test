@@ -132,7 +132,7 @@ All what Dave was told her last week were foggy memories. "There is nice button 
 		Edit Ticket    1    1
 		Delete Ticket    1    1
 		Close Board
-		Delete Board    3    3
+		Delete Board    2    2
 
 
 Now that she has clicked some buttons she has somekind on idea what she need to do. So she opens the board she and Dave created before.
