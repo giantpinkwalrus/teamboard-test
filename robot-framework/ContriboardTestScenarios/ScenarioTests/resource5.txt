@@ -9,7 +9,7 @@ ${ValidUser}      testrobot@test.com
 ${ValidPassword}    testrobot
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
-${SERVER}         localhost:8000
+${SERVER}         lankku.n4sjamk.org
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards

@@ -4,10 +4,10 @@ Library           Collections
 
 *** Variables ***
 ${Browser}        firefox
-${DELAY}          0.1
+${DELAY}          0.3
 ${ValidUser}      james.nicholson@test.com
 ${ValidPassword}    jamesnicholson
-${SERVER}         localhost:8000
+${SERVER}         lankku.n4sjamk.org
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards

@@ -7,7 +7,7 @@ ${Browser}        firefox
 ${DELAY}          0.1
 ${ValidUser}      jenny.porter@test.com
 ${ValidPassword}    jennyporter
-${SERVER}         localhost:8000
+${SERVER}         lankku.n4sjamk.org
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
