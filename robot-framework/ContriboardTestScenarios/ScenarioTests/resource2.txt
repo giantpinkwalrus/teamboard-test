@@ -110,7 +110,7 @@ Share Board From Board
 
 Open Shared Board
     [Arguments]    ${User}=Tester
-    Open Browser    ${Shared}    ${Browser}
+    Open Browser    http://${Shared}    ${Browser}
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    http://${Shared}

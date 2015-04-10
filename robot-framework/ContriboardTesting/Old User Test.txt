@@ -56,11 +56,11 @@ Send Feedback
     Send Feedback
 
 Log Out User
-    [Tags]    old    log    edit    feed    share
+    [Tags]    old    edit    feed    share
     Log Out
 
 Close
-    [Tags]    old    log    edit    feed    share
+    [Tags]    old    edit    feed    share
     Close Browser
 
 Open Share Board
