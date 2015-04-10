@@ -182,7 +182,7 @@ Random Share Board
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Open Shared Board
-    Open Browser    ${Shared}    ${Browser}
+    Open Browser    http://${Shared}    ${Browser}
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    http://${Shared}
