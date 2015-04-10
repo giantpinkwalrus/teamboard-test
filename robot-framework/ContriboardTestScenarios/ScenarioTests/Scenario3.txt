@@ -48,7 +48,7 @@ Evelyn Explores Everything
     Edit Ticket    1    1
     Delete Ticket    1    1
     Close Board
-    Delete Board    3    3
+    Delete Board    2    2
 
 Evelyn Opens Board That Was Created Before
     [Tags]    sc3
