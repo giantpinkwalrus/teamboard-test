@@ -16,7 +16,7 @@ ${BoardUrl}       http://${SERVER}/boards
 ${RegUrl}         http://${SERVER}/register
 ${LoginTitle}     Contriboard
 ${custombackground}    http://tinyurl.com/pevhhv7
-${custombackground2}    http://tinyurl.com/n2jj74g
+${custombackground2}    http://tinyurl.com/khpx9d8
 
 *** Keywords ***
 Register User
@@ -107,7 +107,7 @@ Change Custom Background from Board
     Input Text    //input[@placeholder='Board Name']    Custom Background Board
     ${rid}    Get Element Attribute    //div[@class='dialog-overlay']@data-reactid
     Get Random Background    1    1
-    Select From List By Value    //select[@data-reactid='${rid}.0.1.4.2.0']    ${background}
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.5.2.0']    ${background}
     Run Keyword If    '${background}'=='NONE'    Empty Background
     Run Keyword If    '${background}'=='CUSTOM'    Changed Custom Background
     Run Keyword Unless    '${background}'=='NONE' or '${background}'=='CUSTOM'    Check Background
@@ -115,7 +115,7 @@ Change Custom Background from Board
 Changed Custom Background
     Element Should Be Visible    //input[@type='url']
     Input Text    //input[@placeholder='URL']    ${custombackground2}
-    ${check2}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.4.0.0']@src
+    ${check2}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.5.0.0']@src
     Should Be Equal    ${check2}    ${custombackground2}    error=Custom Background Not Changed
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
@@ -164,6 +164,36 @@ Edit Ticket
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
     Input Text    //textarea[@data-reactid='${rid}.1.0']    Typing somenthing
     Click Button    //button[@class='btn-primary']
+
+Change Ticket Color
+    [Arguments]    ${min}=1    ${max}=5
+    Get Ticket Xpath    ${min}    ${max}
+    Double Click Element    ${Txpath}
+    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
+    Get Ticket Color
+    Click Element    //div[@data-reactid='${rid}.0.0.1.${color}']
+    ${ccheck}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.1.${color}']@style
+    ${tcolor}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.0']@style
+    Should Be Equal    ${ccheck}    ${tcolor}    error=Ticket Color Not Changed
+    Click Button    //button[@class='btn-primary']
+
+Minimap Ticket Color
+    [Arguments]    ${min}=1    ${max}=5
+    Get Ticket Xpath    ${min}    ${max}
+    Double Click Element    ${Txpath}
+    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
+    Get Ticket Color
+    Click Element    //div[@data-reactid='${rid}.0.0.1.${color}']
+    ${ccheck}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.1.${color}']@style
+    ${tcolor}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.0']@style
+    Should Be Equal    ${ccheck}    ${tcolor}    error=Ticket Color Not Changed
+    Click Button    //button[@class='btn-primary']
+    ${ticketint}    Evaluate    ${tint}+1
+    Get Minimap Ticket    ${ticketint}    ${ticketint}
+    ${mticket}    Get Element Attribute    ${MTxpath}@style
+    Should Contain    ${mticket}    ${mtcolor}
 
 Click Magnet On
     Assign Id To Element    //div[@class='view view-board']    reactID
@@ -262,6 +292,19 @@ Send Feedback
     Unselect Frame
     Click Element    //span[@class='fa fa-fw fa-user']
 
+Export Board
+    [Arguments]    ${min}=2    ${max}=5
+    Get Edit Xpath    ${min}    ${max}
+    Click Element    ${Expath}
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Get Export
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.4.1.0.0']    ${export}
+    #Does nothing
+    #Click Element    //a[@data-reactid='${rid}.0.1.4.1.1']
+    Click Element    //button[@data-reactid='${rid}.0.2.0']
+
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
     Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
@@ -313,6 +356,8 @@ Get Ticket Xpath
     [Arguments]    ${min}    ${max}
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[2]/div/div[1]/div[${int}]
+    Set Test Variable    \${tint}    ${EMPTY}
+    Set Test Variable    ${tint}    ${int}
 
 Get X Move
     [Arguments]    ${min}=-350    ${max}=350
@@ -334,16 +379,23 @@ Get X Coordinate
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${x}    ${int}
 
+Get Minimap Ticket
+    [Arguments]    ${min}    ${max}
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${MTxpath}    xpath=/html/body/div/div/div[2]/div/div[2]/div[${int}]
+
 Get Random Background
     [Arguments]    ${min}=0    ${max}=8
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     ${list}    Create List    NONE    CUSTOM    PLAY    SWOT    SCRUM
     ...    KANBAN    KEEP_DROP_TRY    CUSTOMER_JOURNEY_MAP    BUSINESS_MODEL_CANVAS
     ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${background}    ${EMPTY}
     Set Suite Variable    ${background}    ${item}
     ${list2}    Create List    blank    custom    play    swot    scrum
     ...    kanban    keep_drop_try    customer_journey_map    business_model_canvas
     ${item2}    Get From List    ${list2}    ${int}
+    Set Test Variable    \${bcheck}    ${EMPTY}
     Set Test Variable    ${bcheck}    ${item2}
 
 Get Random Type
@@ -351,4 +403,25 @@ Get Random Type
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     ${list}    Create List    Support Request    Bug Report    Other
     ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${type}    ${EMPTY}
     Set Test Variable    ${type}    ${item}
+
+Get Ticket Color
+    [Arguments]    ${min}=0    ${max}=3
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    $#eb584a    $#4f819a    $#724a7f    $#dcc75b
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${color}    ${EMPTY}
+    Set Test Variable    ${color}    ${item}
+    ${list2}    Create List    rgb(235, 88, 74)    rgb(79, 129, 154)    rgb(114, 74, 127)    rgb(220, 199, 91)
+    ${item2}    Get From List    ${list2}    ${int}
+    Set Test Variable    \${mtcolor}    ${EMPTY}
+    Set Test Variable    ${mtcolor}    ${item2}
+
+Get Export
+    [Arguments]    ${min}=0    ${max}=1
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    csv    json
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${export}    ${EMPTY}
+    Set Test Variable    ${export}    ${item}

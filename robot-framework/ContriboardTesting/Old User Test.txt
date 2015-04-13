@@ -3,18 +3,19 @@ Resource          resource.txt
 
 *** Test Cases ***
 Login User
-    [Tags]    old    log    edit    feed    share
+    [Tags]    old    log    edit    feed    share    export
+    ...    color
     Open Browser To Login Page
     Login User
 
 Create New Board
-    [Tags]    old    edit
-    Repeat Keyword    5    New Board
+    [Tags]    old    color
+    New Board
     Edit Board
     Set Board Background
 
 Edit Board From Board
-    [Tags]    old    edit
+    [Tags]    old    color
     Open Board
     Run Keyword If    '${background}'=='CUSTOM'    Change Custom Background from Board
     Run Keyword Unless    '${background}'=='CUSTOM'    Edit Board From Board
@@ -27,25 +28,39 @@ Test Controls From Board
     Click Globe Off
 
 Create Tickets
-    [Tags]    old
+    [Tags]    old    color
     Repeat Keyword    5    Create Ticket
 
 Move Ticket On Board
-    [Tags]    old
+    [Tags]    old    color
     Repeat Keyword    5    Move Ticket
 
 Edit Created Ticket
-    [Tags]    old
+    [Tags]    old    color
     Repeat Keyword    5    Edit Ticket
+
+Change Created Ticket Color
+    [Tags]    old    color
+    Repeat Keyword    5    Change Ticket Color
+
+Check Minimap Ticket Color Change
+    [Tags]    old    color
+    Click Globe On
+    Repeat Keyword    5    Minimap Ticket Color
+    Click Globe Off
 
 Delete Ticket From Board
     [Tags]    old
     Delete Ticket
 
 Delete Board
-    [Tags]    old    edit
+    [Tags]    old    color
     Close Board
     Delete Board
+
+Export Board
+    [Tags]    old    export
+    Export Board
 
 Share Board Url
     [Tags]    old    share
@@ -56,11 +71,11 @@ Send Feedback
     Send Feedback
 
 Log Out User Share
-    [Tags]    old    edit    feed    share
+    [Tags]    old    share
     Log Out
 
 Close Browser Share
-    [Tags]    old    edit    feed    share
+    [Tags]    old    share
     Close Browser
 
 Open Share Board
@@ -79,10 +94,10 @@ Close Board Sharing
     Stop Share Board
 
 Log Out User
-    [Tags]    old    share
+    [Tags]    old    share    edit    feed    export    color
     Log Out
 
 Close
-    [Tags]    old    share
+    [Tags]    old    share    edit    feed    export    color
     Close Browser
     [Teardown]
