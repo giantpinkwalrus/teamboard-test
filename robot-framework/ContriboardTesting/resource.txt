@@ -7,9 +7,9 @@ ${Browser}        firefox
 ${DELAY}          0.1
 ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
-${NewUser}        new@test.com
+${NewUser}        new2@test.com
 ${NewPassword}    t3stmonkey
-${SERVER}         lankku.n4sjamk.org
+${SERVER}         lankku.n4s.jamk.org
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
@@ -76,27 +76,27 @@ Set Board Background
     Assign Id To Element    //div[@class='dialog-overlay']    Content
     ${rid}    Get Element Attribute    Content@data-reactid
     Get Random Background
-    Select From List By Value    //select[@data-reactid='${rid}.0.1.4.2.0']    ${background}
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.5.2.0']    ${background}
     Run Keyword If    '${background}'=='NONE'    Empty Background
     Run Keyword If    '${background}'=='CUSTOM'    Custom Background
     Run Keyword Unless    '${background}'=='NONE' or '${background}'=='CUSTOM'    Check Background
 
 Empty Background
-    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.4.0.0']@class
+    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.5.0.0']@class
     Should Be Equal    ${check}    blanko    error=Background Not Empty
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Custom Background
-    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.4.0.0']@class
+    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.5.0.0']@class
     Should Be Equal    ${check}    blanko    error=Background Not Empty
     Element Should Be Visible    //input[@type='url']
     Input Text    //input[@placeholder='URL']    ${custombackground}
-    ${check2}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.4.0.0']@src
+    ${check2}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.5.0.0']@src
     Should Be Equal    ${check2}    ${custombackground}    error=Custom Background Not Changed
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 
 Check Background
-    ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.4.0.0']@src
+    ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.5.0.0']@src
     Should Be Equal    ${check}    ${MainUrl}/dist/assets/img/bg/${bcheck}.png    error=Background Not Changed
     Click Button    //button[@data-reactid='${rid}.0.2.0']
 

@@ -5,7 +5,7 @@ Library           Collections
 *** Variables ***
 ${Browser}        firefox
 ${DELAY}          0.1
-${SERVER}         lankku.n4sjamk.org
+${SERVER}         lankku.n4s.jamk.org
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
@@ -65,22 +65,22 @@ Change Background
     Get Random Background    ${min}    ${max}
     Assign Id To Element    //div[@class='dialog-overlay']    Content
     ${rid}    Get Element Attribute    Content@data-reactid
-    Select From List By Value    //select[@data-reactid='${rid}.0.1.4.2.0']    ${background}
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.5.2.0']    ${background}
     Run Keyword If    '${background}'=='NONE'    Empty Background
     Run Keyword If    '${background}'=='CUSTOM'    Custom Background
     Run Keyword Unless    '${background}'=='NONE' or '${background}'=='CUSTOM'    Check Background
 
 Empty Background
-    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.4.0.0']@class
+    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.5.0.0']@class
     Should Be Equal    ${check}    blanko    error=Background Not Empty
 
 Custom Background
-    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.4.0.0']@class
+    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.5.0.0']@class
     Should Be Equal    ${check}    blanko    error=Background Not Empty
     Element Should Be Visible    //input[@type='url']
 
 Check Background
-    ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.4.0.0']@src
+    ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.5.0.0']@src
     Should Be Equal    ${check}    ${MainUrl}/dist/assets/img/bg/${bcheck}.png    error=Background Not Changed
 
 Get Edit Xpath

@@ -55,11 +55,11 @@ Send Feedback
     [Tags]    feed
     Send Feedback
 
-Log Out User
+Log Out User Share
     [Tags]    old    edit    feed    share
     Log Out
 
-Close
+Close Browser Share
     [Tags]    old    edit    feed    share
     Close Browser
 
@@ -77,6 +77,12 @@ Close Board Sharing
     Open Browser To Login Page
     Login User
     Stop Share Board
+
+Log Out User
+    [Tags]    old    share
     Log Out
+
+Close
+    [Tags]    old    share
     Close Browser
     [Teardown]
