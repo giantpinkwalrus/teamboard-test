@@ -9,7 +9,7 @@ ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
 ${NewUser}        new2@test.com
 ${NewPassword}    t3stmonkey
-${SERVER}         lankku.n4sjamk.org
+${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
@@ -20,6 +20,7 @@ ${custombackground2}    http://tinyurl.com/khpx9d8
 
 *** Keywords ***
 Register User
+    [Arguments]    ${NewUser}    ${NewPassword}
     Element Text Should Be    //button[@class='btn-secondary']    Register    error=Register button missing
     Click Button    //button[@class='btn-secondary']
     Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Form not found

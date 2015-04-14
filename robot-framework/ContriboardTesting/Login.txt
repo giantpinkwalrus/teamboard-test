@@ -1,0 +1,17 @@
+*** Settings ***
+Resource          resource.txt
+
+*** Test Cases ***
+Login User
+    [Tags]    login
+    Open Browser To Login Page
+    Login User
+
+Log Out User
+    [Tags]    login
+    Log Out
+
+Close
+    [Tags]    login
+    Close Browser
+    [Teardown]

@@ -1,0 +1,22 @@
+*** Settings ***
+Resource          resource.txt
+
+*** Test Cases ***
+Open Login Page
+    [Tags]    reg
+    Open Browser To Login Page
+
+Register User Testbaboon
+    [Tags]    reg
+    Register User    testbaboon@test.com    t3stmonkey
+    Log Out
+
+Register User Testmonkey
+    [Tags]    reg
+    Register User    testmonkey@test.com    t3stbab00n
+    Log Out
+
+Close
+    [Tags]    reg
+    Close Browser
+    [Teardown]

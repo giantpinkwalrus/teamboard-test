@@ -5,7 +5,7 @@ Library           Collections
 *** Variables ***
 ${Browser}        firefox
 ${DELAY}          0.1
-${SERVER}         lankku.n4sjamk.org
+${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards

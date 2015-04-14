@@ -114,9 +114,8 @@ James Log Out and Login
     [Tags]    sc4
     Log Out
     Login User
-
-James Sends Angry Feedback
-    Send Feedback
+    #James Sends Angry Feedback
+    #Send Feedback
 
 James Creates Sprint Plan Board Again
     [Tags]    sc4
