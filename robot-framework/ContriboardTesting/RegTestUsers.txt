@@ -11,11 +11,6 @@ Register User Testbaboon
     Register User    testbaboon@test.com    t3stmonkey
     Log Out
 
-Register User Testmonkey
-    [Tags]    reg
-    Register User    testmonkey@test.com    t3stbab00n
-    Log Out
-
 Close
     [Tags]    reg
     Close Browser
