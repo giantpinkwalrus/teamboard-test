@@ -10,7 +10,7 @@ Login User
 
 Create New Board
     [Tags]    old    color
-    New Board
+    Repeat Keyword    5    New Board
     Edit Board
     Set Board Background
 
@@ -65,10 +65,9 @@ Export Board
 Share Board Url
     [Tags]    old    share
     Share Board
-
-Send Feedback
-    [Tags]    feed
-    Send Feedback
+    #Send Feedback
+    #[Tags]    feed
+    #Send Feedback
 
 Log Out User Share
     [Tags]    old    share
