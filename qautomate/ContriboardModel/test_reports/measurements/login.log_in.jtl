@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testResults version='1.2'>
+<sample t='1250' lt='117' ts='1428653022000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='168' lt='9' ts='1428653030000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='163' lt='5' ts='1428653037000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='172' lt='5' ts='1428653045000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='168' lt='15' ts='1428653053000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='171' lt='6' ts='1428653061000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='174' lt='24' ts='1428653069000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='1282' lt='111' ts='1428653176000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='1210' lt='110' ts='1428653388000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='214' lt='21' ts='1428653396000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='228' lt='13' ts='1428653405000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='223' lt='20' ts='1428653413000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='227' lt='9' ts='1428653422000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='213' lt='18' ts='1428653430000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='209' lt='13' ts='1428653439000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='1263' lt='111' ts='1428653458000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='156' lt='18' ts='1428653466000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='185' lt='8' ts='1428653474000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='165' lt='6' ts='1428653482000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='1244' lt='109' ts='1428653523000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='1232' lt='114' ts='1428653556000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='1281' lt='112' ts='1428657831000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008320000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008392000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='212' lt='6' ts='1429008504000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='165' lt='13' ts='1429008527000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='223' lt='15' ts='1429008541000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+<sample t='174' lt='18' ts='1429008568000' s='true' lb='login.log_in' rc='200' rm='OK'/>
+</testResults>

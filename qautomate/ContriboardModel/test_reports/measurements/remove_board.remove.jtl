@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testResults version='1.2'>
+<sample t='747' lt='116' ts='1429008338000' s='true' lb='remove_board.remove' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008343000' s='true' lb='remove_board.remove' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008378000' s='true' lb='remove_board.remove' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008461000' s='true' lb='remove_board.remove' rc='200' rm='OK'/>
+<sample t='212' lt='6' ts='1429008520000' s='true' lb='remove_board.remove' rc='200' rm='OK'/>
+<sample t='165' lt='13' ts='1429008533000' s='true' lb='remove_board.remove' rc='200' rm='OK'/>
+<sample t='223' lt='15' ts='1429008547000' s='true' lb='remove_board.remove' rc='200' rm='OK'/>
+</testResults>

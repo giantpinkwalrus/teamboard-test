@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<structure test_data_file="testData.xml">
+	<nodes>
+		<node id="1." pagemodel="open_application"/>
+		<node id="3faf37f0-df46-11e4-bba4-6451064297e2" pagemodel="login"/>
+		<node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2" pagemodel="workspace"/>
+		<node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2" pagemodel="board"/>
+		<node id="59dfb52e-df48-11e4-8456-6451064297e2" pagemodel="edit_board"/>
+		<node id="713efbf0-df48-11e4-b559-6451064297e2" pagemodel="remove_board"/>
+		<node id="81e4a70f-df49-11e4-ad24-6451064297e2" pagemodel="edit_ticket"/>
+		<node id="6cff6b8f-df4a-11e4-b7db-6451064297e2" pagemodel="edit_board"/>
+	</nodes>
+	<edges>
+		<edge additional_input="False" id="3faf37f1-df46-11e4-b6d9-6451064297e2">
+			<start_node id="1."/>
+			<end_node id="3faf37f0-df46-11e4-bba4-6451064297e2"/>
+			<input data="[u'url'][u'url']" method_name="open_application.open_application_url" method_node="" parameters="True"/>
+			<output data="" method_name="login.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="2.0" url="http://" weight="1.0">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="False" id="a2a5b0f1-df46-11e4-ae59-6451064297e2">
+			<start_node id="3faf37f0-df46-11e4-bba4-6451064297e2"/>
+			<end_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<input data="[u'user']" method_name="login.log_in" method_node="" parameters="True"/>
+			<output data="" method_name="workspace.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="2.0" url="http://" weight="1.0">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="False" id="cc6fa0d0-df46-11e4-92c8-6451064297e2">
+			<start_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<end_node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2"/>
+			<input data="" method_name="workspace.enter_board" method_node="" parameters="False"/>
+			<output data="" method_name="board.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="2.0" url="http://" weight="0.3">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="board" value="true"/>
+			<epics/>
+		</edge>
+		<edge additional_input="False" id="59dfb52f-df48-11e4-ab46-6451064297e2">
+			<start_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<end_node id="59dfb52e-df48-11e4-8456-6451064297e2"/>
+			<input data="" method_name="workspace.edit_board" method_node="" parameters="False"/>
+			<output data="" method_name="edit_board.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="2.0" url="http://" weight="0.25">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="board" value="true"/>
+			<epics/>
+		</edge>
+		<edge additional_input="False" id="713efbf1-df48-11e4-bd21-6451064297e2">
+			<start_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<end_node id="713efbf0-df48-11e4-b559-6451064297e2"/>
+			<input data="" method_name="workspace.remove_board" method_node="" parameters="False"/>
+			<output data="" method_name="remove_board.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="2.0" url="http://" weight="0.2">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="board" value="true"/>
+			<epics/>
+		</edge>
+		<edge additional_input="False" id="81e4a710-df49-11e4-97af-6451064297e2">
+			<start_node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2"/>
+			<end_node id="81e4a70f-df49-11e4-ad24-6451064297e2"/>
+			<input data="" method_name="board.edit_ticket" method_node="" parameters="False"/>
+			<output data="" method_name="edit_ticket.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="2.0" url="http://" weight="0.25">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="ticket" value="true"/>
+			<epics/>
+		</edge>
+		<edge additional_input="False" id="6cff6b90-df4a-11e4-8f03-6451064297e2">
+			<start_node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2"/>
+			<end_node id="6cff6b8f-df4a-11e4-b7db-6451064297e2"/>
+			<input data="" method_name="board.edit_board" method_node="" parameters="False"/>
+			<output data="" method_name="edit_board.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="2.0" url="http://" weight="0.15">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="887324de-e286-11e4-8f07-6451064297e2">
+			<start_node id="59dfb52e-df48-11e4-8456-6451064297e2"/>
+			<end_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<input data="[u'board']" method_name="edit_board.change_name" method_node="59dfb52e-df48-11e4-8456-6451064297e2" parameters="True"/>
+			<output data="" method_name="workspace.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="1.0">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="b084fd21-e289-11e4-8a93-6451064297e2">
+			<start_node id="6cff6b8f-df4a-11e4-b7db-6451064297e2"/>
+			<end_node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2"/>
+			<input data="[u'board']" method_name="edit_board.change_name" method_node="6cff6b8f-df4a-11e4-b7db-6451064297e2" parameters="True"/>
+			<output data="" method_name="board.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="1.0">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="3d7620b0-e28f-11e4-886c-6451064297e2">
+			<start_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<end_node id="3faf37f0-df46-11e4-bba4-6451064297e2"/>
+			<input data="" method_name="workspace.log_out" method_node="a2a5b0f0-df46-11e4-bbf2-6451064297e2" parameters="False"/>
+			<output data="" method_name="login.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="0.05">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="3d7620b1-e28f-11e4-9af5-6451064297e2">
+			<start_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<end_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<input data="" method_name="workspace.create_board" method_node="a2a5b0f0-df46-11e4-bbf2-6451064297e2" parameters="False"/>
+			<output data="" method_name="workspace.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="0.2">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="board" value="true"/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="901e67f0-e28f-11e4-b4e5-6451064297e2">
+			<start_node id="713efbf0-df48-11e4-b559-6451064297e2"/>
+			<end_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<input data="" method_name="remove_board.remove" method_node="713efbf0-df48-11e4-b559-6451064297e2" parameters="False"/>
+			<output data="" method_name="workspace.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="0.8">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="board" value="false"/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="901e67f1-e28f-11e4-8744-6451064297e2">
+			<start_node id="713efbf0-df48-11e4-b559-6451064297e2"/>
+			<end_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<input data="" method_name="remove_board.cancel" method_node="713efbf0-df48-11e4-b559-6451064297e2" parameters="False"/>
+			<output data="" method_name="workspace.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="0.2">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="09ab38c0-e298-11e4-9e13-6451064297e2">
+			<start_node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2"/>
+			<end_node id="3faf37f0-df46-11e4-bba4-6451064297e2"/>
+			<input data="" method_name="board.log_out" method_node="cc6fa0cf-df46-11e4-8f0e-6451064297e2" parameters="False"/>
+			<output data="" method_name="login.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="0.05">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="ticket" value="false"/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="09acbf61-e298-11e4-9559-6451064297e2">
+			<start_node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2"/>
+			<end_node id="a2a5b0f0-df46-11e4-bbf2-6451064297e2"/>
+			<input data="" method_name="board.back_to_workspace" method_node="cc6fa0cf-df46-11e4-8f0e-6451064297e2" parameters="False"/>
+			<output data="" method_name="workspace.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="0.05">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="ticket" value="false"/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="09acbf62-e298-11e4-a400-6451064297e2">
+			<start_node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2"/>
+			<end_node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2"/>
+			<input data="" method_name="board.create_ticket" method_node="cc6fa0cf-df46-11e4-8f0e-6451064297e2" parameters="False"/>
+			<output data="" method_name="board.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="0.5">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="ticket" value="true"/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="7bd3c521-e298-11e4-9689-6451064297e2">
+			<start_node id="81e4a70f-df49-11e4-ad24-6451064297e2"/>
+			<end_node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2"/>
+			<input data="[u'ticket']" method_name="edit_ticket.change_content" method_node="81e4a70f-df49-11e4-ad24-6451064297e2" parameters="True"/>
+			<output data="" method_name="board.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="0.9">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="" value=""/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+		<edge additional_input="True" id="7bd3c522-e298-11e4-921d-6451064297e2">
+			<start_node id="81e4a70f-df49-11e4-ad24-6451064297e2"/>
+			<end_node id="cc6fa0cf-df46-11e4-8f0e-6451064297e2"/>
+			<input data="" method_name="edit_ticket.delete" method_node="81e4a70f-df49-11e4-ad24-6451064297e2" parameters="False"/>
+			<output data="" method_name="board.verify" parameters="False"/>
+			<preconditions/>
+			<performance think_time="0.0" url="http://" weight="0.1">
+				<request>
+					<method value="GET"/>
+					<parameters/>
+				</request>
+			</performance>
+			<set_guard key="ticket" value="false"/>
+			<check_guard key="" value=""/>
+			<epics/>
+		</edge>
+	</edges>
+</structure>

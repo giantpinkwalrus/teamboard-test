@@ -1,0 +1,17 @@
+var timings_js_data = [
+{'load': '747', 'total': '863', 'latency': '116', 'timestamp': '1429008367000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008410000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008414000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008419000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008425000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008430000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008436000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008441000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008446000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008473000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008479000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008484000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008489000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '225', 'total': '230', 'latency': '5', 'timestamp': '1429008494000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+{'load': '223', 'total': '238', 'latency': '15', 'timestamp': '1429008559000', 'succes': true, 'label': 'board.edit_ticket', 'response_code': '200', 'response_msg': 'OK'},
+];

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        input.visible {visibility:visible}
+        input.hidden {visibility:hidden}
+        @font-face {
+            font-family: ixonos;
+            src: url(pfdintextcondpro-light.otf);
+        }
+        td {
+            font-family:ixonos;
+            color:#9A9A9A;
+            text-align:left;
+        }
+        td.report {
+            text-align:center;
+        }
+        input {font-family:ixonos;}
+        select {font-family:ixonos;}
+
+
+    </style>
+    <script type="text/javascript" src="Chart.min.js"></script>
+    <script type="text/javascript" src="live_monitoring.js"></script>
+    <script type="text/javascript" src="jsDatePick.min.1.3.js"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="jsDatePick_ltr.min.css" />
+
+    <script type="text/javascript">
+    window.onload = function(){
+        setSource();
+
+        pickerStartD = new JsDatePick({
+            useMode:2,
+            target:"pickerStartDay",
+            dateFormat:"%d-%M-%Y"
+        });
+        pickerStartD.setOnSelectedDelegate(function(){
+            var obj = pickerStartD.getSelectedDay();
+            getTimelineStart(obj);
+        });
+        pickerStartM = new JsDatePick({
+            useMode:2,
+            target:"pickerStartMonth",
+            dateFormat:"%d-%M-%Y"
+        });
+        pickerStartM.setOnSelectedDelegate(function(){
+            var obj = pickerStartM.getSelectedDay();
+            getTimelineStart(obj);
+        });    
+        pickerStartY = new JsDatePick({
+            useMode:2,
+            target:"pickerStartYear",
+            dateFormat:"%d-%M-%Y"
+        });
+        pickerStartY.setOnSelectedDelegate(function(){
+            var obj = pickerStartY.getSelectedDay();
+            getTimelineStart(obj);
+        });            
+        // ----------------------------------------
+        pickerEndD = new JsDatePick({
+            useMode:2,
+            target:"pickerEndDay",
+            dateFormat:"%d-%M-%Y"
+        });
+        pickerEndD.setOnSelectedDelegate(function(){
+            var obj = pickerEndD.getSelectedDay();
+            getTimelineEnd(obj);
+        });    
+        pickerEndM = new JsDatePick({
+            useMode:2,
+            target:"pickerEndMonth",
+            dateFormat:"%d-%M-%Y"
+        });
+        pickerEndM.setOnSelectedDelegate(function(){
+            var obj = pickerEndM.getSelectedDay();
+            getTimelineEnd(obj);
+        });    
+        pickerEndY = new JsDatePick({
+            useMode:2,
+            target:"pickerEndYear",
+            dateFormat:"%d-%M-%Y"
+        });
+        pickerEndY.setOnSelectedDelegate(function(){
+            var obj = pickerEndY.getSelectedDay();
+            getTimelineEnd(obj);
+        });    
+    };
+</script>
+</head>
+<body>
+
+
+<table border="0" width="1160" style="margin: 0 auto;">
+<tr><td><img src="logo.jpg" alt="Ixonos logo"></td></tr>
+<tr><td><table border="0" width="100%" bgcolor="#333333">
+    <tr>
+        <td width="50%">
+            <table border="0" width="100%">
+                <tr>
+                    <td>File </td>
+                    <td  colspan="19">
+                        <select id="sources" onchange="setSource()">
+                            <option>board.back_to_workspace</option>
+<option>board.create_ticket</option>
+<option>board.edit_board</option>
+<option>board.edit_ticket</option>
+<option>board.log_out</option>
+<option>edit_board.change_name</option>
+<option>edit_ticket.change_content</option>
+<option>edit_ticket.delete</option>
+<option>login.log_in</option>
+<option>open_application.open_application_url</option>
+<option>remove_board.cancel</option>
+<option>remove_board.remove</option>
+<option>resource_resource_board.back_to_workspace</option>
+<option>resource_resource_board.create_ticket</option>
+<option>resource_resource_board.log_out</option>
+<option>resource_resource_edit_board.change_name</option>
+<option>resource_resource_edit_ticket.change_content</option>
+<option>resource_resource_edit_ticket.delete</option>
+<option>resource_resource_login.log_in</option>
+<option>resource_resource_open_application.open_application_url</option>
+<option>resource_resource_remove_board.remove</option>
+<option>resource_resource_workspace.create_board</option>
+<option>resource_resource_workspace.edit_board</option>
+<option>resource_resource_workspace.enter_board</option>
+<option>resource_resource_workspace.log_out</option>
+<option>workspace.create_board</option>
+<option>workspace.edit_board</option>
+<option>workspace.enter_board</option>
+<option>workspace.log_out</option>
+<option>workspace.remove_board</option>
+
+                        </select>
+                    </td>
+                    <td>Measurements</td>
+                    <td>
+                    <select id="measurement" onchange="drawChats()">
+                        <option>all</option>
+                        <option>total time</option>
+                        <option>load time</option>
+                        <option>latency</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Available data:</td>
+                    <td colspan="17" id="availability" style="color:#FFFFFF;"></td>
+                </tr>
+                <tr>
+                    <td>From</td>
+                    <td><input class="visible" type="text" size="1" placeholder="DD" id="pickerStartDay" onchange="setGraphData()"/></td>
+                    <td>/</td>
+                    <td><input class="visible" type="text" size="1" placeholder="MM" id="pickerStartMonth" onchange="setGraphData()"/></td>
+                    <td>/</td>
+                    <td><input class="visible" type="text" size="2" placeholder="YYYY" id="pickerStartYear" onchange="setGraphData()"/></td>
+                    <td><input class="visible" type="text" size="1" placeholder="HH" id="pickerStartHours" onchange="setGraphData()"/></td>
+                    <td>:</td>
+                    <td><input class="visible" type="text" size="1" placeholder="MM" id="pickerStartMinutes" onchange="setGraphData()"/></td>
+                    <td style='padding:0px 0px 0px 25px'>To</td>
+                    <td><input class="visible" type="text" size="1" placeholder="DD" id="pickerEndDay" onchange="setGraphData()"/></td>
+                    <td>/</td>
+                    <td><input class="visible" type="text" size="1" placeholder="MM" id="pickerEndMonth" onchange="setGraphData()"/></td>
+                    <td>/</td>
+                    <td><input class="visible" type="text" size="2" placeholder="YYYY" id="pickerEndYear" onchange="setGraphData()"/></td>
+                    <td><input class="visible" type="text" size="1" placeholder="HH" id="pickerEndHours" onchange="setGraphData()"/></td>
+                    <td>:</td>
+                    <td><input class="visible" type="text" size="1" placeholder="MM" id="pickerEndMinutes" onchange="setGraphData()"/></td>
+                </tr>
+            </table>
+        </td>
+        <td width="50%">
+            <table border="0" width="100%" style="border-left: 2px solid #414141;">
+                <tr>
+                    <td>Value (Time)</td>
+                    <td colspan="2">
+                        <input class="visible" type="text" placeholder="From" size="5" id="dataFrom" onchange="setGraphData()"/> 
+                        <input class="visible" type="text" placeholder="To" size="5" id="dataTo" onchange="setGraphData()"/>
+                    </td>
+                    <td rowspan="3">
+                        <input src="create_button.png" name="image"  alt="create_button.png" type="image" onclick="setGraphData()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Display Time</td>
+                    <td>
+                        <form> Milisec <input type="radio" name="colors" id="milliseconds" onchange="setGraphData()" checked="true">
+                               Sec <input type="radio" name="colors" id="seconds" onchange="setGraphData()">
+                        </form></td>
+                </tr>
+                <tr>
+                    <td >Set critical Time</td>
+                    <td colspan="2">
+                    <input class="visible" type="text" size="5" id="critical" onchange="setGraphData()"/>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    </table></td></tr>
+    <tr><td><table border="0" width="1160">
+    <tr valign="top" bgcolor="#FFFFFF" >
+        <td id="doughnut">
+            <table border="0" height="100%" style="border-bottom: 2px solid #E1E1E1;border-top: 2px solid #E1E1E1;color:#000000;">
+                <tr height="33%">
+                    <td>
+                        <table border="0" height="100%" width="100%" style="text-align:center">
+                            <tr height="55%" style="vertical-align: bottom; font-size: 25px;">
+                                <td class="report" colspan="2" id="reportName" style="border-bottom: 2px solid #E1E1E1;color:#000000;"></td>
+                            </tr>
+                            <tr height="15%">
+                                <td class="report" id="reportStartDate" style="color:#000000;"></td>
+                                <td class="report" id="reporEndDate" style="color:#000000;"></td>
+                            </tr>
+                            <tr height="30%" style="vertical-align: top;font-size: 25px;">
+                                <td class="report" id="reportStartTime" style="color:#000000;"></td>
+                                <td class="report" id="reportEndTime" style="color:#000000;"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr height="34%">
+                    <td height="200" width="200" style="text-align:center">
+                        <canvas id="donut" width="150" height="150"></canvas>
+                    </td>
+                </tr>
+                <tr height="33%"><td style="color:#000000;text-align:center;vertical-align: top;"><div id="results"></div></td></tr>
+            </table>
+        </td>
+        <td id="line" colspan="2" style="height:200px;width:300px;text-align:top;">     
+            <canvas id="canvas" height="600" width="1000"></canvas>
+        </td>
+    </tr>  
+</table></td></tr>
+</table>
+
+</body>
+</html>

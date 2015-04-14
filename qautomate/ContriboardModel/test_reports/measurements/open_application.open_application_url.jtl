@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testResults version='1.2'>
+<sample t='1250' lt='117' ts='1428653019000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='168' lt='9' ts='1428653027000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='163' lt='5' ts='1428653035000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='172' lt='5' ts='1428653043000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='168' lt='15' ts='1428653051000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='171' lt='6' ts='1428653059000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='174' lt='24' ts='1428653067000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='172' lt='5' ts='1428653074000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='1282' lt='111' ts='1428653173000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='1210' lt='110' ts='1428653385000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='214' lt='21' ts='1428653394000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='228' lt='13' ts='1428653402000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='223' lt='20' ts='1428653411000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='227' lt='9' ts='1428653419000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='213' lt='18' ts='1428653428000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='209' lt='13' ts='1428653436000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='1263' lt='111' ts='1428653455000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='156' lt='18' ts='1428653463000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='185' lt='8' ts='1428653471000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='165' lt='6' ts='1428653479000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='1244' lt='109' ts='1428653521000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='1232' lt='114' ts='1428653553000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='1281' lt='112' ts='1428657829000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008318000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008389000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='212' lt='6' ts='1429008501000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='165' lt='13' ts='1429008525000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='223' lt='15' ts='1429008538000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+<sample t='174' lt='18' ts='1429008566000' s='true' lb='open_application.open_application_url' rc='200' rm='OK'/>
+</testResults>

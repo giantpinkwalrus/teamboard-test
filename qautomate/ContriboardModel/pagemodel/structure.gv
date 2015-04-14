@@ -1,0 +1,31 @@
+digraph default_model {
+//States
+_1
+_1_1
+_1_1_1
+_1_1_1_1
+_1_1_1_2
+_1_1_1_3
+_1_1_1_1_1
+_1_1_1_1_2
+_2[shape = "doublecircle"]
+//Transitions
+_1 -> _1_1[ label = "open_application.open_application_url()/1.0", probability = "1.0", set_guard = "(u'', u'')", check_guard = "(u'', u'')", edge_id = "3faf37f1-df46-11e4-b6d9-6451064297e2"]
+_1_1 -> _1_1_1[ label = "login.log_in()/1.0", probability = "1.0", set_guard = "(u'', u'')", check_guard = "(u'', u'')", edge_id = "a2a5b0f1-df46-11e4-ae59-6451064297e2"]
+_1_1_1 -> _1_1_1_1[ label = "workspace.enter_board()/0.3", probability = "0.3", set_guard = "(u'', u'')", check_guard = "(u'board', u'true')", edge_id = "cc6fa0d0-df46-11e4-92c8-6451064297e2"]
+_1_1_1 -> _1_1_1_2[ label = "workspace.edit_board()/0.25", probability = "0.25", set_guard = "(u'', u'')", check_guard = "(u'board', u'true')", edge_id = "59dfb52f-df48-11e4-ab46-6451064297e2"]
+_1_1_1 -> _1_1_1_3[ label = "workspace.remove_board()/0.2", probability = "0.2", set_guard = "(u'', u'')", check_guard = "(u'board', u'true')", edge_id = "713efbf1-df48-11e4-bd21-6451064297e2"]
+_1_1_1_1 -> _1_1_1_1_1[ label = "board.edit_ticket()/0.25", probability = "0.25", set_guard = "(u'', u'')", check_guard = "(u'ticket', u'true')", edge_id = "81e4a710-df49-11e4-97af-6451064297e2"]
+_1_1_1_1 -> _1_1_1_1_2[ label = "board.edit_board()/0.15", probability = "0.15", set_guard = "(u'', u'')", check_guard = "(u'', u'')", edge_id = "6cff6b90-df4a-11e4-8f03-6451064297e2"]
+_1_1_1_2 -> _1_1_1[ label = "edit_board.change_name()/1.0", probability = "1.0", set_guard = "(u'', u'')", check_guard = "(u'', u'')", edge_id = "887324de-e286-11e4-8f07-6451064297e2"]
+_1_1_1_1_2 -> _1_1_1_1[ label = "edit_board.change_name()/1.0", probability = "1.0", set_guard = "(u'', u'')", check_guard = "(u'', u'')", edge_id = "b084fd21-e289-11e4-8a93-6451064297e2"]
+_1_1_1 -> _1_1[ label = "workspace.log_out()/0.05", probability = "0.05", set_guard = "(u'', u'')", check_guard = "(u'', u'')", edge_id = "3d7620b0-e28f-11e4-886c-6451064297e2"]
+_1_1_1 -> _1_1_1[ label = "workspace.create_board()/0.2", probability = "0.2", set_guard = "(u'board', u'true')", check_guard = "(u'', u'')", edge_id = "3d7620b1-e28f-11e4-9af5-6451064297e2"]
+_1_1_1_3 -> _1_1_1[ label = "remove_board.remove()/0.8", probability = "0.8", set_guard = "(u'board', u'false')", check_guard = "(u'', u'')", edge_id = "901e67f0-e28f-11e4-b4e5-6451064297e2"]
+_1_1_1_3 -> _1_1_1[ label = "remove_board.cancel()/0.2", probability = "0.2", set_guard = "(u'', u'')", check_guard = "(u'', u'')", edge_id = "901e67f1-e28f-11e4-8744-6451064297e2"]
+_1_1_1_1 -> _1_1[ label = "board.log_out()/0.05", probability = "0.05", set_guard = "(u'ticket', u'false')", check_guard = "(u'', u'')", edge_id = "09ab38c0-e298-11e4-9e13-6451064297e2"]
+_1_1_1_1 -> _1_1_1[ label = "board.back_to_workspace()/0.05", probability = "0.05", set_guard = "(u'ticket', u'false')", check_guard = "(u'', u'')", edge_id = "09acbf61-e298-11e4-9559-6451064297e2"]
+_1_1_1_1 -> _1_1_1_1[ label = "board.create_ticket()/0.5", probability = "0.5", set_guard = "(u'ticket', u'true')", check_guard = "(u'', u'')", edge_id = "09acbf62-e298-11e4-a400-6451064297e2"]
+_1_1_1_1_1 -> _1_1_1_1[ label = "edit_ticket.change_content()/0.9", probability = "0.9", set_guard = "(u'', u'')", check_guard = "(u'', u'')", edge_id = "7bd3c521-e298-11e4-9689-6451064297e2"]
+_1_1_1_1_1 -> _1_1_1_1[ label = "edit_ticket.delete()/0.1", probability = "0.1", set_guard = "(u'ticket', u'false')", check_guard = "(u'', u'')", edge_id = "7bd3c522-e298-11e4-921d-6451064297e2"]
+}

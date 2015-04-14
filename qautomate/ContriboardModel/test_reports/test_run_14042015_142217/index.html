@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>QAutomate Report</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; padding-left: 1%;}
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+    font-family: verdana;
+    font-size: 18pt;
+    color: white;
+}
+
+#title_div { 
+    background-color:#005CB8;
+    width:80%;
+    text-align:center;
+    margin-left:10%;
+    border-radius: 10px;
+}
+#wrapper { 
+    background-color:inherit;
+    width:80%;
+    margin-left:10%;
+    border-radius: 10px;
+}
+#results_wrapper { 
+    clear:both;     
+    border: 1px solid #777;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    width:auto;
+    padding:10px;
+    background-color:#eef
+}
+.heading {
+    float:left;
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+#canvas {
+    float:left;
+    display: none;
+}
+
+
+#body_information {
+    clear:both;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+a.select_report_parts {
+    border-color: black;
+    text-decoration: none;
+    color:black;
+    border-radius: 10px;
+    padding: 5px;
+    background-color:white;
+}
+/*
+a.select_report_parts:hover {
+    color:black;    
+    padding: 5px;
+    background-color:gray;
+}
+a.select_report_parts:active {
+    background-color:black;
+    color:white;
+}*/
+
+p#show_detail_line{
+    padding-left:10px;
+    font-size: 14pt;
+    background-color:inherit;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    /*background-color: #E6E6D6;*/
+    background-color: #ddd;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 85%;
+}
+
+/* -- chart ------------------------------------------------------------------------ */
+
+.chart-legend ul {
+    list-style: none;
+    width: 100%;
+    margin: auto 0;
+    padding-left: 25px;
+}
+.chart-legend li {
+    text-indent: 16px;
+    line-height: 24px;
+    position: relative;
+    font-weight: 200;
+    display: inline-block;
+    width: 30%;
+}
+.chart-legend  li:before {
+    display: block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    border-radius:50%;
+    left: 0;
+    top: 6px;
+    content: "";
+}
+.error:before { background-color: #F74545; }
+.fail:before { background-color: #E6C83A; }
+.pass:before { background-color: #89C48E; }
+
+#chart-container {
+    width: 250px;
+    float: left;
+    margin-left: 40px;
+    display: none;
+}
+#chart-container h3{
+    text-align: center;
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+#canvas-container {
+    position: relative;
+}
+#test-case-chart-container {
+    width: 235px;
+    height: 235px;
+    margin: auto;
+    display: block;
+    position: relative;
+}
+#test-case-chart{
+    margin: auto;
+    display: block;
+    left:50%;
+    top:50%;
+    margin-left:-75px;
+    margin-top:-75px;
+    position: absolute;
+}
+#test-status-circles{
+    position: absolute;
+    display: inline-block;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+
+
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+
+
+#result_table {
+    background-color:#eee;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    border-bottom-color: white;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+    border-color: black;
+}
+.mediaLinks a {
+    padding-bottom: 5px;
+    display: inline-block;
+}
+#total_row  { font-weight: bold; border-bottom-color:white}
+.passClass  { background-color: #89C48E; }
+.failClass  { background-color: #E6C83A; }
+.errorClass { background-color: #F74545; }
+.passCase   { color: #89C48E; font-weight: bold; }
+.failCase   { color: #E6C83A; font-weight: bold; }
+.errorCase  { color: #F74545; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+.linenumber{
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    color: #F74545;
+}
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+    <!-- Generate a graph of test result status -->
+    <script>
+    // global variables
+    var testStatus = {'pass':1, 'fail':0, 'error':0};
+    var chartCanvas;
+    var circlesCanvas;
+    var passColor = "#89C48E";
+    var failColor = "#E6C83A";
+    var errorColor = "#F74545";
+    var testCaseCountFont = "bold 22px Arial";
+    var testCaseCountColor = "#333333";
+    var testCasesText = "Test cases";
+    var testCasesColor = "#999999";
+    var smallCircleFont = "bold 16px Arial"
+    var smallCircleFontColor = "#FFFFFF"
+    var smallCircleDiagonal = 36;
+    var smallCircleSpacing = 2 * smallCircleDiagonal * 0.82;
+    var smallCircleRadius = smallCircleDiagonal / 2;
+    var spacing = 4;
+    var smallCircles = {};
+    
+    function fadein(context) {
+        var ct = context.globalAlpha;
+        var timer = setInterval(function () {
+            ct += 0.02;
+            context.globalAlpha = ct;
+            if(ct >= 1) {
+                ct = 1;
+                context.globalAlpha = ct
+                clearInterval(timer);
+                return false;
+            }
+        }, 30);
+    }
+    
+    function placeElements(){
+        var context = circlesCanvas.getContext('2d');
+        //context.globalAlpha = 0;
+        // test case count to middle of circle
+        window.circleCenterX = (circlesCanvas.offsetWidth / 2);
+        window.circleCenterY = (circlesCanvas.offsetHeight / 2);
+        
+        // define some variables
+        var allCases = testStatus['pass'] + testStatus['fail'] + testStatus['error'];
+        //circumference and radius and diagonal
+        var diagonal = chartCanvas.offsetHeight - 10;
+        var circumference = Math.PI * diagonal;
+        var radius = diagonal / 2;
+        
+        var smallCircleAngle;
+        var smallCircleX;
+        var smallCircleY;
+        var smallCircleCord;
+        var addedArc;
+        var moveAngle;
+        var passArc = 0;
+        var failArc = 0;
+        var errorArc = 0;
+        
+        if (testStatus['pass']){
+            passArc = (testStatus['pass'] / allCases) * circumference;
+            smallCircleAngle = ((passArc / 2.0) / radius) - Math.PI / 2;
+            addCircleData('pass', smallCircleAngle, radius, passArc, passColor);
+        }
+        if (testStatus['fail']){
+            failArc = (testStatus['fail'] / allCases) * circumference;
+            smallCircleAngle = ((passArc + failArc / 2.0) / radius) - Math.PI / 2;
+            addCircleData('fail', smallCircleAngle, radius, failArc, failColor);
+        }
+        if (testStatus['error']){
+            errorArc = (testStatus['error'] / allCases) * circumference;
+            smallCircleAngle = ((passArc + failArc + errorArc / 2.0) / radius) - Math.PI / 2;
+            addCircleData('error', smallCircleAngle, radius, errorArc, errorColor);
+        }
+        // do we need to move circles
+        if (testStatus['pass'] && testStatus['fail'] && 
+                ((smallCircles['pass']['act'] + smallCircles['fail']['act']) < smallCircleSpacing)){
+            
+            addedArc = (smallCircleSpacing - (smallCircles['pass']['act'] + smallCircles['fail']['act'])) / 2;
+            addedArc = (circumference / 4) + addedArc;
+            moveAngle = (addedArc  / radius) - Math.PI / 2;
+            
+            // calculate new position for pass circle
+            var newPassAct = smallCircleSpacing / 4;
+            smallCircleAngle = ((newPassAct  / radius) - Math.PI / 2) - moveAngle;
+            addCircleData('pass', smallCircleAngle, radius, newPassAct, passColor);
+            
+            // calculate new position for fail circle
+            var newFailArc = smallCircleSpacing * 0.75;
+            smallCircleAngle = ((newFailArc  / radius) - Math.PI / 2) - moveAngle;
+            addCircleData('fail', smallCircleAngle, radius, newFailArc, failColor);
+        }
+        else if (testStatus['pass'] && testStatus['error'] && 
+                ((smallCircles['pass']['act'] + smallCircles['error']['act']) < smallCircleSpacing)){
+            
+            var passAngle = (((circumference / 4) - smallCircles['pass']['act']) / radius) - Math.PI / 2;
+            var errorAngle = (((circumference / 4) + smallCircles['error']['act']) / radius) - Math.PI / 2;
+            moveAngle = 0;
+            if (smallCircles['pass']['act'] > smallCircles['error']['act']){
+                moveAngle = (passAngle + errorAngle) / 3;
+            }
+            else if (smallCircles['pass']['act'] < smallCircles['error']['act']) {
+                moveAngle = (errorAngle + passAngle) / 3;
+            }
+            
+            // calculate new position for pass circle
+            var newPassAct = smallCircleSpacing * 0.25;
+            smallCircleAngle = ((newPassAct  / radius) - Math.PI / 2) - moveAngle;
+            addCircleData('pass', smallCircleAngle, radius, newPassAct, passColor);
+            
+            // calculate new position for error circle
+            var newErrorArc = smallCircleSpacing * 0.25 + (circumference - (smallCircleSpacing / 2));
+            smallCircleAngle = ((newErrorArc  / radius) - Math.PI / 2) - moveAngle;
+            addCircleData('error', smallCircleAngle, radius, newErrorArc, errorColor);
+        }
+        else if (testStatus['fail'] && testStatus['error'] && 
+                ((smallCircles['fail']['act'] + smallCircles['error']['act']) < smallCircleSpacing)){
+            
+            addedArc = (smallCircleSpacing - (smallCircles['fail']['act'] + smallCircles['error']['act'])) / 2;
+            addedArc = (circumference / 4) - addedArc;
+            moveAngle = (addedArc  / radius) - Math.PI / 2;
+            
+            // calculate new position for fail circle
+            var newFailAct = smallCircleSpacing * 0.25 + (circumference - smallCircleSpacing);
+            smallCircleAngle = ((newFailAct  / radius) - Math.PI / 2) - moveAngle;
+            addCircleData('fail', smallCircleAngle, radius, newFailAct, failColor);
+            
+            // calculate new position for error circle
+            var newErrorArc = smallCircleSpacing * 0.75 + (circumference - smallCircleSpacing);
+            smallCircleAngle = ((newErrorArc  / radius) - Math.PI / 2) - moveAngle;
+            addCircleData('error', smallCircleAngle, radius, newErrorArc, errorColor);
+        }
+        // draw the circles
+        for (var status in smallCircles){
+            drawStatusCircle(context, smallCircles[status]['coordinates'], 
+                            smallCircles[status]['color'], smallCircles[status]['count']);
+        }
+        drawTestCount(context, circleCenterX, circleCenterY, allCases);
+        //fadein(context);
+    }
+    
+    function drawStatusCircle(context, circleCords, color, caseCount){
+        //context.globalAlpha = 0;
+        context.beginPath();
+        context.arc(circleCords[0], circleCords[1], smallCircleRadius, 0, 2 * Math.PI, false);
+        context.fillStyle = color;
+        context.fill();
+        context.fillStyle = smallCircleFontColor;
+        context.font = smallCircleFont;
+        var metrics = context.measureText(caseCount);
+        var textX = circleCords[0] - (metrics.width / 2);
+        var lineHeight = context.measureText('M').width;
+        var textY = circleCords[1] + (lineHeight / 2);
+        context.fillText(caseCount, textX, textY);
+        //fadein(context);
+    }
+    
+    function drawTestCount(context, circleCenterX, circleCenterY, allCases){
+        // test case count
+        context.fillStyle = testCaseCountColor;
+        context.font = testCaseCountFont;
+        var metrics = context.measureText(allCases);
+        var textX = circleCenterX - (metrics.width / 2);
+        context.fillText(allCases, textX, circleCenterY - 6);
+        
+         // test case text
+        context.fillStyle = testCasesColor;
+        context.font = smallCircleFont;
+        var metrics = context.measureText(testCasesText);
+        var textX = circleCenterX - (metrics.width / 2);
+        context.fillText(testCasesText, textX, circleCenterY + 18);
+        
+    }
+    
+    function addCircleData(status, smallCircleAngle, radius, errorArc, color){
+        var smallCircleX = (radius + spacing + smallCircleRadius) * Math.cos(smallCircleAngle);
+        var smallCircleY = (radius + spacing + smallCircleRadius) * Math.sin(smallCircleAngle);
+        var smallCircleCord = [circleCenterX + smallCircleX, circleCenterY + smallCircleY];
+        smallCircles[status] = 
+        {
+            'count': testStatus[status],
+            'color': color,
+            'act': errorArc,
+            'angle': smallCircleAngle,
+            'coordinates': smallCircleCord
+        };
+    }
+    function init_graph(){
+        chartCanvas = document.getElementById("test-case-chart");
+        circlesCanvas = document.getElementById("test-status-circles");
+        
+        var canvasElem = document.createElement('canvas');
+        var canvasSupported = !!(canvasElem.getContext && canvasElem.getContext('2d'));
+        // we need canvas support
+        if (canvasSupported){
+            var data = [
+            {
+                value : testStatus['pass'],
+                color : passColor
+            },
+            {
+                value : testStatus['fail'],
+                color : failColor
+            },
+            {
+                value: testStatus['error'],
+                color:errorColor
+            }
+            ];
+            var options = {
+                //Boolean - Whether we should show a stroke on each segment
+                segmentShowStroke : false,
+                
+                //String - The colour of each segment stroke
+                segmentStrokeColor : "#fff",
+                
+                //Number - The width of each segment stroke
+                segmentStrokeWidth : 2,
+                
+                //The percentage of the chart that we cut out of the middle.
+                percentageInnerCutout : 74,
+                
+                //Boolean - Whether we should animate the chart    
+                animation : true,
+                
+                //Number - Amount of animation steps
+                animationSteps : 200,
+                
+                //String - Animation easing effect
+                //animationEasing : "easeOutBounce",
+                animationEasing : "easeOutQuart",
+                
+                //Boolean - Whether we animate the rotation of the Doughnut
+                animateRotate : true,
+            
+                //Boolean - Whether we animate scaling the Doughnut from the centre
+                animateScale : false,
+                
+                //Function - Will fire on animation completion.
+                onAnimationComplete : placeElements
+            }
+            document.getElementById("chart-container").style.display = 'block';
+            var ctx = document.getElementById("test-case-chart").getContext("2d");
+            var testResultsChart = new Chart(ctx).Doughnut(data,options);
+        }
+    }
+    </script>
+    
+    <script type="text/javascript" src="js-class.js"></script>
+    
+    <script type="text/javascript" src="Chart.min.js"></script>
+    
+</head>
+<body onload="init_graph()">
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+    if (level<1) {
+        document.getElementById("select_sum").style.background = 'gray';
+        document.getElementById("select_failed").style.background = 'white';
+        document.getElementById("select_all").style.background = 'white';        
+    }
+    else if (level==1) {
+        document.getElementById("select_sum").style.background = 'white';
+        document.getElementById("select_failed").style.background = 'gray';
+        document.getElementById("select_all").style.background = 'white';
+    }
+    else {
+        document.getElementById("select_sum").style.background = 'white';
+        document.getElementById("select_failed").style.background = 'white';
+        document.getElementById("select_all").style.background = 'gray';
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div id='title_div'><h1>QAutomate Report</h1></div>
+<div id='wrapper'><div class='heading'>
+<div class='attribute'><strong>Start Time:</strong> 2015-04-14 14:22:17</div>
+<div class='attribute'><strong>Duration:</strong> 0:15:01</div>
+<div class='attribute'><strong>Test case count:</strong> Model graph test run</div>
+<div class='attribute'><strong>Status:</strong> Test Run SUCCEED</div>
+<div class='attribute'><strong>OS:</strong> Windows 7 (6.1.7601)</div>
+<div class='attribute'><strong>Edge coverage:</strong> 100.0%</div>
+<div class='attribute'><a href='graph.html'>Live monitor report</a></div>
+
+<p class='description'></p>
+</div>
+<div id='canvas'><canvas id="Status" width="400" height="300"></canvas></div>
+<div id="chart-container">
+    <div id="canvas-container">
+        <div id="test-case-chart-container">
+            <canvas id="test-case-chart" width="150" height="150"></canvas>
+            <canvas id="test-status-circles" width="235" height="235"></canvas>
+        </div>
+    </div>
+    <div class="chart-legend">
+        <ul>
+            <li class="pass">Pass</li>
+            <li class="fail">Fail</li>
+            <li class="error">Error</li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+<div id='results_wrapper'>
+<a href="C:\ContriboardQAutomate\test_reports\test_run_14042015_142217\LOG_model_execution.txt">
+Test run log file
+</a>
+<br/>
+<a href="C:\ContriboardQAutomate\test_reports\test_run_14042015_142217\screenshot.png">
+Test run screenshot
+</a>
+<h3>Page Model Graph</h3>
+<a href="C:\ContriboardQAutomate\test_reports\test_run_14042015_142217\updated_pagemodel.png">
+<img src="C:\ContriboardQAutomate\test_reports\test_run_14042015_142217\updated_pagemodel.png" style="max-width: 100%;max-height: 100%">
+</a>
+<h3>User story and requirement Status</h3>
+
+<div>
+<table id='result_table'>
+<tr id='header_row'>
+    <td>Story/Epic</td>
+    <td colspan="2" align=center>Status</td>
+    <td>Requirement/Issue</td>
+    <td colspan="2" align=center>Status</td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total:    0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>Total:    0</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+</table>
+</div>
+
+</div>
+
+<div id='ending'>&nbsp;</div>
+<!-- ending #wrapper div>-->
+</div>
+</body>
+</html>

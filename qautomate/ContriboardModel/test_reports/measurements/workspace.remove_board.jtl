@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testResults version='1.2'>
+<sample t='747' lt='116' ts='1429008336000' s='true' lb='workspace.remove_board' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008341000' s='true' lb='workspace.remove_board' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008376000' s='true' lb='workspace.remove_board' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008459000' s='true' lb='workspace.remove_board' rc='200' rm='OK'/>
+<sample t='212' lt='6' ts='1429008518000' s='true' lb='workspace.remove_board' rc='200' rm='OK'/>
+<sample t='165' lt='13' ts='1429008531000' s='true' lb='workspace.remove_board' rc='200' rm='OK'/>
+<sample t='223' lt='15' ts='1429008545000' s='true' lb='workspace.remove_board' rc='200' rm='OK'/>
+<sample t='174' lt='18' ts='1429008574000' s='true' lb='workspace.remove_board' rc='200' rm='OK'/>
+</testResults>
