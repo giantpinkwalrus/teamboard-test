@@ -222,8 +222,8 @@ James doesn't see his board. It's gone! So James starts to write angry feedback 
 .. code:: robotframework
 
     	*** Test Cases ***
-	James Sends Angry Feedback
-		Send Feedback
+	#James Sends Angry Feedback
+		#Send Feedback
 			
 
 As he has written his feedback. He goes for a smoke to calm his nerves.
