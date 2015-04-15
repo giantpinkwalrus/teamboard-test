@@ -7,7 +7,7 @@ ${Browser}        firefox
 ${DELAY}          0.1
 ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
-${NewUser}        new2@test.com
+${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
 ${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}

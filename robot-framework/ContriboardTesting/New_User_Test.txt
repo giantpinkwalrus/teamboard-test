@@ -5,7 +5,7 @@ Resource          resource.txt
 Register User and Login
     [Tags]    new
     Open Browser To Login Page
-    Register User
+    Register User    ${NewUser}    ${NewPassword}
 
 Create New Board
     [Tags]    new
