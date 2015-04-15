@@ -29,9 +29,8 @@ Delete Board
     [Tags]    new
     Close Board
     Delete Board    2    2
-
-Send Feedback
-    Send Feedback
+    #Send Feedback
+    #Send Feedback
 
 Log Out
     [Tags]    new
