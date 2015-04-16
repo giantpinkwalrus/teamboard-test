@@ -77,10 +77,9 @@ Test Board Deletion
     [Tags]    sc5
     Close Board
     Repeat Keyword    5    Random Delete Board
-
-Test Feedback Sending
-    [Tags]
-    Send Feedback
+    #Test Feedback Sending
+    #[Tags]
+    #Send Feedback
 
 Test Board sharing
     [Tags]    sc5
