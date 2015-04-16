@@ -183,8 +183,8 @@ Test feedback sending
 .. code:: robotframework
 
     	*** Test Cases ***
-	Test Feedback Sending
-		Send Feedback
+	#Test Feedback Sending
+		#Send Feedback
 
 
 Test Board sharing
