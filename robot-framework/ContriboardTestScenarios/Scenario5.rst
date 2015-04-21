@@ -46,6 +46,10 @@ Test invalid login options
 .. code:: robotframework
 
     	*** Test Cases ***
+    	
+    	Open Browser
+        	Open Browser To Login Page
+        	
 	Test Invalid Login
 		Invalid Login    ${InvalidUser}    ${InvalidPassword}
 		Go To Login Page
