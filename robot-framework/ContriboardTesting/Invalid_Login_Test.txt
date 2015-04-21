@@ -26,6 +26,8 @@ Empty Username And Password
                       [Tags]          invalid
                       ${EMPTY}        ${EMPTY}
 
+Teardown              [Teardown]
+
 *** Keywords ***
 Login With Invalid Credentials Should Fail
     [Arguments]    ${username}    ${password}
