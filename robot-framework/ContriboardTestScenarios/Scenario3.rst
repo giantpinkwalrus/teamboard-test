@@ -60,6 +60,10 @@ Evelyn Is little bit out of ideas why login is not working. She tries to login w
 .. code:: robotframework
 
     	*** Test Cases ***
+	Evelyn Opens Computer
+    	Open Browser To Login Page	
+	
+	
 	Evelyn Invalid Login
 		Invalid Login    ${InvalidUser}    ${InvalidPassword}
 		Go To Login Page
