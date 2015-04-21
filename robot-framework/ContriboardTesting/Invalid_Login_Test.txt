@@ -8,25 +8,29 @@ Resource          resource.txt
 *** Test Cases ***    User Email      Password
 Invalid Username      [Tags]          invalid
                       invalid         ${ValidPassword}
+                      [Teardown]
 
 Invalid Password      [Tags]          invalid
                       ${ValidUser}    invalid
+                      [Teardown]
 
 Invalid Username And Password
                       [Tags]          invalid
                       invalid         invalid
+                      [Teardown]
 
 Empty Username        [Tags]          invalid
                       ${EMPTY}        ${ValidPassword}
+                      [Teardown]
 
 Empty Password        [Tags]          invalid
                       ${ValidUser}    ${EMPTY}
+                      [Teardown]
 
 Empty Username And Password
                       [Tags]          invalid
                       ${EMPTY}        ${EMPTY}
-
-Teardown              [Teardown]
+                      [Teardown]
 
 *** Keywords ***
 Login With Invalid Credentials Should Fail
