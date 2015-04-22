@@ -119,7 +119,7 @@ All what Dave was told her last week were foggy memories. "There is nice button 
     	*** Test Cases ***
 	Evelyn Explores Everything
 		Click Profile
-		Click Feedback
+		#Click Feedback
 		Close Profile
 		Create Board
 		Click Edit Board    3    3
