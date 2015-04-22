@@ -229,6 +229,8 @@ Now that Wallace and Evelyn had added everything on the tickets. Evelyn stops pl
 	Evelyn Is Ready
 		Close Board
 		Log Out
+	
+	Close
 		Close Browser
 		[Teardown]
 
