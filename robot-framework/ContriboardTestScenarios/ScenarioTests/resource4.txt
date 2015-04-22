@@ -4,7 +4,7 @@ Library           Collections
 
 *** Variables ***
 ${Browser}        firefox
-${DELAY}          0.3
+${DELAY}          0
 ${ValidUser}      james.nicholson@test.com
 ${ValidPassword}    jamesnicholson
 ${SERVER}         localhost:8000

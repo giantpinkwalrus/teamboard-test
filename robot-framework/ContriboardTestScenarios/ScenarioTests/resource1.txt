@@ -5,7 +5,7 @@ Library           Collections
 *** Variables ***
 ${Browser}        firefox
 #${Browser}       chrome
-${DELAY}          0.1
+${DELAY}          0
 ${ValidUser}      wallace.coleman@test.com
 ${ValidPassword}    wallacecoleman
 ${InvalidUser}    invalid@test.com
