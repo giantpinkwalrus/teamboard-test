@@ -148,22 +148,22 @@ Click Magnet Off
 Click Globe On
     Assign Id To Element    //div[@class='view view-board']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
+    Element Should Not Be Visible    //div[@data-reactid='${rid}.2.0.1']
     Click Element    //span[@class='fa fa-fw fa-globe']
     Assign Id To Element    //div[@data-reactid='${rid}.4.$globe']    globeOnID
     ${class}    Get Element Attribute    globeOnID@class
     Should Match    ${class}    control active
-    Element Should Be Visible    //div[@data-reactid='${rid}.1.0.1']
+    Element Should Be Visible    //div[@data-reactid='${rid}.2.0.1']
 
 Click Globe Off
     Assign Id To Element    //div[@class='view view-board']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Element Should Be Visible    //div[@data-reactid='${rid}.1.0.1']
+    Element Should Be Visible    //div[@data-reactid='${rid}.2.0.1']
     Click Element    //span[@class='fa fa-fw fa-globe']
     Assign Id To Element    //div[@data-reactid='${rid}.4.$globe']    globeOffID
     ${class}    Get Element Attribute    globeOffID@class
     Should Match    ${class}    control
-    Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
+    Element Should Not Be Visible    //div[@data-reactid='${rid}.2.0.1']
 
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
