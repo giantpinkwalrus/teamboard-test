@@ -200,13 +200,21 @@ Test Board sharing
 	Test Board sharing
 		Random Share Board
 		Log Out
+	
+	Close
 		Close Browser
+		
+	Open Shared Board
 		Open Shared Board
 		Random Create Ticket
 		Random Edit Ticket    1    1
 		Random Move Ticket    1    1
 		Log Out
+	
+	Close
 		Close Browser
+		
+	Login
 		Open Browser To Login Page
 		Login User
 
