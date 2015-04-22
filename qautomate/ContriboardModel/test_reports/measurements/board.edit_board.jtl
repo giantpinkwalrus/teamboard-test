@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testResults version='1.2'>
+<sample t='747' lt='116' ts='1429008370000' s='true' lb='board.edit_board' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008401000' s='true' lb='board.edit_board' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008405000' s='true' lb='board.edit_board' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008450000' s='true' lb='board.edit_board' rc='200' rm='OK'/>
+<sample t='212' lt='6' ts='1429008508000' s='true' lb='board.edit_board' rc='200' rm='OK'/>
+<sample t='223' lt='15' ts='1429008552000' s='true' lb='board.edit_board' rc='200' rm='OK'/>
+</testResults>

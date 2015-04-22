@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testResults version='1.2'>
+<sample t='747' lt='116' ts='1429008323000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008324000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008326000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008340000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008345000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008380000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008456000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008457000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008463000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='212' lt='6' ts='1429008516000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='165' lt='13' ts='1429008530000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='223' lt='15' ts='1429008543000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+<sample t='223' lt='15' ts='1429008549000' s='true' lb='workspace.create_board' rc='200' rm='OK'/>
+</testResults>

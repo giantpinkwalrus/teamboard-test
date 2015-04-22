@@ -127,6 +127,8 @@ Jenny goes for coffee break.
     	*** Test Cases ***
 	Jenny Goes For Coffee
 		Log Out
+	
+	Close
 		Close Browser
 
 
@@ -144,6 +146,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 		Click Done Ticket Edit
 		Move Ticket    7    7
 		Log Out
+	
+	Close
 		Close Browser
 
 	Friend2 Creates Tickets
@@ -154,6 +158,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 		Click Done Ticket Edit
 		Move Ticket    8    8
 		Log Out
+	
+	Close
 		Close Browser
 
 	Friend3 Creates Tickets
@@ -164,6 +170,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 		Click Done Ticket Edit
 		Move Ticket    9    9
 		Log Out
+	
+	Close
 		Close Browser
 
 	Friend4 Creates Tickets
@@ -174,6 +182,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 		Click Done Ticket Edit
 		Move Ticket    10    10
 		Log Out
+	
+	Close
 		Close Browser
 
 	Friend5 Creates Tickets
@@ -184,6 +194,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 		Click Done Ticket Edit
 		Move Ticket    11    11
 		Log Out
+	
+	Close
 		Close Browser
 
 
@@ -211,6 +223,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Click Done Ticket Edit
 		Move Ticket    1    1
 		Log Out
+	
+	Close
 		Close Browser
 
 	Friend 1 Edit Tickets
@@ -220,6 +234,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Click Done Ticket Edit
 		Move Ticket    7    7
 		Log Out
+	
+	Close
 		Close Browser
 
 	Friend 2 Edit Tickets
@@ -229,6 +245,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Click Done Ticket Edit
 		Move Ticket    8    8
 		Log Out
+	
+	Close
 		Close Browser
 
 	Friend 3 Edit Tickets
@@ -238,6 +256,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Click Done Ticket Edit
 		Move Ticket    9    9
 		Log Out
+	
+	Close
 		Close Browser
 
 	Friend 4 Edit Tickets
@@ -247,6 +267,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Click Done Ticket Edit
 		Move Ticket    7    7
 		Log Out
+	
+	Close
 		Close Browser
 
 	Friend 5 Edit Tickets
@@ -256,6 +278,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Click Done Ticket Edit
 		Move Ticket    11    11
 		Log Out
+	
+	Close
 		Close Browser
 
 
@@ -271,6 +295,8 @@ TODO-list is ready. So they log out and update the list when they are done tasks
 		Open Board    2    2
 		Close Board
 		Log Out
+		
+	Close
 		Close Browser
 		[Teardown]
 

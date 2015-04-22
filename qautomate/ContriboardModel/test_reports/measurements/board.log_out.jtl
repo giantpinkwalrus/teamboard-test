@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testResults version='1.2'>
+<sample t='225' lt='5' ts='1429008499000' s='true' lb='board.log_out' rc='200' rm='OK'/>
+<sample t='223' lt='15' ts='1429008564000' s='true' lb='board.log_out' rc='200' rm='OK'/>
+</testResults>

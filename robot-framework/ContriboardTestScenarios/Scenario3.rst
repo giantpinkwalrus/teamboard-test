@@ -119,7 +119,7 @@ All what Dave was told her last week were foggy memories. "There is nice button 
     	*** Test Cases ***
 	Evelyn Explores Everything
 		Click Profile
-		Click Feedback
+		#Click Feedback
 		Close Profile
 		Create Board
 		Click Edit Board    3    3
@@ -229,6 +229,8 @@ Now that Wallace and Evelyn had added everything on the tickets. Evelyn stops pl
 	Evelyn Is Ready
 		Close Board
 		Log Out
+	
+	Close
 		Close Browser
 		[Teardown]
 

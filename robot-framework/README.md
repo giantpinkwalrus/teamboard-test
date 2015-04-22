@@ -26,7 +26,7 @@ Easiest way to install Robot Framework is using package manager like [pip](https
 
 Install pip if you don't already have it installed.
 ```
-python get-pip.py
+sudo apt-get install python-pip
 ```
 Using pip to install Robot Framework
 ```

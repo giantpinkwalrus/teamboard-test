@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testResults version='1.2'>
+<sample t='225' lt='5' ts='1429008412000' s='true' lb='edit_ticket.change_content' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008417000' s='true' lb='edit_ticket.change_content' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008428000' s='true' lb='edit_ticket.change_content' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008439000' s='true' lb='edit_ticket.change_content' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008444000' s='true' lb='edit_ticket.change_content' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008482000' s='true' lb='edit_ticket.change_content' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008487000' s='true' lb='edit_ticket.change_content' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008492000' s='true' lb='edit_ticket.change_content' rc='200' rm='OK'/>
+</testResults>

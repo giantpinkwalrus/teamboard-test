@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testResults version='1.2'>
+<sample t='747' lt='116' ts='1429008332000' s='true' lb='workspace.edit_board' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008347000' s='true' lb='workspace.edit_board' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008351000' s='true' lb='workspace.edit_board' rc='200' rm='OK'/>
+<sample t='747' lt='116' ts='1429008358000' s='true' lb='workspace.edit_board' rc='200' rm='OK'/>
+<sample t='225' lt='5' ts='1429008465000' s='true' lb='workspace.edit_board' rc='200' rm='OK'/>
+<sample t='174' lt='18' ts='1429008570000' s='true' lb='workspace.edit_board' rc='200' rm='OK'/>
+</testResults>
