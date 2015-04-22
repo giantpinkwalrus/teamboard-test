@@ -271,6 +271,8 @@ TODO-list is ready. So they log out and update the list when they are done tasks
 		Open Board    2    2
 		Close Board
 		Log Out
+		
+	Close
 		Close Browser
 		[Teardown]
 
