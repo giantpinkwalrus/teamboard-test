@@ -300,5 +300,7 @@ James has checked his boards as seems like everything is ready. So James logout 
     	*** Test Cases ***
 	James Is Ready
 		Log Out
+	
+	Close
 		Close Browser
 		[Teardown]
