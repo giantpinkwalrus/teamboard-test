@@ -346,6 +346,8 @@ So he calls his dad for help. Dad helps Wallace to close the page.
     	*** Test Cases ***
 	Wallace Is Done
 		Log Out
+	
+	Close
 		Close Browser
 		[Teardown]
 
