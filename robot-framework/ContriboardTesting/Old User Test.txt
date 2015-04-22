@@ -84,6 +84,8 @@ Open Share Board
     Edit Ticket    1    1
     Move Ticket    1    1
     Log Out
+
+Close Shared Board
     Close Browser
 
 Close Board Sharing
