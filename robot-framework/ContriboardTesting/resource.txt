@@ -361,22 +361,22 @@ Get Ticket Xpath
     Set Test Variable    ${tint}    ${int}
 
 Get X Move
-    [Arguments]    ${min}=-350    ${max}=350
+    [Arguments]    ${min}=-100    ${max}=100
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${xMove}    ${int}
 
 Get Y Move
-    [Arguments]    ${min}=-215    ${max}=215
+    [Arguments]    ${min}=-100    ${max}=100
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${yMove}    ${int}
 
 Get Y Coordinate
-    [Arguments]    ${min}=-215    ${max}=215
+    [Arguments]    ${min}=-100    ${max}=100
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${y}    ${int}
 
 Get X Coordinate
-    [Arguments]    ${min}=-350    ${max}=350
+    [Arguments]    ${min}=-100    ${max}=100
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${x}    ${int}
 
