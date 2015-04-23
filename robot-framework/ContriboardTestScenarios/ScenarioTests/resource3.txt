@@ -230,21 +230,21 @@ Get Ticket Xpath
     Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[2]/div/div[1]/div[${int}]
 
 Get X Move
-    [Arguments]    ${min}=-450    ${max}=450
+    [Arguments]    ${min}=-100    ${max}=100
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${xMove}    ${int}
 
 Get Y Move
-    [Arguments]    ${min}=-215    ${max}=215
+    [Arguments]    ${min}=-100    ${max}=100
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${yMove}    ${int}
 
 Get Y Coordinate
-    [Arguments]    ${min}=-215    ${max}=215
+    [Arguments]    ${min}=-100    ${max}=100
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${y}    ${int}
 
 Get X Coordinate
-    [Arguments]    ${min}=-350    ${max}=350
+    [Arguments]    ${min}=-100    ${max}=100
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${x}    ${int}
