@@ -201,7 +201,7 @@ Test Board sharing
 		Random Share Board
 		Log Out
 	
-	Close
+	Close Sharing
 		Close Browser
 		
 	Open Shared Board
@@ -211,7 +211,7 @@ Test Board sharing
 		Random Move Ticket    1    1
 		Log Out
 	
-	Close
+	Close Shared
 		Close Browser
 		
 	Login
