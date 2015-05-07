@@ -4,7 +4,7 @@ Library           Collections
 
 *** Variables ***
 ${Browser}        firefox
-${DELAY}          0
+${DELAY}          0.2
 ${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
@@ -15,6 +15,7 @@ ${LoginTitle}     Contriboard
 *** Keywords ***
 Open Browser To Login Page
     Open Browser    ${LoginUrl}    ${Browser}
+    Set Window Size    1920    1080
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    ${LoginUrl}

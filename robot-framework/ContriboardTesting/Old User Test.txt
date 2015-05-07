@@ -10,7 +10,7 @@ Login User
 
 Create New Board
     [Tags]    old    color
-    Repeat Keyword    5    New Board
+    Repeat Keyword    5        New Board
     Edit Board
     Set Board Background
 
@@ -86,6 +86,7 @@ Open Share Board
     Log Out
 
 Close Shared Board
+    [Tags]    old
     Close Browser
 
 Close Board Sharing
