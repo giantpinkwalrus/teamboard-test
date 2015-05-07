@@ -4,7 +4,7 @@ Library           Collections
 
 *** Variables ***
 ${Browser}        firefox
-${DELAY}          0
+${DELAY}          0.2
 ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
 ${NewUser}        new@test.com
@@ -235,7 +235,7 @@ Click Globe Off
 Share Board
     [Arguments]    ${min}=2    ${max}=5
     Get Edit Xpath    ${min}    ${max}
-    Set Suite Variable    ${SharedBoard}    ${Expath}
+    #Set Suite Variable    ${SharedBoard}    ${Expath}
     Click Element    ${Expath}
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
@@ -261,6 +261,7 @@ Stop Share Board
 
 Open Shared Board
     Open Browser    http://${Shared}    ${Browser}
+    Set Window Size    1920    1080
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    http://${Shared}
@@ -328,6 +329,7 @@ Submit Credentials
 
 Open Browser To Login Page
     Open Browser    ${LoginUrl}    ${Browser}
+    Set Window Size    1920    1080
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    ${LoginUrl}
@@ -361,22 +363,22 @@ Get Ticket Xpath
     Set Test Variable    ${tint}    ${int}
 
 Get X Move
-    [Arguments]    ${min}=-100    ${max}=100
+    [Arguments]    ${min}=-480    ${max}=480
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${xMove}    ${int}
 
 Get Y Move
-    [Arguments]    ${min}=-100    ${max}=100
+    [Arguments]    ${min}=-270    ${max}=270
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${yMove}    ${int}
 
 Get Y Coordinate
-    [Arguments]    ${min}=-100    ${max}=100
+    [Arguments]    ${min}=-540    ${max}=540
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${y}    ${int}
 
 Get X Coordinate
-    [Arguments]    ${min}=-100    ${max}=100
+    [Arguments]    ${min}=-960    ${max}=960
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${x}    ${int}
 
