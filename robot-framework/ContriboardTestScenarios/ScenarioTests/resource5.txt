@@ -102,16 +102,17 @@ Random Delete Board
     Element Should Not Be Visible    Board    error=Board Not Deleted
 
 Random Create Ticket
+    [Arguments]    ${min}    ${max}
     Get X Coordinate
     Get Y Coordinate
     Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
     Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
+    Move Ticket    ${min}    ${max}    ${x}    ${y}
 
-Random Move Ticket
-    [Arguments]    ${min}=1    ${max}=15
+Move Ticket
+    [Arguments]    ${min}    ${max}    ${x}    ${y}
     Get Ticket Xpath    ${min}    ${max}
-    Get X Move
-    Get Y Move
+    Get Move Coordinates    ${x}    ${y}
     Drag And Drop By Offset    ${Txpath}    ${xMove}    ${yMove}
 
 Random Delete Ticket
@@ -151,22 +152,22 @@ Click Magnet Off
 Click Globe On
     Assign Id To Element    //div[@class='view view-board']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
+    Element Should Not Be Visible    //div[@data-reactid='${rid}.2.0.1']
     Click Element    //span[@class='fa fa-fw fa-globe']
     Assign Id To Element    //div[@data-reactid='${rid}.4.$globe']    globeOnID
     ${class}    Get Element Attribute    globeOnID@class
     Should Match    ${class}    control active
-    Element Should Be Visible    //div[@data-reactid='${rid}.1.0.1']
+    Element Should Be Visible    //div[@data-reactid='${rid}.2.0.1']
 
 Click Globe Off
     Assign Id To Element    //div[@class='view view-board']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Element Should Be Visible    //div[@data-reactid='${rid}.1.0.1']
+    Element Should Be Visible    //div[@data-reactid='${rid}.2.0.1']
     Click Element    //span[@class='fa fa-fw fa-globe']
     Assign Id To Element    //div[@data-reactid='${rid}.4.$globe']    globeOffID
     ${class}    Get Element Attribute    globeOffID@class
     Should Match    ${class}    control
-    Element Should Not Be Visible    //div[@data-reactid='${rid}.1.0.1']
+    Element Should Not Be Visible    //div[@data-reactid='${rid}.2.0.1']
 
 Random Share Board
     [Arguments]    ${min}=2    ${max}=11
@@ -183,7 +184,7 @@ Random Share Board
 
 Open Shared Board
     Open Browser    http://${Shared}    ${Browser}
-    Set Window Size    1920    1080
+    Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    http://${Shared}
@@ -250,7 +251,7 @@ Login Should Have Failed
 
 Open Browser To Login Page
     Open Browser    ${LoginUrl}    ${Browser}
-    Set Window Size    1920    1080
+    Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    ${LoginUrl}
@@ -290,6 +291,37 @@ Get Y Move
     [Arguments]    ${min}=-270    ${max}=270
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${yMove}    ${int}
+
+Get Move Coordinates
+    [Arguments]    ${x}    ${y}
+    Run Keyword If    '${x}'<'0'    Calculate X Negative    ${x}
+    Run Keyword If    '${x}'>'0'    Calculate X Positive    ${x}
+    Run Keyword If    '${y}'<'0'    Calculate Y Negative    ${y}
+    Run Keyword If    '${y}'>'0'    Calculate Y Positive    ${y}
+
+Calculate X Negative
+    [Arguments]    ${x}
+    ${minX}    Evaluate    -${x}-960
+    ${maxX}    Evaluate    ${minX}+1920
+    Get X Move    ${minX}    ${maxX}
+
+Calculate X Positive
+    [Arguments]    ${x}
+    ${maxX}    Evaluate    960-${x}
+    ${minX}    Evaluate    ${maxX}-1920
+    Get X Move    ${minX}    ${maxX}
+
+Calculate Y Negative
+    [Arguments]    ${y}
+    ${minY}    Evaluate    -${y}-540
+    ${maxY}    Evaluate    ${minY}+1080
+    Get Y Move    ${minY}    ${maxY}
+
+Calculate Y Positive
+    [Arguments]    ${y}
+    ${maxY}    Evaluate    540-${y}
+    ${minY}    Evaluate    ${maxY}-1080
+    Get Y Move    ${minY}    ${maxY}
 
 Get Y Coordinate
     [Arguments]    ${min}=-540    ${max}=540

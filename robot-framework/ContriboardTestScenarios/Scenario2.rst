@@ -71,40 +71,31 @@ Now she add couple tasks to the board before sharing it to friends.
     	*** Test Cases ***
 	Jenny Opens Board and Create Tickets
 		Open Board    2    2
-		Repeat Keyword    6    Create Ticket
+		Create Ticket    1    1
 		Open Ticket Edit    1    1
 		Input Ticket Text    Clean before party
 		Click Done Ticket Edit
+		Create Ticket    2    2
 		Open Ticket Edit    2    2
 		Input Ticket Text    Get food?
 		Click Done Ticket Edit
+		Create Ticket    3    3
 		Open Ticket Edit    3    3
 		Input Ticket Text    Get drinks?
 		Click Done Ticket Edit
+		Create Ticket    4    4
 		Open Ticket Edit    4    4
 		Input Ticket Text    Select music
 		Click Done Ticket Edit
+		Create Ticket    5    5
 		Open Ticket Edit    5    5
 		Input Ticket Text    Who to invite?
 		Click Done Ticket Edit
+		Create Ticket    6    6
 		Open Ticket Edit    6    6
 		Input Ticket Text    Clean after party
 		Click Done Ticket Edit
 
-
-Jenny organizes tickets.
-
-
-.. code:: robotframework
-
-    	*** Test Cases ***
-	Jenny Organizes Tickets
-		Move Ticket    1    1
-		Move Ticket    2    2
-		Move Ticket    3    3
-		Move Ticket    4    4
-		Move Ticket    5    5
-		Move Ticket    6    6
 
 Jenny has organized tickets. Now she shares the board to her friends.
 
@@ -140,11 +131,10 @@ While Jenny is on a coffee break her friends starts editing the board.
     	*** Test Cases ***
 	Friend1 Creates Tickets
 		Open Shared Board    Friend1
-		Create Ticket
+		Create Ticket    7    7
 		Open Ticket Edit    7    7
 		Input Ticket Text    Friend1 suggestion
 		Click Done Ticket Edit
-		Move Ticket    7    7
 		Log Out
 	
 	Close2
@@ -152,11 +142,10 @@ While Jenny is on a coffee break her friends starts editing the board.
 
 	Friend2 Creates Tickets
 		Open Shared Board    Friend2
-		Create Ticket
+		Create Ticket    8    8
 		Open Ticket Edit    8    8
 		Input Ticket Text    Friend2 suggestion
 		Click Done Ticket Edit
-		Move Ticket    8    8
 		Log Out
 	
 	Close3
@@ -164,11 +153,10 @@ While Jenny is on a coffee break her friends starts editing the board.
 
 	Friend3 Creates Tickets
 		Open Shared Board    Friend3
-		Create Ticket
+		Create Ticket    9    9
 		Open Ticket Edit    9    9
 		Input Ticket Text    Friend3 suggestion
 		Click Done Ticket Edit
-		Move Ticket    9    9
 		Log Out
 	
 	Close4
@@ -176,11 +164,10 @@ While Jenny is on a coffee break her friends starts editing the board.
 
 	Friend4 Creates Tickets
 		Open Shared Board    Friend4
-		Create Ticket
+		Create Ticket    10    10
 		Open Ticket Edit    10    10
 		Input Ticket Text    Friend4 suggestion
 		Click Done Ticket Edit
-		Move Ticket    10    10
 		Log Out
 	
 	Close5
@@ -188,11 +175,10 @@ While Jenny is on a coffee break her friends starts editing the board.
 
 	Friend5 Creates Tickets
 		Open Shared Board    Friend5
-		Create Ticket
+		Create Ticket    11    11
 		Open Ticket Edit    11    11
 		Input Ticket Text    Friend5 suggestion
 		Click Done Ticket Edit
-		Move Ticket    11    11
 		Log Out
 	
 	Close6
@@ -221,7 +207,6 @@ on their correct places. So they can see what has been done and what need to be 
 		Open Ticket Edit    1    1
 		Input Ticket Text    Clean before party: Jenny
 		Click Done Ticket Edit
-		Move Ticket    1    1
 		Log Out
 	
 	Close7
@@ -232,7 +217,6 @@ on their correct places. So they can see what has been done and what need to be 
 		Open Ticket Edit    7    7
 		Input Ticket Text    Friend1 suggestion: Friend 1
 		Click Done Ticket Edit
-		Move Ticket    7    7
 		Log Out
 	
 	Close8
@@ -243,7 +227,6 @@ on their correct places. So they can see what has been done and what need to be 
 		Open Ticket Edit    8    8
 		Input Ticket Text    Friend2 suggestion: Friend 2
 		Click Done Ticket Edit
-		Move Ticket    8    8
 		Log Out
 	
 	Close9
@@ -254,7 +237,6 @@ on their correct places. So they can see what has been done and what need to be 
 		Open Ticket Edit    9    9
 		Input Ticket Text    Friend3 suggestion: Friend 3
 		Click Done Ticket Edit
-		Move Ticket    9    9
 		Log Out
 	
 	Close10
@@ -265,7 +247,6 @@ on their correct places. So they can see what has been done and what need to be 
 		Open Ticket Edit    10    10
 		Input Ticket Text    Friend4 suggestion: Friend 4
 		Click Done Ticket Edit
-		Move Ticket    7    7
 		Log Out
 	
 	Close11
@@ -276,7 +257,6 @@ on their correct places. So they can see what has been done and what need to be 
 		Open Ticket Edit    11    11
 		Input Ticket Text    Friend5 suggestion: Friend 5
 		Click Done Ticket Edit
-		Move Ticket    11    11
 		Log Out
 	
 	Close12

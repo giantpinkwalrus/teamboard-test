@@ -125,8 +125,7 @@ All what Dave was told her last week were foggy memories. "There is nice button 
 		Click Edit Board    3    3
 		Click Done Board Edit
 		Open Board    3    3
-		Create Ticket
-		Move Ticket    1    1
+		Create Ticket    1    1
 		Click Magnet On
 		Click Globe On
 		Click Magnet Off
@@ -155,41 +154,31 @@ Evelyn starts creating ticket as tasks what she need to do for the birthday part
 
     	*** Test Cases ***
 	Evelyn Creates And Edits Tickets
-		Repeat Keyword    6    Create Ticket
+		Click Magnet On
+		Create Ticket    1    1
 		Open Ticket Edit    1    1
 		Input Ticket Text    Cake
 		Click Done Ticket Edit
+		Create Ticket    2    2
 		Open Ticket Edit    2    2
 		Input Ticket Text    Clown
 		Click Done Ticket Edit
+		Create Ticket    3    3
 		Open Ticket Edit    3    3
 		Input Ticket Text    Other foods
 		Click Done Ticket Edit
+		Create Ticket    4    4
 		Open Ticket Edit    4    4
 		Input Ticket Text    Drinks
 		Click Done Ticket Edit
+		Create Ticket    5    5
 		Open Ticket Edit    5    5
 		Input Ticket Text    Invites
 		Click Done Ticket Edit
+		Create Ticket    6    6
 		Open Ticket Edit    6    6
 		Input Ticket Text    Other Entertaiment
 		Click Done Ticket Edit
-
-
-Evelyn organizes tasks on priorities order which need to do first.
-
-
-.. code:: robotframework
-
-    	*** Test Cases ***
-	Evelyn Organizes Tickets
-		Click Magnet On
-		Move Ticket    1    1
-		Move Ticket    2    2
-		Move Ticket    3    3
-		Move Ticket    4    4
-		Move Ticket    5    5
-		Move Ticket    6    6
 
 
 Evelyn calls for Wallace to come help her. Wallace runs to Evelyn and Evelyn asks what he wants for his birthday. 

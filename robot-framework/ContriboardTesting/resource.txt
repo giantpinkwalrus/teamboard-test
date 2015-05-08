@@ -136,16 +136,17 @@ Delete Board
     Element Should Not Be Visible    Board    error=Board Not Deleted
 
 Create Ticket
+    [Arguments]    ${min}    ${max}
     Get X Coordinate
     Get Y Coordinate
     Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
     Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
+    Move Ticket    ${min}    ${max}    ${x}    ${y}
 
 Move Ticket
-    [Arguments]    ${min}=1    ${max}=5
+    [Arguments]    ${min}    ${max}    ${x}    ${y}
     Get Ticket Xpath    ${min}    ${max}
-    Get X Move
-    Get Y Move
+    Get Move Coordinates    ${x}    ${y}
     Drag And Drop By Offset    ${Txpath}    ${xMove}    ${yMove}
 
 Delete Ticket
@@ -261,7 +262,7 @@ Stop Share Board
 
 Open Shared Board
     Open Browser    http://${Shared}    ${Browser}
-    Set Window Size    1920    1080
+    Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    http://${Shared}
@@ -329,7 +330,7 @@ Submit Credentials
 
 Open Browser To Login Page
     Open Browser    ${LoginUrl}    ${Browser}
-    Set Window Size    1920    1080
+    Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    ${LoginUrl}
@@ -363,14 +364,45 @@ Get Ticket Xpath
     Set Test Variable    ${tint}    ${int}
 
 Get X Move
-    [Arguments]    ${min}=-480    ${max}=480
+    [Arguments]    ${min}=-960    ${max}=960
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${xMove}    ${int}
 
 Get Y Move
-    [Arguments]    ${min}=-270    ${max}=270
+    [Arguments]    ${min}=-540    ${max}=540
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${yMove}    ${int}
+
+Get Move Coordinates
+    [Arguments]    ${x}    ${y}
+    Run Keyword If    '${x}'<'0'    Calculate X Negative    ${x}
+    Run Keyword If    '${x}'>'0'    Calculate X Positive    ${x}
+    Run Keyword If    '${y}'<'0'    Calculate Y Negative    ${y}
+    Run Keyword If    '${y}'>'0'    Calculate Y Positive    ${y}
+
+Calculate X Negative
+    [Arguments]    ${x}
+    ${minX}    Evaluate    -${x}-960
+    ${maxX}    Evaluate    ${minX}+1920
+    Get X Move    ${minX}    ${maxX}
+
+Calculate X Positive
+    [Arguments]    ${x}
+    ${maxX}    Evaluate    960-${x}
+    ${minX}    Evaluate    ${maxX}-1920
+    Get X Move    ${minX}    ${maxX}
+
+Calculate Y Negative
+    [Arguments]    ${y}
+    ${minY}    Evaluate    -${y}-540
+    ${maxY}    Evaluate    ${minY}+1080
+    Get Y Move    ${minY}    ${maxY}
+
+Calculate Y Positive
+    [Arguments]    ${y}
+    ${maxY}    Evaluate    540-${y}
+    ${minY}    Evaluate    ${maxY}-1080
+    Get Y Move    ${minY}    ${maxY}
 
 Get Y Coordinate
     [Arguments]    ${min}=-540    ${max}=540

@@ -123,7 +123,21 @@ Test creating tickets
     	*** Test Cases ***
 	Test Creating Tickets
 		Random Open Board
-		Repeat Keyword    15    Random Create Ticket
+		Random Create Ticket    1    1
+		Random Create Ticket    2    2
+		Random Create Ticket    3    3
+		Random Create Ticket    4    4
+		Random Create Ticket    5    5
+		Random Create Ticket    6    6
+		Random Create Ticket    7    7
+		Random Create Ticket    8    8
+		Random Create Ticket    9    9
+		Random Create Ticket    10    10
+		Random Create Ticket    11    11
+		Random Create Ticket    12    12
+		Random Create Ticket    13    13
+		Random Create Ticket    14    14
+		Random Create Ticket    15    15
 
 
 Test Editing Tickets
@@ -136,16 +150,6 @@ Test Editing Tickets
 		Repeat Keyword    15    Random Edit Ticket
 
 
-Test move tickets
-
-
-.. code:: robotframework
-
-    	*** Test Cases ***
-	Test Move Tickets
-		Repeat Keyword    15    Random Move Ticket
-
-
 Test board functionalities
 
 
@@ -155,7 +159,10 @@ Test board functionalities
 	Test Board Functionalities
 		Click Magnet On
 		Click Globe On
-		Repeat Keyword    15    Random Move Ticket
+		Random Create Ticket    16    16
+		Random Create Ticket    17    17
+		Random Create Ticket    18    18
+		Random Create Ticket    19    19
 		Click Magnet Off
 		Click Globe Off
 		Edit Board From Board
@@ -206,9 +213,8 @@ Test Board sharing
 		
 	Open Shared Board
 		Open Shared Board
-		Random Create Ticket
+		Random Create Ticket 	1 	1
 		Random Edit Ticket    1    1
-		Random Move Ticket    1    1
 		Log Out
 	
 	Close Shared

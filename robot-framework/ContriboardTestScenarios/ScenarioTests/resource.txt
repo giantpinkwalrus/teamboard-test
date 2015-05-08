@@ -15,7 +15,7 @@ ${LoginTitle}     Contriboard
 *** Keywords ***
 Open Browser To Login Page
     Open Browser    ${LoginUrl}    ${Browser}
-    Set Window Size    1920    1080
+    Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    ${LoginUrl}
