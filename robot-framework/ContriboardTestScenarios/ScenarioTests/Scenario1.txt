@@ -80,29 +80,30 @@ Wallace Changes Wrong Board Name
     Input Board Name
     Click Done Board Edit
 
-Wallace Creates Tickets
+Wallace Creates and Moves Tickets
     [Tags]    sc1
-    Repeat Keyword    5    Create Ticket
-
-Wallace Tries to move ticket
-    [Tags]    sc1
-    Move Ticket    1    1
+    Create Ticket    1    1
+    Create Ticket    2    2
+    Create Ticket    3    3
+    Create Ticket    4    4
+    Create Ticket    5    5
 
 Wallace Tries Magnet
     [Tags]    sc1
     Click Magnet On
-    Repeat Keyword    3    Move Ticket
+    Create Ticket    6    6
+    Create Ticket    7    7
+    Create Ticket    8    8
     Click Magnet Off
-    Repeat Keyword    3    Move Ticket
+    Create Ticket    9    9
+    Create Ticket    10    10
+    Create Ticket    11    11
 
 Wallace Creates And Moves New Tickets
     [Tags]    sc1
-    Create Ticket
-    Move Ticket    6    6
-    Create Ticket
-    Move Ticket    7    7
-    Create Ticket
-    Move Ticket    8    8
+    Create Ticket    12    12
+    Create Ticket    13    13
+    Create Ticket    14    14
 
 Wallace Learns to Edit Ticket
     [Tags]    sc1
@@ -130,7 +131,13 @@ Wallace Edits Tickets
 
 Wallace Deletes Obselete Tickets
     [Tags]    sc1
-    Delete Ticket    7    7
+    Delete Ticket    14    14
+    Delete Ticket    13    13
+    Delete Ticket    12    12
+    Delete Ticket    11    11
+    Delete Ticket    10    10
+    Delete Ticket    9    9
+    Delete Ticket    8    8
     Delete Ticket    7    7
 
 Wallace Closes Board

@@ -10,7 +10,7 @@ Login User
 
 Create New Board
     [Tags]    old    color
-    Repeat Keyword    5        New Board
+    Repeat Keyword    5    New Board
     Edit Board
     Set Board Background
 
@@ -27,13 +27,13 @@ Test Controls From Board
     Click Magnet Off
     Click Globe Off
 
-Create Tickets
+Create and Move Tickets
     [Tags]    old    color
-    Repeat Keyword    5    Create Ticket
-
-Move Ticket On Board
-    [Tags]    old    color
-    Repeat Keyword    5    Move Ticket
+    Create Ticket    1    1
+    Create Ticket    2    2
+    Create Ticket    3    3
+    Create Ticket    4    4
+    Create Ticket    5    5
 
 Edit Created Ticket
     [Tags]    old    color
@@ -80,9 +80,8 @@ Close Browser Share
 Open Share Board
     [Tags]    old    share
     Open Shared Board
-    Create Ticket
+    Create Ticket    1    1
     Edit Ticket    1    1
-    Move Ticket    1    1
     Log Out
 
 Close Shared Board

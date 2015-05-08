@@ -17,8 +17,7 @@ Create Ticket Into Board
     [Tags]    new
     Open Board    2    2
     Edit Board From Board
-    Create Ticket
-    Move Ticket    1    1
+    Create Ticket    1    1
     Edit Ticket    1    1
 
 Delete Ticket From Board

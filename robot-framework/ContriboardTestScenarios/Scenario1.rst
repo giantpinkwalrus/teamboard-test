@@ -215,23 +215,17 @@ When Wallace clicked pen he noticed that he had written his board name wrong. So
 
 
 Now that boards name is correct he starts clicking again.
-
+Wallace noticed that by double clicking board he created tickets. Wallace tries to move a ticket.
 
 .. code:: robotframework
 
 	*** Test Cases ***
 	Wallace Creates Tickets
-		Repeat Keyword    5    Create Ticket
-
-
-Wallace noticed that by double clicking board he created tickets. Wallace tries to move a ticket.
-
-
-.. code:: robotframework
-
-    	*** Test Cases ***
-	Wallace Tries to move ticket
-		Move Ticket    1    1
+		Create Ticket    1    1
+		Create Ticket    2    2
+		Create Ticket    3    3
+		Create Ticket    4    4
+		Create Ticket    5    5
 
 
 Wallace learns that he can move tickets. Now he tries what magnet icon do and clicks it.
@@ -243,9 +237,13 @@ Nothing seems to happen so Wallace moves tickets and triest to find what magnet 
 	 *** Test Cases ***
 	Wallace Tries Magnet
 		Click Magnet On
-		Repeat Keyword    3    Move Ticket
+		Create Ticket    6    6
+		Create Ticket    7    7
+		Create Ticket    8    8
 		Click Magnet Off
-		Repeat Keyword    3    Move Ticket
+		Create Ticket    9 	9
+		Create Ticket    10 	10
+		Create Ticket    11    11
 
 
 Wallace learned what magnet do and creates more ticket and organizes them.
@@ -255,12 +253,9 @@ Wallace learned what magnet do and creates more ticket and organizes them.
 
     	*** Test Cases ***
 	Wallace Creates And Moves New Tickets
-		Create Ticket
-		Move Ticket    6    6
-		Create Ticket
-		Move Ticket    7    7
-		Create Ticket
-		Move Ticket    8    8
+		Create Ticket 	12    12
+		Create Ticket 	13    13
+		Create Ticket 	14    14
 
 
 He has organized tickets where he wants them. Now Wallace thinks how he can write his ideas on the tickets
@@ -310,7 +305,13 @@ Wallace succesfully deleted empty ticket and starts deleting rest of the empty t
 
     	*** Test Cases ***	
 	Wallace Deletes Obselete Tickets	
-		Delete Ticket    7    7
+		Delete Ticket    14    14
+		Delete Ticket    13    13
+		Delete Ticket    12    12
+		Delete Ticket    11    11
+		Delete Ticket    10    10
+		Delete Ticket    9    9
+		Delete Ticket    8    8
 		Delete Ticket    7    7
 
 

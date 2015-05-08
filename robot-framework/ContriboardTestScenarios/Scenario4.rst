@@ -94,27 +94,26 @@ Now he his ready start to work. James start creating tickets, writing his things
     	*** Test Cases ***
 	James Creates Tickets To SWOT Board
 		Click Magnet On
-		Repeat Keyword    5    Create Ticket
+		Create Ticket    1    1
 		Open Ticket Edit    1    1
 		Input Ticket Text    Cool
 		Click Done Ticket Edit
-		Move Ticket    1    1
+		Create Ticket    2    2
 		Open Ticket Edit    2    2
 		Input Ticket Text    Fun
 		Click Done Ticket Edit
-		Move Ticket    2    2
+		Create Ticket    3    3
 		Open Ticket Edit    3    3
 		Input Ticket Text    Awesome
 		Click Done Ticket Edit
-		Move Ticket    3    3
+		Create Ticket    4    4
 		Open Ticket Edit    4    4
 		Input Ticket Text    Bad
 		Click Done Ticket Edit
-		Move Ticket    4    4
+		Create Ticket    5    5
 		Open Ticket Edit    5    5
 		Input Ticket Text    Good
 		Click Done Ticket Edit
-		Move Ticket    5    5
 
 
 James thinks for a moment if there is anythin else to add.
@@ -126,19 +125,18 @@ James makes some additions on his plans and removes some that he thinks are obse
 
     	*** Test Cases ***
 	James Edits Tickets
-		Repeat Keyword    3    Create Ticket
+		Create Ticket    6    6
 		Open Ticket Edit    6    6
 		Input Ticket Text    Special
 		Click Done Ticket Edit
-		Move Ticket    6    6
+		Create Ticket    7    7
 		Open Ticket Edit    7    7
 		Input Ticket Text    Random
 		Click Done Ticket Edit
-		Move Ticket    7    7
+		Create Ticket    8    8
 		Open Ticket Edit    8    8
 		Input Ticket Text    Excellent
 		Click Done Ticket Edit
-		Move Ticket    8    8
 		Click Magnet Off
 
 	James Deletes Obselete Tickets
@@ -167,27 +165,26 @@ As he had thinked his plan through in his head he starts creating tickets.
     	*** Test Cases ***
 	James Creates Tickets To Sprint Plan
 		Click Magnet On
-		Repeat Keyword    5    Create Ticket
+		Create Ticket    1    1
 		Open Ticket Edit    1    1
 		Input Ticket Text    Code
 		Click Done Ticket Edit
-		Move Ticket    1    1
+		Create Ticket    2    2
 		Open Ticket Edit    2    2
 		Input Ticket Text    Design
 		Click Done Ticket Edit
-		Move Ticket    2    2
+		Create Ticket    3    3
 		Open Ticket Edit    3    3
 		Input Ticket Text    Test
 		Click Done Ticket Edit
-		Move Ticket    3    3
+		Create Ticket    4    4
 		Open Ticket Edit    4    4
 		Input Ticket Text    Make AI
 		Click Done Ticket Edit
-		Move Ticket    4    4
+		Create Ticket    5    5
 		Open Ticket Edit    5    5
 		Input Ticket Text    Plan
 		Click Done Ticket Edit
-		Move Ticket    5    5
 		Click Magnet Off
 
 James thinks for a moment if there is anythin else to add.
@@ -250,29 +247,28 @@ James starts to creating tickets to the board. Luckily he remembers what he had 
 
     	*** Test Cases ***
 	James Creates Tickets to Sprint Plan Board Again
-		Open Board    3    3
+		Open Board    2    2
 		Click Magnet On
-		Repeat Keyword    5    Create Ticket
+		Create Ticket    1    1
 		Open Ticket Edit    1    1
 		Input Ticket Text    Code
 		Click Done Ticket Edit
-		Move Ticket    1    1
+		Create Ticket    2    2
 		Open Ticket Edit    2    2
 		Input Ticket Text    Design
 		Click Done Ticket Edit
-		Move Ticket    2    2
+		Create Ticket    3    3
 		Open Ticket Edit    3    3
 		Input Ticket Text    Test
 		Click Done Ticket Edit
-		Move Ticket    3    3
+		Create Ticket    4    4
 		Open Ticket Edit    4    4
 		Input Ticket Text    Make AI
 		Click Done Ticket Edit
-		Move Ticket    4    4
+		Create Ticket    5    5
 		Open Ticket Edit    5    5
 		Input Ticket Text    Plan
 		Click Done Ticket Edit
-		Move Ticket    5    5
 		Click Magnet Off
 		Close Board
 			
