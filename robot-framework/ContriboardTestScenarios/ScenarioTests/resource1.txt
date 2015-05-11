@@ -35,11 +35,11 @@ Register User
 First Try
     Click Element    //span[@class='fa fa-fw fa-user']
     Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
-    Click Element    //div[@class='user-voice-trigger']
-    Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
-    Click Element    //i[@class='icon close-icon']
-    Element Should Not Be Visible    //article[@class='widget large-widget']    error=Widget Not Closed
-    Unselect Frame
+    #Click Element    //div[@class='user-voice-trigger']
+    #Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
+    #Click Element    //i[@class='icon close-icon']
+    #Element Should Not Be Visible    //article[@class='widget large-widget']    error=Widget Not Closed
+    #Unselect Frame
     Assign Id To Element    //ul[@class='dropdown']    Dropdown
     ${did}    Get Element Attribute    Dropdown@data-reactid
     Click Element    //li[@data-reactid='${did}.$3']
