@@ -139,7 +139,7 @@ Create Ticket
     [Arguments]    ${min}    ${max}
     Get X Coordinate
     Get Y Coordinate
-    Double Click Element    //div[@class='board']
+    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
     Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
     Move Ticket    ${min}    ${max}    ${x}    ${y}
 
