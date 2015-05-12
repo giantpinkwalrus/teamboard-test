@@ -130,7 +130,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 
     	*** Test Cases ***
 	Friend1 Creates Tickets
-		Open Shared Board    Friend1
+		Open Shared Board
+		Login to Shared Board    Friend1
 		Create Ticket    7    7
 		Open Ticket Edit    7    7
 		Input Ticket Text    Friend1 suggestion
@@ -141,7 +142,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 		Close Browser
 
 	Friend2 Creates Tickets
-		Open Shared Board    Friend2
+		Open Shared Board
+		Login to Shared Board    Friend2
 		Create Ticket    8    8
 		Open Ticket Edit    8    8
 		Input Ticket Text    Friend2 suggestion
@@ -152,7 +154,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 		Close Browser
 
 	Friend3 Creates Tickets
-		Open Shared Board    Friend3
+		Open Shared Board
+		Login to Shared Board    Friend3
 		Create Ticket    9    9
 		Open Ticket Edit    9    9
 		Input Ticket Text    Friend3 suggestion
@@ -163,7 +166,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 		Close Browser
 
 	Friend4 Creates Tickets
-		Open Shared Board    Friend4
+		Open Shared Board
+		Login to Shared Board    Friend4
 		Create Ticket    10    10
 		Open Ticket Edit    10    10
 		Input Ticket Text    Friend4 suggestion
@@ -174,7 +178,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 		Close Browser
 
 	Friend5 Creates Tickets
-		Open Shared Board    Friend5
+		Open Shared Board
+		Login to Shared Board    Friend5
 		Create Ticket    11    11
 		Open Ticket Edit    11    11
 		Input Ticket Text    Friend5 suggestion
@@ -213,7 +218,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Close Browser
 
 	Friend 1 Edit Tickets
-		Open Shared Board    Friend1
+		Open Shared Board
+		Login to Shared Board    Friend1
 		Open Ticket Edit    7    7
 		Input Ticket Text    Friend1 suggestion: Friend 1
 		Click Done Ticket Edit
@@ -223,7 +229,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Close Browser
 
 	Friend 2 Edit Tickets
-		Open Shared Board    Friend2
+		Open Shared Board
+		Login to Shared Board    Friend2
 		Open Ticket Edit    8    8
 		Input Ticket Text    Friend2 suggestion: Friend 2
 		Click Done Ticket Edit
@@ -233,7 +240,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Close Browser
 
 	Friend 3 Edit Tickets
-		Open Shared Board    Friend3
+		Open Shared Board
+		Login to Shared Board    Friend3
 		Open Ticket Edit    9    9
 		Input Ticket Text    Friend3 suggestion: Friend 3
 		Click Done Ticket Edit
@@ -243,7 +251,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Close Browser
 
 	Friend 4 Edit Tickets
-		Open Shared Board    Friend4
+		Open Shared Board
+		Login to Shared Board    Friend4
 		Open Ticket Edit    10    10
 		Input Ticket Text    Friend4 suggestion: Friend 4
 		Click Done Ticket Edit
@@ -253,7 +262,8 @@ on their correct places. So they can see what has been done and what need to be 
 		Close Browser
 
 	Friend 5 Edit Tickets
-		Open Shared Board    Friend5
+		Open Shared Board
+		Login to Shared Board    Friend5
 		Open Ticket Edit    11    11
 		Input Ticket Text    Friend5 suggestion: Friend 5
 		Click Done Ticket Edit

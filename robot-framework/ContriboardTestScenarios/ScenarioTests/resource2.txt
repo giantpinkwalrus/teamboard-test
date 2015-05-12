@@ -110,13 +110,14 @@ Share Board From Board
     Set Suite Variable    ${Shared}    ${SharedUrl}
 
 Open Shared Board
-    [Arguments]    ${User}=Tester
     Open Browser    http://${Shared}    ${Browser}
     Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Location Should Be    http://${Shared}
-    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form Not Found
+
+Login to Shared Board
+    [Arguments]    ${User}=Tester
     Input Text    //input[@name='username']    ${User}
     Click Button    //input[@class='btn-primary']
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open

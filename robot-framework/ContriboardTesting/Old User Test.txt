@@ -9,7 +9,7 @@ Login User
     Login User
 
 Create New Board
-    [Tags]    old    color
+    [Tags]    old    color    share
     Repeat Keyword    5    New Board
     Edit Board
     Set Board Background
@@ -80,6 +80,7 @@ Close Browser Share
 Open Share Board
     [Tags]    old    share
     Open Shared Board
+    Login to Shared Board
     Create Ticket    1    1
     Edit Ticket    1    1
     Log Out

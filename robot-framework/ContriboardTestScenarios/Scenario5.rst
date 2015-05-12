@@ -213,6 +213,7 @@ Test Board sharing
 		
 	Open Shared Board
 		Open Shared Board
+		Login to Shared Board
 		Random Create Ticket 	1 	1
 		Random Edit Ticket    1    1
 		Log Out
