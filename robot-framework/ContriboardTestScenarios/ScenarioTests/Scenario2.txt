@@ -53,7 +53,8 @@ Jenny Goes For Coffee
 
 Friend1 Creates Tickets
     [Tags]    sc2
-    Open Shared Board    Friend1
+    Open Shared Board
+    Login to Shared Board    Friend1
     Create Ticket    7    7
     Open Ticket Edit    7    7
     Input Ticket Text    Friend1 suggestion
@@ -63,7 +64,8 @@ Friend1 Creates Tickets
 
 Friend2 Creates Tickets
     [Tags]    sc2
-    Open Shared Board    Friend2
+    Open Shared Board
+    Login to Shared Board    Friend2
     Create Ticket    8    8
     Open Ticket Edit    8    8
     Input Ticket Text    Friend2 suggestion
@@ -73,7 +75,8 @@ Friend2 Creates Tickets
 
 Friend3 Creates Tickets
     [Tags]    sc2
-    Open Shared Board    Friend3
+    Open Shared Board
+    Login to Shared Board    Friend3
     Create Ticket    9    9
     Open Ticket Edit    9    9
     Input Ticket Text    Friend3 suggestion
@@ -83,7 +86,8 @@ Friend3 Creates Tickets
 
 Friend4 Creates Tickets
     [Tags]    sc2
-    Open Shared Board    Friend4
+    Open Shared Board
+    Login to Shared Board    Friend4
     Create Ticket    10    10
     Open Ticket Edit    10    10
     Input Ticket Text    Friend4 suggestion
@@ -93,7 +97,8 @@ Friend4 Creates Tickets
 
 Friend5 Creates Tickets
     [Tags]    sc2
-    Open Shared Board    Friend5
+    Open Shared Board
+    Login to Shared Board    Friend5
     Create Ticket    11    11
     Open Ticket Edit    11    11
     Input Ticket Text    Friend5 suggestion
@@ -117,7 +122,8 @@ Jenny Edit Tickets
 
 Friend 1 Edit Tickets
     [Tags]    sc2
-    Open Shared Board    Friend1
+    Open Shared Board
+    Login to Shared Board    Friend1
     Open Ticket Edit    7    7
     Input Ticket Text    Friend1 suggestion: Friend 1
     Click Done Ticket Edit
@@ -126,7 +132,8 @@ Friend 1 Edit Tickets
 
 Friend 2 Edit Tickets
     [Tags]    sc2
-    Open Shared Board    Friend2
+    Open Shared Board
+    Login to Shared Board    Friend2
     Open Ticket Edit    8    8
     Input Ticket Text    Friend2 suggestion: Friend 2
     Click Done Ticket Edit
@@ -135,7 +142,8 @@ Friend 2 Edit Tickets
 
 Friend 3 Edit Tickets
     [Tags]    sc2
-    Open Shared Board    Friend3
+    Open Shared Board
+    Login to Shared Board    Friend3
     Open Ticket Edit    9    9
     Input Ticket Text    Friend3 suggestion: Friend 3
     Click Done Ticket Edit
@@ -144,7 +152,8 @@ Friend 3 Edit Tickets
 
 Friend 4 Edit Tickets
     [Tags]    sc2
-    Open Shared Board    Friend4
+    Open Shared Board
+    Login to Shared Board    Friend4
     Open Ticket Edit    10    10
     Input Ticket Text    Friend4 suggestion: Friend 4
     Click Done Ticket Edit
@@ -153,7 +162,8 @@ Friend 4 Edit Tickets
 
 Friend 5 Edit Tickets
     [Tags]    sc2
-    Open Shared Board    Friend5
+    Open Shared Board
+    Login to Shared Board    Friend5
     Open Ticket Edit    11    11
     Input Ticket Text    Friend5 suggestion: Friend 5
     Click Done Ticket Edit
