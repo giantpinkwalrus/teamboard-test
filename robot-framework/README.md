@@ -71,7 +71,7 @@ Open resource.txt and edit these lines to match your Contriboard server url and 
 ```
 ${ValidUser} testbaboon@test.com
 ${ValidPassword} t3stmonkey
-${SERVER} localhost:8000
+${SERVER} sut-cb.n4sjamk.org
 ```
 These hardcode users will be removed in the future
 

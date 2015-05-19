@@ -9,7 +9,7 @@ ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
 ${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
-${SERVER}         localhost:8000
+${SERVER}         sut-cb.n4sjamk.org
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
