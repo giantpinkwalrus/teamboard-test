@@ -67,23 +67,23 @@ Once you have Robot Framework in working condition you can run your tests using 
 ####1. Preconditions
 These test are from Contriboard Testing folder. Before running them check that variables are correct for your Contriboard configuration.
 
-Open resource.txt and edit these lines to match your Contriboard server url and user:
+Edit this line from tests resource files to match your Contriboard server url:
 ```
-${ValidUser} testbaboon@test.com
-${ValidPassword} t3stmonkey
 ${SERVER} sut-cb.n4sjamk.org
 ```
-These hardcode users will be removed in the future
 
 ####2. Running tests
 
-Run a test:
+Run a test from ContriboardTesting or ContriboarTestScenarios folder using ```pybot``` command.
+
+Example:
 ```
 pybot New_User_Test.txt
 ```
-Run all tests from folder:
+
+Or run all tests using script in robot_framework folder
 ```
-pybot Contriboard Testing
+sh run_tests.sh
 ```
 ### Useful links for creating tests
 
