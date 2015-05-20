@@ -97,7 +97,7 @@ Close Board Sharing
     [Tags]    share    old
     Open Browser To Login Page
     Login User
-    Stop Share Board
+    #Stop Share Board
 
 Log Out User
     [Tags]    old    share    edit    feed    export    color
