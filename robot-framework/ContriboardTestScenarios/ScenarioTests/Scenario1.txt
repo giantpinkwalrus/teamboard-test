@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          resource1.txt
+Resource          resource.txt
 
 *** Test Cases ***
 Wallace opens computer
@@ -23,11 +23,11 @@ Wallace Registers
 
 Wallace Explores part 1
     [Tags]    sc1
-    First Try
+    Wallace First Try
 
 Wallace ReLogin
     [Tags]    sc1
-    Login User
+    Login User    wallace.coleman@test.com    wallacecoleman
 
 Wallace Explores Part 2
     [Tags]    sc1
@@ -36,11 +36,11 @@ Wallace Explores Part 2
 Wallace Tries Board buttons
     [Tags]    sc1
     Delete Board    4    4
-    Click Edit Board    3    3
 
 Wallace Edits board
     [Tags]    sc1
-    Input Board Name
+    Click Edit Board    3    3
+    Input Board Name    Ideas of Wallace
     Change Background    1    1
     Change Background    2    2
     Change Background    3    3
@@ -54,12 +54,12 @@ Wallace Edits board
 Wallace Sets Background and clicks cancel
     [Tags]    sc1
     Change Background    6    6
-    Click Cancel Edit
+    Click Cancel Edit Board
 
 Wallce Edit Board Again
     [Tags]    sc1
     Click Edit Board    3    3
-    Input Wrong Board Name
+    Input Board Name    Ides of Wallace
     Change Background    6    6
     Click Done Board Edit
 
@@ -73,11 +73,11 @@ Wallace Explores Part 3
     Click Globe On
     Click Magnet Off
     Click Globe Off
-    Click Edit From Board
+    Click Edit Board From Board
 
 Wallace Changes Wrong Board Name
     [Tags]    sc1
-    Input Board Name
+    Input Board Name    Ideas Of Wallace
     Click Done Board Edit
 
 Wallace Creates and Moves Tickets

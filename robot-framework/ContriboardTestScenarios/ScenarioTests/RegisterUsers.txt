@@ -16,7 +16,7 @@ Register Evelyn
     Register User    evelyn.holmes@test.com    evelynholmes
     Create Board
     Click Edit Board    2    2
-    Input Board Name
+    Input Board Name    Birthday Party!
     Change Background    5    5
     Click Done Board Edit
     Log Out

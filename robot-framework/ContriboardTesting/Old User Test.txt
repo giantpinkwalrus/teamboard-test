@@ -14,9 +14,13 @@ Create New Board
     Edit Board
     Set Board Background
 
+Delete Board
+    [Tags]    old
+    Delete Board
+
 Edit Board From Board
     [Tags]    old    color
-    Open Board
+    Open Board    2    5
     Run Keyword If    '${background}'=='CUSTOM'    Change Custom Background from Board
     Run Keyword Unless    '${background}'=='CUSTOM'    Edit Board From Board
 
@@ -53,32 +57,32 @@ Delete Ticket From Board
     [Tags]    old
     Delete Ticket
 
-Delete Board
+Share Board Url
+    [Tags]    share    old
+    Share Board
+
+Close Board
     [Tags]    old    color
     Close Board
-    Delete Board
 
 Export Board
-    [Tags]    old    export
+    [Tags]    export    old
     Export Board
-
-Share Board Url
-    [Tags]    old    share
-    Share Board
+    Close Board
     #Send Feedback
     #[Tags]    feed
     #Send Feedback
 
 Log Out User Share
-    [Tags]    old    share
+    [Tags]    share    old
     Log Out
 
 Close Browser Share
-    [Tags]    old    share
+    [Tags]    share    old
     Close Browser
 
 Open Share Board
-    [Tags]    old    share
+    [Tags]    share    old
     Open Shared Board
     Login to Shared Board
     Create Ticket    1    1
@@ -86,11 +90,11 @@ Open Share Board
     Log Out
 
 Close Shared Board
-    [Tags]    old
+    [Tags]    share    old
     Close Browser
 
 Close Board Sharing
-    [Tags]    old    share
+    [Tags]    share    old
     Open Browser To Login Page
     Login User
     Stop Share Board

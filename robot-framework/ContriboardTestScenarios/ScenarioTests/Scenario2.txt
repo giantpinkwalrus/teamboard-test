@@ -1,17 +1,19 @@
 *** Settings ***
-Resource          resource2.txt
+Resource          resource.txt
 
 *** Test Cases ***
 Jenny Login
     [Tags]    sc2    log2
     Open Browser To Login Page
-    Login User
+    Login User    jenny.porter@test.com    jennyporter
 
 Jenny Creates a Board
     [Tags]    sc2
     Create Board
-    Edit Board    2    2
+    Click Edit Board    2    2
+    Input Board Name    Party TODO-list
     Change Background    5    5
+    Click Done Board Edit
 
 Jenny Opens Board and Create Tickets
     [Tags]    sc2
@@ -44,7 +46,6 @@ Jenny Opens Board and Create Tickets
 Jenny Shares Board
     [Tags]    sc2
     Share Board From Board
-    Click Done Board Edit
 
 Jenny Goes For Coffee
     [Tags]    sc2
@@ -59,6 +60,9 @@ Friend1 Creates Tickets
     Open Ticket Edit    7    7
     Input Ticket Text    Friend1 suggestion
     Click Done Ticket Edit
+
+Close1
+    [Tags]    sc2
     Log Out
     Close Browser
 
@@ -70,6 +74,9 @@ Friend2 Creates Tickets
     Open Ticket Edit    8    8
     Input Ticket Text    Friend2 suggestion
     Click Done Ticket Edit
+
+Close2
+    [Tags]    sc2
     Log Out
     Close Browser
 
@@ -81,6 +88,9 @@ Friend3 Creates Tickets
     Open Ticket Edit    9    9
     Input Ticket Text    Friend3 suggestion
     Click Done Ticket Edit
+
+Close3
+    [Tags]    sc2
     Log Out
     Close Browser
 
@@ -92,6 +102,9 @@ Friend4 Creates Tickets
     Open Ticket Edit    10    10
     Input Ticket Text    Friend4 suggestion
     Click Done Ticket Edit
+
+Close4
+    [Tags]    sc2
     Log Out
     Close Browser
 
@@ -103,13 +116,16 @@ Friend5 Creates Tickets
     Open Ticket Edit    11    11
     Input Ticket Text    Friend5 suggestion
     Click Done Ticket Edit
+
+Close5
+    [Tags]    sc2
     Log Out
     Close Browser
 
 Jenny Comes Back
     [Tags]    sc2
     Open Browser To Login Page
-    Login User
+    Login User    jenny.porter@test.com    jennyporter
     Open Board    2    2
 
 Jenny Edit Tickets
@@ -117,6 +133,9 @@ Jenny Edit Tickets
     Open Ticket Edit    1    1
     Input Ticket Text    Clean before party: Jenny
     Click Done Ticket Edit
+
+Close6
+    [Tags]    sc2
     Log Out
     Close Browser
 
@@ -127,6 +146,9 @@ Friend 1 Edit Tickets
     Open Ticket Edit    7    7
     Input Ticket Text    Friend1 suggestion: Friend 1
     Click Done Ticket Edit
+
+Close7
+    [Tags]    sc2
     Log Out
     Close Browser
 
@@ -137,6 +159,9 @@ Friend 2 Edit Tickets
     Open Ticket Edit    8    8
     Input Ticket Text    Friend2 suggestion: Friend 2
     Click Done Ticket Edit
+
+Close8
+    [Tags]    sc2
     Log Out
     Close Browser
 
@@ -147,6 +172,9 @@ Friend 3 Edit Tickets
     Open Ticket Edit    9    9
     Input Ticket Text    Friend3 suggestion: Friend 3
     Click Done Ticket Edit
+
+Close9
+    [Tags]    sc2
     Log Out
     Close Browser
 
@@ -157,6 +185,9 @@ Friend 4 Edit Tickets
     Open Ticket Edit    10    10
     Input Ticket Text    Friend4 suggestion: Friend 4
     Click Done Ticket Edit
+
+Close10
+    [Tags]    sc2
     Log Out
     Close Browser
 
@@ -167,15 +198,21 @@ Friend 5 Edit Tickets
     Open Ticket Edit    11    11
     Input Ticket Text    Friend5 suggestion: Friend 5
     Click Done Ticket Edit
+
+Close11
+    [Tags]    sc2
     Log Out
     Close Browser
 
 TODO-List is finished
     [Tags]    sc2
     Open Browser To Login Page
-    Login User
+    Login User    jenny.porter@test.com    jennyporter
     Open Board    2    2
     Close Board
+
+Close Final
+    [Tags]    sc2
     Log Out
     Close Browser
     [Teardown]

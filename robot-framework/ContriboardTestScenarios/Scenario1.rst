@@ -39,7 +39,7 @@ Assigment is to try out schools new tool Contriboard and do create his own idea 
 .. code:: robotframework
 
 	*** Settings ***
-	Resource 		ScenarioTests/resource1.txt
+	Resource 		ScenarioTests/resource.txt
 
 
 Wallace opens computer, starts internet browser and goes to the webpage where schools new tool is.
@@ -93,7 +93,7 @@ Wallace start to explore the page and clicking different things
 
     	*** Test Cases ***
 	Wallace Explores part 1
-		First Try
+		Wallace First Try
 
 
 Wallace accidently clicked logout and page changed back to mainpage where he just started. Luckily Wallace didn't panic
@@ -104,7 +104,7 @@ and he just does logs back in.
 
     	*** Test Cases ***
 	Wallace ReLogin
-		Login User
+		Login User    wallace.coleman@test.com    wallacecoleman
 
 
 And Wallace is back on the page where he accidently left before. Wallace continues clicking.
@@ -139,7 +139,7 @@ Wallace writes name for the board: "Ideas of Wallace" and tries to change backgr
 
     	*** Test Cases ***
 	Wallace Edits board
-		Input Board Name
+		Input Board Name    Ideas of Wallace
 		Change Background    1    1
 		Change Background    2    2
 		Change Background    3    3
@@ -160,7 +160,7 @@ But bird flies into window and Wallace accidently clicks cancel button.
     	*** Test Cases ***
 	Wallace Sets Background and clicks cancel
 		Change Background    6    6
-		Click Cancel Edit
+		Click Cancel Edit Board
 
 
 Board naming and background setting was all in vain. So Wallace has to start editing board all again.
@@ -171,7 +171,7 @@ Board naming and background setting was all in vain. So Wallace has to start edi
     	*** Test Cases ***
 	Wallace Edit Board Again
 		Click Edit Board    3    3
-		Input Wrong Board Name
+		Input Board Name    Ides of Wallace
 		Change Background    6    6
 		Click Done Board Edit
 
@@ -200,7 +200,7 @@ Half hour later Wallace comes back and starts to explore and clicking things.
 		Click Globe On
 		Click Magnet Off
 		Click Globe Off
-		Click Edit From Board
+		Click Edit Board From Board
 
 
 When Wallace clicked pen he noticed that he had written his board name wrong. So he erases it and writes it again.
@@ -210,7 +210,7 @@ When Wallace clicked pen he noticed that he had written his board name wrong. So
 
     	*** Test Cases ***
 	Wallace Changes Wrong Board Name
-		Input Board Name
+		Input Board Name    Ideas of Wallace
 		Click Done Board Edit
 
 
