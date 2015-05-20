@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          resource3.txt
+Resource          resource.txt
 
 *** Test Cases ***
 Evelyn Opens Computer
@@ -10,7 +10,7 @@ Evelyn Invalid Login
     [Tags]    sc3
     Invalid Login    ${InvalidUser}    ${InvalidPassword}
     Go To Login Page
-    Invalid Login    ${ValidUser}    ${InvalidPassword}
+    Invalid Login    ${InvalidUser}    ${InvalidPassword}
     Go To Login Page
     Invalid Login    ${InvalidUser}    ${InvalidPassword}
     Go To Login Page
@@ -26,12 +26,12 @@ Wallace Invalid Login
 
 Evelyn Valid Login
     [Tags]    sc3    log3
-    Login User
+    Login User    evelyn.holmes@test.com    evelynholmes
 
 Evelyn Explores Everything
     [Tags]    sc3
     Click Profile
-    Click Feedback
+    #Click Feedback
     Close Profile
     Create Board
     Click Edit Board    3    3
@@ -44,7 +44,9 @@ Evelyn Explores Everything
     Click Globe Off
     Click Edit Board From Board
     Click Done Board Edit
-    Edit Ticket    1    1
+    Open Ticket Edit    1    1
+    Input Ticket Text
+    Click Done Ticket Edit
     Delete Ticket    1    1
     Close Board
     Delete Board    2    2
@@ -106,5 +108,5 @@ Evelyn Is Ready
     [Tags]    sc3
     Close Board
     Log Out
-    CLose Browser
+    Close Browser
     [Teardown]

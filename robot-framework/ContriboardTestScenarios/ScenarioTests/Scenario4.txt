@@ -1,11 +1,11 @@
 *** Settings ***
-Resource          resource4.txt
+Resource          resource.txt
 
 *** Test Cases ***
 James Opens Computer And Login
     [Tags]    sc4    log4
     Open Browser To Login Page
-    Login User
+    Login User    james.nicholson@test.com    jamesnicholson
 
 James Creates SWOT Board
     [Tags]    sc4
@@ -110,7 +110,7 @@ James Closes Board and Board is Deleted
 James Log Out and Login
     [Tags]    sc4
     Log Out
-    Login User
+    Login User    james.nicholson@test.com    jamesnicholson
     #James Sends Angry Feedback
     #Send Feedback
 

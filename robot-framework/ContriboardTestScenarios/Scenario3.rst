@@ -47,7 +47,7 @@ Dave helped Evelyn to create account and password. They also created a board cal
 .. code:: robotframework
 
 	*** Settings ***
-	Resource 		ScenarioTests/resource3.txt
+	Resource 		ScenarioTests/resource.txt
 	
 
 Evelyn has forgotten which email she used for Contriboard and tries to login using her usual email account which is sadly wrong.
@@ -67,7 +67,7 @@ Evelyn Is little bit out of ideas why login is not working. She tries to login w
 	Evelyn Invalid Login
 		Invalid Login    ${InvalidUser}    ${InvalidPassword}
 		Go To Login Page
-		Invalid Login    ${ValidUser}    ${InvalidPassword}
+		Invalid Login    ${InvalidUser}    ${InvalidPassword}
 		Go To Login Page
 		Invalid Login    ${InvalidUser}    ${InvalidPassword}
 		Go To Login Page
@@ -107,7 +107,7 @@ from login screen Because of empty login screen Evelyn remembers now correct acc
 
     	*** Test Cases ***
 	Evelyn Valid Login
-		Login User
+		Login User    evelyn.holmes@test.com    evelynholmes
 
 
 After login in Evelyn try to click some buttons to be able to recover how Contriboard was used. 
@@ -132,7 +132,9 @@ All what Dave was told her last week were foggy memories. "There is nice button 
 		Click Globe Off
 		Click Edit Board From Board
 		Click Done Board Edit
-		Edit Ticket    1    1
+		Open Ticket Edit    1    1
+		Input Ticket Text
+		Click Done Ticket Edit
 		Delete Ticket    1    1
 		Close Board
 		Delete Board    2    2

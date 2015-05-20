@@ -10,4 +10,3 @@ pybot Scenario2.rst
 pybot Scenario3.rst
 pybot Scenario4.rst
 pybot Scenario5.rst
-killall firefox

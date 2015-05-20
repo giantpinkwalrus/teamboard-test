@@ -39,7 +39,7 @@ Jenny uses Contriboard for doing the TODO-list because she has used it at work a
 .. code:: robotframework
 
 	*** Settings ***
-	Resource 		ScenarioTests/resource2.txt
+	Resource 		ScenarioTests/resource.txt
 
 She starts to do the TODO-list:
 
@@ -49,7 +49,7 @@ She starts to do the TODO-list:
 	*** Test Cases ***
 	Jenny Login
 		Open Browser To Login Page
-		Login User
+		Login User    jenny.porter@test.com    jennyporter
 
 
 As she has logged in she creates new board as a basis for their party plan
@@ -60,8 +60,10 @@ As she has logged in she creates new board as a basis for their party plan
 	*** Test Cases ***
 	Jenny Creates a Board
 		Create Board
-		Edit Board    2    2
+		Click Edit Board    2    2
+		Input Board Name    Party TODO-list
 		Change Background    5    5
+		Click Done Board Edit
 
 Now she add couple tasks to the board before sharing it to friends.
 
@@ -105,7 +107,6 @@ Jenny has organized tickets. Now she shares the board to her friends.
     	*** Test Cases ***
 	Jenny Shares Board
 		Share Board From Board
-		Click Done Board Edit
 
 
 Jenny sends the board url to her friends using facebook group conversation. And asks her friends to add new tasks or edit the old ones.
@@ -198,7 +199,7 @@ Jenny gets back. Jenny and her friends talk about who does what and when.
     	*** Test Cases ***
 	Jenny Comes Back
 		Open Browser To Login Page
-		Login User
+		Login User    jenny.porter@test.com    jennyporter
 		Open Board    2    2
 
 Now that they are decided what to do. They assign the tickets to each other and edit them accordingly. They all add their name for their task and moves them
@@ -281,7 +282,7 @@ TODO-list is ready. So they log out and update the list when they are done tasks
     	*** Test Cases ***
 	TODO-List is finished
 		Open Browser To Login Page
-		Login User
+		Login User    jenny.porter@test.com    jennyporter
 		Open Board    2    2
 		Close Board
 		Log Out

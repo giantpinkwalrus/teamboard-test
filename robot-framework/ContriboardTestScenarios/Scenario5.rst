@@ -35,7 +35,11 @@ Scenario 5 Tests
 .. code:: robotframework
 
 	*** Settings ***
-	Resource 		ScenarioTests/resource5.txt
+	Resource 		ScenarioTests/resource.txt
+	
+	*** Variables ***
+	${ValidUser}      testrobot@test.com
+	${ValidPassword}    testrobot
 
 
 Primary function: Test Contriboard functionality
@@ -72,7 +76,7 @@ Test valid login
 
     	*** Test Cases ***
 	Test Valid Login
-		Login User
+		Login User    testrobot@test.com    testrobot
 
 
 Test creating boards
@@ -82,7 +86,7 @@ Test creating boards
 
     	*** Test Cases ***
 	Test Creating Boards
-		Repeat Keyword    15    New Board
+		Repeat Keyword    15    Create Board
 
 
 Test editing boards
@@ -103,15 +107,15 @@ Test opening boards
 
     	*** Test Cases ***
 	Test Opening Boards
-		Random Open Board
+		Open Board    2    16
 		Close Board
-		Random Open Board
+		Open Board    2    16
 		Close Board
-		Random Open Board
+		Open Board    2    16
 		Close Board
-		Random Open Board
+		Open Board    2    16
 		Close Board
-		Random Open Board
+		Open Board    2    16
 		Close Board
 
 
@@ -122,22 +126,22 @@ Test creating tickets
 
     	*** Test Cases ***
 	Test Creating Tickets
-		Random Open Board
-		Random Create Ticket    1    1
-		Random Create Ticket    2    2
-		Random Create Ticket    3    3
-		Random Create Ticket    4    4
-		Random Create Ticket    5    5
-		Random Create Ticket    6    6
-		Random Create Ticket    7    7
-		Random Create Ticket    8    8
-		Random Create Ticket    9    9
-		Random Create Ticket    10    10
-		Random Create Ticket    11    11
-		Random Create Ticket    12    12
-		Random Create Ticket    13    13
-		Random Create Ticket    14    14
-		Random Create Ticket    15    15
+		Open Board    2    16
+		Create Ticket    1    1
+		Create Ticket    2    2
+		Create Ticket    3    3
+		Create Ticket    4    4
+		Create Ticket    5    5
+		Create Ticket    6    6
+		Create Ticket    7    7
+		Create Ticket    8    8
+		Create Ticket    9    9
+		Create Ticket    10    10
+		Create Ticket    11    11
+		Create Ticket    12    12
+		Create Ticket    13    13
+		Create Ticket    14    14
+		Create Ticket    15    15
 
 
 Test Editing Tickets
@@ -159,10 +163,10 @@ Test board functionalities
 	Test Board Functionalities
 		Click Magnet On
 		Click Globe On
-		Random Create Ticket    16    16
-		Random Create Ticket    17    17
-		Random Create Ticket    18    18
-		Random Create Ticket    19    19
+		Create Ticket    16    16
+		Create Ticket    17    17
+		Create Ticket    18    18
+		Create Ticket    19    19
 		Click Magnet Off
 		Click Globe Off
 		Edit Board From Board
@@ -174,7 +178,7 @@ Test ticket deletion
 
     	*** Test Cases ***
 	Test Ticket Deletion
-		Repeat Keyword    5    Random Delete Ticket
+		Repeat Keyword    5    Delete Ticket    1    10
 
 
 Test board deletion
@@ -185,7 +189,7 @@ Test board deletion
     	*** Test Cases ***
 	Test Board Deletion
 		Close Board
-		Repeat Keyword    5    Random Delete Board
+		Repeat Keyword    5    Delete Board    2    11
 
 
 Test feedback sending
@@ -214,7 +218,7 @@ Test Board sharing
 	Open Shared Board
 		Open Shared Board
 		Login to Shared Board
-		Random Create Ticket 	1 	1
+		Create Ticket    1    1
 		Random Edit Ticket    1    1
 		Log Out
 	
@@ -223,7 +227,7 @@ Test Board sharing
 		
 	Login
 		Open Browser To Login Page
-		Login User
+		Login User    testrobot@test.com    testrobot
 
 
 Test Log Out
@@ -234,9 +238,9 @@ Test Log Out
     	*** Test Cases ***
 	Test Log Out
 		Log Out
-		Login User
+		Login User    testrobot@test.com    testrobot
 		Log Out
-		Login User
+		Login User    testrobot@test.com    testrobot
 		Log Out
 
 

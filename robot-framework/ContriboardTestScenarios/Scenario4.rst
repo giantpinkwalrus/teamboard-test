@@ -37,7 +37,7 @@ James has made a small mobile game for android devices in
 .. code:: robotframework
 
 	*** Settings ***
-	Resource 		ScenarioTests/resource4.txt
+	Resource 		ScenarioTests/resource.txt
 	
 
 He needs to do sprint plan and SWOT for his product that he has made. James is using Contriboard as he has used it many times before
@@ -51,7 +51,7 @@ James has a existing account for Contriboard so he logs in.
     	*** Test Cases ***
 	James Opens Computer And Login
 		Open Browser To Login Page
-		Login User
+		Login User    james.nicholson@test.com    jamesnicholson
 			
 
 James succeeds to log in. James needs to do a SWOT plan and sprint plan so he creates two boards for those
@@ -210,7 +210,7 @@ James is furios. He tries to logout and login again if that returns his board.
     	*** Test Cases ***
 	James Log Out and Login
 		Log Out
-		Login User
+		Login User    james.nicholson@test.com    jamesnicholson
 
 
 James doesn't see his board. It's gone! So James starts to write angry feedback with Contriboard feedback sender.
