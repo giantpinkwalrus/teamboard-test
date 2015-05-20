@@ -374,8 +374,10 @@ Get Move Coordinates
     [Arguments]    ${x}    ${y}
     Run Keyword If    '${x}'<'0'    Calculate X Negative    ${x}
     Run Keyword If    '${x}'>'0'    Calculate X Positive    ${x}
+    Run Keyword If    '${x}'=='0'    Calculate X Zero    ${x}
     Run Keyword If    '${y}'<'0'    Calculate Y Negative    ${y}
     Run Keyword If    '${y}'>'0'    Calculate Y Positive    ${y}
+    Run Keyword If    '${y}'=='0'    Calculate Y Zero    ${y}
 
 Calculate X Negative
     [Arguments]    ${x}
@@ -389,6 +391,12 @@ Calculate X Positive
     ${minX}    Evaluate    ${maxX}-1920
     Get X Move    ${minX}    ${maxX}
 
+Calculate X Zero
+    [Arguments]    ${x}
+    ${maxX}    Evaluate    ${x}+960
+    ${minX}    Evaluate    ${x}-960
+    Get X Move    ${minX}    ${maxX}
+
 Calculate Y Negative
     [Arguments]    ${y}
     ${minY}    Evaluate    -${y}-540
@@ -399,6 +407,12 @@ Calculate Y Positive
     [Arguments]    ${y}
     ${maxY}    Evaluate    540-${y}
     ${minY}    Evaluate    ${maxY}-1080
+    Get Y Move    ${minY}    ${maxY}
+
+Calculate Y Zero
+    [Arguments]    ${y}
+    ${maxY}    Evaluate    ${y}+540
+    ${minY}    Evaluate    ${y}-540
     Get Y Move    ${minY}    ${maxY}
 
 Get Y Coordinate
