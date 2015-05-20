@@ -389,12 +389,12 @@ Get Ticket Xpath
     Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[2]/div/div[1]/div[${int}]
 
 Get X Move
-    [Arguments]    ${min}=-480    ${max}=480
+    [Arguments]    ${min}=-960    ${max}=960
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${xMove}    ${int}
 
 Get Y Move
-    [Arguments]    ${min}=-270    ${max}=270
+    [Arguments]    ${min}=-540    ${max}=540
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     Set Test Variable    ${yMove}    ${int}
 
@@ -402,8 +402,10 @@ Get Move Coordinates
     [Arguments]    ${x}    ${y}
     Run Keyword If    '${x}'<'0'    Calculate X Negative    ${x}
     Run Keyword If    '${x}'>'0'    Calculate X Positive    ${x}
+    Run Keyword If    '${x}'=='0'    Calculate X Zero    ${x}
     Run Keyword If    '${y}'<'0'    Calculate Y Negative    ${y}
     Run Keyword If    '${y}'>'0'    Calculate Y Positive    ${y}
+    Run Keyword If    '${y}'=='0'    Calculate Y Zero    ${y}
 
 Calculate X Negative
     [Arguments]    ${x}
@@ -417,6 +419,12 @@ Calculate X Positive
     ${minX}    Evaluate    ${maxX}-1920
     Get X Move    ${minX}    ${maxX}
 
+Calculate X Zero
+    [Arguments]    ${x}
+    ${maxX}    Evaluate    ${x}+960
+    ${minX}    Evaluate    ${x}-960
+    Get X Move    ${minX}    ${maxX}
+
 Calculate Y Negative
     [Arguments]    ${y}
     ${minY}    Evaluate    -${y}-540
@@ -427,6 +435,12 @@ Calculate Y Positive
     [Arguments]    ${y}
     ${maxY}    Evaluate    540-${y}
     ${minY}    Evaluate    ${maxY}-1080
+    Get Y Move    ${minY}    ${maxY}
+
+Calculate Y Zero
+    [Arguments]    ${y}
+    ${maxY}    Evaluate    ${y}+540
+    ${minY}    Evaluate    ${y}-540
     Get Y Move    ${minY}    ${maxY}
 
 Get Y Coordinate
