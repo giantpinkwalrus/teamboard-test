@@ -459,10 +459,12 @@ Get Random Background
     ${list}    Create List    NONE    CUSTOM    PLAY    SWOT    SCRUM
     ...    KANBAN    KEEP_DROP_TRY    CUSTOMER_JOURNEY_MAP    BUSINESS_MODEL_CANVAS
     ${item}    Get From List    ${list}    ${int}
-    Set Test Variable    ${background}    ${item}
+    Set Test Variable    \${background}    ${EMPTY}
+    Set Suite Variable    ${background}    ${item}
     ${list2}    Create List    blank    custom    play    swot    scrum
     ...    kanban    keep_drop_try    customer_journey_map    business_model_canvas
     ${item2}    Get From List    ${list2}    ${int}
+    Set Test Variable    \${bcheck}    ${EMPTY}
     Set Test Variable    ${bcheck}    ${item2}
 
 Get Random Type
@@ -470,4 +472,25 @@ Get Random Type
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     ${list}    Create List    Support Request    Bug Report    Other
     ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${type}    ${EMPTY}
     Set Test Variable    ${type}    ${item}
+
+Get Ticket Color
+    [Arguments]    ${min}=0    ${max}=3
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    $#eb584a    $#4f819a    $#724a7f    $#dcc75b
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${color}    ${EMPTY}
+    Set Test Variable    ${color}    ${item}
+    ${list2}    Create List    rgb(235, 88, 74)    rgb(79, 129, 154)    rgb(114, 74, 127)    rgb(220, 199, 91)
+    ${item2}    Get From List    ${list2}    ${int}
+    Set Test Variable    \${mtcolor}    ${EMPTY}
+    Set Test Variable    ${mtcolor}    ${item2}
+
+Get Export
+    [Arguments]    ${min}=0    ${max}=2
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    csv    json    plaintext
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${export}    ${EMPTY}
+    Set Test Variable    ${export}    ${item}

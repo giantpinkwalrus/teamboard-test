@@ -465,9 +465,9 @@ Get Ticket Color
     Set Test Variable    ${mtcolor}    ${item2}
 
 Get Export
-    [Arguments]    ${min}=0    ${max}=1
+    [Arguments]    ${min}=0    ${max}=2
     ${int}    Evaluate    random.randint(${min}, ${max})    random
-    ${list}    Create List    csv    json
+    ${list}    Create List    csv    json    plaintext
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    \${export}    ${EMPTY}
     Set Test Variable    ${export}    ${item}
