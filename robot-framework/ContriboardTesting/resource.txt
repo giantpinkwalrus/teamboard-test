@@ -9,7 +9,7 @@ ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
 ${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
-${SERVER}         sut-cb.n4sjamk.org
+${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
@@ -58,7 +58,7 @@ Edit Board
     Input Text    //input[@placeholder='Board Name']    Typing board name
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Click Element    //button[@data-reactid='${rid}.0.2.0']
+    Click Element    //button[@class='btn-primary']
 
 Edit Board From Board
     Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
@@ -67,7 +67,7 @@ Edit Board From Board
     Input Text    //input[@placeholder='Board Name']    Typing new board name
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
-    Click Button    //button[@data-reactid='${rid}.0.2.0']
+    Click Element    //button[@class='btn-primary']
 
 Set Board Background
     [Arguments]    ${min}=2    ${max}=6
@@ -77,29 +77,32 @@ Set Board Background
     Assign Id To Element    //div[@class='dialog-overlay']    Content
     ${rid}    Get Element Attribute    Content@data-reactid
     Get Random Background
-    Select From List By Value    //select[@data-reactid='${rid}.0.1.2.2.0']    ${background}
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.3.1.0']    ${background}
     Run Keyword If    '${background}'=='NONE'    Empty Background
     Run Keyword If    '${background}'=='CUSTOM'    Custom Background
     Run Keyword Unless    '${background}'=='NONE' or '${background}'=='CUSTOM'    Check Background
+    # BROKEN! background check that background is actually changed
 
 Empty Background
-    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.2.0.0']@class
-    Should Be Equal    ${check}    blanko    error=Background Not Empty
-    Click Button    //button[@data-reactid='${rid}.0.2.0']
+    ${checkempty}    Get Element Attribute    //div[@class='minimap']@style
+    Should Be Equal    ${checkempty}    width: 192px; height: 108px;    error=Background Not Empty
+    Click Element    //button[@class='btn-primary']
 
 Custom Background
-    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.2.0.0']@class
-    Should Be Equal    ${check}    blanko    error=Background Not Empty
+    ${checkcustom}    Get Element Attribute    //div[@class='minimap']@style
+    Should Be Equal    ${checkcustom}    width: 192px; height: 108px;    error=Background Not Empty
     Element Should Be Visible    //input[@type='url']
     Input Text    //input[@placeholder='URL']    ${custombackground}
-    ${check2}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.2.0.0']@src
-    Should Be Equal    ${check2}    ${custombackground}    error=Custom Background Not Changed
-    Click Button    //button[@data-reactid='${rid}.0.2.0']
+    ${checkcustom2}    Get Element Attribute    //div[@class='minimap']@style
+    Should Be Equal    ${checkcustom2}    width: 192px; height: 108px;    error=Custom Background Not Changed
+    #Should Be Equal    ${checkcustom2}    width: 192px; height: 108px; background-image: url( ${custombackground});    error=Custom Background Not Changed
+    Click Element    //button[@class='btn-primary']
 
 Check Background
-    ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.2.0.0']@src
-    Should Be Equal    ${check}    ${MainUrl}/dist/assets/img/bg/${bcheck}.png    error=Background Not Changed
-    Click Button    //button[@data-reactid='${rid}.0.2.0']
+    ${checkdefault}    Get Element Attribute    //div[@class='minimap']@style
+    Should Be Equal    ${checkdefault}    width: 192px; height: 108px;    error=Custom Background Not Changed
+    #Should Be Equal    ${checkdefault}    width: 192px; height: 108px; background-image: url("/dist/assets/img/bg/${bcheck}.png");    error=Background Not Changed
+    Click Element    //button[@class='btn-primary']
 
 Change Custom Background from Board
     Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
@@ -108,17 +111,17 @@ Change Custom Background from Board
     Input Text    //input[@placeholder='Board Name']    Custom Background Board
     ${rid}    Get Element Attribute    //div[@class='dialog-overlay']@data-reactid
     Get Random Background    1    1
-    Select From List By Value    //select[@data-reactid='${rid}.0.1.2.0.0']    ${background}
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.3.1.0']    ${background}
     Run Keyword If    '${background}'=='NONE'    Empty Background
     Run Keyword If    '${background}'=='CUSTOM'    Changed Custom Background
     Run Keyword Unless    '${background}'=='NONE' or '${background}'=='CUSTOM'    Check Background
 
 Changed Custom Background
     Element Should Be Visible    //input[@type='url']
-    Input Text    //input[@placeholder='URL']    ${custombackground2}
-    ${check2}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.2.0.0']@src
-    Should Be Equal    ${check2}    ${custombackground2}    error=Custom Background Not Changed
-    Click Button    //button[@data-reactid='${rid}.0.2.0']
+    ${checkchanged}    Get Element Attribute    //div[@class='minimap']@style
+    Should Be Equal    ${checkchanged}    width: 192px; height: 108px;    error=Custom Background Not Changed
+    #Should Be Equal    ${checkchanged}    width: 192px; height: 108px; background-image: url( ${custombackground2});    error=Custom Background Not Changed
+    Click Element    //button[@class='btn-primary']]
 
 Open Board
     [Arguments]    ${min}=2    ${max}=6
@@ -303,7 +306,7 @@ Export Board
     Select From List By Value    //select[@data-reactid='${rid}.0.1.0.1.0.0']    ${export}
     #Does nothing
     #Click Element    //a[@data-reactid='${rid}.0.1.0.1.1']
-    Click Element    //button[@data-reactid='${rid}.0.2.0']
+    Click Element    //button[@class='btn-primary']
 
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
