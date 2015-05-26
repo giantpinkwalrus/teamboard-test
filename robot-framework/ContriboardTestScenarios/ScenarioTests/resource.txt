@@ -217,11 +217,13 @@ Change Background
     Get Random Background    ${min}    ${max}
     Assign Id To Element    //div[@class='dialog-overlay']    Content
     ${rid}    Get Element Attribute    Content@data-reactid
-    Select From List By Value    //select[@data-reactid='${rid}.0.1.2.2.0']    ${background}
+    Get Random Background
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.3.1.0']    ${background}
     Set Test Variable    ${set}    changebackground
     Run Keyword If    '${background}'=='NONE'    Empty Background
     Run Keyword If    '${background}'=='CUSTOM'    Custom Background
     Run Keyword Unless    '${background}'=='NONE' or '${background}'=='CUSTOM'    Check Background
+    # Fix background check
 
 Random Set Board Background
     [Arguments]    ${min}=2    ${max}=16
@@ -231,29 +233,33 @@ Random Set Board Background
     Assign Id To Element    //div[@class='dialog-overlay']    Content
     ${rid}    Get Element Attribute    Content@data-reactid
     Get Random Background
-    Select From List By Value    //select[@data-reactid='${rid}.0.1.2.2.0']    ${background}
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.3.1.0']    ${background}
     Set Test Variable    ${set}    setbackground
+    ${check}    Get Element Attribute    //div[@class='minimap']@style
     Run Keyword If    '${background}'=='NONE'    Empty Background
     Run Keyword If    '${background}'=='CUSTOM'    Custom Background
     Run Keyword Unless    '${background}'=='NONE' or '${background}'=='CUSTOM'    Check Background
+    # Fix background check
 
 Empty Background
-    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.2.0.0']@class
-    Should Be Equal    ${check}    blanko    error=Background Not Empty
+    ${checkempty}    Get Element Attribute    //div[@class='minimap']@style
+    Should Be Equal    ${checkempty}    width: 192px; height: 108px;    error=Background Not Empty
     Run Keyword if    '${set}'=='setbackground'    Click Done Board Edit
 
 Custom Background
-    ${check}    Get Element Attribute    //div[@data-reactid='${rid}.0.1.2.0.0']@class
-    Should Be Equal    ${check}    blanko    error=Background Not Empty
+    ${checkcustom}    Get Element Attribute    //div[@class='minimap']@style
+    Should Be Equal    ${checkcustom}    width: 192px; height: 108px;    error=Background Not Empty
     Element Should Be Visible    //input[@type='url']
     Input Text    //input[@placeholder='URL']    ${custombackground}
-    ${check2}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.2.0.0']@src
-    Should Be Equal    ${check2}    ${custombackground}    error=Custom Background Not Changed
+    ${checkcustom2}    Get Element Attribute    //div[@class='minimap']@style
+    Should Be Equal    ${checkcustom2}    width: 192px; height: 108px;    error=Custom Background Not Changed
+    #Should Be Equal    ${checkcustom2}    width: 192px; height: 108px; background-image: url( ${custombackground});    error=Custom Background Not Changed
     Run Keyword if    '${set}'=='setbackground'    Click Done Board Edit
 
 Check Background
-    ${check}    Get Element Attribute    //img[@data-reactid='${rid}.0.1.2.0.0']@src
-    Should Be Equal    ${check}    ${MainUrl}/dist/assets/img/bg/${bcheck}.png    error=Background Not Changed
+    ${checkdefault}    Get Element Attribute    //div[@class='minimap']@style
+    Should Be Equal    ${checkdefault}    width: 192px; height: 108px;    error=Custom Background Not Changed
+    #Should Be Equal    ${checkdefault}    width: 192px; height: 108px; background-image: url("/dist/assets/img/bg/${bcheck}.png");    error=Background Not Changed
     Run Keyword if    '${set}'=='setbackground'    Click Done Board Edit
 
 Click Magnet On
