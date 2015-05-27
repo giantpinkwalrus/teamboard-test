@@ -10,7 +10,7 @@ Login User
 
 Create New Board
     [Tags]    old    color    share    edit
-    Repeat Keyword    5    New Board
+    Repeat Keyword  5   New Board
     Edit Board
     Set Board Background
 
