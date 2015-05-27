@@ -56,8 +56,6 @@ Edit Board
     Click Element    ${Expath}
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
     Input Text    //input[@placeholder='Board Name']    Typing board name
-    Assign Id To Element    //div[@class='dialog-overlay']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
     Click Element    //button[@class='btn-primary']
 
 Edit Board From Board
@@ -65,8 +63,6 @@ Edit Board From Board
     Click Element    //span[@class='fa fa-fw fa-pencil']
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
     Input Text    //input[@placeholder='Board Name']    Typing new board name
-    Assign Id To Element    //div[@class='dialog-overlay']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
     Click Element    //button[@class='btn-primary']
 
 Set Board Background
