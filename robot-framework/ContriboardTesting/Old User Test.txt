@@ -10,9 +10,9 @@ Login User
 
 Create New Board
     [Tags]    old    color    share    edit
-    New Board
+    Repeat Keyword  5   New Board
     Edit Board
-    Repeat Keyword    10    Set Board Background
+    Set Board Background
 
 Delete Board
     [Tags]    old
