@@ -1,6 +1,7 @@
 *** Settings ***
 Library           ExtendedSelenium2Library
 Library           Collections
+Library           String
 
 *** Variables ***
 ${Browser}        firefox
@@ -10,6 +11,7 @@ ${ValidPassword}    t3stmonkey
 ${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
 ${SERVER}         sut-cb.n4sjamk.org
+#${SERVER}        localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
@@ -321,14 +323,15 @@ Resize Board
     Click Element    //button[@class='btn-primary']
     Element Should Not Be Visible    //form[@class='dialog dialog-edit-board']
     Calculate Board Size    ${width}    ${height}
-    ${boardsize}    Get Element Attribute    //div[@class='board']@style
+    ${styleatt}    Get Element Attribute    //div[@class='board']@style
+    ${boardsize}    Fetch From Left    ${styleatt}    transition-timing-function:
     Should Be Equal    ${boardsize}    ${sizecheck}
 
 Calculate Board Size
     [Arguments]    ${width}    ${height}
     ${boardwidth}    Evaluate    ${width}*192
     ${boardheight}    Evaluate    ${height}*108
-    #Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);
+    Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}
 
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
