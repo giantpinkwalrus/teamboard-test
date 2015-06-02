@@ -128,9 +128,7 @@ Random Edit Board
     Click Element    ${Expath}
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
     Input Text    //input[@placeholder='Board Name']    Typing board name
-    Assign Id To Element    //div[@class='dialog-overlay']    reactID
-    ${rid}    Get Element Attribute    reactID@data-reactid
-    Click Element    //button[@data-reactid='${rid}.0.2.0']
+    Click Button    //button[@class='btn-primary']
 
 Open Board
     [Arguments]    ${min}=2    ${max}=6
@@ -249,7 +247,7 @@ Empty Background
 
 Custom Background
     ${checkcustom}    Get Element Attribute    //div[@class='minimap']@style
-    Should Be Equal    ${checkcustom}    width: 192px; height: 108px;    error=Background Not Empty
+    #Should Be Equal    ${checkcustom}    width: 192px; height: 108px;    error=Background Not Empty
     Element Should Be Visible    //input[@type='url']
     Input Text    //input[@placeholder='URL']    ${custombackground}
     ${checkcustom2}    Get Element Attribute    //div[@class='minimap']@style
