@@ -333,8 +333,6 @@ Calculate Board Size
     ${boardheight}    Evaluate    ${height}*108
     Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}
 
-\\
-
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
     Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
