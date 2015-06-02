@@ -4,13 +4,13 @@ Resource          resource.txt
 *** Test Cases ***
 Login User
     [Tags]    old    log    edit    feed    share    export
-    ...    color
+    ...    color    size
     Open Browser To Login Page
     Login User
 
 Create New Board
-    [Tags]    old    color    share    edit
-    Repeat Keyword  5   New Board
+    [Tags]    old    color    share    edit    size
+    New Board
     Edit Board
     Set Board Background
 
@@ -19,10 +19,11 @@ Delete Board
     Delete Board
 
 Edit Board From Board
-    [Tags]    old    color
+    [Tags]    old    color    size
     Open Board    2    5
     Run Keyword If    '${background}'=='CUSTOM'    Change Custom Background from Board
     Run Keyword Unless    '${background}'=='CUSTOM'    Edit Board From Board
+    Resize Board    10    20    10    20
 
 Test Controls From Board
     [Tags]    old
@@ -100,9 +101,11 @@ Close Board Sharing
 
 Log Out User
     [Tags]    old    share    edit    feed    export    color
+    ...    size
     Log Out
 
 Close
     [Tags]    old    share    edit    feed    export    color
+    ...    size
     Close Browser
     [Teardown]

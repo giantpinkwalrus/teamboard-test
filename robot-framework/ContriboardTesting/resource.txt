@@ -311,6 +311,25 @@ Export Board
     #Click Element    //a[@data-reactid='${rid}.0.1.0.1.1']
     Click Element    //button[@class='btn-primary']
 
+Resize Board
+    [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
+    Get Board Size    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    Input Text    //input[@placeholder='Board Width']    ${width}
+    Input Text    //input[@placeholder='Board Height']    ${height}
+    Click Element    //button[@class='btn-primary']
+    Element Should Not Be Visible    //form[@class='dialog dialog-edit-board']
+    Calculate Board Size    ${width}    ${height}
+    ${boardsize}    Get Element Attribute    //div[@class='board']@style
+    Should Be Equal    ${boardsize}    ${sizecheck}
+
+Calculate Board Size
+    [Arguments]    ${width}    ${height}
+    ${boardwidth}    Evaluate    ${width}*192
+    ${boardheight}    Evaluate    ${height}*108
+    #Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);
+
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
     Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
@@ -477,3 +496,12 @@ Get Export
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    \${export}    ${EMPTY}
     Set Test Variable    ${export}    ${item}
+
+Get Board Size
+    [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    ${int}    Evaluate    random.randint(${widthmin}, ${widthmax})    random
+    Set Test Variable    \${width}    ${EMPTY}
+    Set Test Variable    ${width}    ${int}
+    ${int2}    Evaluate    random.randint(${heightmin}, ${heightmax})    random
+    Set Test Variable    \${height}    ${EMPTY}
+    Set Test Variable    ${height}    ${int2}
