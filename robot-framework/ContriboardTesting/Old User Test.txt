@@ -12,7 +12,24 @@ Create New Board
     [Tags]    old    color    share    edit    size
     Repeat Keyword    5    New Board
     Edit Board
+
+Change Background
+    [Tags]    old    edit
+    Open Board    2    6
     Set Board Background
+    Close Board
+    Open Board    2    6
+    Set Board Background
+    Close Board
+    Open Board    2    6
+    Set Board Background
+    Close Board
+    Open Board    2    6
+    Set Board Background
+    Close Board
+    Open Board    2    6
+    Set Board Background
+    Close Board
 
 Delete Board
     [Tags]    old
@@ -21,9 +38,8 @@ Delete Board
 Edit Board From Board
     [Tags]    old    color    size
     Open Board    2    5
-    Run Keyword If    '${background}'=='CUSTOM'    Change Custom Background from Board
-    Run Keyword Unless    '${background}'=='CUSTOM'    Edit Board From Board
-    Resize Board    10    20    10    20
+    Edit Board From Board
+    Resize Board    10    10    10    10
 
 Test Controls From Board
     [Tags]    old
