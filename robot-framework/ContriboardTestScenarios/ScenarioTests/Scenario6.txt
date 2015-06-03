@@ -1,0 +1,25 @@
+*** Settings ***
+Resource          resource_new.txt
+
+*** Test Cases ***
+John Opens Computer And Logins
+    [Tags]    sc6    log6
+    Open Browser To Login Page
+    Login User    john@test.com    johnjohn
+
+John Resizes Board
+    [Tags]    sc6
+    New Board
+    Open Board    2    2
+    Resize Board    10    10    10    10
+
+John Wants ÖÄÅ in board name
+    [Tags]    sc6
+    Click Edit Board From Board
+    Input Board Name    Äöåäöåäöåäöåö
+    Click Done Board Edit
+
+Close
+    [Tags]    sc6
+    Close Browser
+    [Teardown]
