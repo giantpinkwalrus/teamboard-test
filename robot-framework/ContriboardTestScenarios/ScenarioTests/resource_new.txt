@@ -1,0 +1,529 @@
+*** Settings ***
+Library           ExtendedSelenium2Library
+Library           Collections
+Library           String
+
+*** Variables ***
+${Browser}        firefox
+${DELAY}          0.2
+${InvalidUser}    invalid@test.com
+${InvalidPassword}    Invalid1
+#${SERVER}        sut-cb.n4sjamk.org
+${SERVER}         localhost:8000
+${MainUrl}        http://${SERVER}
+${LoginUrl}       http://${SERVER}/login
+${BoardUrl}       http://${SERVER}/boards
+${RegUrl}         http://${SERVER}/register
+${LoginTitle}     Contriboard
+${custombackground}    http://tinyurl.com/pevhhv7
+${custombackground2}    http://tinyurl.com/khpx9d8
+
+*** Keywords ***
+Register User
+    [Arguments]    ${NewUser}    ${NewPassword}
+    Element Text Should Be    //button[@class='btn-secondary']    Register    error=Register button missing
+    Click Button    //button[@class='btn-secondary']
+    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Form not found
+    Location Should Be    ${RegUrl}
+    Input Username    ${NewUser}
+    Input User Password    ${NewPassword}
+    ${check}    Get Element Attribute    //input[@class='btn-primary']@value
+    Should Be Equal    ${check}    Register    error=Register button missing
+    Submit Credentials
+    Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
+    Location Should Be    ${BoardUrl}
+
+Login User
+    [Arguments]    ${ValidUser}    ${ValidPassword}
+    Input Username    ${ValidUser}
+    Input User Password    ${ValidPassword}
+    ${check}    Get Element Attribute    //input[@class='btn-primary']@value
+    Should Be Equal    ${check}    Login    error=Login button missing
+    Submit Credentials
+    Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
+    Location Should Be    ${BoardUrl}
+
+New Board
+    Click Element    //span[@class='fa fa-fw fa-plus']
+
+Close Board
+    Click Element    //span[@class='fa fa-fw fa-arrow-left']
+    Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
+    Location Should Be    ${BoardUrl}
+
+Input Board Name
+    [Arguments]    ${boardname}=Typing Somenthing...
+    Input Text    //input[@placeholder='Board Name']    ${boardname}
+
+Edit Board
+    [Arguments]    ${min}=2    ${max}=6
+    Get Edit Xpath    ${min}    ${max}
+    Click Element    ${Expath}
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
+    Input Text    //input[@placeholder='Board Name']    Typing board name
+    Click Element    //button[@class='btn-primary']
+
+Edit Board From Board
+    Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
+    Input Text    //input[@placeholder='Board Name']    Typing new board name
+    Click Element    //button[@class='btn-primary']
+
+Click Edit Board From Board
+    Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
+
+Click Done Board Edit
+    Click Button    //button[@class='btn-primary']
+    Element Should Not Be Visible    //form[@class='dialog dialog-edit-board']    error=Edit Not Closed
+
+Set Board Background
+    [Arguments]    ${min}=0    ${max}=8
+    Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
+    Assign Id To Element    //div[@class='dialog-overlay']    Content
+    ${rid}    Get Element Attribute    Content@data-reactid
+    Get Random Background    ${min}    ${max}
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.3.1.0']    ${background}
+    Run Keyword If    '${background}'=='NONE'    Empty Background
+    Run Keyword If    '${background}'=='CUSTOM'    Custom Background
+    Run Keyword Unless    '${background}'=='NONE' or '${background}'=='CUSTOM'    Default Background
+
+Empty Background
+    Wait Until Page Contains Element    //div[@class='minimap']
+    Click Element    //button[@class='btn-primary']
+    ${checkempty}    Get Element Attribute    //div[@class='board']@style
+    ${empty}    Fetch From Left    ${checkempty}    background-image:
+    Should Be Equal    ${empty}    ${checkempty}    error=Background Not Empty
+
+Custom Background
+    Wait Until Page Contains Element    //div[@class='minimap']
+    Element Should Be Visible    //input[@type='url']
+    Input Text    //input[@placeholder='URL']    ${custombackground}
+    Click Element    //button[@class='btn-primary']
+    ${checkcustom}    Get Element Attribute    //div[@class='board']@style
+    ${image}    Fetch From Right    ${checkcustom}    x);
+    Set Test Variable    ${customcheck}    ${SPACE}background-image: url("${custombackground}");
+    Run Keyword If    '${image}'=='${customcheck}'    Check Custom Background Empty
+    Run Keyword If    '${image}'!='${customcheck}'    Check Custom Background
+
+Check Custom Background Empty
+    Should Be Equal    ${image}    ${SPACE}background-image: url("${custombackground}");    error=Custom Background Not Changed
+
+Check Custom Background
+    ${image2}    Fetch From Left    ${checkcustom}    ${SPACE}transition
+    ${image3}    Fetch From Right    ${image2}    px;
+    Should Be Equal    ${image3}    ${SPACE}background-image: url("${custombackground}");    error=Background Not Empty
+
+Default Background
+    Wait Until Page Contains Element    //div[@class='minimap']
+    Click Element    //button[@class='btn-primary']
+    ${checkdefault}    Get Element Attribute    //div[@class='board']@style
+    ${default}    Fetch From Right    ${checkdefault}    x);
+    Set Test Variable    ${defaultcheck}    ${SPACE}background-image: url("/dist/assets/img/bg/${bcheck}.png");
+    Run Keyword If    '${default}'=='${defaultcheck}'    Check Default Background Empty
+    Run Keyword If    '${default}'!='${defaultcheck}'    Check Default Background
+
+Check Default Background Empty
+    Should Be Equal    ${default}    ${SPACE}background-image: url("/dist/assets/img/bg/${bcheck}.png");    error=Background Not Changed
+
+Check Default Background
+    ${default2}    Fetch From Left    ${checkdefault}    ${SPACE}transition
+    ${default3}    Fetch From Right    ${default2}    px;
+    Should Be Equal    ${default3}    ${SPACE}background-image: url("/dist/assets/img/bg/${bcheck}.png");    error=Background Not Changed
+
+Open Board
+    [Arguments]    ${min}=2    ${max}=6
+    Get Board Xpath    ${min}    ${max}
+    Click Element    ${Bxpath}
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
+
+Delete Board
+    [Arguments]    ${min}=2    ${max}=6
+    Get Delete Xpath    ${min}    ${max}
+    Assign Id To Element    ${Dxpath}    Board
+    Click Element    ${Dxpath}
+    Wait Until Page Contains Element    //form[@class='dialog dialog-remove-board']    timeout=2    error=Board Edit Dialog Not Found
+    Click Button    //button[@class='btn-danger']
+    Element Should Not Be Visible    Board    error=Board Not Deleted
+
+Create Ticket
+    [Arguments]    ${min}    ${max}
+    Get X Coordinate
+    Get Y Coordinate
+    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
+    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
+    Move Ticket    ${min}    ${max}    ${x}    ${y}
+
+Move Ticket
+    [Arguments]    ${min}    ${max}    ${x}    ${y}
+    Get Ticket Xpath    ${min}    ${max}
+    Get Move Coordinates    ${x}    ${y}
+    Drag And Drop By Offset    ${Txpath}    ${xMove}    ${yMove}
+
+Delete Ticket
+    [Arguments]    ${min}=1    ${max}=5
+    Get Ticket Xpath    ${min}    ${max}
+    Assign Id To Element    ${Txpath}    Ticket
+    Double Click Element    ${Txpath}
+    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    Click Button    //button[@class='btn-danger']
+    Element Should Not Be Visible    ticket    error=Ticket Not Deleted
+
+Edit Ticket
+    [Arguments]    ${min}=1    ${max}=5
+    Get Ticket Xpath    ${min}    ${max}
+    Double Click Element    ${Txpath}
+    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
+    Input Text    //textarea[@data-reactid='${rid}.1.0']    Typing somenthing
+    Click Button    //button[@class='btn-primary']
+
+Change Ticket Color
+    [Arguments]    ${min}=1    ${max}=5
+    Get Ticket Xpath    ${min}    ${max}
+    Double Click Element    ${Txpath}
+    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
+    Get Ticket Color
+    Click Element    //div[@data-reactid='${rid}.0.0.1.${color}']
+    ${ccheck}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.1.${color}']@style
+    ${tcolor}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.0']@style
+    Should Be Equal    ${ccheck}    ${tcolor}    error=Ticket Color Not Changed
+    Click Button    //button[@class='btn-primary']
+
+Minimap Ticket Color
+    [Arguments]    ${min}=1    ${max}=5
+    Get Ticket Xpath    ${min}    ${max}
+    Double Click Element    ${Txpath}
+    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
+    Get Ticket Color
+    Click Element    //div[@data-reactid='${rid}.0.0.1.${color}']
+    ${ccheck}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.1.${color}']@style
+    ${tcolor}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.0']@style
+    Should Be Equal    ${ccheck}    ${tcolor}    error=Ticket Color Not Changed
+    Click Button    //button[@class='btn-primary']
+    ${ticketint}    Evaluate    ${tint}+1
+    Get Minimap Ticket    ${ticketint}    ${ticketint}
+    ${mticket}    Get Element Attribute    ${MTxpath}@style
+    Should Contain    ${mticket}    ${mtcolor}
+
+Click Magnet On
+    Assign Id To Element    //div[@class='view view-board']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Click Element    //span[@class='fa fa-fw fa-magnet']
+    Assign Id To Element    //div[@data-reactid='${rid}.4.$magnet']    magnetOnID
+    ${class}    Get Element Attribute    magnetOnID@class
+    Should Match    ${class}    control active
+
+Click Magnet Off
+    Assign Id To Element    //div[@class='view view-board']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Click Element    //span[@class='fa fa-fw fa-magnet']
+    Assign Id To Element    //div[@data-reactid='${rid}.4.$magnet']    magnetOffID
+    ${class}    Get Element Attribute    magnetOffID@class
+    Should Match    ${class}    control
+
+Click Globe On
+    Assign Id To Element    //div[@class='view view-board']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Element Should Not Be Visible    //div[@data-reactid='${rid}.2.0.1']
+    Click Element    //span[@class='fa fa-fw fa-globe']
+    Assign Id To Element    //div[@data-reactid='${rid}.4.$globe']    globeOnID
+    ${class}    Get Element Attribute    globeOnID@class
+    Should Match    ${class}    control active
+    Element Should Be Visible    //div[@data-reactid='${rid}.2.0.1']
+
+Click Globe Off
+    Assign Id To Element    //div[@class='view view-board']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Element Should Be Visible    //div[@data-reactid='${rid}.2.0.1']
+    Click Element    //span[@class='fa fa-fw fa-globe']
+    Assign Id To Element    //div[@data-reactid='${rid}.4.$globe']    globeOffID
+    ${class}    Get Element Attribute    globeOffID@class
+    Should Match    ${class}    control
+    Element Should Not Be Visible    //div[@data-reactid='${rid}.2.0.1']
+
+Share Board
+    Click Element    //span[@class='fa fa-fw fa-share-alt']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
+    Click Button    //button[@class='btn-secondary']
+    ${SharedUrl}    Get Value    //input[@placeholder='Shared link']
+    Should Not Be Equal    ${SharedUrl}    ${EMPTY}
+    Set Suite Variable    ${Shared}    ${SharedUrl}
+    Click Button    //button[@class='btn-primary']
+
+Stop Share Board
+    [Arguments]    ${min}=2    ${max}=2
+    Get Board Xpath    ${min}    ${max}
+    Click Element    ${Bxpath}
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
+    Click Element    //span[@class='fa fa-fw fa-share-alt']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
+    Click Button    //button[@class='btn-neutral']
+    ${SharedUrl}    Get Value    //input[@placeholder='Shared link']
+    Should Be Equal    ${SharedUrl}    ${EMPTY}
+    Click Button    //button[@class='btn-primary']
+
+Open Shared Board
+    Open Browser    http://${Shared}    ${Browser}
+    Set Window Size    1920    1200
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Location Should Be    http://${Shared}
+
+Login to Shared Board
+    Input Text    //input[@name='username']    Tester
+    Click Button    //input[@class='btn-primary']
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
+
+Send Feedback
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Click Element    //div[@class='user-voice-trigger']
+    Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
+    Wait Until Element Is Visible    //article[@class='widget large-widget']    timeout=2    error=Widget Not Open
+    Element Text Should Be    //h1[@class='pane-title']    Send us a message    error=Write message page not open
+    Input Text    //textarea[@class='faux-textbox-textarea']    Typing feedback...
+    Click Element    //input[@class='checkbox-input']
+    Element Text Should Be    //button[@class='button primary']    Next    error=Next Button Missing
+    Click Button    //button[@class='button primary']
+    Element Text Should Be    //h1[@class='pane-title mb1']    Additional details    error=Send message page not open
+    Input Text    //input[@placeholder='Email address']    ${ValidUser}
+    Get Random Type
+    Select From List By Value    //select[@class='selectbox full-width']    ${type}
+    Element Text Should Be    //button[@class='button primary']    Send message    error=Send Button Missing
+    Click Button    //button[@class='button primary']
+    Wait Until Element Is Visible    //div[@class='thank-you-text pt2']    timeout=5    error=Message not sent to send
+    Wait Until Element Is Visible    //button[@class='button primary icon-button']    timeout=5    error=Message not sent
+    Click Element    //i[@class='icon close-icon']
+    Element Should Not Be Visible    //article[@class='widget large-widget']    error=Widget Not Closed
+    Unselect Frame
+    Click Element    //span[@class='fa fa-fw fa-user']
+
+Export Board
+    [Arguments]    ${min}=2    ${max}=5
+    Get Board Xpath    ${min}    ${max}
+    Click Element    ${Bxpath}
+    Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
+    Click Element    //span[@class='fa fa-fw fa-download']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${rid}    Get Element Attribute    reactID@data-reactid
+    Get Export
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.0.1.0.0']    ${export}
+    #Does nothing
+    #Click Element    //a[@data-reactid='${rid}.0.1.0.1.1']
+    Click Element    //button[@class='btn-primary']
+
+Resize Board
+    [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
+    Get Board Size    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    Input Text    //input[@placeholder='Board Width']    ${width}
+    Input Text    //input[@placeholder='Board Height']    ${height}
+    Click Element    //button[@class='btn-primary']
+    Element Should Not Be Visible    //form[@class='dialog dialog-edit-board']
+    Calculate Board Size    ${width}    ${height}
+    ${styleatt}    Get Element Attribute    //div[@class='board']@style
+    ${boardsize}    Fetch From Left    ${styleatt}    transition
+    Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}
+    Run Keyword If    '${boardsize}'=='${sizecheck}'    Verify Resize Empty Background
+    Run Keyword If    '${boardsize}'!='${sizecheck}'    Verify Resize
+
+Verify Resize Empty Background
+    Should Be Equal    ${boardsize}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}    error=Board Not Resized
+
+Verify Resize
+    ${boardsize2}    Fetch From Left    ${styleatt}    background
+    Should Be Equal    ${boardsize2}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}    error=Board Not Resized
+
+Calculate Board Size
+    [Arguments]    ${width}    ${height}
+    ${bwidth}    Evaluate    ${width}*192
+    ${bheight}    Evaluate    ${height}*108
+    Set Test Variable    \${boardwidth}    ${EMPTY}
+    Set Test Variable    ${boardwidth}    ${bwidth}
+    Set Test Variable    \${boardheight}    ${EMPTY}
+    Set Test Variable    ${boardheight}    ${bheight}
+
+Log Out
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Assign Id To Element    //ul[@class='dropdown']    Dropdown
+    ${did}    Get Element Attribute    Dropdown@data-reactid
+    Click Element    //li[@data-reactid='${did}.$3']
+    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
+    Location Should Be    ${LoginUrl}
+
+Input Username
+    [Arguments]    ${username}
+    Input Text    //input[@type='email']    ${username}
+
+Input User Password
+    [Arguments]    ${password}
+    Input Password    //input[@type='password']    ${password}
+
+Submit Credentials
+    Click Button    //input[@class='btn-primary']
+
+Open Browser To Login Page
+    Open Browser    ${LoginUrl}    ${Browser}
+    Set Window Size    1920    1200
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Location Should Be    ${LoginUrl}
+    Title Should Be    ${LoginTitle}
+    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form Not Found
+
+Go To Login Page
+    Go To    ${LoginUrl}
+    Location Should Be    ${LoginUrl}
+
+Get Board Xpath
+    [Arguments]    ${min}    ${max}
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${Bxpath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[1]/div
+
+Get Edit Xpath
+    [Arguments]    ${min}    ${max}
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${Expath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[3]/div[2]/span
+
+Get Delete Xpath
+    [Arguments]    ${min}    ${max}
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${Dxpath}    xpath=/html/body/div/div/div[2]/div[${int}]/div[3]/div[1]/span
+
+Get Ticket Xpath
+    [Arguments]    ${min}    ${max}
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[2]/div/div[1]/div[${int}]
+    Set Test Variable    \${tint}    ${EMPTY}
+    Set Test Variable    ${tint}    ${int}
+
+Get X Move
+    [Arguments]    ${min}=-960    ${max}=960
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${xMove}    ${int}
+
+Get Y Move
+    [Arguments]    ${min}=-540    ${max}=540
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${yMove}    ${int}
+
+Get Move Coordinates
+    [Arguments]    ${x}    ${y}
+    Run Keyword If    '${x}'<'0'    Calculate X Negative    ${x}
+    Run Keyword If    '${x}'>'0'    Calculate X Positive    ${x}
+    Run Keyword If    '${x}'=='0'    Calculate X Zero    ${x}
+    Run Keyword If    '${y}'<'0'    Calculate Y Negative    ${y}
+    Run Keyword If    '${y}'>'0'    Calculate Y Positive    ${y}
+    Run Keyword If    '${y}'=='0'    Calculate Y Zero    ${y}
+
+Calculate X Negative
+    [Arguments]    ${x}
+    ${minX}    Evaluate    -${x}-960
+    ${maxX}    Evaluate    ${minX}+1920
+    Get X Move    ${minX}    ${maxX}
+
+Calculate X Positive
+    [Arguments]    ${x}
+    ${maxX}    Evaluate    960-${x}
+    ${minX}    Evaluate    ${maxX}-1920
+    Get X Move    ${minX}    ${maxX}
+
+Calculate X Zero
+    [Arguments]    ${x}
+    ${maxX}    Evaluate    ${x}+960
+    ${minX}    Evaluate    ${x}-960
+    Get X Move    ${minX}    ${maxX}
+
+Calculate Y Negative
+    [Arguments]    ${y}
+    ${minY}    Evaluate    -${y}-540
+    ${maxY}    Evaluate    ${minY}+1080
+    Get Y Move    ${minY}    ${maxY}
+
+Calculate Y Positive
+    [Arguments]    ${y}
+    ${maxY}    Evaluate    540-${y}
+    ${minY}    Evaluate    ${maxY}-1080
+    Get Y Move    ${minY}    ${maxY}
+
+Calculate Y Zero
+    [Arguments]    ${y}
+    ${maxY}    Evaluate    ${y}+540
+    ${minY}    Evaluate    ${y}-540
+    Get Y Move    ${minY}    ${maxY}
+
+Get Y Coordinate
+    [Arguments]    ${min}=-540    ${max}=540
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${y}    ${int}
+
+Get X Coordinate
+    [Arguments]    ${min}=-960    ${max}=960
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${x}    ${int}
+
+Get Minimap Ticket
+    [Arguments]    ${min}    ${max}
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    Set Test Variable    ${MTxpath}    xpath=/html/body/div/div/div[2]/div/div[2]/div[${int}]
+
+Get Random Background
+    [Arguments]    ${min}=0    ${max}=8
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    NONE    CUSTOM    PLAY    SWOT    SCRUM
+    ...    KANBAN    KEEP_DROP_TRY    CUSTOMER_JOURNEY_MAP    BUSINESS_MODEL_CANVAS
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${background}    ${EMPTY}
+    Set Suite Variable    ${background}    ${item}
+    ${list2}    Create List    blank    custom    play    swot    scrum
+    ...    kanban    keep_drop_try    customer_journey_map    business_model_canvas
+    ${item2}    Get From List    ${list2}    ${int}
+    Set Test Variable    \${bcheck}    ${EMPTY}
+    Set Test Variable    ${bcheck}    ${item2}
+
+Get Random Type
+    [Arguments]    ${min}=0    ${max}=2
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    Support Request    Bug Report    Other
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${type}    ${EMPTY}
+    Set Test Variable    ${type}    ${item}
+
+Get Ticket Color
+    [Arguments]    ${min}=0    ${max}=3
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    $#eb584a    $#4f819a    $#724a7f    $#dcc75b
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${color}    ${EMPTY}
+    Set Test Variable    ${color}    ${item}
+    ${list2}    Create List    rgb(235, 88, 74)    rgb(79, 129, 154)    rgb(114, 74, 127)    rgb(220, 199, 91)
+    ${item2}    Get From List    ${list2}    ${int}
+    Set Test Variable    \${mtcolor}    ${EMPTY}
+    Set Test Variable    ${mtcolor}    ${item2}
+
+Get Export
+    [Arguments]    ${min}=0    ${max}=2
+    ${int}    Evaluate    random.randint(${min}, ${max})    random
+    ${list}    Create List    csv    json    plaintext
+    ${item}    Get From List    ${list}    ${int}
+    Set Test Variable    \${export}    ${EMPTY}
+    Set Test Variable    ${export}    ${item}
+
+Get Board Size
+    [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    ${int}    Evaluate    random.randint(${widthmin}, ${widthmax})    random
+    Set Test Variable    \${width}    ${EMPTY}
+    Set Test Variable    ${width}    ${int}
+    ${int2}    Evaluate    random.randint(${heightmin}, ${heightmax})    random
+    Set Test Variable    \${height}    ${EMPTY}
+    Set Test Variable    ${height}    ${int2}

@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          resource.txt
+Resource          resource_new.txt
 
 *** Test Cases ***
 John Opens Computer And Logins
@@ -9,11 +9,11 @@ John Opens Computer And Logins
 
 John Resizes Board
     [Tags]    sc6
-    Create Board
+    New Board
     Open Board    2    2
     Resize Board    10    10    10    10
 
-John Wants ÄÅÖ in board name
+John Wants ÖÄÅ in board name
     Click Edit Board From Board
     Input Board Name    Äöåäöåäöåäöåö
     Click Done Board Edit
