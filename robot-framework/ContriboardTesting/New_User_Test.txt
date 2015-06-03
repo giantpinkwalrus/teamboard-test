@@ -11,11 +11,14 @@ Create New Board
     [Tags]    new
     New Board
     Edit Board    2    2
+
+Change Background
+    [Tags]    new
+    Open Board    2    2
     Set Board Background    2    2
 
 Create Ticket Into Board
     [Tags]    new
-    Open Board    2    2
     Edit Board From Board
     Create Ticket    1    1
     Edit Ticket    1    1
@@ -29,6 +32,7 @@ Delete Board
     Close Board
     Delete Board    2    2
     #Send Feedback
+    #[Tags]    new
     #Send Feedback
 
 Log Out
