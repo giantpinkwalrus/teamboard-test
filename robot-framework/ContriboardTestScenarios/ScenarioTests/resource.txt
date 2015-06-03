@@ -1,14 +1,15 @@
 *** Settings ***
 Library           ExtendedSelenium2Library
 Library           Collections
+Library           String
 
 *** Variables ***
 ${Browser}        firefox
 ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
-${SERVER}         sut-cb.n4sjamk.org
-#${SERVER}        localhost:8000
+#${SERVER}        sut-cb.n4sjamk.org
+${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
@@ -162,6 +163,26 @@ Edit Board From Board
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
     Input Text    //input[@placeholder='Board Name']    Typing new board name
     Click Button    //button[@class='btn-primary']
+
+Resize Board
+    [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
+    Get Board Size    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    Input Text    //input[@placeholder='Board Width']    ${width}
+    Input Text    //input[@placeholder='Board Height']    ${height}
+    Click Element    //button[@class='btn-primary']
+    Element Should Not Be Visible    //form[@class='dialog dialog-edit-board']
+    Calculate Board Size    ${width}    ${height}
+    ${styleatt}    Get Element Attribute    //div[@class='board']@style
+    ${boardsize}    Fetch From Left    ${styleatt}    transition-timing-function:
+    Should Be Equal    ${boardsize}    ${sizecheck}
+
+Calculate Board Size
+    [Arguments]    ${width}    ${height}
+    ${boardwidth}    Evaluate    ${width}*192
+    ${boardheight}    Evaluate    ${height}*108
+    Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}
 
 Create Ticket
     [Arguments]    ${min}    ${max}
@@ -500,3 +521,12 @@ Get Export
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    \${export}    ${EMPTY}
     Set Test Variable    ${export}    ${item}
+
+Get Board Size
+    [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    ${int}    Evaluate    random.randint(${widthmin}, ${widthmax})    random
+    Set Test Variable    \${width}    ${EMPTY}
+    Set Test Variable    ${width}    ${int}
+    ${int2}    Evaluate    random.randint(${heightmin}, ${heightmax})    random
+    Set Test Variable    \${height}    ${EMPTY}
+    Set Test Variable    ${height}    ${int2}
