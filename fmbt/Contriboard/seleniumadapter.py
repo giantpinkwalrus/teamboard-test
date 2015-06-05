@@ -22,7 +22,7 @@ resultsPath = "../../fmbt_testresults"
 
 pollTime = 0.3
 
-timeout = 2.0
+timeoutTime = 2.0
 
 email = "testbaboon@test.com"
 password = "t3stmonkey"
@@ -37,7 +37,8 @@ stateAssets = {
 	"board_edit_dialog" 	: ["//form[@class='dialog dialog-edit-board']"],
 	"delete_board_dialog" 	: ["//form[@class='dialog dialog-remove-board']"],
 	"export_dialog" 	: ["//form[@class='dialog dialog-edit-board']"],
-	"share_dialog" 	: ["//form[@class='dialog dialog-edit-board']"],
+	"share_dialog" 	: ["//button[@class='btn-secondary']"],
+	"shared_dialog" 	: ["//button[@class='btn-neutral']"],
 	"ticket_edit_dialog" 	: ["//form[@class='dialog edit-ticket-dialog']"]
 }
 
@@ -169,30 +170,36 @@ def createBoard():
 
 def editBoard():
 	rs()
-	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-pencil']").click()
-	wait()
+	if isElement("//span[@class='fa fa-fw fa-pencil']"):
+		driver.find_element_by_xpath("//span[@class='fa fa-fw fa-pencil']").click()
+		wait()
 
 def deleteBoard():
 	rs()
-	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-trash']").click()
-	wait()
+	if isElement("//span[@class='fa fa-fw fa-trash']"):
+		driver.find_element_by_xpath("//span[@class='fa fa-fw fa-trash']").click()
+		wait()
 
 def openBoard():
 	rs()
-	driver.find_element_by_xpath("//div[@class='minimap']").click()
-	wait()
+	if isElement("//div[@class='minimap']"):
+		driver.find_element_by_xpath("//div[@class='minimap']").click()
+		wait()
 
 #board
 
 def createTicket():
 	rs()
-	driver.find_element_by_xpath("//div[@class='board']").click()
+	board = driver.find_element_by_xpath("//div[@class='board']")
+	AC(driver).double_click(board).perform()
 	wait()
 
 def editTicket():
 	rs()
-	driver.find_element_by_xpath("//div[@class='ticket']").click()
-	wait()
+	if isElement("//div[@class='ticket']"):
+		ticket = driver.find_element_by_xpath("//div[@class='ticket']")
+		AC(driver).double_click(ticket).perform()
+		wait()
 
 def closeBoard():
 	rs()
@@ -221,13 +228,18 @@ def clickMagnet():
 
 def clickGlobe():
 	rs()
-	driver.find_element_by_xpath("//span[@class=)'fa fa-fw fa-globe']").click()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-globe']").click()
 	wait()
 
 def moveTicket():
 	rs()
-	driver.find_element_by_xpath("//div[@class='ticket']").click()
-	wait()
+	if isElement("//div[@class='ticket']"):
+		board = driver.find_element_by_xpath("//div[@class='board']")	
+		ticket = driver.find_element_by_xpath("//div[@class='ticket']")
+		xdest = random.randint(0, board.size.get('width') - ticket.size.get('width'))
+		ydest = random.randint(0, board.size.get('height') - ticket.size.get('height'))
+		AC(driver).click_and_hold(ticket).move_to_element_with_offset(board, xdest, ydest).release(ticket).perform()
+		wait()
 
 #boardedit
 
@@ -278,13 +290,13 @@ def clickDoneExport():
 
 def clickExport():
 	rs()
-	driver.find_element_by_xpath("a[@class='btn btn-secondary']").click()
+	driver.find_element_by_xpath("//a[@class='btn btn-secondary']").click()
 	wait()
 
 def selectExport():
 	rs()
 	driver.find_element_by_xpath("//select").click()
-	driver.find_element_by_xpath("//option[@value='JSON']").click()
+	driver.find_element_by_xpath("//option[@value='json']").click()
 	wait()
 
 #share
@@ -297,6 +309,18 @@ def clickDoneShare():
 def clickShare():
 	rs()
 	driver.find_element_by_xpath("//button[@class='btn-secondary']").click()
+	wait()
+
+#shared
+
+def clickDoneShared():
+	rs()
+	driver.find_element_by_xpath("//button[@class='btn-primary']").click()
+	wait()
+
+def clickHide():
+	rs()
+	driver.find_element_by_xpath("//button[@class='btn-neutral']").click()
 	wait()
 
 #ticketedit
@@ -336,6 +360,24 @@ def ticketDone():
 	rs()
 	driver.find_element_by_xpath("//button[@class='btn-primary']").click()
 	wait()
+
+# checks
+
+def checkTicket():
+    rs()
+    result = isElement("//div[@class='ticket']")
+    if result:
+        return True
+    else:
+        return False
+
+def checkBoard():
+	rs()
+	result = isElement("//div[@class='minimap']")
+	if result:
+		return True
+	else:
+		return False
 
 
 #State check

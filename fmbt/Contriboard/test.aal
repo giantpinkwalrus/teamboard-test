@@ -6,25 +6,25 @@ aal "login" {
     language "python" {
     	import seleniumadapter as test
     }
-    variables { state, logged, registered, try_login, try_register, try_open_board, try_close_board, try_close_board_edit }
+    variables { state, logged, registered, try_login, try_register, try_open_board, try_close_board, try_close_board_edit, is_ticket, is_board, try_open_share }
     initial_state {
         state = "login"
         logged = False
         registered = False
         try_login = False
         try_register = False
+        is_ticket = False
+        is_board = False
     }
 
 adapter_init {
-	test.init()
-
-	test.wait(1.0)
+    test.init()
+    test.wait(1.0)
 }
 
 adapter_exit {
 	test.cleanup()
 }
-
 
 ^include "login.aal"
 ^include "register.aal"
@@ -33,6 +33,7 @@ adapter_exit {
 ^include "boardeditdialog.aal"
 ^include "boarddeletedialog.aal"
 ^include "sharedialog.aal"
+^include "shareddialog.aal"
 ^include "exportdialog.aal"
 ^include "ticketeditdialog.aal"
 

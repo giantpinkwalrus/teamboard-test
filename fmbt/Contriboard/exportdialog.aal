@@ -7,7 +7,7 @@ tag "export_dialog" {
 	input "click_done_export" {
 	adapter {
 	test.clickDoneExport()
-	wait()
+	test.wait()
 	}
 	body {
 	state = "board"
@@ -17,14 +17,14 @@ tag "export_dialog" {
 	input "click_export" {
 	adapter {
 	test.clickExport()
-	wait()
+	test.wait()
 	}
 	}
 
 	input "select_export" {
 	adapter {
 	test.selectExport()
-	wait()
+	test.wait()
 	}
 	}
 }
