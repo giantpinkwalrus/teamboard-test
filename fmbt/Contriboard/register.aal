@@ -1,0 +1,76 @@
+tag "register"{
+	guard {return state == "register"}
+
+    input "type_registerinfo" {
+    guard { return registered == False and try_register == False }
+    adapter {
+    	test.typeRegisterEmail()
+    	test.typeRegisterPassword()
+    	test.wait()
+    }
+    body {
+    	try_register = True
+    }
+    }
+
+    input "click_register" {
+    guard { return registered == False and try_register == True }
+    adapter {
+	test.clickRegister()
+	test.wait()
+    }
+    body {
+	try_register = True
+	state = "try_register"
+    }
+    }
+
+    input "click_loginaccount" {
+    guard { return registered == True and try_register == False }
+    adapter {
+    	test.clickLoginAccount()
+    	test.wait()
+    }
+    body {
+    	try_register = False
+    	state = "login"
+	}
+	}
+}
+
+tag "try_register" {
+	guard { return state == "try_register" and try_register == True }
+	output "register_success" {
+	guard { return state == "try_register" and try_register == True }
+	adapter {
+	if state == "try_register" and try_register == True and test.checkState("boardmenu"):
+			try_register = False
+			registered = True
+			logged = True
+			state = "boardmenu"
+			try_logout = True
+			return True
+	}
+	body {
+	try_register = False
+	registered = True
+	logged = True
+	state = "boardmenu"
+	}
+}
+	output "register_fail" {
+	guard { return state == "try_register" and try_register == True }
+	adapter {
+	if state == "try_register" and try_register == True and test.checkState("register"):
+			try_register = False
+			registered = True
+			state = "register"
+			return True
+	}
+	body {
+	try_register = False
+	registered = True
+	state = "register"
+	}
+	}
+}

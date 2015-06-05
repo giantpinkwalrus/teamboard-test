@@ -1,0 +1,24 @@
+tag "board_delete_dialog" {
+	guard { return state == "board_delete_dialog"}
+	adapter {
+	test.wait()
+	}
+
+	input "confirm_delete" {
+	adapter {
+	test.confirmDelete()
+	}
+	body {
+	state = "boardmenu"
+	}
+	}
+
+	input "cancel_delete" {
+	adapter {
+	test.cancelDelete()
+	}
+	body {
+	state = "boardmenu"
+	}
+	}
+}

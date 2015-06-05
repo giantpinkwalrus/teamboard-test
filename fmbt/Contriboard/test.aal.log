@@ -1,0 +1,63 @@
+1433481986.981153 starting
+1433481991.477685 observe: action "o:register_success" adapter() returned True. Reporting "o:register_success"
+1433482000.216759 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433482002.735160 Exception <class 'selenium.common.exceptions.NoSuchElementException'> in action14adapter: Message: Unable to locate element: {"method":"xpath","selector":"//span[@class='fa fa-fw fa-trash']"}
+Stacktrace:
+    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10271)
+    at FirefoxDriver.prototype.findElement (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10280)
+    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
+    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
+    at DelayedCommand.prototype.execute/< (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
+1433482002.760290 Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/aalmodel.py", line 84, in call
+    return eval(func.func_code, self._variables)
+  File "boardmenu.aal", line 38, in adapter of action "i:click_delete_board"
+    test.deleteBoard()
+  File "/home/paviaani/Contriboard/fmbt_test/seleniumadapter.py", line 177, in deleteBoard
+    driver.find_element_by_xpath("//span[@class='fa fa-fw fa-trash']").click()
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 232, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 664, in find_element
+    {'using': by, 'value': value})['value']
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 175, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/errorhandler.py", line 166, in check_response
+    raise exception_class(message, screen, stacktrace)
+NoSuchElementException: Message: Unable to locate element: {"method":"xpath","selector":"//span[@class='fa fa-fw fa-trash']"}
+Stacktrace:
+    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10271)
+    at FirefoxDriver.prototype.findElement (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10280)
+    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
+    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
+    at DelayedCommand.prototype.execute/< (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
+
+1433482002.760831 Error at adapter() of "i:click_delete_board": NoSuchElementException: Message: Unable to locate element: {"method":"xpath","selector":"//span[@class='fa fa-fw fa-trash']"}
+Stacktrace:
+    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10271)
+    at FirefoxDriver.prototype.findElement (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10280)
+    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
+    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
+    at DelayedCommand.prototype.execute/< (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
+Traceback (most recent call last):
+  File "boardmenu.aal", line 38, in adapter of action "i:click_delete_board"
+    test.deleteBoard()
+  File "/home/paviaani/Contriboard/fmbt_test/seleniumadapter.py", line 177, in deleteBoard
+    driver.find_element_by_xpath("//span[@class='fa fa-fw fa-trash']").click()
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 232, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 664, in find_element
+    {'using': by, 'value': value})['value']
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 175, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/errorhandler.py", line 166, in check_response
+    raise exception_class(message, screen, stacktrace)
+
+1433482002.760865 remote_pyaal error: Message: Unable to locate element: {"method":"xpath","selector":"//span[@class='fa fa-fw fa-trash']"}
+Stacktrace:
+    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10271)
+    at FirefoxDriver.prototype.findElement (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10280)
+    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
+    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
+    at DelayedCommand.prototype.execute/< (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
+
+1433482002.761002 quitting

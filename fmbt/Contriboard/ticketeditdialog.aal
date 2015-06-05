@@ -1,0 +1,61 @@
+tag "ticket_edit_dialog" {
+	guard { return state == "ticket_edit_dialog" }
+	adapter {
+	test.wait()
+	}
+
+	input "click_color_red" {
+	adapter {
+	test.clickRed()
+	test.wait()
+	}
+	}
+
+	input "click_color_blue" {
+	adapter {
+	test.clickBlue()
+	test.wait()
+	}
+	}
+
+	input "click_color_purple" {
+	adapter {
+	test.clickPurple()
+	test.wait()
+	}
+	}
+
+	input "click_color_yellow" {
+	adapter {
+	test.clickYellow()
+	test.wait()
+	}
+	}
+
+	input "type_to_ticket" {
+	adapter {
+	test.typeTicket()
+	test.wait()
+	}
+	}
+
+	input "delete_ticket" {
+	adapter {
+	test.deleteTicket()
+	test.wait()
+	}
+	body {
+	state = "board"
+	}
+	}
+
+	input "click_ticket_done" {
+	adapter {
+	test.ticketDone()
+	test.wait()
+	}
+	body {
+	state = "board"
+	}
+	}
+}
