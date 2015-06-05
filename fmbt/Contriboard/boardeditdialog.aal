@@ -1,0 +1,73 @@
+tag "board_edit_dialog" {
+	guard { return state == "board_edit_dialog" }
+	adapter {
+	test.wait()
+	}
+
+	input "click_done" {
+	adapter {
+	test.clickDone()
+	test.wait()
+	}
+	body {
+	try_close_board_edit = True
+	state = "try_close_board_edit" 	
+	}
+	}
+
+	input "type_board_name" {
+	adapter {
+	test.typeBoardName()
+	test.wait()
+	}
+	}
+
+	input "type_board_width" {
+	adapter {
+	test.typeWidth()
+	test.wait()
+	}
+	}
+
+	input "type_board_height" {
+	adapter {
+	test.typeHeight()
+	test.wait()
+	}
+	}
+
+	input "select_background" {
+	adapter {
+	test.selectBackground()
+	test.wait()
+	}
+	}
+}
+
+tag "try_close_board_edit" {
+	guard { return state == "try_close_board_edit"}
+	output "board_edit_closed_to_board" {
+	guard { return state == "try_close_board_edit" and try_close_board_edit == True }
+	adapter {
+	if state == "try_close_board_edit" and try_close_board_edit == True and test.checkState("board"):
+			try_close_board_edit = False
+			state = "board"
+			return True
+	}
+	body {
+	state = "board"
+	}
+	}
+	output "board_edit_closed_to_boardmenu" {
+	guard { return state == "try_close_board_edit" and try_close_board_edit == True}
+	adapter {
+	if state == "try_close_board_edit" and try_close_board_edit == True and test.checkState("boardmenu"):
+			try_close_board_edit = False
+			state = "boardmenu"
+			return True
+	}
+	body {
+	state = "boardmenu"
+	}
+	}
+}

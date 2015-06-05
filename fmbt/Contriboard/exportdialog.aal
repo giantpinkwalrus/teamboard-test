@@ -1,0 +1,30 @@
+tag "export_dialog" {
+	guard { return state == "export_dialog" }
+	adapter {
+	test.wait()
+	}
+
+	input "click_done_export" {
+	adapter {
+	test.clickDoneExport()
+	wait()
+	}
+	body {
+	state = "board"
+	}
+	}
+
+	input "click_export" {
+	adapter {
+	test.clickExport()
+	wait()
+	}
+	}
+
+	input "select_export" {
+	adapter {
+	test.selectExport()
+	wait()
+	}
+	}
+}

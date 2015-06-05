@@ -1,0 +1,126 @@
+tag "board" {
+	guard { return state == "board" }
+	adapter {
+	test.wait()
+	}
+
+	input "click_logout_from_board" {
+    adapter {
+    	test.clickLogout()
+    	test.wait()
+   	}
+    body {
+    	registered = True
+    	try_login = False
+    	state = "login"
+    }
+    }
+
+    input "create_ticket" {
+    adapter {
+    	test.createTicket()
+    	test.wait()
+    }
+    }
+
+    input "edit_ticket" {
+    adapter {
+    	test.editTicket()
+    	test.wait()
+    }
+    body {
+    	state = "ticket_edit_dialog"
+    }
+    }
+
+    input "close_board" {
+    adapter {
+    	test.closeBoard()
+    	test.wait()
+    }
+    body {
+    	try_close_board = True
+    	state = "try_close_board"
+    }
+    }
+
+    input "edit_board_from_board" {
+    adapter {
+    	test.editBoardFromBoard()
+    	test.wait()
+    }
+    body {
+    	state = "board_edit_dialog"
+    }
+    }
+
+    input "export_board" {
+    adapter {
+    	test.exportBoard()
+    	test.wait()
+    }
+    body {
+    	state = "export_dialog"
+    }
+    }
+
+    input "share_board" {
+    adapter {
+    	test.shareBoard()
+    	test.wait()
+    }
+    body {
+    	state = "share_dialog"
+    }
+    }
+
+    input "click_magnet" {
+    adapter {
+    	test.clickMagnet()
+    	test.wait()
+    }
+    }
+
+    input "click_globe" {
+    adapter {
+    	test.clickGlobe()
+    	test.wait()
+    }
+    }
+
+    input "move_ticket" {
+    adapter {
+        test.moveTicket()
+        test.wait()
+    }
+    }
+
+}
+
+tag "try_close_board" {
+	guard { return state == "try_close_board"}
+	output "board_closed" {
+	guard { return state == "try_close_board" and try_close_board == True }
+	adapter {
+	if state == "try_close_board" and try_close_board == True and test.checkState("boardmenu"):
+			try_close_board = False
+			state = "boardmenu"
+			return True
+	}
+	body {
+	state = "boardmenu"
+	}
+	}
+	output "board_not_closed" {
+	guard { return state == "try_close_board" and try_close_board == True}
+	adapter {
+	if state == "try_close_board" and try_close_board == True and test.checkState("board"):
+			try_close_board = False
+			state = "board"
+			return True
+	}
+	body {
+	state = "board"
+	}
+	}
+}
