@@ -354,8 +354,8 @@ Calculate Board Size
 
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
-    Assign Id To Element    //ul[@class='dropdown']    Dropdown
+    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Assign Id To Element    //ul[@class='dropdown undefined']    Dropdown
     ${did}    Get Element Attribute    Dropdown@data-reactid
     Click Element    //li[@data-reactid='${did}.$3']
     Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
