@@ -1,63 +1,143 @@
-1433481986.981153 starting
-1433481991.477685 observe: action "o:register_success" adapter() returned True. Reporting "o:register_success"
-1433482000.216759 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
-1433482002.735160 Exception <class 'selenium.common.exceptions.NoSuchElementException'> in action14adapter: Message: Unable to locate element: {"method":"xpath","selector":"//span[@class='fa fa-fw fa-trash']"}
+1433500090.155797 starting
+1433500094.708725 observe: action "o:register_fail" adapter() returned True. Reporting "o:register_fail"
+1433500097.635876 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500098.139039 observe: action "o:set_board_true" adapter() returned True. Reporting "o:set_board_true"
+1433500107.562907 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433500131.738806 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500133.423970 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500135.295999 observe: action "o:set_ticket_true" adapter() returned True. Reporting "o:set_ticket_true"
+1433500144.437661 observe: action "o:set_ticket_false" adapter() returned True. Reporting "o:set_ticket_false"
+1433500155.955009 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500162.596318 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433500167.563449 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500171.666301 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500173.201475 observe: action "o:board_closed" adapter() returned True. Reporting "o:board_closed"
+1433500174.906821 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500187.432830 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500188.961387 observe: action "o:share_dialog_open" adapter() returned True. Reporting "o:share_dialog_open"
+1433500196.506939 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500207.340936 observe: action "o:share_dialog_open" adapter() returned True. Reporting "o:share_dialog_open"
+1433500211.420235 observe: action "o:shared_dialog_open" adapter() returned True. Reporting "o:shared_dialog_open"
+1433500214.176705 observe: action "o:board_closed" adapter() returned True. Reporting "o:board_closed"
+1433500222.137150 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433500230.990931 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500234.625804 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500238.814373 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500242.348487 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500245.965086 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500251.500150 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500253.090245 observe: action "o:board_closed" adapter() returned True. Reporting "o:board_closed"
+1433500256.699491 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500261.056773 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433500265.350421 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433500270.882564 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433500277.482659 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500279.393948 observe: action "o:set_ticket_true" adapter() returned True. Reporting "o:set_ticket_true"
+1433500288.359308 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500291.978916 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500297.036204 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500298.799658 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500299.231804 observe: action "o:set_ticket_false" adapter() returned True. Reporting "o:set_ticket_false"
+1433500305.724025 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500307.651856 observe: action "o:set_ticket_true" adapter() returned True. Reporting "o:set_ticket_true"
+1433500320.417120 observe: action "o:share_dialog_open" adapter() returned True. Reporting "o:share_dialog_open"
+1433500326.738476 observe: action "o:share_dialog_open" adapter() returned True. Reporting "o:share_dialog_open"
+1433500331.055007 observe: action "o:share_dialog_open" adapter() returned True. Reporting "o:share_dialog_open"
+1433500348.892287 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500368.305468 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500371.338645 observe: action "o:board_closed" adapter() returned True. Reporting "o:board_closed"
+1433500376.424973 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500379.615846 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500380.048431 observe: action "o:set_ticket_false" adapter() returned True. Reporting "o:set_ticket_false"
+1433500386.053777 observe: action "o:set_ticket_true" adapter() returned True. Reporting "o:set_ticket_true"
+1433500400.855605 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500404.560816 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500406.312625 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500410.821396 observe: action "o:share_dialog_open" adapter() returned True. Reporting "o:share_dialog_open"
+1433500430.941546 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500432.717501 observe: action "o:shared_dialog_open" adapter() returned True. Reporting "o:shared_dialog_open"
+1433500455.627191 observe: action "o:shared_dialog_open" adapter() returned True. Reporting "o:shared_dialog_open"
+1433500460.499901 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500464.173119 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500465.931502 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500469.165497 observe: action "o:shared_dialog_open" adapter() returned True. Reporting "o:shared_dialog_open"
+1433500477.232439 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500481.364461 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500490.494423 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500495.598030 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500500.759642 observe: action "o:login_success" adapter() returned True. Reporting "o:login_success"
+1433500508.022332 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433500512.347206 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500512.781504 observe: action "o:set_ticket_false" adapter() returned True. Reporting "o:set_ticket_false"
+1433500530.417469 observe: action "o:share_dialog_open" adapter() returned True. Reporting "o:share_dialog_open"
+1433500533.216255 observe: action "o:share_dialog_open" adapter() returned True. Reporting "o:share_dialog_open"
+1433500537.456346 observe: action "o:board_closed" adapter() returned True. Reporting "o:board_closed"
+1433500539.326589 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500543.516554 observe: action "o:share_dialog_open" adapter() returned True. Reporting "o:share_dialog_open"
+1433500550.029298 observe: action "o:board_closed" adapter() returned True. Reporting "o:board_closed"
+1433500557.209902 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433500565.498357 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433500573.887954 observe: action "o:board_edit_closed_to_boardmenu" adapter() returned True. Reporting "o:board_edit_closed_to_boardmenu"
+1433500575.699882 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500577.693374 observe: action "o:set_ticket_true" adapter() returned True. Reporting "o:set_ticket_true"
+1433500586.250544 observe: action "o:board_closed" adapter() returned True. Reporting "o:board_closed"
+1433500588.203475 observe: action "o:board_opened" adapter() returned True. Reporting "o:board_opened"
+1433500593.561493 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500605.318008 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500617.978020 observe: action "o:board_edit_closed_to_board" adapter() returned True. Reporting "o:board_edit_closed_to_board"
+1433500619.351778 Exception <class 'selenium.common.exceptions.MoveTargetOutOfBoundsException'> in action29adapter: Message: Offset within element cannot be scrolled into view: (240, 884): [object HTMLDivElement]
 Stacktrace:
-    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10271)
-    at FirefoxDriver.prototype.findElement (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10280)
-    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
-    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
-    at DelayedCommand.prototype.execute/< (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
-1433482002.760290 Traceback (most recent call last):
+    at FirefoxDriver.prototype.mouseMoveTo (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/driver-component.js:10581)
+    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
+    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
+    at DelayedCommand.prototype.execute/< (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
+1433500619.352349 Traceback (most recent call last):
   File "/usr/lib/python2.7/dist-packages/aalmodel.py", line 84, in call
     return eval(func.func_code, self._variables)
-  File "boardmenu.aal", line 38, in adapter of action "i:click_delete_board"
-    test.deleteBoard()
-  File "/home/paviaani/Contriboard/fmbt_test/seleniumadapter.py", line 177, in deleteBoard
-    driver.find_element_by_xpath("//span[@class='fa fa-fw fa-trash']").click()
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 232, in find_element_by_xpath
-    return self.find_element(by=By.XPATH, value=xpath)
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 664, in find_element
-    {'using': by, 'value': value})['value']
+  File "board.aal", line 96, in adapter of action "i:move_ticket"
+    test.moveTicket()
+  File "/home/paviaani/Contriboard/fmbt_test/seleniumadapter.py", line 241, in moveTicket
+    AC(driver).click_and_hold(ticket).move_to_element_with_offset(board, xdest, ydest).release(ticket).perform()
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/common/action_chains.py", line 70, in perform
+    action()
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/common/action_chains.py", line 232, in <lambda>
+    'yoffset': int(yoffset)}))
   File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 175, in execute
     self.error_handler.check_response(response)
   File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/errorhandler.py", line 166, in check_response
     raise exception_class(message, screen, stacktrace)
-NoSuchElementException: Message: Unable to locate element: {"method":"xpath","selector":"//span[@class='fa fa-fw fa-trash']"}
+MoveTargetOutOfBoundsException: Message: Offset within element cannot be scrolled into view: (240, 884): [object HTMLDivElement]
 Stacktrace:
-    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10271)
-    at FirefoxDriver.prototype.findElement (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10280)
-    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
-    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
-    at DelayedCommand.prototype.execute/< (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
+    at FirefoxDriver.prototype.mouseMoveTo (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/driver-component.js:10581)
+    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
+    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
+    at DelayedCommand.prototype.execute/< (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
 
-1433482002.760831 Error at adapter() of "i:click_delete_board": NoSuchElementException: Message: Unable to locate element: {"method":"xpath","selector":"//span[@class='fa fa-fw fa-trash']"}
+1433500619.352850 Error at adapter() of "i:move_ticket": MoveTargetOutOfBoundsException: Message: Offset within element cannot be scrolled into view: (240, 884): [object HTMLDivElement]
 Stacktrace:
-    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10271)
-    at FirefoxDriver.prototype.findElement (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10280)
-    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
-    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
-    at DelayedCommand.prototype.execute/< (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
+    at FirefoxDriver.prototype.mouseMoveTo (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/driver-component.js:10581)
+    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
+    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
+    at DelayedCommand.prototype.execute/< (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
 Traceback (most recent call last):
-  File "boardmenu.aal", line 38, in adapter of action "i:click_delete_board"
-    test.deleteBoard()
-  File "/home/paviaani/Contriboard/fmbt_test/seleniumadapter.py", line 177, in deleteBoard
-    driver.find_element_by_xpath("//span[@class='fa fa-fw fa-trash']").click()
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 232, in find_element_by_xpath
-    return self.find_element(by=By.XPATH, value=xpath)
-  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 664, in find_element
-    {'using': by, 'value': value})['value']
+  File "board.aal", line 96, in adapter of action "i:move_ticket"
+    test.moveTicket()
+  File "/home/paviaani/Contriboard/fmbt_test/seleniumadapter.py", line 241, in moveTicket
+    AC(driver).click_and_hold(ticket).move_to_element_with_offset(board, xdest, ydest).release(ticket).perform()
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/common/action_chains.py", line 70, in perform
+    action()
+  File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/common/action_chains.py", line 232, in <lambda>
+    'yoffset': int(yoffset)}))
   File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/webdriver.py", line 175, in execute
     self.error_handler.check_response(response)
   File "/usr/local/lib/python2.7/dist-packages/selenium/webdriver/remote/errorhandler.py", line 166, in check_response
     raise exception_class(message, screen, stacktrace)
 
-1433482002.760865 remote_pyaal error: Message: Unable to locate element: {"method":"xpath","selector":"//span[@class='fa fa-fw fa-trash']"}
+1433500619.352884 remote_pyaal error: Message: Offset within element cannot be scrolled into view: (240, 884): [object HTMLDivElement]
 Stacktrace:
-    at FirefoxDriver.prototype.findElementInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10271)
-    at FirefoxDriver.prototype.findElement (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/driver-component.js:10280)
-    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
-    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
-    at DelayedCommand.prototype.execute/< (file:///tmp/tmp_yJSRr/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
+    at FirefoxDriver.prototype.mouseMoveTo (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/driver-component.js:10581)
+    at DelayedCommand.prototype.executeInternal_/h (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12274)
+    at DelayedCommand.prototype.executeInternal_ (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12279)
+    at DelayedCommand.prototype.execute/< (file:///tmp/tmpizjHOe/extensions/fxdriver@googlecode.com/components/command-processor.js:12221)
 
-1433482002.761002 quitting
+1433500619.353113 quitting

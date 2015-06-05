@@ -24,6 +24,7 @@ tag "board" {
     }
 
     input "edit_ticket" {
+    guard { return is_ticket }
     adapter {
     	test.editTicket()
     	test.wait()
@@ -70,7 +71,8 @@ tag "board" {
     	test.wait()
     }
     body {
-    	state = "share_dialog"
+        try_open_share = True
+    	state = "try_open_share"
     }
     }
 
@@ -89,11 +91,35 @@ tag "board" {
     }
 
     input "move_ticket" {
+    guard { return is_ticket }
     adapter {
         test.moveTicket()
         test.wait()
     }
     }
+
+output "set_ticket_true" {
+    guard    { return state == "board" and is_ticket == False }
+    adapter {
+        if state == "board" and is_ticket == False and test.checkTicket():
+            is_ticket = True
+            return True
+    }
+    body {
+        is_ticket = True
+    }
+}
+output "set_ticket_false" {
+    guard    { return state == "board" and is_ticket == True }
+    adapter {
+        if state == "board" and is_ticket == True and test.checkTicket() == False:
+            is_ticket = False
+            return True
+    }
+    body {
+        is_ticket = False
+    }
+}
 
 }
 
@@ -123,4 +149,32 @@ tag "try_close_board" {
 	state = "board"
 	}
 	}
+}
+
+tag "try_open_share" {
+    guard { return state == "try_open_share"}
+    output "share_dialog_open" {
+    guard { return state == "try_open_share" and try_open_share == True }
+    adapter {
+    if state == "try_open_share" and try_open_share == True and test.checkState("share_dialog"):
+            try_open_share = False
+            state = "share_dialog"
+            return True
+    }
+    body {
+    state = "share_dialog"
+    }
+    }
+    output "shared_dialog_open" {
+    guard { return state == "try_open_share" and try_open_share == True}
+    adapter {
+    if state == "try_open_share" and try_open_share == True and test.checkState("shared_dialog"):
+            try_open_share = False
+            state = "shared_dialog"
+            return True
+    }
+    body {
+    state = "shared_dialog"
+    }
+    }
 }

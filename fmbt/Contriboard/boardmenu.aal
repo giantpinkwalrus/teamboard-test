@@ -24,6 +24,7 @@ tag "boardmenu" {
     }
 
     input "click_edit_board" {
+    guard { return is_board }
     adapter{
     	test.editBoard()
     	test.wait()
@@ -34,6 +35,7 @@ tag "boardmenu" {
     }
 
     input "click_delete_board" {
+    guard { return is_board }
     adapter{
     	test.deleteBoard()
     	test.wait()
@@ -44,6 +46,7 @@ tag "boardmenu" {
     }
 
     input "click_open_board" {
+    guard { return is_board }
     adapter{
     	test.openBoard()
     	test.wait()
@@ -53,6 +56,29 @@ tag "boardmenu" {
     	try_open_board = True
     }
     }
+
+output "set_board_true" {
+    guard    { return state == "boardmenu" and is_board == False }
+    adapter {
+        if state == "boardmenu" and is_board == False and test.checkBoard():
+            is_board = True
+            return True
+    }
+    body {
+        is_board = True
+    }
+}
+output "set_board_false" {
+    guard    { return state == "boardmenu" and is_board == True }
+    adapter {
+        if state == "boardmenu" and is_board == True and test.checkBoard() == False:
+            is_board = False
+            return True
+    }
+    body {
+        is_board = False
+    }
+}
 
 }
 

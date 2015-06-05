@@ -7,7 +7,7 @@ tag "share_dialog" {
 	input "click_done_share" {
 	adapter {
 	test.clickDoneShare()
-	wait()
+	test.wait()
 	}
 	body {
 	state = "board"
@@ -17,7 +17,10 @@ tag "share_dialog" {
 	input "click_share" {
 	adapter {
 	test.clickShare()
-	wait()
+	test.wait()
+	}
+	body {
+	state = "shared_dialog"
 	}
 	}
 }
