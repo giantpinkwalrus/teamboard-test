@@ -3,9 +3,9 @@ Contriboard testing with free model-based testing tool (fMBT)
 Required software:
 fMBT (https://01.org/fmbt)
 Python (2.7)
-Selenium (2.0)
+Selenium
 
-Test model for Teamboard is located in folder Teamboard.
+Test model for Contriboard.
 
 Tests can be run using command
 
