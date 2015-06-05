@@ -8,15 +8,16 @@ ${Browser}        firefox
 ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
-${SERVER}         sut-cb.n4sjamk.org
-#${SERVER}        localhost:8000
+#${SERVER}        sut-cb.n4sjamk.org
+${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
 ${RegUrl}         http://${SERVER}/register
 ${LoginTitle}     Contriboard
-${custombackground}    http://tinyurl.com/pevhhv7
-${custombackground2}    http://tinyurl.com/khpx9d8
+#${custombackground}    http://tinyurl.com/pevhhv7
+#${custombackground2}    http://tinyurl.com/khpx9d8
+${custombackground}    http://tinyurl.com/o7ae8la
 
 *** Keywords ***
 Register User
@@ -42,6 +43,11 @@ Login User
     Submit Credentials
     Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
+
+Use Tutorial
+    Wait Until Page Contains Element    //html/body/div/div/nav/div[1]/span
+    Click Element    //html/body/div/div/nav/div[1]/span
+    Click Element    //html/body/div[1]/div/nav/div[1]/span
 
 New Board
     Click Element    //span[@class='fa fa-fw fa-plus']
@@ -104,6 +110,21 @@ Custom Background
     Element Should Be Visible    //input[@type='url']
     Input Text    //input[@placeholder='URL']    ${custombackground}
     Click Element    //button[@class='btn-primary']
+    ${checkcustom}    Get Element Attribute    //div[@class='board']@style
+    ${image}    Fetch From Right    ${checkcustom}    x);
+    Set Test Variable    ${customcheck}    ${SPACE}background-image: url("${custombackground}");
+    Run Keyword If    '${image}'=='${customcheck}'    Check Custom Background Empty
+    Run Keyword If    '${image}'!='${customcheck}'    Check Custom Background
+
+Set Custom Background
+    Click Element    //html/body/div[2]/div/form/section[2]/div[2]/div/select
+    Press Key    //html/body/div[2]/div/form/section[2]/div[2]/div/select    \\10
+    Press Key    //html/body/div[2]/div/form/section[2]/div[2]/div/select    \\40
+    Click Element    //html/body/div[2]/div/form/section[2]
+    Wait Until Page Contains Element    //html/body/div[2]/div/form/section[2]/div[2]/div[2]/input
+    Input Text    //html/body/div[2]/div/form/section[2]/div[2]/div[2]/input    ${custombackground}
+    Click Button    //html/body/div[2]/div/form/section[3]/button
+    #Check
     ${checkcustom}    Get Element Attribute    //div[@class='board']@style
     ${image}    Fetch From Right    ${checkcustom}    x);
     Set Test Variable    ${customcheck}    ${SPACE}background-image: url("${custombackground}");
