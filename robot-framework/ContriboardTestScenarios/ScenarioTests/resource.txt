@@ -321,11 +321,11 @@ Click Globe Off
 
 Click Profile
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
 
 Close Profile
     Click Element    //span[@class='fa fa-fw fa-user']
-    Element Should Not Be Visible    //ul[@class='dropdown']    error=Dropdown not closed
+    Element Should Not Be Visible    //ul[@class='dropdown undefined']    error=Dropdown not closed
 
 Click Feedback
     Click Element    //div[@class='user-voice-trigger']
@@ -338,7 +338,7 @@ Click Feedback
 
 Send Feedback
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
     Click Element    //div[@class='user-voice-trigger']
     Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
     Wait Until Element Is Visible    //article[@class='widget large-widget']    timeout=2    error=Widget Not Open
