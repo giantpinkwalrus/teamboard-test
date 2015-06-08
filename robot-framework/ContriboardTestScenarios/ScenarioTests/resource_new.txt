@@ -47,6 +47,16 @@ Login User
 Use Tutorial
     Wait Until Page Contains Element    //html/body/div/div/nav/div[1]/span
     Click Element    //html/body/div/div/nav/div[1]/span
+    #Check
+    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[1]/div/div
+    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[2]/button
+    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[2]/div/div/img[2]
+    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[3]/button
+    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[3]/div/div/img
+    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[4]/button
+    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[4]/div/div/img
+    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[5]/button
+    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[5]/div/div/img
     Click Element    //html/body/div[1]/div/nav/div[1]/span
 
 New Board
