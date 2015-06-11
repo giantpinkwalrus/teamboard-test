@@ -13,7 +13,8 @@ from selenium.webdriver.common.keys import Keys
 
 driver = webdriver.Firefox(firefox_profile=None)
 
-url = 'localhost:8000'
+url = 'sut-cb.n4sjamk.org'
+#url = 'localhost:8000'
 driver.get(url)
 
 #globals
