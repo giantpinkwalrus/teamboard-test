@@ -4,7 +4,7 @@
 ##
 aal "login" {
     language "python" {
-    	import seleniumadapter as test
+    	from adapters import seleniumadapter as test
     }
     variables { state, logged, registered, try_login, try_register, try_open_board, try_close_board, try_close_board_edit, is_ticket, is_board, try_open_share }
     initial_state {

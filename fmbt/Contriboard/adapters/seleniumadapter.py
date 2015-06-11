@@ -8,8 +8,10 @@ from selenium.webdriver import ActionChains as AC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.keys import Keys
 
-driver = webdriver.Firefox()
+driver = webdriver.Firefox(firefox_profile=None)
 
 url = 'localhost:8000'
 driver.get(url)
@@ -27,7 +29,7 @@ timeoutTime = 2.0
 email = "testbaboon@test.com"
 password = "t3stmonkey"
 
-account = (email)+(password)
+custombackground = "http://bit.ly/1cMN0rG"
 
 stateAssets = {
 	"login" 	: ["//input[@value='Login']"],
@@ -58,6 +60,7 @@ def wipeScreens():
         os.unlink (f)
 
 def init():
+	driver.set_window_size(1920, 1200)
 	driver.maximize_window()
 
 def reinitDriver():
@@ -65,6 +68,7 @@ def reinitDriver():
 	driver.quit()
 	driver = webdriver.Firefox()
 	driver.get(url)
+	driver.set_window_size(1920, 1200)
 	driver.maximize_window()
 
 def cleanup():
@@ -94,9 +98,6 @@ def checkAlert():
 def confirmAlert():
 		if checkAlert():
 				Alert(driver).accept()
-
-def getAccount():
-	return account
 
 def wait(time=pollTime):
 	sleep(time)
@@ -171,19 +172,22 @@ def createBoard():
 def editBoard():
 	rs()
 	if isElement("//span[@class='fa fa-fw fa-pencil']"):
-		driver.find_element_by_xpath("//span[@class='fa fa-fw fa-pencil']").click()
+		editboards = driver.find_elements_by_xpath("//span[@class='fa fa-fw fa-pencil']")
+		random.choice(editboards).click()
 		wait()
 
 def deleteBoard():
 	rs()
 	if isElement("//span[@class='fa fa-fw fa-trash']"):
-		driver.find_element_by_xpath("//span[@class='fa fa-fw fa-trash']").click()
+		trashboards = driver.find_elements_by_xpath("//span[@class='fa fa-fw fa-trash']")
+		random.choice(trashboards).click()
 		wait()
 
 def openBoard():
 	rs()
 	if isElement("//div[@class='minimap']"):
-		driver.find_element_by_xpath("//div[@class='minimap']").click()
+		boards = driver.find_elements_by_xpath("//div[@class='minimap']")
+		random.choice(boards).click()
 		wait()
 
 #board
@@ -197,7 +201,8 @@ def createTicket():
 def editTicket():
 	rs()
 	if isElement("//div[@class='ticket']"):
-		ticket = driver.find_element_by_xpath("//div[@class='ticket']")
+		tickets = driver.find_elements_by_xpath("//div[@class='ticket']")
+		ticket = random.choice(tickets)
 		AC(driver).double_click(ticket).perform()
 		wait()
 
@@ -233,13 +238,17 @@ def clickGlobe():
 
 def moveTicket():
 	rs()
-	if isElement("//div[@class='ticket']"):
-		board = driver.find_element_by_xpath("//div[@class='board']")	
-		ticket = driver.find_element_by_xpath("//div[@class='ticket']")
-		xdest = random.randint(0, board.size.get('width') - ticket.size.get('width'))
-		ydest = random.randint(0, board.size.get('height') - ticket.size.get('height'))
-		AC(driver).click_and_hold(ticket).move_to_element_with_offset(board, xdest, ydest).release(ticket).perform()
-		wait()
+	tickets = driver.find_elements_by_xpath("//div[@class='ticket']")
+		
+	if len(tickets)<1:
+		return
+	ticket = random.choice(tickets)
+
+	board = driver.find_element_by_xpath("//div[@class='board']")
+	xdest = random.randint(0, board.size.get('width') - ticket.size.get('width'))
+	ydest = random.randint(0, board.size.get('height') - ticket.size.get('height'))
+	AC(driver).click_and_hold(ticket).move_to_element_with_offset(board, xdest, ydest).release(ticket).perform()
+	wait()
 
 #boardedit
 
@@ -250,23 +259,92 @@ def clickDone():
 
 def typeBoardName():
 	rs()
-	driver.find_element_by_xpath("//input[@placeholder='Board Name']").send_keys("boardname")
+	driver.find_element_by_xpath("//input[@placeholder='Board Name']").clear()
+	driver.find_element_by_xpath("//input[@placeholder='Board Name']").send_keys("Boardname")
 	wait()
 
-def typeWidth():
+def increaseWidth():
 	rs()
-	driver.find_element_by_xpath("//input[@placeholder='Board Width']").send_keys("10")
+	width = driver.find_element_by_xpath("//input[@placeholder='Board Width']").get_attribute("value")
+	if width < 10:
+		driver.find_element_by_xpath("//input[@placeholder='Board Width']").send_keys(Keys.ARROW_UP)
+		wait()
+
+def increaseHeight():
+	rs()
+	height = driver.find_element_by_xpath("//input[@placeholder='Board Height']").get_attribute("value")
+	if height < 10:
+		driver.find_element_by_xpath("//input[@placeholder='Board Height']").send_keys(Keys.ARROW_UP)
+		wait()
+
+def decreaseWidth():
+	rs()
+	width = driver.find_element_by_xpath("//input[@placeholder='Board Width']").get_attribute("value")
+	if width > 1:
+		driver.find_element_by_xpath("//input[@placeholder='Board Width']").send_keys(Keys.ARROW_DOWN)
+		wait()
+
+def decreaseHeight():
+	rs()
+	height = driver.find_element_by_xpath("//input[@placeholder='Board Height']").get_attribute("value")
+	if height > 1:
+		driver.find_element_by_xpath("//input[@placeholder='Board Height']").send_keys(Keys.ARROW_DOWN)
+		wait()
+
+def selectEmptyBackground():
+	rs()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("NONE")
 	wait()
 
-def typeHeight():
+def selectCustomBackground():
 	rs()
-	driver.find_element_by_xpath("//input[@placeholder='Board Height']").send_keys("10")
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("CUSTOM")
+	driver.find_element_by_xpath("//input[@placeholder='URL']").clear()
+	driver.find_element_by_xpath("//input[@placeholder='URL']").send_keys(custombackground)
 	wait()
 
-def selectBackground():
+def selectPlayBackground():
 	rs()
-	driver.find_element_by_xpath("//select").click()
-	driver.find_element_by_xpath("//option[@value='KANBAN']").click
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("PLAY")
+	wait()
+
+def selectSwotBackground():
+	rs()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("SWOT")
+	wait()
+
+def selectScrumBackground():
+	rs()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("SCRUM")
+	wait()
+
+def selectKanbanBackground():
+	rs()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("KANBAN")
+	wait()
+
+def selectKeendroptryBackground():
+	rs()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("KEEP_DROP_TRY")
+	wait()
+
+def selectCustomerjourneymapBackground():
+	rs()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("CUSTOMER_JOURNEY_MAP")
+	wait()
+
+def selectBusinessmodelcanvasBackground():
+	rs()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("BUSINESS_MODEL_CANVAS")
 	wait()
 
 #deleteboard
@@ -295,8 +373,8 @@ def clickExport():
 
 def selectExport():
 	rs()
-	driver.find_element_by_xpath("//select").click()
-	driver.find_element_by_xpath("//option[@value='json']").click()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("json")
 	wait()
 
 #share

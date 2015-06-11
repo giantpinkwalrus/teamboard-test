@@ -22,26 +22,97 @@ tag "board_edit_dialog" {
 	}
 	}
 
-	input "type_board_width" {
+	input "increase_board_width" {
 	adapter {
-	test.typeWidth()
+	test.increaseWidth()
 	test.wait()
 	}
 	}
 
-	input "type_board_height" {
+	input "increase_board_height" {
 	adapter {
-	test.typeHeight()
+	test.increaseHeight()
 	test.wait()
 	}
 	}
 
-	input "select_background" {
+	input "decrease_board_width" {
 	adapter {
-	test.selectBackground()
+	test.decreaseWidth()
 	test.wait()
 	}
 	}
+
+	input "decrease_board_height" {
+	adapter {
+	test.decreaseHeight()
+	test.wait()
+	}
+	}
+
+	input "select_empty_background" {
+	adapter {
+	test.selectEmptyBackground()
+	test.wait()
+	}
+	}
+
+	input "select_custom_background" {
+	adapter {
+	test.selectCustomBackground()
+	test.wait()
+	}
+	}
+
+	input "select_play_background" {
+	adapter {
+	test.selectPlayBackground()
+	test.wait()
+	}
+	}
+
+	input "select_swot_background" {
+	adapter {
+	test.selectSwotBackground()
+	test.wait()
+	}
+	}
+
+	input "select_scrum_background" {
+	adapter {
+	test.selectScrumBackground()
+	test.wait()
+	}
+	}
+
+	input "select_kanban_background" {
+	adapter {
+	test.selectKanbanBackground()
+	test.wait()
+	}
+	}
+
+	input "select_keepdroptry_background" {
+	adapter {
+	test.selectKeendroptryBackground()
+	test.wait()
+	}
+	}
+
+	input "select_customerjourneymap_background" {
+	adapter {
+	test.selectCustomerjourneymapBackground()
+	test.wait()
+	}
+	}
+
+	input "select_businessmodelcanvas_background" {
+	adapter {
+	test.selectBusinessmodelcanvasBackground()
+	test.wait()
+	}
+	}
+
 }
 
 tag "try_close_board_edit" {
