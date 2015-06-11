@@ -371,6 +371,12 @@ def cancelDelete():
 def clickDoneExport():
 	rs()
 	driver.find_element_by_xpath("//button[@class='btn-primary']").click()
+	for csv in glob ("/home/*/Downloads/board*.csv"):
+		os.remove(csv)
+	for txt in glob ("/home/*/Downloads/board*.txt"):
+		os.remove(txt)
+	for json in glob ("/home/*/Downloads/board*.json"):
+		os.remove(json)
 	wait()
 
 def clickExport():
@@ -378,10 +384,28 @@ def clickExport():
 	driver.find_element_by_xpath("//a[@class='btn btn-secondary']").click()
 	wait()
 
-def selectExport():
+def selectCsvExport():
+	rs()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("csv")
+	wait()
+
+def selectJsonExport():
 	rs()
 	select = Select(driver.find_element_by_xpath("//select"))
 	select.select_by_value("json")
+	wait()
+
+def selectPlaintextExport():
+	rs()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("plaintext")
+	wait()
+
+def selectImageExport():
+	rs()
+	select = Select(driver.find_element_by_xpath("//select"))
+	select.select_by_value("image")
 	wait()
 
 #share

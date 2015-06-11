@@ -21,10 +21,32 @@ tag "export_dialog" {
 	}
 	}
 
-	input "select_export" {
+	input "select_csv_export" {
 	adapter {
-	test.selectExport()
+	test.selectCsvExport()
 	test.wait()
 	}
 	}
+
+	input "select_json_export" {
+	adapter {
+	test.selectJsonExport()
+	test.wait()
+	}
+	}
+
+	input "select_plaintext_export" {
+	adapter {
+	test.selectPlaintextExport()
+	test.wait()
+	}
+	}
+
+	input "select_image_export" {
+	adapter {
+	test.selectImageExport()
+	test.wait()
+	}
+	}
+
 }
