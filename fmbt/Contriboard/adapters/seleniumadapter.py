@@ -11,7 +11,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 
-driver = webdriver.Firefox(firefox_profile=None)
+fp = webdriver.FirefoxProfile()
+
+fp.set_preference("browser.download.manager.showWhenStarting",False)
+fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain, text/csv, application/octet-stream, text/json, application/vnd.ms-excel, text/comma-separated-values")
+
+
+driver = webdriver.Firefox(firefox_profile=fp)
 
 url = 'sut-cb.n4sjamk.org'
 #url = 'localhost:8000'
@@ -427,6 +433,7 @@ def clickYellow():
 
 def typeTicket():
 	rs()
+	driver.find_element_by_xpath("//textarea").clear()
 	driver.find_element_by_xpath("//textarea").send_keys("ticket")
 	wait()
 
