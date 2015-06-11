@@ -19,7 +19,7 @@ fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain, text/cs
 
 driver = webdriver.Firefox(firefox_profile=fp)
 
-url = 'sut-cb.n4sjamk.org'
+url = 'http://sut-cb.n4sjamk.org'
 #url = 'localhost:8000'
 driver.get(url)
 
