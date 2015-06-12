@@ -6,6 +6,7 @@ tag "register"{
     adapter {
     	test.typeRegisterEmail()
     	test.typeRegisterPassword()
+    	test.typePasswordAgain()
     	test.wait()
     }
     body {
