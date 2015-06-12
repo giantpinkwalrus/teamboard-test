@@ -19,8 +19,8 @@ fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain, text/cs
 
 driver = webdriver.Firefox(firefox_profile=fp)
 
-url = 'http://sut-cb.n4sjamk.org'
-#url = 'localhost:8000'
+#url = 'http://sut-cb.n4sjamk.org'
+url = 'localhost:8000'
 driver.get(url)
 
 #globals
@@ -136,6 +136,7 @@ def clickCreateAccount():
 
 def typeEmail():
 	rs()
+	driver.find_element_by_xpath("//input[@type='email']").clear()
 	driver.find_element_by_xpath("//input[@type='email']").send_keys(email)
 
 def typePassword():
@@ -155,13 +156,17 @@ def clickLoginAccount():
 	wait()
 
 def typeRegisterEmail():
-
 	rs()
+	driver.find_element_by_xpath("//input[@type='email']").clear()
 	driver.find_element_by_xpath("//input[@type='email']").send_keys(email)
 
 def typeRegisterPassword():
 	rs()
 	driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
+
+def typePasswordAgain():
+	rs()
+	driver.find_element_by_xpath("//input[@name='passwordAgain']").send_keys(password)
 
 #boardmenu
 
