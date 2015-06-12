@@ -92,20 +92,6 @@ def isElement(xpath):
 	except:
 		return False
 
-def checkAlert():
-	try:
-		WebDriverWait(driver,pollTime).until(EC.alert_is_present())
-		if Ec.alert_is_present() == False:
-			return False
-		else:
-			return True
-	except:
-		return False
-
-def confirmAlert():
-		if checkAlert():
-				Alert(driver).accept()
-
 def wait(time=pollTime):
 	sleep(time)
 
@@ -115,9 +101,6 @@ def homePage():
 
 def refreshPage():
 	driver.refresh()
-
-def clearText():
-	return
 
 def resetCursor():
 	return
@@ -260,6 +243,11 @@ def moveTicket():
 	xdest = random.randint(0, board.size.get('width') - ticket.size.get('width'))
 	ydest = random.randint(0, board.size.get('height') - ticket.size.get('height'))
 	AC(driver).click_and_hold(ticket).move_to_element_with_offset(board, xdest, ydest).release(ticket).perform()
+	wait()
+
+def openHelp():
+	rs()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-info']").click()
 	wait()
 
 #boardedit
@@ -474,6 +462,19 @@ def deleteTicket():
 def ticketDone():
 	rs()
 	driver.find_element_by_xpath("//button[@class='btn-primary']").click()
+	wait()
+
+# help
+
+def changeSlide():
+	rs()
+	slides = driver.find_elements_by_xpath("//button")
+	random.choice(slides).click()
+	wait()
+
+def clickCloseHelp():
+	rs()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-times']").click()
 	wait()
 
 # checks
