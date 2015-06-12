@@ -31,6 +31,9 @@ John Changes Custom Background
     Click Edit Board From Board
     Set Custom Background
 
+John Exports Board as Image
+    Export Board Image
+
 Close
     [Tags]    sc6
     Close Browser

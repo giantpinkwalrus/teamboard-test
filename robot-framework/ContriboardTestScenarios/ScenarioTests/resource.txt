@@ -31,10 +31,11 @@ Register User
     [Arguments]    ${NewUser}    ${NewPassword}
     Element Text Should Be    //button[@class='btn-secondary']    Register    error=Register button missing
     Click Button    //button[@class='btn-secondary']
-    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Form not found
+    Wait Until Page Contains Element    //html/body/div/div/div[2]/form/section[3]/input    timeout=2    error=Input not found
     Location Should Be    ${RegUrl}
     Input Text    //input[@type='email']    ${NewUser}
     Input Password    //input[@type='password']    ${NewPassword}
+    Input Password    //input[@name='passwordAgain']    ${NewPassword}
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
     Should Be Equal    ${check}    Register    error=Register button missing
     Click Button    //input[@class='btn-primary']

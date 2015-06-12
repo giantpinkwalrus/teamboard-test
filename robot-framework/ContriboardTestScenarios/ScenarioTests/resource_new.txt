@@ -24,13 +24,14 @@ Register User
     [Arguments]    ${NewUser}    ${NewPassword}
     Element Text Should Be    //button[@class='btn-secondary']    Register    error=Register button missing
     Click Button    //button[@class='btn-secondary']
-    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Form not found
+    Wait Until Page Contains Element    //html/body/div/div/div[2]/form/section[3]/input    timeout=2    error=Input not found
     Location Should Be    ${RegUrl}
-    Input Username    ${NewUser}
-    Input User Password    ${NewPassword}
+    Input Text    //input[@type='email']    ${NewUser}
+    Input Password    //input[@type='password']    ${NewPassword}
+    Input Password    //input[@name='passwordAgain']    ${NewPassword}
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
     Should Be Equal    ${check}    Register    error=Register button missing
-    Submit Credentials
+    Click Button    //input[@class='btn-primary']
     Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
@@ -43,6 +44,14 @@ Login User
     Submit Credentials
     Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
+
+Go to Register Page and Back to Login Page
+    Element Text Should Be    //button[@class='btn-secondary']    Register    error=Register button missing
+    Click Button    //button[@class='btn-secondary']
+    Wait Until Page Contains Element    //html/body/div/div/div[2]/form/section[3]/input    timeout=2    error=Input not found
+    Location Should Be    ${RegUrl}
+    Click Button    //input[@class='btn-secondary']
+    Element Text Should Be    //button[@class='btn-primary']    Login    error=Login button missing
 
 Use Tutorial
     Wait Until Page Contains Element    //html/body/div/div/nav/div[1]/span
@@ -545,7 +554,7 @@ Get Ticket Color
 Get Export
     [Arguments]    ${min}=0    ${max}=2
     ${int}    Evaluate    random.randint(${min}, ${max})    random
-    ${list}    Create List    csv    json    plaintext
+    ${list}    Create List    csv    json    plaintext    image
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    \${export}    ${EMPTY}
     Set Test Variable    ${export}    ${item}
