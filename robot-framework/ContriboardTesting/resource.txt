@@ -29,6 +29,7 @@ Register User
     Location Should Be    ${RegUrl}
     Input Username    ${NewUser}
     Input User Password    ${NewPassword}
+    Input User Password Again    ${NewPassword}
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
     Should Be Equal    ${check}    Register    error=Register button missing
     Submit Credentials
@@ -356,6 +357,10 @@ Input Username
 Input User Password
     [Arguments]    ${password}
     Input Password    //input[@type='password']    ${password}
+
+Input User Password Again
+    [Arguments]     ${password}
+    Input Password    //input[@name='passwordAgain']    ${password}
 
 Submit Credentials
     Click Button    //input[@class='btn-primary']
