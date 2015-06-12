@@ -1,0 +1,26 @@
+tag "share_dialog" {
+	guard { return state == "share_dialog" }
+	adapter {
+	test.wait()
+	}
+
+	input "click_done_share" {
+	adapter {
+	test.clickDoneShare()
+	test.wait()
+	}
+	body {
+	state = "board"
+	}
+	}
+
+	input "click_share" {
+	adapter {
+	test.clickShare()
+	test.wait()
+	}
+	body {
+	state = "shared_dialog"
+	}
+	}
+}

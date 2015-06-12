@@ -1,0 +1,109 @@
+tag "boardmenu" {
+	guard { return state == "boardmenu" }   
+    adapter {
+        test.wait()
+    }
+
+    input "click_logout" {
+    adapter {
+    	test.clickLogout()
+    	test.wait()
+   	}
+    body {
+    	registered = True
+    	try_login = False
+    	state = "login"
+    }
+    }
+
+    input "click_create_board" {
+    adapter{
+    	test.createBoard()
+    	test.wait()
+    }
+    }
+
+    input "click_edit_board" {
+    guard { return is_board }
+    adapter{
+    	test.editBoard()
+    	test.wait()
+    }
+    body {
+    	state = "board_edit_dialog"
+    }
+    }
+
+    input "click_delete_board" {
+    guard { return is_board }
+    adapter{
+    	test.deleteBoard()
+    	test.wait()
+    }
+    body {
+        state = "board_delete_dialog"
+    }
+    }
+
+    input "click_open_board" {
+    guard { return is_board }
+    adapter{
+    	test.openBoard()
+    	test.wait()
+    }
+    body {
+    	state = "try_open_board"
+    	try_open_board = True
+    }
+    }
+
+output "set_board_true" {
+    guard    { return state == "boardmenu" and is_board == False }
+    adapter {
+        if state == "boardmenu" and is_board == False and test.checkBoard():
+            is_board = True
+            return True
+    }
+    body {
+        is_board = True
+    }
+}
+output "set_board_false" {
+    guard    { return state == "boardmenu" and is_board == True }
+    adapter {
+        if state == "boardmenu" and is_board == True and test.checkBoard() == False:
+            is_board = False
+            return True
+    }
+    body {
+        is_board = False
+    }
+}
+
+}
+
+tag "try_open_board" {
+	guard { return state == "try_open_board"}
+	output "board_opened" {
+	guard { return state == "try_open_board" and try_open_board == True }
+	adapter {
+	if state == "try_open_board" and try_open_board == True and test.checkState("board"):
+			try_open_board = False
+			return True
+	}
+	body {
+	state = "board"
+	}
+	}
+	output "board_not_opened" {
+	guard { return state == "try_open_board" and try_open_board == True}
+	adapter {
+	if state == "try_open_board" and try_open_board == True and test.checkState("boardmenu"):
+			try_open_board = False
+			return True
+	}
+	body {
+	state = "boardmenu"
+	}
+	}
+}

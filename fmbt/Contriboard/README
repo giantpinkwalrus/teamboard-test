@@ -1,0 +1,14 @@
+Contriboard testing with free model-based testing tool (fMBT)
+
+Required software:
+fMBT (https://01.org/fmbt)
+Python (2.7)
+Selenium
+
+Test model for Contriboard.
+
+Tests can be run using command
+
+    fmbt <conffile>.conf
+    
+where <conffile> is replaced with the one located in the test model's folder.

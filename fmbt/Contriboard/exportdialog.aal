@@ -1,0 +1,52 @@
+tag "export_dialog" {
+	guard { return state == "export_dialog" }
+	adapter {
+	test.wait()
+	}
+
+	input "click_done_export" {
+	adapter {
+	test.clickDoneExport()
+	test.wait()
+	}
+	body {
+	state = "board"
+	}
+	}
+
+	input "click_export" {
+	adapter {
+	test.clickExport()
+	test.wait()
+	}
+	}
+
+	input "select_csv_export" {
+	adapter {
+	test.selectCsvExport()
+	test.wait()
+	}
+	}
+
+	input "select_json_export" {
+	adapter {
+	test.selectJsonExport()
+	test.wait()
+	}
+	}
+
+	input "select_plaintext_export" {
+	adapter {
+	test.selectPlaintextExport()
+	test.wait()
+	}
+	}
+
+	input "select_image_export" {
+	adapter {
+	test.selectImageExport()
+	test.wait()
+	}
+	}
+
+}

@@ -1,0 +1,53 @@
+##
+# preview-show-vars: state
+# preview-depth: 100
+##
+aal "login" {
+    language "python" {
+    	from adapters import seleniumadapter as test
+    }
+    variables { state, logged, registered, try_login, try_register, try_open_board, try_close_board, try_close_board_edit, is_ticket, is_board, try_open_share }
+    initial_state {
+        state = "login"
+        logged = False
+        registered = False
+        try_login = False
+        try_register = False
+        is_ticket = False
+        is_board = False
+    }
+
+adapter_init {
+    test.init()
+    test.wait(1.0)
+}
+
+adapter_exit {
+	test.cleanup()
+}
+
+^include "login.aal"
+^include "register.aal"
+^include "boardmenu.aal"
+^include "board.aal"
+^include "boardeditdialog.aal"
+^include "boarddeletedialog.aal"
+^include "sharedialog.aal"
+^include "shareddialog.aal"
+^include "exportdialog.aal"
+^include "ticketeditdialog.aal"
+
+tag "timeout_error" {
+    guard { return state == "timeout" }
+    adapter {
+    print '\033[91m' + "        <error>Error: state change timed out.</error>" + '\033[0m'
+    }
+}
+
+tag "state_error" {
+    guard { return state == "undetermined" }
+    adapter {
+        print '\033[91m' +"        <error>Error: undetermined state (lag?).</error>" + '\033[0m'
+    }
+}
+}

@@ -1,0 +1,144 @@
+tag "board_edit_dialog" {
+	guard { return state == "board_edit_dialog" }
+	adapter {
+	test.wait()
+	}
+
+	input "click_done" {
+	adapter {
+	test.clickDone()
+	test.wait()
+	}
+	body {
+	try_close_board_edit = True
+	state = "try_close_board_edit" 	
+	}
+	}
+
+	input "type_board_name" {
+	adapter {
+	test.typeBoardName()
+	test.wait()
+	}
+	}
+
+	input "increase_board_width" {
+	adapter {
+	test.increaseWidth()
+	test.wait()
+	}
+	}
+
+	input "increase_board_height" {
+	adapter {
+	test.increaseHeight()
+	test.wait()
+	}
+	}
+
+	input "decrease_board_width" {
+	adapter {
+	test.decreaseWidth()
+	test.wait()
+	}
+	}
+
+	input "decrease_board_height" {
+	adapter {
+	test.decreaseHeight()
+	test.wait()
+	}
+	}
+
+	input "select_empty_background" {
+	adapter {
+	test.selectEmptyBackground()
+	test.wait()
+	}
+	}
+
+	input "select_custom_background" {
+	adapter {
+	test.selectCustomBackground()
+	test.wait()
+	}
+	}
+
+	input "select_play_background" {
+	adapter {
+	test.selectPlayBackground()
+	test.wait()
+	}
+	}
+
+	input "select_swot_background" {
+	adapter {
+	test.selectSwotBackground()
+	test.wait()
+	}
+	}
+
+	input "select_scrum_background" {
+	adapter {
+	test.selectScrumBackground()
+	test.wait()
+	}
+	}
+
+	input "select_kanban_background" {
+	adapter {
+	test.selectKanbanBackground()
+	test.wait()
+	}
+	}
+
+	input "select_keepdroptry_background" {
+	adapter {
+	test.selectKeendroptryBackground()
+	test.wait()
+	}
+	}
+
+	input "select_customerjourneymap_background" {
+	adapter {
+	test.selectCustomerjourneymapBackground()
+	test.wait()
+	}
+	}
+
+	input "select_businessmodelcanvas_background" {
+	adapter {
+	test.selectBusinessmodelcanvasBackground()
+	test.wait()
+	}
+	}
+
+}
+
+tag "try_close_board_edit" {
+	guard { return state == "try_close_board_edit"}
+	output "board_edit_closed_to_board" {
+	guard { return state == "try_close_board_edit" and try_close_board_edit == True }
+	adapter {
+	if state == "try_close_board_edit" and try_close_board_edit == True and test.checkState("board"):
+			try_close_board_edit = False
+			state = "board"
+			return True
+	}
+	body {
+	state = "board"
+	}
+	}
+	output "board_edit_closed_to_boardmenu" {
+	guard { return state == "try_close_board_edit" and try_close_board_edit == True}
+	adapter {
+	if state == "try_close_board_edit" and try_close_board_edit == True and test.checkState("boardmenu"):
+			try_close_board_edit = False
+			state = "boardmenu"
+			return True
+	}
+	body {
+	state = "boardmenu"
+	}
+	}
+}
