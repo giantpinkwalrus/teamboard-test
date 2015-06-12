@@ -1,0 +1,23 @@
+tag "help" {
+	guard { return state == "help" }
+	adapter { 
+	test.wait()
+	}
+
+	input "change_slide"{
+	adapter { 
+	test.changeSlide()
+	test.wait()
+	}
+	}
+
+	input "close_help"{
+	adapter {
+	test.clickCloseHelp()
+	test.wait()
+	}
+	body { 
+	state = "board"
+	}
+	}
+}

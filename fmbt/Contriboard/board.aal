@@ -98,6 +98,16 @@ tag "board" {
     }
     }
 
+    input "open_help" {
+    adapter {
+        test.openHelp()
+        test.wait()
+    }
+    body {
+        state = "help"
+    }
+    }
+
 output "set_ticket_true" {
     guard    { return state == "board" and is_ticket == False }
     adapter {
