@@ -367,6 +367,7 @@ Export Board Image
     ${value}    Get Element Attribute    reactID@data-reactid
     Get Export Format    3
     Select From List By Value    //select[@data-reactid='${value}.0.1.0.1.0.0']    ${export_image}
+    Click Element    //html/body/div[2]/div/form/section[2]/section/div/a
     Click Element    //button[@class='btn-primary']
 
 Resize Board
