@@ -14,13 +14,13 @@ from selenium.webdriver.common.keys import Keys
 fp = webdriver.FirefoxProfile()
 
 fp.set_preference("browser.download.manager.showWhenStarting",False)
-fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain, text/csv, application/octet-stream, text/json, application/vnd.ms-excel, text/comma-separated-values")
+fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain, text/csv, application/octet-stream, application/json, application/vnd.ms-excel, text/comma-separated-values, image/png")
 
 
 driver = webdriver.Firefox(firefox_profile=fp)
 
-url = 'http://sut-cb.n4sjamk.org'
-#url = 'localhost:8000'
+#url = 'http://sut-cb.n4sjamk.org'
+url = 'localhost:8000'
 driver.get(url)
 
 #globals
@@ -48,7 +48,8 @@ stateAssets = {
 	"export_dialog" 	: ["//form[@class='dialog dialog-edit-board']"],
 	"share_dialog" 	: ["//button[@class='btn-secondary']"],
 	"shared_dialog" 	: ["//button[@class='btn-neutral']"],
-	"ticket_edit_dialog" 	: ["//form[@class='dialog edit-ticket-dialog']"]
+	"ticket_edit_dialog" 	: ["//form[@class='dialog edit-ticket-dialog']"],
+	"help" 	: ["//div[@class='infospace']"]
 }
 
 def rs():
@@ -92,20 +93,6 @@ def isElement(xpath):
 	except:
 		return False
 
-def checkAlert():
-	try:
-		WebDriverWait(driver,pollTime).until(EC.alert_is_present())
-		if Ec.alert_is_present() == False:
-			return False
-		else:
-			return True
-	except:
-		return False
-
-def confirmAlert():
-		if checkAlert():
-				Alert(driver).accept()
-
 def wait(time=pollTime):
 	sleep(time)
 
@@ -115,9 +102,6 @@ def homePage():
 
 def refreshPage():
 	driver.refresh()
-
-def clearText():
-	return
 
 def resetCursor():
 	return
@@ -136,6 +120,7 @@ def clickCreateAccount():
 
 def typeEmail():
 	rs()
+	driver.find_element_by_xpath("//input[@type='email']").clear()
 	driver.find_element_by_xpath("//input[@type='email']").send_keys(email)
 
 def typePassword():
@@ -155,13 +140,17 @@ def clickLoginAccount():
 	wait()
 
 def typeRegisterEmail():
-
 	rs()
+	driver.find_element_by_xpath("//input[@type='email']").clear()
 	driver.find_element_by_xpath("//input[@type='email']").send_keys(email)
 
 def typeRegisterPassword():
 	rs()
 	driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
+
+def typePasswordAgain():
+	rs()
+	driver.find_element_by_xpath("//input[@name='passwordAgain']").send_keys(password)
 
 #boardmenu
 
@@ -255,6 +244,11 @@ def moveTicket():
 	xdest = random.randint(0, board.size.get('width') - ticket.size.get('width'))
 	ydest = random.randint(0, board.size.get('height') - ticket.size.get('height'))
 	AC(driver).click_and_hold(ticket).move_to_element_with_offset(board, xdest, ydest).release(ticket).perform()
+	wait()
+
+def openHelp():
+	rs()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-info']").click()
 	wait()
 
 #boardedit
@@ -377,6 +371,8 @@ def clickDoneExport():
 		os.remove(txt)
 	for json in glob ("/home/*/Downloads/board*.json"):
 		os.remove(json)
+	for json in glob ("/home/*/Downloads/board*.png"):
+		os.remove(json)
 	wait()
 
 def clickExport():
@@ -457,8 +453,9 @@ def clickYellow():
 
 def typeTicket():
 	rs()
-	driver.find_element_by_xpath("//textarea").clear()
-	driver.find_element_by_xpath("//textarea").send_keys("ticket")
+	ticketrid = driver.find_element_by_xpath("//div[@class='dialog-overlay']").get_attribute("data-reactid")
+	driver.find_element_by_xpath("//textarea[@data-reactid='" + ticketrid + ".0.1.0']").clear()
+	driver.find_element_by_xpath("//textarea[@data-reactid='" + ticketrid + ".0.1.0']").send_keys("ticket")
 	wait()
 
 def deleteTicket():
@@ -469,6 +466,20 @@ def deleteTicket():
 def ticketDone():
 	rs()
 	driver.find_element_by_xpath("//button[@class='btn-primary']").click()
+	wait()
+
+# help
+
+def changeSlide():
+	rs()
+	rid = driver.find_element_by_xpath("//div[@class='dialog-overlay']").get_attribute("data-reactid")
+	slide = random.choice(["$0", "$1", "$2", "$3","$4"])
+	driver.find_element_by_xpath("//button[@data-reactid='" + rid + ".0.0.1:$2.0." + slide + ".0']").click()
+	wait()
+
+def clickCloseHelp():
+	rs()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-times']").click()
 	wait()
 
 # checks

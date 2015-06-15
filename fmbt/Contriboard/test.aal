@@ -36,6 +36,7 @@ adapter_exit {
 ^include "shareddialog.aal"
 ^include "exportdialog.aal"
 ^include "ticketeditdialog.aal"
+^include "help.aal"
 
 tag "timeout_error" {
     guard { return state == "timeout" }
