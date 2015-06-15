@@ -32,6 +32,7 @@ John Changes Custom Background
     Set Custom Background
 
 John Exports Board as Image
+    [Tags]    sc6
     Export Board Image
 
 Close
