@@ -14,13 +14,13 @@ from selenium.webdriver.common.keys import Keys
 fp = webdriver.FirefoxProfile()
 
 fp.set_preference("browser.download.manager.showWhenStarting",False)
-fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain, text/csv, application/octet-stream, text/json, application/vnd.ms-excel, text/comma-separated-values")
+fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain, text/csv, application/octet-stream, application/json, application/vnd.ms-excel, text/comma-separated-values, image/png")
 
 
 driver = webdriver.Firefox(firefox_profile=fp)
 
-url = 'http://sut-cb.n4sjamk.org'
-#url = 'localhost:8000'
+#url = 'http://sut-cb.n4sjamk.org'
+url = 'localhost:8000'
 driver.get(url)
 
 #globals
@@ -48,7 +48,8 @@ stateAssets = {
 	"export_dialog" 	: ["//form[@class='dialog dialog-edit-board']"],
 	"share_dialog" 	: ["//button[@class='btn-secondary']"],
 	"shared_dialog" 	: ["//button[@class='btn-neutral']"],
-	"ticket_edit_dialog" 	: ["//form[@class='dialog edit-ticket-dialog']"]
+	"ticket_edit_dialog" 	: ["//form[@class='dialog edit-ticket-dialog']"],
+	"help" 	: ["//div[@class='infospace']"]
 }
 
 def rs():
@@ -370,6 +371,8 @@ def clickDoneExport():
 		os.remove(txt)
 	for json in glob ("/home/*/Downloads/board*.json"):
 		os.remove(json)
+	for json in glob ("/home/*/Downloads/board*.png"):
+		os.remove(json)
 	wait()
 
 def clickExport():
@@ -450,8 +453,9 @@ def clickYellow():
 
 def typeTicket():
 	rs()
-	driver.find_element_by_xpath("//textarea").clear()
-	driver.find_element_by_xpath("//textarea").send_keys("ticket")
+	ticketrid = driver.find_element_by_xpath("//div[@class='dialog-overlay']").get_attribute("data-reactid")
+	driver.find_element_by_xpath("//textarea[@data-reactid='" + ticketrid + ".0.1.0']").clear()
+	driver.find_element_by_xpath("//textarea[@data-reactid='" + ticketrid + ".0.1.0']").send_keys("ticket")
 	wait()
 
 def deleteTicket():
@@ -468,8 +472,9 @@ def ticketDone():
 
 def changeSlide():
 	rs()
-	slides = driver.find_elements_by_xpath("//button")
-	random.choice(slides).click()
+	rid = driver.find_element_by_xpath("//div[@class='dialog-overlay']").get_attribute("data-reactid")
+	slide = random.choice(["$0", "$1", "$2", "$3","$4"])
+	driver.find_element_by_xpath("//button[@data-reactid='" + rid + ".0.0.1:$2.0." + slide + ".0']").click()
 	wait()
 
 def clickCloseHelp():
