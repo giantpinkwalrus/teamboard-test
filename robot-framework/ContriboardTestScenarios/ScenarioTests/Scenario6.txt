@@ -12,6 +12,9 @@ John Creates and Opens Board
     New Board
     Open Board    2    2
 
+John Opens Board
+    Open Board    2    2
+
 John Uses Tutorial
     [Tags]    sc6
     Use Tutorial
@@ -30,6 +33,11 @@ John Changes Custom Background
     [Tags]    sc6
     Click Edit Board From Board
     Set Custom Background
+
+John Uses Markdown Text to Create List
+    Create Ticket with Markdown Text    -450    -250
+
+Check Markdown Syntax
 
 John Exports Board as Image
     [Tags]    sc6

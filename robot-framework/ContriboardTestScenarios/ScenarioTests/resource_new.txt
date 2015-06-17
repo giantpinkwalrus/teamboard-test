@@ -8,8 +8,8 @@ ${Browser}        firefox
 ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
-${SERVER}         sut-cb.n4sjamk.org
-#${SERVER}        localhost:8000
+#${SERVER}        sut-cb.n4sjamk.org
+${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
@@ -197,6 +197,15 @@ Create Ticket
     Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
     Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
     Move Ticket    ${min}    ${max}    ${x}    ${y}
+
+Create Ticket with Markdown Text
+    [Arguments]    ${x}    ${y}
+    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
+    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
+    Double Click Element    //html/body/div/div/div[2]/div/div[1]/div[3]/div[3]
+    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    Input Markdown Text
+    Click Button    //button[@class='btn-primary']
 
 Move Ticket
     [Arguments]    ${min}    ${max}    ${x}    ${y}
@@ -583,3 +592,6 @@ Get Board Size
     ${int2}    Evaluate    random.randint(${heightmin}, ${heightmax})    random
     Set Test Variable    \${height}    ${EMPTY}
     Set Test Variable    ${height}    ${int2}
+
+Input Markdown Text
+    Get Markdown Text From File    //html/body/div[2]/div/form/section[2]/section[2]/textarea
