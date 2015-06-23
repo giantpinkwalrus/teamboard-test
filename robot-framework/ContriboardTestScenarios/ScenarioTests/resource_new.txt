@@ -205,7 +205,17 @@ Create Ticket with Markdown Text
     Double Click Element    //html/body/div/div/div[2]/div/div[1]/div[3]/div[3]
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Input Markdown Text
-    Click Button    //button[@class='btn-primary']
+    Click Button    //html/body/div[2]/div/form/section[2]/section[4]/button[2]
+    Double Click Element    //html/body/div/div/div[2]/div/div[1]/div[3]/div[3]
+    Check Markdown Syntax
+
+Check Markdown Syntax
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h1    error=H1 tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/p    error=P tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h2    error=H2 tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/ul    error=UL tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h3    error=H3 tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/ol    error=OL tag not found
 
 Move Ticket
     [Arguments]    ${min}    ${max}    ${x}    ${y}
@@ -243,6 +253,16 @@ Change Ticket Color
     ${tcolor}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.0']@style
     Should Be Equal    ${ccheck}    ${tcolor}    error=Ticket Color Not Changed
     Click Button    //button[@class='btn-primary']
+
+Add Ticket and Comment to Ticket
+    [Arguments]    ${x}    ${y}    ${comment}
+    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
+    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
+    Double Click Element    //html/body/div/div/div[2]/div/div[1]/div[4]
+    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    Input Text    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/input    ${comment}
+    Click Button    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/button
+    Element Should Contain    //html/body/div[2]/div/form/section[2]/section[3]/section[2]/div    ${comment}    error=Comment not found
 
 Minimap Ticket Color
     [Arguments]    ${min}=1    ${max}=5
