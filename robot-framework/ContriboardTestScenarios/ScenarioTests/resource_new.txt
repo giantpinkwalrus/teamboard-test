@@ -374,6 +374,12 @@ Send Feedback
     Unselect Frame
     Click Element    //span[@class='fa fa-fw fa-user']
 
+Click About Button
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //span[@data-reactid='.1.1.4.$3.1']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
+
 Export Board
     [Arguments]    ${min}=2    ${max}=5
     Get Board Xpath    ${min}    ${max}

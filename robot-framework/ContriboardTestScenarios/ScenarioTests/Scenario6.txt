@@ -47,6 +47,10 @@ John Exports Board as Image
     [Tags]    sc6
     Export Board Image
 
+John Wants to Know More About the Product
+    [Tags]    sc6
+    Click About Button
+
 Close
     [Tags]    sc6
     Close Browser
