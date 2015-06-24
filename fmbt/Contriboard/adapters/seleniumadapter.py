@@ -430,7 +430,6 @@ def clickHide():
 
 #ticketedit
 
-
 def clickRed():
 	rs()
 	driver.find_element_by_xpath("//div[@style='background-color:#eb584a;']").click()
@@ -451,16 +450,27 @@ def clickYellow():
 	driver.find_element_by_xpath("//div[@style='background-color:#dcc75b;']").click()
 	wait()
 
+def typeHeading():
+	rs()
+	driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").clear()
+	driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Heading")
+	wait()
+
 def typeTicket():
 	rs()
 	ticketrid = driver.find_element_by_xpath("//div[@class='dialog-overlay']").get_attribute("data-reactid")
-	driver.find_element_by_xpath("//textarea[@data-reactid='" + ticketrid + ".0.1.0']").clear()
-	driver.find_element_by_xpath("//textarea[@data-reactid='" + ticketrid + ".0.1.0']").send_keys("ticket")
+	driver.find_element_by_xpath("//textarea[@data-reactid='" + ticketrid + ".0.1.1.0']").clear()
+	driver.find_element_by_xpath("//textarea[@data-reactid='" + ticketrid + ".0.1.1.0']").send_keys("ticket")
 	wait()
 
 def deleteTicket():
 	rs()
-	driver.find_element_by_xpath("//button[@class='btn-danger']").click()
+	driver.find_element_by_xpath("//i[@class='deleteicon fa fa-trash-o']").click()
+	wait()
+
+def ticketCancel():
+	rs()
+	driver.find_element_by_xpath("//button[@class='btn-neutral']").click()
 	wait()
 
 def ticketDone():
