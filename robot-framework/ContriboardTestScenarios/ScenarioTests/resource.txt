@@ -1,6 +1,7 @@
 *** Settings ***
 Library           ExtendedSelenium2Library
 Library           Collections
+Library           String
 
 *** Variables ***
 ${Browser}        firefox
@@ -30,10 +31,11 @@ Register User
     [Arguments]    ${NewUser}    ${NewPassword}
     Element Text Should Be    //button[@class='btn-secondary']    Register    error=Register button missing
     Click Button    //button[@class='btn-secondary']
-    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Form not found
+    Wait Until Page Contains Element    //html/body/div/div/div[2]/form/section[3]/input    timeout=2    error=Input not found
     Location Should Be    ${RegUrl}
     Input Text    //input[@type='email']    ${NewUser}
     Input Password    //input[@type='password']    ${NewPassword}
+    Input Password    //input[@name='passwordAgain']    ${NewPassword}
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
     Should Be Equal    ${check}    Register    error=Register button missing
     Click Button    //input[@class='btn-primary']
@@ -79,8 +81,8 @@ Go To Login Page
 
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
-    Assign Id To Element    //ul[@class='dropdown']    Dropdown
+    Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Assign Id To Element    //ul[@class='dropdown undefined']    Dropdown
     ${did}    Get Element Attribute    Dropdown@data-reactid
     Click Element    //li[@data-reactid='${did}.$3']
     Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
@@ -89,13 +91,13 @@ Log Out
 Wallace First Try
     #Scenario1
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
     #Click Element    //div[@class='user-voice-trigger']
     #Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
     #Click Element    //i[@class='icon close-icon']
     #Element Should Not Be Visible    //article[@class='widget large-widget']    error=Widget Not Closed
     #Unselect Frame
-    Assign Id To Element    //ul[@class='dropdown']    Dropdown
+    Assign Id To Element    //ul[@class='dropdown undefined']    Dropdown
     ${did}    Get Element Attribute    Dropdown@data-reactid
     Click Element    //li[@data-reactid='${did}.$3']
     Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
@@ -162,6 +164,26 @@ Edit Board From Board
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
     Input Text    //input[@placeholder='Board Name']    Typing new board name
     Click Button    //button[@class='btn-primary']
+
+Resize Board
+    [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
+    Get Board Size    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    Input Text    //input[@placeholder='Board Width']    ${width}
+    Input Text    //input[@placeholder='Board Height']    ${height}
+    Click Element    //button[@class='btn-primary']
+    Element Should Not Be Visible    //form[@class='dialog dialog-edit-board']
+    Calculate Board Size    ${width}    ${height}
+    ${styleatt}    Get Element Attribute    //div[@class='board']@style
+    ${boardsize}    Fetch From Left    ${styleatt}    transition-timing-function:
+    Should Be Equal    ${boardsize}    ${sizecheck}
+
+Calculate Board Size
+    [Arguments]    ${width}    ${height}
+    ${boardwidth}    Evaluate    ${width}*192
+    ${boardheight}    Evaluate    ${height}*108
+    Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}
 
 Create Ticket
     [Arguments]    ${min}    ${max}
@@ -300,11 +322,11 @@ Click Globe Off
 
 Click Profile
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
 
 Close Profile
     Click Element    //span[@class='fa fa-fw fa-user']
-    Element Should Not Be Visible    //ul[@class='dropdown']    error=Dropdown not closed
+    Element Should Not Be Visible    //ul[@class='dropdown undefined']    error=Dropdown not closed
 
 Click Feedback
     Click Element    //div[@class='user-voice-trigger']
@@ -317,7 +339,7 @@ Click Feedback
 
 Send Feedback
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Page Contains Element    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
+    Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
     Click Element    //div[@class='user-voice-trigger']
     Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
     Wait Until Element Is Visible    //article[@class='widget large-widget']    timeout=2    error=Widget Not Open
@@ -500,3 +522,12 @@ Get Export
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    \${export}    ${EMPTY}
     Set Test Variable    ${export}    ${item}
+
+Get Board Size
+    [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
+    ${int}    Evaluate    random.randint(${widthmin}, ${widthmax})    random
+    Set Test Variable    \${width}    ${EMPTY}
+    Set Test Variable    ${width}    ${int}
+    ${int2}    Evaluate    random.randint(${heightmin}, ${heightmax})    random
+    Set Test Variable    \${height}    ${EMPTY}
+    Set Test Variable    ${height}    ${int2}

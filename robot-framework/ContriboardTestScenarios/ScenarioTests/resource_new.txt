@@ -6,10 +6,8 @@ Library           String
 *** Variables ***
 ${Browser}        firefox
 ${DELAY}          0.2
-${ValidUser}      testbaboon@test.com
-${ValidPassword}    t3stmonkey
-${NewUser}        new@test.com
-${NewPassword}    t3stmonkey
+${InvalidUser}    invalid@test.com
+${InvalidPassword}    Invalid1
 ${SERVER}         sut-cb.n4sjamk.org
 #${SERVER}        localhost:8000
 ${MainUrl}        http://${SERVER}
@@ -17,26 +15,28 @@ ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
 ${RegUrl}         http://${SERVER}/register
 ${LoginTitle}     Contriboard
-${custombackground}    http://tinyurl.com/pevhhv7
-${custombackground2}    http://tinyurl.com/khpx9d8
+#${custombackground}    http://tinyurl.com/pevhhv7
+#${custombackground2}    http://tinyurl.com/khpx9d8
+${custombackground}    http://tinyurl.com/o7ae8la
 
 *** Keywords ***
 Register User
     [Arguments]    ${NewUser}    ${NewPassword}
     Element Text Should Be    //button[@class='btn-secondary']    Register    error=Register button missing
     Click Button    //button[@class='btn-secondary']
-    Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Form not found
+    Wait Until Page Contains Element    //html/body/div/div/div[2]/form/section[3]/input    timeout=2    error=Input not found
     Location Should Be    ${RegUrl}
-    Input Username    ${NewUser}
-    Input User Password    ${NewPassword}
-    Input User Password Again    ${NewPassword}
+    Input Text    //input[@type='email']    ${NewUser}
+    Input Password    //input[@type='password']    ${NewPassword}
+    Input Password    //input[@name='passwordAgain']    ${NewPassword}
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
     Should Be Equal    ${check}    Register    error=Register button missing
-    Submit Credentials
+    Click Button    //input[@class='btn-primary']
     Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
 Login User
+    [Arguments]    ${ValidUser}    ${ValidPassword}
     Input Username    ${ValidUser}
     Input User Password    ${ValidPassword}
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
@@ -45,6 +45,29 @@ Login User
     Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
+Go to Register Page and Back to Login Page
+    Element Text Should Be    //button[@class='btn-secondary']    Register    error=Register button missing
+    Click Button    //button[@class='btn-secondary']
+    Wait Until Page Contains Element    //html/body/div/div/div[2]/form/section[3]/input    timeout=2    error=Input not found
+    Location Should Be    ${RegUrl}
+    Click Button    //input[@class='btn-secondary']
+    Element Text Should Be    //button[@class='btn-primary']    Login    error=Login button missing
+
+Use Tutorial
+    Wait Until Page Contains Element    //html/body/div/div/nav/div[1]/span
+    Click Element    //html/body/div/div/nav/div[1]/span
+    #Check
+    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[1]/div/div
+    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[2]/button
+    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[2]/div/div/img[2]
+    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[3]/button
+    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[3]/div/div/img
+    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[4]/button
+    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[4]/div/div/img
+    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[5]/button
+    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[5]/div/div/img
+    Click Element    //html/body/div[1]/div/nav/div[1]/span
+
 New Board
     Click Element    //span[@class='fa fa-fw fa-plus']
 
@@ -52,6 +75,10 @@ Close Board
     Click Element    //span[@class='fa fa-fw fa-arrow-left']
     Wait Until Page Contains Element    //div[@class='content']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
+
+Input Board Name
+    [Arguments]    ${boardname}=Typing Somenthing...
+    Input Text    //input[@placeholder='Board Name']    ${boardname}
 
 Edit Board
     [Arguments]    ${min}=2    ${max}=6
@@ -67,6 +94,15 @@ Edit Board From Board
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
     Input Text    //input[@placeholder='Board Name']    Typing new board name
     Click Element    //button[@class='btn-primary']
+
+Click Edit Board From Board
+    Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
+
+Click Done Board Edit
+    Click Button    //button[@class='btn-primary']
+    Element Should Not Be Visible    //form[@class='dialog dialog-edit-board']    error=Edit Not Closed
 
 Set Board Background
     [Arguments]    ${min}=0    ${max}=8
@@ -93,6 +129,21 @@ Custom Background
     Element Should Be Visible    //input[@type='url']
     Input Text    //input[@placeholder='URL']    ${custombackground}
     Click Element    //button[@class='btn-primary']
+    ${checkcustom}    Get Element Attribute    //div[@class='board']@style
+    ${image}    Fetch From Right    ${checkcustom}    x);
+    Set Test Variable    ${customcheck}    ${SPACE}background-image: url("${custombackground}");
+    Run Keyword If    '${image}'=='${customcheck}'    Check Custom Background Empty
+    Run Keyword If    '${image}'!='${customcheck}'    Check Custom Background
+
+Set Custom Background
+    Click Element    //html/body/div[2]/div/form/section[2]/div[2]/div/select
+    Press Key    //html/body/div[2]/div/form/section[2]/div[2]/div/select    \\10
+    Press Key    //html/body/div[2]/div/form/section[2]/div[2]/div/select    \\40
+    Click Element    //html/body/div[2]/div/form/section[2]
+    Wait Until Page Contains Element    //html/body/div[2]/div/form/section[2]/div[2]/div[2]/input
+    Input Text    //html/body/div[2]/div/form/section[2]/div[2]/div[2]/input    ${custombackground}
+    Click Button    //html/body/div[2]/div/form/section[3]/button
+    #Check
     ${checkcustom}    Get Element Attribute    //div[@class='board']@style
     ${image}    Fetch From Right    ${checkcustom}    x);
     Set Test Variable    ${customcheck}    ${SPACE}background-image: url("${custombackground}");
@@ -309,6 +360,16 @@ Export Board
     #Click Element    //a[@data-reactid='${rid}.0.1.0.1.1']
     Click Element    //button[@class='btn-primary']
 
+Export Board Image
+    Click Element    //html/body/div/div/div[3]/div[4]/span
+    Wait Until Page Contains Element    //html/body/div[2]/div/form    timeout=2    error=Export Dialog Not Open
+    Assign Id To Element    //div[@class='dialog-overlay']    reactID
+    ${value}    Get Element Attribute    reactID@data-reactid
+    Get Export Format    3
+    Select From List By Value    //select[@data-reactid='${value}.0.1.0.1.0.0']    ${export_format}
+    Click Element    //html/body/div[2]/div/form/section[2]/section/div/a
+    Click Element    //button[@class='btn-primary']
+
 Resize Board
     [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
     Click Element    //span[@class='fa fa-fw fa-pencil']
@@ -357,10 +418,6 @@ Input Username
 Input User Password
     [Arguments]    ${password}
     Input Password    //input[@type='password']    ${password}
-
-Input User Password Again
-    [Arguments]     ${password}
-    Input Password    //input[@name='passwordAgain']    ${password}
 
 Submit Credentials
     Click Button    //input[@class='btn-primary']
@@ -507,10 +564,16 @@ Get Ticket Color
 Get Export
     [Arguments]    ${min}=0    ${max}=2
     ${int}    Evaluate    random.randint(${min}, ${max})    random
-    ${list}    Create List    csv    json    plaintext
+    ${list}    Create List    csv    json    plaintext    image
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    \${export}    ${EMPTY}
     Set Test Variable    ${export}    ${item}
+
+Get Export Format
+    [Arguments]    ${value}
+    ${list}    Create List    csv    json    plaintext    image
+    ${item}    Get From List    ${list}    ${value}
+    Set Test Variable    ${export_format}    ${item}
 
 Get Board Size
     [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}

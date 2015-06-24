@@ -1,0 +1,41 @@
+*** Settings ***
+Resource          resource_new.txt
+
+*** Test Cases ***
+John Opens Computer And Logins
+    [Tags]    sc6    log6
+    Open Browser To Login Page
+    Login User    john@test.com    johnjohn
+
+John Creates and Opens Board
+    [Tags]    sc6
+    New Board
+    Open Board    2    2
+
+John Uses Tutorial
+    [Tags]    sc6
+    Use Tutorial
+
+John Resizes Board
+    [Tags]    sc6
+    Resize Board    10    10    10    10
+
+John Changes Board Name
+    [Tags]    sc6
+    Click Edit Board From Board
+    Input Board Name    Entisöintiprojekti
+    Click Done Board Edit
+
+John Changes Custom Background
+    [Tags]    sc6
+    Click Edit Board From Board
+    Set Custom Background
+
+John Exports Board as Image
+    [Tags]    sc6
+    Export Board Image
+
+Close
+    [Tags]    sc6
+    Close Browser
+    [Teardown]

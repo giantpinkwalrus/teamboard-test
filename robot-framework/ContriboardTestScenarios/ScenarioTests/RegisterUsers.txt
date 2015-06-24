@@ -31,6 +31,11 @@ Register Robot
     Register User    testrobot@test.com    testrobot
     Log Out
 
+Register John
+    [Tags]    reg
+    Register User    john@test.com    johnjohn
+    Log Out
+
 Close
     [Tags]    reg
     Close Browser
