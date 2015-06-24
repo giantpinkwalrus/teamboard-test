@@ -254,7 +254,7 @@ Change Ticket Color
     Should Be Equal    ${ccheck}    ${tcolor}    error=Ticket Color Not Changed
     Click Button    //button[@class='btn-primary']
 
-Add Ticket and Comment to Ticket
+Add Ticket with Comment
     [Arguments]    ${x}    ${y}    ${comment}
     Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
     Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created

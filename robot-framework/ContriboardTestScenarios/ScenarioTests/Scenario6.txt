@@ -39,9 +39,9 @@ John Uses Markdown Text to Create List to Ticket
     [Tags]    sc6
     Create Ticket with Markdown Text    -450    -250
 
-Add New Ticket and Comment to Ticket
+John Adds New Ticket with Comment
     [Tags]    sc6
-    Add Ticket and Comment to Ticket    -250    -50    TO-DO
+    Add Ticket with Comment    -250    -50    TO-DO
 
 John Exports Board as Image
     [Tags]    sc6
