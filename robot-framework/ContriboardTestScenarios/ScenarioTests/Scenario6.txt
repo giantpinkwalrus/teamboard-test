@@ -53,5 +53,6 @@ John Wants to Know More About the Product
 
 Close
     [Tags]    sc6
+    Log Out
     Close Browser
     [Teardown]

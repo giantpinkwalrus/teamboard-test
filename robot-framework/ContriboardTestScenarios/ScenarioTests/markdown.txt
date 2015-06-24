@@ -11,7 +11,7 @@ Parts: [Fixus](http://www.fixus.fi).
 - Change spark plugs
 
 
-### Needed parts
+### Parts
 
 1. New piston rings
 2. Oil filter
