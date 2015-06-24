@@ -8,8 +8,8 @@ ${Browser}        firefox
 ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
-${SERVER}         sut-cb.n4sjamk.org
-#${SERVER}        localhost:8000
+#${SERVER}        sut-cb.n4sjamk.org
+${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
@@ -60,6 +60,8 @@ Input User Password
     [Arguments]    ${password}
     Input Password    //input[@type='password']    ${password}
 
+Check Passwords
+
 Submit Credentials
     Click Button    //input[@class='btn-primary']
 
@@ -84,7 +86,7 @@ Log Out
     Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
     Assign Id To Element    //ul[@class='dropdown undefined']    Dropdown
     ${did}    Get Element Attribute    Dropdown@data-reactid
-    Click Element    //li[@data-reactid='${did}.$3']
+    Click Element    //li[@data-reactid='${did}.$4']
     Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
     Location Should Be    ${LoginUrl}
 
