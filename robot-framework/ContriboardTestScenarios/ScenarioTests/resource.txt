@@ -10,10 +10,10 @@ ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
 ${SERVER}         sut-cb.n4sjamk.org
 #${SERVER}        localhost:8000
-${MainUrl}        http://${SERVER}
-${LoginUrl}       http://${SERVER}/login
-${BoardUrl}       http://${SERVER}/boards
-${RegUrl}         http://${SERVER}/register
+${MainUrl}        https://${SERVER}
+${LoginUrl}       https://${SERVER}/login
+${BoardUrl}       https://${SERVER}/boards
+${RegUrl}         https://${SERVER}/register
 ${LoginTitle}     Contriboard
 ${custombackground}    http://tinyurl.com/pevhhv7
 
