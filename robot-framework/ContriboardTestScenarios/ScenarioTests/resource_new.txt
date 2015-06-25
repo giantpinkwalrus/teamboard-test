@@ -198,6 +198,25 @@ Create Ticket
     Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
     Move Ticket    ${min}    ${max}    ${x}    ${y}
 
+Create Ticket with Markdown Text
+    [Arguments]    ${x}    ${y}
+    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
+    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
+    Double Click Element    //html/body/div/div/div[2]/div/div[1]/div[3]/div[3]
+    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    Input Markdown Text
+    Click Button    //html/body/div[2]/div/form/section[2]/section[4]/button[2]
+    Double Click Element    //html/body/div/div/div[2]/div/div[1]/div[3]/div[3]
+    Check Markdown Syntax
+
+Check Markdown Syntax
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h1    error=H1 tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/p    error=P tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h2    error=H2 tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/ul    error=UL tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h3    error=H3 tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/ol    error=OL tag not found
+
 Move Ticket
     [Arguments]    ${min}    ${max}    ${x}    ${y}
     Get Ticket Xpath    ${min}    ${max}
@@ -218,8 +237,7 @@ Edit Ticket
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Input Text    //textarea[@data-reactid='${rid}.1.0']    Typing somenthing
+    Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
     Click Button    //button[@class='btn-primary']
 
 Change Ticket Color
@@ -234,6 +252,16 @@ Change Ticket Color
     ${tcolor}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.0']@style
     Should Be Equal    ${ccheck}    ${tcolor}    error=Ticket Color Not Changed
     Click Button    //button[@class='btn-primary']
+
+Add Ticket with Comment
+    [Arguments]    ${x}    ${y}    ${comment}
+    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
+    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
+    Double Click Element    //html/body/div/div/div[2]/div/div[1]/div[4]
+    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    Input Text    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/input    ${comment}
+    Click Button    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/button
+    Element Should Contain    //html/body/div[2]/div/form/section[2]/section[3]/section[2]/div    ${comment}    error=Comment not found
 
 Minimap Ticket Color
     [Arguments]    ${min}=1    ${max}=5
@@ -345,6 +373,12 @@ Send Feedback
     Unselect Frame
     Click Element    //span[@class='fa fa-fw fa-user']
 
+Click About Button
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //span[@data-reactid='.1.1.4.$3.1']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
+
 Export Board
     [Arguments]    ${min}=2    ${max}=5
     Get Board Xpath    ${min}    ${max}
@@ -407,7 +441,7 @@ Log Out
     Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
     Assign Id To Element    //ul[@class='dropdown undefined']    Dropdown
     ${did}    Get Element Attribute    Dropdown@data-reactid
-    Click Element    //li[@data-reactid='${did}.$3']
+    Click Element    //li[@data-reactid='${did}.$4']
     Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
     Location Should Be    ${LoginUrl}
 
@@ -583,3 +617,6 @@ Get Board Size
     ${int2}    Evaluate    random.randint(${heightmin}, ${heightmax})    random
     Set Test Variable    \${height}    ${EMPTY}
     Set Test Variable    ${height}    ${int2}
+
+Input Markdown Text
+    Get Markdown Text From File    //html/body/div[2]/div/form/section[2]/section[2]/textarea

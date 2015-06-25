@@ -10,8 +10,8 @@ ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
 ${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
-${SERVER}         sut-cb.n4sjamk.org
-#${SERVER}        localhost:8000
+#${SERVER}        sut-cb.n4sjamk.org
+${SERVER}         localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
@@ -167,8 +167,8 @@ Edit Ticket
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Input Text    //textarea[@data-reactid='${rid}.1.0']    Typing somenthing
+    Input Text    //textarea[@placeholder='Ticket heading']    Ticket Heading
+    Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
     Click Button    //button[@class='btn-primary']
 
 Change Ticket Color
@@ -346,7 +346,7 @@ Log Out
     Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
     Assign Id To Element    //ul[@class='dropdown undefined']    Dropdown
     ${did}    Get Element Attribute    Dropdown@data-reactid
-    Click Element    //li[@data-reactid='${did}.$3']
+    Click Element    //li[@data-reactid='${did}.$4']
     Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
     Location Should Be    ${LoginUrl}
 
@@ -359,7 +359,7 @@ Input User Password
     Input Password    //input[@type='password']    ${password}
 
 Input User Password Again
-    [Arguments]     ${password}
+    [Arguments]    ${password}
     Input Password    //input[@name='passwordAgain']    ${password}
 
 Submit Credentials
