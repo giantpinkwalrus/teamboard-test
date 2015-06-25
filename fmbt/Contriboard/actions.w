@@ -9,12 +9,12 @@
 ["boardmenu"] "i:click_edit_board"=100
 ["boardmenu"] "i:click_delete_board"=50
 ["boardmenu"] "i:click_open_board"=100
-["board_edit_dialog"] "i:click_done"=60
+["board_edit_dialog"] "i:click_done"=100
 ["board_edit_dialog"] "i:type_board_name"=100
-["board_edit_dialog"] "i:increase_board_width"=50
-["board_edit_dialog"] "i:increase_board_height"=50
-["board_edit_dialog"] "i:decrease_board_width"=50
-["board_edit_dialog"] "i:decrease_board_height"=50
+["board_edit_dialog"] "i:increase_board_width"=20
+["board_edit_dialog"] "i:increase_board_height"=20
+["board_edit_dialog"] "i:decrease_board_width"=20
+["board_edit_dialog"] "i:decrease_board_height"=20
 ["board_edit_dialog"] "i:select_empty_background"=50
 ["board_edit_dialog"] "i:select_custom_background"=50
 ["board_edit_dialog"] "i:select_play_background"=50
