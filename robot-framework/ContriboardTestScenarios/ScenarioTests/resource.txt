@@ -8,8 +8,8 @@ ${Browser}        firefox
 ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
-#${SERVER}        sut-cb.n4sjamk.org
-${SERVER}         localhost:8000
+${SERVER}         sut-cb.n4sjamk.org
+#${SERVER}        localhost:8000
 ${MainUrl}        http://${SERVER}
 ${LoginUrl}       http://${SERVER}/login
 ${BoardUrl}       http://${SERVER}/boards
@@ -59,8 +59,6 @@ Input Username
 Input User Password
     [Arguments]    ${password}
     Input Password    //input[@type='password']    ${password}
-
-Check Passwords
 
 Submit Credentials
     Click Button    //input[@class='btn-primary']
