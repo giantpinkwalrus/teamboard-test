@@ -46,6 +46,13 @@ tag "ticket_edit_dialog" {
 	}
 	}
 
+	input "type_comment" {
+	adapter {
+	test.typeComment()
+	test.wait()
+	}
+	}
+
 	input "delete_ticket" {
 	adapter {
 	test.deleteTicket()

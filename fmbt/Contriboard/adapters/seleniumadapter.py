@@ -19,7 +19,7 @@ fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "text/plain, text/cs
 
 driver = webdriver.Firefox(firefox_profile=fp)
 
-#url = 'http://sut-cb.n4sjamk.org'
+#url = 'https://sut-cb.n4sjamk.org'
 url = 'localhost:8000'
 driver.get(url)
 
@@ -125,6 +125,7 @@ def typeEmail():
 
 def typePassword():
 	rs()
+	driver.find_element_by_xpath("//input[@type='password']").clear()
 	driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
 
 #register
@@ -146,10 +147,12 @@ def typeRegisterEmail():
 
 def typeRegisterPassword():
 	rs()
+	driver.find_element_by_xpath("//input[@type='password']").clear()
 	driver.find_element_by_xpath("//input[@type='password']").send_keys(password)
 
 def typePasswordAgain():
 	rs()
+	driver.find_element_by_xpath("//input[@name='passwordAgain']").clear()
 	driver.find_element_by_xpath("//input[@name='passwordAgain']").send_keys(password)
 
 #boardmenu
@@ -243,8 +246,9 @@ def moveTicket():
 	board = driver.find_element_by_xpath("//div[@class='board']")
 	xdest = random.randint(0, board.size.get('width') - ticket.size.get('width'))
 	ydest = random.randint(0, board.size.get('height') - ticket.size.get('height'))
-	AC(driver).click_and_hold(ticket).move_to_element_with_offset(board, xdest, ydest).release(ticket).perform()
-	wait()
+	if xdest>0 | ydest>0:
+		AC(driver).click_and_hold(ticket).move_to_element_with_offset(board, xdest, ydest).release(ticket).perform()
+		wait()
 
 def openHelp():
 	rs()
@@ -365,13 +369,13 @@ def cancelDelete():
 def clickDoneExport():
 	rs()
 	driver.find_element_by_xpath("//button[@class='btn-primary']").click()
-	for csv in glob ("/home/*/Downloads/board*.csv"):
+	for csv in glob ("/home/*/Downloads/*oard*.csv"):
 		os.remove(csv)
-	for txt in glob ("/home/*/Downloads/board*.txt"):
+	for txt in glob ("/home/*/Downloads/*oard*.txt"):
 		os.remove(txt)
-	for json in glob ("/home/*/Downloads/board*.json"):
+	for json in glob ("/home/*/Downloads/*oard*.json"):
 		os.remove(json)
-	for json in glob ("/home/*/Downloads/board*.png"):
+	for json in glob ("/home/*/Downloads/*oard*.png"):
 		os.remove(json)
 	wait()
 
@@ -458,14 +462,20 @@ def typeHeading():
 
 def typeTicket():
 	rs()
-	ticketrid = driver.find_element_by_xpath("//div[@class='dialog-overlay']").get_attribute("data-reactid")
-	driver.find_element_by_xpath("//textarea[@data-reactid='" + ticketrid + ".0.1.1.0']").clear()
-	driver.find_element_by_xpath("//textarea[@data-reactid='" + ticketrid + ".0.1.1.0']").send_keys("ticket")
+	driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").clear()
+	driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").send_keys("ticket")
+	wait()
+
+def typeComment():
+	rs()
+	driver.find_element_by_xpath("//input[@class='comment-input']").clear()
+	driver.find_element_by_xpath("//input[@class='comment-input']").send_keys("comment")
+	driver.find_element_by_xpath("btn-primary").click()
 	wait()
 
 def deleteTicket():
 	rs()
-	driver.find_element_by_xpath("//i[@class='deleteicon fa fa-trash-o']").click()
+	driver.find_element_by_xpath("//span[@class='deleteicon fa fa-trash-o']").click()
 	wait()
 
 def ticketCancel():
@@ -482,9 +492,11 @@ def ticketDone():
 
 def changeSlide():
 	rs()
-	rid = driver.find_element_by_xpath("//div[@class='dialog-overlay']").get_attribute("data-reactid")
-	slide = random.choice(["$0", "$1", "$2", "$3","$4"])
-	driver.find_element_by_xpath("//button[@data-reactid='" + rid + ".0.0.1:$2.0." + slide + ".0']").click()
+	#slide is not changed - fix!!!
+	slide = driver.find_element_by_xpath("//ul[@class='slider-list']")
+	selectX =["600", "-600"]
+	x = random.choice(selectX)
+	AC(driver).drag_and_drop_by_offset(slide, x, 0)
 	wait()
 
 def clickCloseHelp():
