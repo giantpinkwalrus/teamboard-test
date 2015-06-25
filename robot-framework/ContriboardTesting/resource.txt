@@ -171,7 +171,7 @@ Edit Ticket
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    Input Text    //textarea[@placeholder='Ticket heading']    Ticket Heading
+    Input Text    //input[@placeholder='Ticket heading']    Ticket Heading
     Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
     Click Button    //button[@class='btn-primary']
 
