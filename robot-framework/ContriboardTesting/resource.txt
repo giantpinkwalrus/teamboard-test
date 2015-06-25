@@ -11,11 +11,15 @@ ${ValidPassword}    t3stmonkey
 ${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
 ${SERVER}         sut-cb.n4sjamk.org
-#${SERVER}        localhost:8000
 ${MainUrl}        https://${SERVER}
 ${LoginUrl}       https://${SERVER}/login
 ${BoardUrl}       https://${SERVER}/boards
 ${RegUrl}         https://${SERVER}/register
+#${SERVER}        localhost:8000
+#${MainUrl}       http://${SERVER}
+#${LoginUrl}      http://${SERVER}/login
+#${BoardUrl}      http://${SERVER}/boards
+#${RegUrl}        http://${SERVER}/register
 ${LoginTitle}     Contriboard
 ${custombackground}    http://tinyurl.com/pevhhv7
 ${custombackground2}    http://tinyurl.com/khpx9d8
