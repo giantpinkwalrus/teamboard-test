@@ -172,8 +172,10 @@ Edit Ticket
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Input Text    //input[@placeholder='Ticket heading']    Ticket Heading
+    Click Button    //button[@data-reactid='${rid}.1.2.0.1']
     Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
-    Click Button    //button[@class='btn-primary']
+    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
+    Click Button    //button[@data-reactid='${rid}.1.3.1']
 
 Change Ticket Color
     [Arguments]    ${min}=1    ${max}=5
@@ -186,7 +188,7 @@ Change Ticket Color
     ${ccheck}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.1.${color}']@style
     ${tcolor}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.0']@style
     Should Be Equal    ${ccheck}    ${tcolor}    error=Ticket Color Not Changed
-    Click Button    //button[@class='btn-primary']
+    Click Button    //button[@data-reactid='${rid}.1.3.1']
 
 Minimap Ticket Color
     [Arguments]    ${min}=1    ${max}=5
@@ -199,7 +201,7 @@ Minimap Ticket Color
     ${ccheck}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.1.${color}']@style
     ${tcolor}    Get Element Attribute    //div[@data-reactid='${rid}.0.0.0']@style
     Should Be Equal    ${ccheck}    ${tcolor}    error=Ticket Color Not Changed
-    Click Button    //button[@class='btn-primary']
+    Click Button    //button[@data-reactid='${rid}.1.3.1']
     ${ticketint}    Evaluate    ${tint}+1
     Get Minimap Ticket    ${ticketint}    ${ticketint}
     ${mticket}    Get Element Attribute    ${MTxpath}@style
