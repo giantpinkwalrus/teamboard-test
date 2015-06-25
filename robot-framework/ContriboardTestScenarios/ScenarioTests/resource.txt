@@ -99,7 +99,7 @@ Wallace First Try
     #Unselect Frame
     Assign Id To Element    //ul[@class='dropdown undefined']    Dropdown
     ${did}    Get Element Attribute    Dropdown@data-reactid
-    Click Element    //li[@data-reactid='${did}.$3']
+    Click Element    //li[@data-reactid='${did}.$4']
     Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
     Location Should Be    ${LoginUrl}
 
@@ -208,8 +208,7 @@ Open Ticket Edit
 Input Ticket Text
     [Arguments]    ${Ttext}=Typing Something
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Input Text    //textarea[@data-reactid='${rid}.1.0']    ${Ttext}
+    Input Text    //textarea[@placeholder='Ticket content']    ${Ttext}
 
 Click Done Ticket Edit
     Click Button    //button[@class='btn-primary']

@@ -237,8 +237,7 @@ Edit Ticket
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Input Text    //textarea[@data-reactid='${rid}.1.0']    Typing somenthing
+    Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
     Click Button    //button[@class='btn-primary']
 
 Change Ticket Color

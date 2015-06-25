@@ -167,8 +167,8 @@ Edit Ticket
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Input Text    //textarea[@data-reactid='${rid}.1.0']    Typing somenthing
+    Input Text    //textarea[@placeholder='Ticket heading']    Ticket Heading
+    Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
     Click Button    //button[@class='btn-primary']
 
 Change Ticket Color
@@ -359,7 +359,7 @@ Input User Password
     Input Password    //input[@type='password']    ${password}
 
 Input User Password Again
-    [Arguments]     ${password}
+    [Arguments]    ${password}
     Input Password    //input[@name='passwordAgain']    ${password}
 
 Submit Credentials
