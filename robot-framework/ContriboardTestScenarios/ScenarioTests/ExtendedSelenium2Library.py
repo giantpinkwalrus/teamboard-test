@@ -11,3 +11,9 @@ class ExtendedSelenium2Library(Selenium2Library):
 		self._info("Double clicking element '%s' in coordinates '%s', '%s'." % (locator, xoffset, yoffset))
 		element = self._element_find(locator, True, True)
 		ActionChains(self._current_browser()).move_to_element(element).move_by_offset(xoffset, yoffset).double_click().perform()
+
+	def get_markdown_text_from_file(self, locator):
+		with open('markdown.txt') as f:
+			content = f.readlines()
+			self._info("Typing text '%s' into text field '%s'" % ("from file", locator))
+			self._input_text_into_text_field(locator, content)
