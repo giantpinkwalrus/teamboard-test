@@ -387,11 +387,11 @@ Random Share Board
     Click Button    //button[@class='btn-primary']
 
 Open Shared Board
-    Open Browser    http://${Shared}    ${Browser}
+    Open Browser    https://${Shared}    ${Browser}
     Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
-    Location Should Be    http://${Shared}
+    Location Should Be    https://${Shared}
 
 Login to Shared Board
     [Arguments]    ${User}=Tester
