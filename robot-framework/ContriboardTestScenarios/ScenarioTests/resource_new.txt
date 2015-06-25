@@ -233,7 +233,7 @@ Delete Ticket
     Assign Id To Element    ${Txpath}    Ticket
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    Click Button    //button[@class='btn-danger']
+    Click Button    //span[@class='deleteicon fa fa-trash-o']
     Element Should Not Be Visible    ticket    error=Ticket Not Deleted
 
 Edit Ticket
