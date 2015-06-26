@@ -492,11 +492,9 @@ def ticketDone():
 
 def changeSlide():
 	rs()
-	#slide is not changed - fix!!!
-	slide = driver.find_element_by_xpath("//ul[@class='slider-list']")
-	selectX =["600", "-600"]
-	x = random.choice(selectX)
-	AC(driver).drag_and_drop_by_offset(slide, x, 0)
+	slides =["1", "2", "3", "4", "5"]
+	slide = random.choice(slides)
+	driver.find_element_by_xpath("/html/body/div[2]/div/div/div/div[4]/ul/li[" + slide + "]/button").click()
 	wait()
 
 def clickCloseHelp():
