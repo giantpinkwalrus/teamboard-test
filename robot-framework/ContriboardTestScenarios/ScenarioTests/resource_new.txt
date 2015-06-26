@@ -233,7 +233,7 @@ Delete Ticket
     Assign Id To Element    ${Txpath}    Ticket
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    Click Button    //span[@class='deleteicon fa fa-trash-o']
+    Click Element    //span[@class='deleteicon fa fa-trash-o']
     Element Should Not Be Visible    ticket    error=Ticket Not Deleted
 
 Edit Ticket
@@ -492,7 +492,7 @@ Get Delete Xpath
 Get Ticket Xpath
     [Arguments]    ${min}    ${max}
     ${int}    Evaluate    random.randint(${min}, ${max})    random
-    Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[2]/div/div[1]/div[${int}]
+    Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[2]/div/div[1]/div[${int}]/div[3]
     Set Test Variable    \${tint}    ${EMPTY}
     Set Test Variable    ${tint}    ${int}
 
