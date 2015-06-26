@@ -9,6 +9,7 @@ ${Browser}        firefox
 ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
+${SServer}        http://localhost:8002
 ${SERVER}         sut-cb.n4sjamk.org
 ${MainUrl}        https://${SERVER}
 ${LoginUrl}       https://${SERVER}/login
