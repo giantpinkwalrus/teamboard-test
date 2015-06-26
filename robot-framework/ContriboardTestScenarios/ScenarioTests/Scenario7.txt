@@ -1,0 +1,43 @@
+*** Settings ***
+Resource          resource.txt
+
+*** Test Cases ***
+Wallace's Train drives in a tunnel and network is breaking up
+    [Tags]    sc7
+    Configure Noise    0    0
+    Open Browser To Login Page
+    Login User    wallace.coleman@test.com    wallacecoleman
+
+Wallace creates an board
+    [Tags]    sc7
+    Configure Noise    50    10
+    Create Board
+    Wait Until Page Contains Element    //html/body/div/div/div[2]/div[2]/div[3]/div[2]
+    Click Edit Board    2    2
+    Input Board Name    Birthday-Party-Plan
+    Change Background    5    5
+    Click Done Board Edit
+
+Wallace opens a board
+    [Tags]    sc7
+    Open Board
+
+Wallace creates few tickets
+    [Tags]    sc7
+    Configure Noise    100    5
+    Create Ticket    1    1
+    Wait Until Page Contains Element    //html/body/div/div/div[2]/div/div[1]/div/div[1]
+    Move Ticket    4    4
+
+Wallace goes back to workspace from boardview and delete's board
+    [Tags]    sc7
+    Close Board
+    Repeat Keyword    10    Create Board
+    Repeat Keyword    10    Delete Board
+    Delete Board    2    2
+
+Wallace Closes his computer
+    [Tags]    sc7
+    Configure Noise    0    0
+    Log Out
+    Close Browser

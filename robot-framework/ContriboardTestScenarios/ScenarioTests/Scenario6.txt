@@ -1,5 +1,5 @@
 *** Settings ***
-Resource          resource_new.txt
+Resource          resource.txt
 
 *** Test Cases ***
 John Opens Computer And Logins
