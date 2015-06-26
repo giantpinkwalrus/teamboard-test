@@ -9,7 +9,7 @@ John Opens Computer And Logins
 
 John Creates and Opens Board
     [Tags]    sc6
-    New Board
+    Create Board
     Open Board    2    2
 
 John Opens Board
@@ -35,13 +35,12 @@ John Changes Custom Background
     Click Edit Board From Board
     Set Custom Background
 
-John Uses Markdown Text to Create List to Ticket
+John Uses Markdown Text in Ticket and Adds Comment
     [Tags]    sc6
-    Create Ticket with Markdown Text    -450    -250
-
-John Adds New Ticket with Comment
-    [Tags]    sc6
-    Add Ticket with Comment    -250    -50    TO-DO
+    Create Ticket with Markdown Text and Comment    -450    -250    TO-DO
+    #John Adds New Ticket with Comment
+    #[Tags]    sc6
+    #Add Ticket with Comment    -250    -50    TO-DO
 
 John Exports Board as Image
     [Tags]    sc6
@@ -53,6 +52,6 @@ John Wants to Know More About the Product
 
 Close
     [Tags]    sc6
-    Log Out
+    #Log Out
     Close Browser
     [Teardown]

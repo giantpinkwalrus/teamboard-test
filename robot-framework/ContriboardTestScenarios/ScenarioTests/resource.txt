@@ -9,19 +9,20 @@ ${Browser}        firefox
 ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
-${SERVER}         sut-cb.n4sjamk.org
-${MainUrl}        https://${SERVER}
-${LoginUrl}       https://${SERVER}/login
-${BoardUrl}       https://${SERVER}/boards
-${RegUrl}         https://${SERVER}/register
+#${SERVER}        sut-cb.n4sjamk.org
+#${MainUrl}       https://${SERVER}
+#${LoginUrl}      https://${SERVER}/login
+#${BoardUrl}      https://${SERVER}/boards
+#${RegUrl}        https://${SERVER}/register
 #${SERVER}        localhost
-#${SERVER}        localhost:8000
-#${MainUrl}       http://${SERVER}
-#${LoginUrl}      http://${SERVER}/login
-#${BoardUrl}      http://${SERVER}/boards
-#${RegUrl}        http://${SERVER}/register
+${SERVER}         localhost:8000
+${MainUrl}        http://${SERVER}
+${LoginUrl}       http://${SERVER}/login
+${BoardUrl}       http://${SERVER}/boards
+${RegUrl}         http://${SERVER}/register
 ${LoginTitle}     Contriboard
 ${custombackground}    http://tinyurl.com/pevhhv7
+${custombackground2}    http://tinyurl.com/o7ae8la
 
 *** Keywords ***
 Open Browser To Login Page
@@ -247,16 +248,22 @@ Delete Ticket
     Click Element    //span[@class='deleteicon fa fa-trash-o']
     Element Should Not Be Visible    ticket    error=Ticket Not Deleted
 
-Create Ticket with Markdown Text
-    [Arguments]    ${x}    ${y}
+Create Ticket with Markdown Text and Comment
+    [Arguments]    ${x}    ${y}    ${comment}
+    #Add markdown text
     Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
     Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
-    Double Click Element    //html/body/div/div/div[2]/div/div[1]/div[3]/div[3]
+    Double Click Element    //div[@class='ticket']
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Input Markdown Text
     Click Button    //html/body/div[2]/div/form/section[2]/section[4]/button[2]
-    Double Click Element    //html/body/div/div/div[2]/div/div[1]/div[3]/div[3]
+    Double Click Element    //div[@class='ticket']
     Check Markdown Syntax
+    #Add comment
+    Input Text    //input[@class='comment-input']    ${comment}
+    Click Button    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/button
+    Element Should Contain    //div[@class='comment']    ${comment}    error=Comment not found
+    Click Element    //div[@class='board']
 
 Check Markdown Syntax
     Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h1    error=H1 tag not found
@@ -267,14 +274,14 @@ Check Markdown Syntax
     Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/ol    error=OL tag not found
 
 Add Ticket with Comment
-    [Arguments]    ${x}    ${y}    ${comment}
-    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
-    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
-    Double Click Element    //html/body/div/div/div[2]/div/div[1]/div[4]
-    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    Input Text    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/input    ${comment}
-    Click Button    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/button
-    Element Should Contain    //html/body/div[2]/div/form/section[2]/section[3]/section[2]/div    ${comment}    error=Comment not found
+    #    [Arguments]    ${x}    ${y}    ${comment}
+    #    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
+    #    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
+    #    Double Click Element    //div[@class="ticket"]
+    #    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    #    Input Text    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/input    ${comment}
+    #    Click Button    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/button
+    #    Element Should Contain    //html/body/div[2]/div/form/section[2]/section[3]/section[2]/div    ${comment}    error=Comment not found
 
 Change Background
     [Arguments]    ${min}=0    ${max}=8
@@ -333,12 +340,12 @@ Set Custom Background
     Press Key    //html/body/div[2]/div/form/section[2]/div[2]/div/select    \\40
     Click Element    //html/body/div[2]/div/form/section[2]
     Wait Until Page Contains Element    //html/body/div[2]/div/form/section[2]/div[2]/div[2]/input
-    Input Text    //html/body/div[2]/div/form/section[2]/div[2]/div[2]/input    ${custombackground}
+    Input Text    //html/body/div[2]/div/form/section[2]/div[2]/div[2]/input    ${custombackground2}
     Click Button    //html/body/div[2]/div/form/section[3]/button
     #Check
     ${checkcustom}    Get Element Attribute    //div[@class='board']@style
     ${image}    Fetch From Right    ${checkcustom}    x);
-    Set Test Variable    ${customcheck}    ${SPACE}background-image: url("${custombackground}");
+    Set Test Variable    ${customcheck}    ${SPACE}background-image: url("${custombackground2}");
     Run Keyword If    '${image}'=='${customcheck}'    Check Custom Background Empty
     Run Keyword If    '${image}'!='${customcheck}'    Check Custom Background
 
@@ -463,8 +470,8 @@ Login to Shared Board
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
 
 Use Tutorial
-    Wait Until Page Contains Element    //html/body/div/div/nav/div[1]/span
-    Click Element    //html/body/div/div/nav/div[1]/span
+    Wait Until Page Contains Element    //div[@class='board']
+    Click Element    //span[@class='fa fa-fw fa-info']
     #Check
     Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[1]/div/div
     Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[2]/button
@@ -485,13 +492,13 @@ Click About Button
     Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
 
 Export Board Image
-    Click Element    //html/body/div/div/div[3]/div[4]/span
-    Wait Until Page Contains Element    //html/body/div[2]/div/form    timeout=2    error=Export Dialog Not Open
+    Click Element    //span[@class='fa fa-fw fa-download']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Export Dialog Not Open
     Assign Id To Element    //div[@class='dialog-overlay']    reactID
     ${value}    Get Element Attribute    reactID@data-reactid
     Get Export Format    3
     Select From List By Value    //select[@data-reactid='${value}.0.1.0.1.0.0']    ${export_format}
-    Click Element    //html/body/div[2]/div/form/section[2]/section/div/a
+    Click Element    //button[@class='btn btn-secondary']
     Click Element    //button[@class='btn-primary']
 
 Resize Board
@@ -643,8 +650,8 @@ Get Export
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    \${export}    ${EMPTY}
     Set Test Variable    ${export}    ${item}
+    #for image
 
-#for image
 Get Export Format
     [Arguments]    ${value}
     ${list}    Create List    csv    json    plaintext    image
