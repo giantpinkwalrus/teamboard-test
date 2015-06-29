@@ -32,15 +32,11 @@ John Changes Board Name
 
 John Changes Custom Background
     [Tags]    sc6
-    Click Edit Board From Board
     Set Custom Background
 
 John Uses Markdown Text in Ticket and Adds Comment
     [Tags]    sc6
     Create Ticket with Markdown Text and Comment    -450    -250    TO-DO
-    #John Adds New Ticket with Comment
-    #[Tags]    sc6
-    #Add Ticket with Comment    -250    -50    TO-DO
 
 John Exports Board as Image
     [Tags]    sc6

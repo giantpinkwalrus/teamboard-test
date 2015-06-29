@@ -256,14 +256,14 @@ Create Ticket with Markdown Text and Comment
     Double Click Element    //div[@class='ticket']
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Input Markdown Text
-    Click Button    //html/body/div[2]/div/form/section[2]/section[4]/button[2]
+    Click Button    //button[@tabindex='4']
     Double Click Element    //div[@class='ticket']
     Check Markdown Syntax
     #Add comment
     Input Text    //input[@class='comment-input']    ${comment}
     Click Button    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/button
     Element Should Contain    //div[@class='comment']    ${comment}    error=Comment not found
-    Click Element    //div[@class='board']
+    Click Button    //button[@tabindex='4']
 
 Check Markdown Syntax
     Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h1    error=H1 tag not found
@@ -272,16 +272,6 @@ Check Markdown Syntax
     Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/ul    error=UL tag not found
     Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h3    error=H3 tag not found
     Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/ol    error=OL tag not found
-
-Add Ticket with Comment
-    #    [Arguments]    ${x}    ${y}    ${comment}
-    #    Double Click Element At Coordinates    //div[@class='board']    ${x}    ${y}
-    #    Wait Until Page Contains Element    //div[@class="ticket"]    timeout=2    error=Ticket Not Created
-    #    Double Click Element    //div[@class="ticket"]
-    #    Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
-    #    Input Text    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/input    ${comment}
-    #    Click Button    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/button
-    #    Element Should Contain    //html/body/div[2]/div/form/section[2]/section[3]/section[2]/div    ${comment}    error=Comment not found
 
 Change Background
     [Arguments]    ${min}=0    ${max}=8
@@ -335,13 +325,13 @@ Check Background
     Run Keyword if    '${set}'=='setbackground'    Click Done Board Edit
 
 Set Custom Background
-    Click Element    //html/body/div[2]/div/form/section[2]/div[2]/div/select
-    Press Key    //html/body/div[2]/div/form/section[2]/div[2]/div/select    \\10
-    Press Key    //html/body/div[2]/div/form/section[2]/div[2]/div/select    \\40
-    Click Element    //html/body/div[2]/div/form/section[2]
-    Wait Until Page Contains Element    //html/body/div[2]/div/form/section[2]/div[2]/div[2]/input
-    Input Text    //html/body/div[2]/div/form/section[2]/div[2]/div[2]/input    ${custombackground2}
-    Click Button    //html/body/div[2]/div/form/section[3]/button
+    Click Element    //span[@class='fa fa-fw fa-pencil']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
+    Click Element    //div[@class='select']
+    Click Element    //html/body/div[2]/div/form/section[2]/div[2]/div/select/option[2]
+    Wait Until Page Contains Element    //div[@class='custom-background-url']
+    Input Text    //input[@placeholder='URL']    ${custombackground2}
+    Click Button    //button[@class='btn-primary']
     #Check
     ${checkcustom}    Get Element Attribute    //div[@class='board']@style
     ${image}    Fetch From Right    ${checkcustom}    x);
@@ -482,7 +472,7 @@ Use Tutorial
     Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[4]/div/div/img
     Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[5]/button
     Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[5]/div/div/img
-    Click Element    //html/body/div[1]/div/nav/div[1]/span
+    Click Element    //span[@class='fa fa-fw fa-times']
 
 Click About Button
     Click Element    //span[@class='fa fa-fw fa-user']
