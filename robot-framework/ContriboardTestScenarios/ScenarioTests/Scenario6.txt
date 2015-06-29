@@ -46,6 +46,9 @@ John Wants to Know More About the Product
     [Tags]    sc6
     Click About Button
 
+John Changes Password
+    Change Password    johnjohn    johnjohn2
+
 Close
     [Tags]    sc6
     #Log Out

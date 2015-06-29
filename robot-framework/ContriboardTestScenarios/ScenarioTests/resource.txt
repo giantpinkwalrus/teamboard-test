@@ -9,18 +9,18 @@ ${Browser}        firefox
 ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
-${SServer}        http://localhost:8002
-${SERVER}         sut-cb.n4sjamk.org
-${MainUrl}        https://${SERVER}
-${LoginUrl}       https://${SERVER}/login
-${BoardUrl}       https://${SERVER}/boards
-${RegUrl}         https://${SERVER}/register
+#${SServer}       http://localhost:8002
+#${SERVER}        sut-cb.n4sjamk.org
+#${MainUrl}       https://${SERVER}
+#${LoginUrl}      https://${SERVER}/login
+#${BoardUrl}      https://${SERVER}/boards
+#${RegUrl}        https://${SERVER}/register
 #${SERVER}        localhost
-#${SERVER}         localhost:8000
-#${MainUrl}        http://${SERVER}
-#${LoginUrl}       http://${SERVER}/login
-#${BoardUrl}       http://${SERVER}/boards
-#${RegUrl}         http://${SERVER}/register
+${SERVER}         localhost:8000
+${MainUrl}        http://${SERVER}
+${LoginUrl}       http://${SERVER}/login
+${BoardUrl}       http://${SERVER}/boards
+${RegUrl}         http://${SERVER}/register
 ${LoginTitle}     Contriboard
 ${custombackground}    http://tinyurl.com/pevhhv7
 ${custombackground2}    http://tinyurl.com/o7ae8la
@@ -257,14 +257,14 @@ Create Ticket with Markdown Text and Comment
     Double Click Element    //div[@class='ticket']
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Input Markdown Text
-    Click Button    //button[@tabindex='4']
+    Click Button    //button[contains(text(), "Save")]
     Double Click Element    //div[@class='ticket']
     Check Markdown Syntax
     #Add comment
     Input Text    //input[@class='comment-input']    ${comment}
-    Click Button    //html/body/div[2]/div/form/section[2]/section[3]/section[1]/button
+    Click Button    //button[contains(text(), "Add")]
     Element Should Contain    //div[@class='comment']    ${comment}    error=Comment not found
-    Click Button    //button[@tabindex='4']
+    Click Button    //button[contains(text(), "Save")]
 
 Check Markdown Syntax
     Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h1    error=H1 tag not found
@@ -391,6 +391,24 @@ Click Profile
 Close Profile
     Click Element    //span[@class='fa fa-fw fa-user']
     Element Should Not Be Visible    //ul[@class='dropdown undefined']    error=Dropdown not closed
+
+Change Password
+    [Arguments]    ${currentPassword}    ${newPassword}
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    ${rid}    Get Element Attribute    //div[@class='view view-board']@data-reactid
+    Click Element    //span[@data-reactid='${rid}.1.4.$0.0']
+    Wait Until Element Is Visible    //form[@class='login-info']    timeout=2    error=Profile information dialog not found
+    Click Element    //html/body/div/div/div[2]/div[1]/nav/ul/li[3]/p/span[2]
+    Wait Until Element Is Visible    //input[@type='password']    timeout=2
+    Input Text    //input[@name='oldPassword']    ${currentPassword}
+    Input Text    //input[@name='newPassword']    ${newPassword}
+    Input Text    //input[@name='newPasswordAgain']    ${newPassword}
+    Click Button    //input[@class='btn-primary']
+    Exit Profile Page
+
+Exit Profile Page
+    Click Element    //span[@class='fa fa-arrow-left']
 
 Click Feedback
     Click Element    //div[@class='user-voice-trigger']
