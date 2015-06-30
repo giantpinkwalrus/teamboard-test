@@ -47,6 +47,7 @@ John Wants to Know More About the Product
     Click About Button
 
 John Changes Password
+    [Tags]    sc6
     Change Password    johnjohn    johnjohn2
 
 Close
