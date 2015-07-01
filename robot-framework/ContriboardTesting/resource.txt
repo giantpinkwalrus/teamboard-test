@@ -379,6 +379,13 @@ Change Help Slides
     Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[5]/button
     Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[1]/button
 
+Open Board Members
+    Click Element    //span[@class='fa fa-fw fa-users']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-board-members']
+
+Close Board Members
+    Click Button    //button[@class='btn-primary']
+
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
     Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
