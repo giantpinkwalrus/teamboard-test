@@ -10,17 +10,14 @@ ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
 ${SServer}        http://localhost:8002
-${SERVER}         sut-cb.n4sjamk.org
-${MainUrl}        https://${SERVER}
-${LoginUrl}       https://${SERVER}/login
-${BoardUrl}       https://${SERVER}/boards
-${RegUrl}         https://${SERVER}/register
-#${SERVER}        localhost
-#${SERVER}        localhost:8000
-#${MainUrl}       http://${SERVER}
-#${LoginUrl}      http://${SERVER}/login
-#${BoardUrl}      http://${SERVER}/boards
-#${RegUrl}        http://${SERVER}/register
+${Protocol}      https://
+${SERVER}        sut-cb.n4sjamk.org
+#${Protocol}       http://
+#${SERVER}         localhost:8000
+${MainUrl}        ${Protocol}${SERVER}
+${LoginUrl}       ${Protocol}${SERVER}/login
+${BoardUrl}       ${Protocol}${SERVER}/boards
+${RegUrl}         ${Protocol}${SERVER}/register
 ${LoginTitle}     Contriboard
 ${custombackground}    http://tinyurl.com/pevhhv7
 
@@ -180,26 +177,6 @@ Edit Board From Board
     Input Text    //input[@placeholder='Board Name']    Typing new board name
     Click Button    //button[@class='btn-primary']
 
-Resize Board
-    [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
-    Click Element    //span[@class='fa fa-fw fa-pencil']
-    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
-    Get Board Size    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
-    Input Text    //input[@placeholder='Board Width']    ${width}
-    Input Text    //input[@placeholder='Board Height']    ${height}
-    Click Element    //button[@class='btn-primary']
-    Element Should Not Be Visible    //form[@class='dialog dialog-edit-board']
-    Calculate Board Size    ${width}    ${height}
-    ${styleatt}    Get Element Attribute    //div[@class='board']@style
-    ${boardsize}    Fetch From Left    ${styleatt}    transition-timing-function:
-    Should Be Equal    ${boardsize}    ${sizecheck}
-
-Calculate Board Size
-    [Arguments]    ${width}    ${height}
-    ${boardwidth}    Evaluate    ${width}*192
-    ${boardheight}    Evaluate    ${height}*108
-    Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}
-
 Create Ticket
     [Arguments]    ${min}    ${max}
     Get X Coordinate
@@ -219,6 +196,20 @@ Open Ticket Edit
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    ${status}    ${editdialog} =    Run Keyword And Ignore Error    Check Edit Dialog
+    Run Keyword If    '${status}'=='PASS'    Input to Empty Ticket
+    Run Keyword Unless    '${status}'=='PASS'    Input to Edited Ticket
+
+Check Edit Dialog
+    Page Should Contain Element    //input[@placeholder='Ticket heading']
+
+Input to Empty Ticket
+    Page Should Contain Element    //input[@placeholder='Ticket heading']
+
+Input to Edited Ticket
+    ${rid} Get Element Attribute    //form[@class='dialog edit-ticket-dialog']
+    Click Element    //span[@data-reactid='${rid}.1.0.0']
+    Element Should Be Visible    //input[@placeholder='Ticket heading']
 
 Input Ticket Text
     [Arguments]    ${Ttext}=Typing Something
@@ -235,6 +226,20 @@ Random Edit Ticket
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    ${TextareaVisible}    Page Should Contain Element    //textarea[@placeholder='Ticket content']
+    Run Keyword If    ${TextareaVisible}=='PASS'    Random Input to Empty Ticket
+    Run Keyword If    ${TextareaVisible}=='FAIL'    Random Input to Edited Ticket
+
+Random Input to Empty Ticket
+    Element Should Be Visible    //input[@placeholder='Ticket heading']
+    Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
+    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
+    Click Button    //button[@data-reactid='${rid}.1.3.1']
+
+Random Input to Edited Ticket
+    ${rid} Get Element Attribute    //form[@class='dialog edit-ticket-dialog']
+    Click Element    //span[@data-reactid='${rid}.1.0.0']
+    Element Should Be Visible    //input[@placeholder='Ticket heading']
     Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
     Click Button    //button[@data-reactid='${rid}.1.3.1']
@@ -451,11 +456,11 @@ Random Share Board
     Click Button    //button[@class='btn-primary']
 
 Open Shared Board
-    Open Browser    https://${Shared}    ${Browser}
+    Open Browser    ${Protocol}${Shared}    ${Browser}
     Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
-    Location Should Be    https://${Shared}
+    Location Should Be    ${Protocol}${Shared}
 
 Login to Shared Board
     [Arguments]    ${User}=Tester
@@ -536,7 +541,9 @@ Get Delete Xpath
 Get Ticket Xpath
     [Arguments]    ${min}    ${max}
     ${int}    Evaluate    random.randint(${min}, ${max})    random
-    Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[2]/div/div[1]/div[${int}]/div[3]
+    Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[2]/div/div[1]/div[${int}]
+    Set Test Variable    \${tint}    ${EMPTY}
+    Set Test Variable    ${tint}    ${int}
 
 Get X Move
     [Arguments]    ${min}=-960    ${max}=960
@@ -663,3 +670,9 @@ Get Board Size
 
 Input Markdown Text
     Get Markdown Text From File    //textarea[@placeholder='Ticket content']
+
+Calculate Board Size
+    [Arguments]    ${width}    ${height}
+    ${boardwidth}    Evaluate    ${width}*192
+    ${boardheight}    Evaluate    ${height}*108
+    Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}

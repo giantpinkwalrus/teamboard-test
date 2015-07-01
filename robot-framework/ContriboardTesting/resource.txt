@@ -10,16 +10,14 @@ ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
 ${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
+${Protocol}       https://
 ${SERVER}         sut-cb.n4sjamk.org
-${MainUrl}        https://${SERVER}
-${LoginUrl}       https://${SERVER}/login
-${BoardUrl}       https://${SERVER}/boards
-${RegUrl}         https://${SERVER}/register
+#${Protocol}      http://
 #${SERVER}        localhost:8000
-#${MainUrl}       http://${SERVER}
-#${LoginUrl}      http://${SERVER}/login
-#${BoardUrl}      http://${SERVER}/boards
-#${RegUrl}        http://${SERVER}/register
+${MainUrl}        ${Protocol}${SERVER}
+${LoginUrl}       ${Protocol}${SERVER}/login
+${BoardUrl}       ${Protocol}${SERVER}/boards
+${RegUrl}         ${Protocol}${SERVER}/register
 ${LoginTitle}     Contriboard
 ${custombackground}    http://tinyurl.com/pevhhv7
 ${custombackground2}    http://tinyurl.com/khpx9d8
@@ -158,27 +156,45 @@ Move Ticket
     Drag And Drop By Offset    ${Txpath}    ${xMove}    ${yMove}
 
 Delete Ticket
-    [Arguments]    ${min}=1    ${max}=5
+    [Arguments]    ${min}=2    ${max}=5
     Get Ticket Xpath    ${min}    ${max}
-    Assign Id To Element    ${Txpath}    Ticket
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Click Element    //span[@class='deleteicon fa fa-trash-o']
-    Element Should Not Be Visible    ticket    error=Ticket Not Deleted
 
 Edit Ticket
-    [Arguments]    ${min}=1    ${max}=5
+    [Arguments]    ${min}=2    ${max}=5
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
+    ${status}    ${editdialog} =    Run Keyword And Ignore Error    Check Ticket Edit Dialog
+    Run Keyword If    '${status}'=='PASS'    Input to Empty Ticket
+    Run Keyword Unless    '${status}'=='PASS'    Input to Edited Ticket
+
+Check Ticket Edit Dialog
+    Page Should Contain Element    //input[@placeholder='Ticket heading']
+
+Input to Empty Ticket
     Input Text    //input[@placeholder='Ticket heading']    Ticket Heading
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
+    Input Text    //input[@class='comment-input']    Ticket comment
+    Click Button    //button[@data-reactid='${rid}.1.2.0.1']
+    Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
+    Click Button    //button[@data-reactid='${rid}.1.3.1']
+
+Input to Edited Ticket
+    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
+    Click Element    //span[@data-reactid='${rid}.1.0.0']
+    Page Should Contain Element    //input[@placeholder='Ticket heading']
+    Input Text    //input[@placeholder='Ticket heading']    Ticket Heading
+    ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
+    Input Text    //input[@class='comment-input']    Ticket comment
     Click Button    //button[@data-reactid='${rid}.1.2.0.1']
     Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
     Click Button    //button[@data-reactid='${rid}.1.3.1']
 
 Change Ticket Color
-    [Arguments]    ${min}=1    ${max}=5
+    [Arguments]    ${min}=2    ${max}=5
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
@@ -191,7 +207,7 @@ Change Ticket Color
     Click Button    //button[@data-reactid='${rid}.1.3.1']
 
 Minimap Ticket Color
-    [Arguments]    ${min}=1    ${max}=5
+    [Arguments]    ${min}=2    ${max}=5
     Get Ticket Xpath    ${min}    ${max}
     Double Click Element    ${Txpath}
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
@@ -265,13 +281,14 @@ Stop Share Board
     Click Button    //button[@class='btn-primary']
 
 Open Shared Board
-    Open Browser    https://${Shared}    ${Browser}
+    Open Browser    ${Protocol}${Shared}    ${Browser}
     Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
-    Location Should Be    https://${Shared}
+    Location Should Be    ${Protocol}${Shared}
 
 Login to Shared Board
+    Wait Until Page Contains Element    //input[@name='username']    timeout=2    error=Shared Login Not Found
     Input Text    //input[@name='username']    Tester
     Click Button    //input[@class='btn-primary']
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
@@ -347,6 +364,21 @@ Calculate Board Size
     Set Test Variable    \${boardheight}    ${EMPTY}
     Set Test Variable    ${boardheight}    ${bheight}
 
+Open Help
+    Click Element    //span[@class='fa fa-fw fa-info']
+    Wait Until Element Is Visible    //div[@class='infospace']    timeout=2    error=Help not open
+
+Close Help
+    Click Element    //span[@class='fa fa-fw fa-times']
+    Element Should Not Be Visible    //div[@class='infospace']
+
+Change Help Slides
+    Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[2]/button
+    Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[3]/button
+    Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[4]/button
+    Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[5]/button
+    Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[1]/button
+
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
     Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
@@ -402,7 +434,7 @@ Get Delete Xpath
 Get Ticket Xpath
     [Arguments]    ${min}    ${max}
     ${int}    Evaluate    random.randint(${min}, ${max})    random
-    Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[2]/div/div[1]/div[${int}]/div[3]
+    Set Test Variable    ${Txpath}    xpath=/html/body/div/div/div[2]/div/div[1]/div[${int}]
     Set Test Variable    \${tint}    ${EMPTY}
     Set Test Variable    ${tint}    ${int}
 

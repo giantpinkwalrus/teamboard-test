@@ -9,7 +9,7 @@ John Opens Computer And Logins
 
 John Creates and Opens Board
     [Tags]    sc6
-    New Board
+    Create Board
     Open Board    2    2
 
 John Opens Board
