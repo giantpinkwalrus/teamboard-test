@@ -695,6 +695,9 @@ Input Markdown Text
 
 Calculate Board Size
     [Arguments]    ${width}    ${height}
-    ${boardwidth}    Evaluate    ${width}*192
-    ${boardheight}    Evaluate    ${height}*108
-    Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}
+    ${bwidth}    Evaluate    ${width}*192
+    ${bheight}    Evaluate    ${height}*108
+    Set Test Variable    \${boardwidth}    ${EMPTY}
+    Set Test Variable    ${boardwidth}    ${bwidth}
+    Set Test Variable    \${boardheight}    ${EMPTY}
+    Set Test Variable    ${boardheight}    ${bheight}
