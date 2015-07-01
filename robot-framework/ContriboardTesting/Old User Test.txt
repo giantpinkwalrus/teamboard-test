@@ -81,6 +81,10 @@ Delete Ticket From Board
     [Tags]    old
     Delete Ticket
 
+View Board Members
+    Open Board Members
+    Close Board Members
+
 Share Board Url
     [Tags]    share    old
     Share Board
