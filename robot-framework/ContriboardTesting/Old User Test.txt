@@ -4,12 +4,12 @@ Resource          resource.txt
 *** Test Cases ***
 Login User
     [Tags]    old    log    edit    feed    share    export
-    ...    color    size
+    ...    color    size    ticket
     Open Browser To Login Page
     Login User
 
 Create New Board
-    [Tags]    old    color    share    edit    size
+    [Tags]    old    color    share    edit    size    ticket
     Repeat Keyword    5    New Board
     Edit Board
 
@@ -36,7 +36,7 @@ Delete Board
     Delete Board
 
 Edit Board From Board
-    [Tags]    old    color    size
+    [Tags]    old    color    size    ticket
     Open Board    2    5
     Edit Board From Board
     Resize Board    10    10    10    10
@@ -48,24 +48,31 @@ Test Controls From Board
     Click Magnet Off
     Click Globe Off
 
+Test Help
+    [Tags]    old
+    Open Help
+    Change Help Slides
+    Close Help
+
 Create and Move Tickets
-    [Tags]    old    color
+    [Tags]    old    color    ticket
     Create Ticket    1    1
     Create Ticket    2    2
     Create Ticket    3    3
     Create Ticket    4    4
     Create Ticket    5    5
+    Reload Page
 
 Edit Created Ticket
-    [Tags]    old    color
+    [Tags]    old    color    ticket
     Repeat Keyword    5    Edit Ticket
 
 Change Created Ticket Color
-    [Tags]    old    color
+    [Tags]    old    color    ticket
     Repeat Keyword    5    Change Ticket Color
 
 Check Minimap Ticket Color Change
-    [Tags]    old    color
+    [Tags]    old    color    ticket
     Click Globe On
     Repeat Keyword    5    Minimap Ticket Color
     Click Globe Off
@@ -117,11 +124,11 @@ Close Board Sharing
 
 Log Out User
     [Tags]    old    share    edit    feed    export    color
-    ...    size
+    ...    size    ticket
     Log Out
 
 Close
     [Tags]    old    share    edit    feed    export    color
-    ...    size
+    ...    size    ticket
     Close Browser
     [Teardown]
