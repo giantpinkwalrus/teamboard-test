@@ -49,6 +49,11 @@ John Wants to Know More About the Product
 John Changes Password
     [Tags]    sc6
     Change Password    johnjohn    johnjohn2
+    Change Password    johnjohn2    johnjohn
+
+John Checks Board Members
+    [Tags]    sc6
+    Check Board Members
 
 Close
     [Tags]    sc6

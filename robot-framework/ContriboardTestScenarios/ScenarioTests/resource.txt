@@ -9,18 +9,18 @@ ${Browser}        firefox
 ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
-${SServer}        http://localhost:8002
-${SERVER}         sut-cb.n4sjamk.org
-${MainUrl}        https://${SERVER}
-${LoginUrl}       https://${SERVER}/login
-${BoardUrl}       https://${SERVER}/boards
-${RegUrl}         https://${SERVER}/register
+#${SServer}       http://localhost:8002
+#${SERVER}        sut-cb.n4sjamk.org
+#${MainUrl}       https://${SERVER}
+#${LoginUrl}      https://${SERVER}/login
+#${BoardUrl}      https://${SERVER}/boards
+#${RegUrl}        https://${SERVER}/register
 #${SERVER}        localhost
-#${SERVER}        localhost:8000
-#${MainUrl}       http://${SERVER}
-#${LoginUrl}      http://${SERVER}/login
-#${BoardUrl}      http://${SERVER}/boards
-#${RegUrl}        http://${SERVER}/register
+${SERVER}         localhost:8000
+${MainUrl}        http://${SERVER}
+${LoginUrl}       http://${SERVER}/login
+${BoardUrl}       http://${SERVER}/boards
+${RegUrl}         http://${SERVER}/register
 ${LoginTitle}     Contriboard
 ${custombackground}    http://tinyurl.com/pevhhv7
 ${custombackground2}    http://tinyurl.com/o7ae8la
@@ -175,31 +175,12 @@ Click Edit Board From Board
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
 
 Edit Board From Board
+    [Arguments]    ${width}    ${height}
     Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
     Click Element    //span[@class='fa fa-fw fa-pencil']
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
     Input Text    //input[@placeholder='Board Name']    Typing new board name
     Click Button    //button[@class='btn-primary']
-
-Resize Board
-    [Arguments]    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
-    Click Element    //span[@class='fa fa-fw fa-pencil']
-    Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
-    Get Board Size    ${widthmin}    ${widthmax}    ${heightmin}    ${heightmax}
-    Input Text    //input[@placeholder='Board Width']    ${width}
-    Input Text    //input[@placeholder='Board Height']    ${height}
-    Click Element    //button[@class='btn-primary']
-    Element Should Not Be Visible    //form[@class='dialog dialog-edit-board']
-    Calculate Board Size    ${width}    ${height}
-    ${styleatt}    Get Element Attribute    //div[@class='board']@style
-    ${boardsize}    Fetch From Left    ${styleatt}    transition-timing-function:
-    Should Be Equal    ${boardsize}    ${sizecheck}
-
-Calculate Board Size
-    [Arguments]    ${width}    ${height}
-    ${boardwidth}    Evaluate    ${width}*192
-    ${boardheight}    Evaluate    ${height}*108
-    Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}
 
 Create Ticket
     [Arguments]    ${min}    ${max}
@@ -500,6 +481,11 @@ Click About Button
     Click Element    //span[@data-reactid='${rid}.1.4.$3.1']
     Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
 
+Check Board Members
+    Click Element    //span[@class='fa fa-fw fa-users']
+    Page Should Contain Element    //form[@class='dialog dialog-board-members']
+    Click Button    //button[@class='btn-primary']
+
 Export Board Image
     Click Element    //span[@class='fa fa-fw fa-download']
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Export Dialog Not Open
@@ -525,6 +511,15 @@ Resize Board
     Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}
     Run Keyword If    '${boardsize}'=='${sizecheck}'    Verify Resize Empty Background
     Run Keyword If    '${boardsize}'!='${sizecheck}'    Verify Resize
+
+Calculate Board Size
+    [Arguments]    ${width}    ${height}
+    ${bwidth}    Evaluate    ${width}*192
+    ${bheight}    Evaluate    ${height}*108
+    Set Test Variable    \${boardwidth}    ${EMPTY}
+    Set Test Variable    ${boardwidth}    ${bwidth}
+    Set Test Variable    \${boardheight}    ${EMPTY}
+    Set Test Variable    ${boardheight}    ${bheight}
 
 Verify Resize Empty Background
     Should Be Equal    ${boardsize}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}    error=Board Not Resized
