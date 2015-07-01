@@ -9,30 +9,16 @@ ${Browser}        firefox
 ${DELAY}          0.2
 ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
-<<<<<<< HEAD
-#${SServer}       http://localhost:8002
-#${SERVER}        sut-cb.n4sjamk.org
-#${MainUrl}       https://${SERVER}
-#${LoginUrl}      https://${SERVER}/login
-#${BoardUrl}      https://${SERVER}/boards
-#${RegUrl}        https://${SERVER}/register
 #${SERVER}        localhost
+#${SServer}       http://localhost:8002
+#${Protocol}      https://
+#${SERVER}        sut-cb.n4sjamk.org
+${Protocol}       http://
 ${SERVER}         localhost:8000
-${MainUrl}        http://${SERVER}
-${LoginUrl}       http://${SERVER}/login
-${BoardUrl}       http://${SERVER}/boards
-${RegUrl}         http://${SERVER}/register
-=======
-${SServer}        http://localhost:8002
-${Protocol}      https://
-${SERVER}        sut-cb.n4sjamk.org
-#${Protocol}       http://
-#${SERVER}         localhost:8000
 ${MainUrl}        ${Protocol}${SERVER}
 ${LoginUrl}       ${Protocol}${SERVER}/login
 ${BoardUrl}       ${Protocol}${SERVER}/boards
 ${RegUrl}         ${Protocol}${SERVER}/register
->>>>>>> upstream/master
 ${LoginTitle}     Contriboard
 ${custombackground}    http://tinyurl.com/pevhhv7
 ${custombackground2}    http://tinyurl.com/o7ae8la
@@ -712,4 +698,3 @@ Calculate Board Size
     ${boardwidth}    Evaluate    ${width}*192
     ${boardheight}    Evaluate    ${height}*108
     Set Test Variable    ${sizecheck}    width: ${boardwidth}px; height: ${boardheight}px;${SPACE}
-
