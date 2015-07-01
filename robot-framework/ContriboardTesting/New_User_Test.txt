@@ -21,11 +21,13 @@ Create Ticket Into Board
     [Tags]    new
     Edit Board From Board
     Create Ticket    1    1
-    Edit Ticket    1    1
+    Create Ticket    2    2
+    Reload Page
+    Edit Ticket    2    2
 
 Delete Ticket From Board
     [Tags]    new
-    Delete Ticket    1    1
+    Delete Ticket    2    2
 
 Delete Board
     [Tags]    new
