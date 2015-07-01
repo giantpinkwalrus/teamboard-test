@@ -52,7 +52,7 @@ Register User
     Input Password    //input[@name='passwordAgain']    ${NewPassword}
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
     Should Be Equal    ${check}    Register    error=Register button missing
-    Click Button    //input[@class='btn-primary']
+    Click Element    //input[@class='btn-primary']
     Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
@@ -208,7 +208,7 @@ Input to Empty Ticket
 
 Input to Edited Ticket
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Click Element    //span[@data-reactid='${rid}.1.0.0']
+    Click Element    //span[@data-reactid='${rid}.0.1.1.0']
     Element Should Be Visible    //input[@placeholder='Ticket heading']
 
 Input Ticket Text
