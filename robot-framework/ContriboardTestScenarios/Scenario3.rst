@@ -125,6 +125,8 @@ All what Dave was told her last week were foggy memories. "There is nice button 
 		Click Edit Board    3    3
 		Click Done Board Edit
 		Open Board    3    3
+		Open Help
+		Close Help
 		Create Ticket    1    1
 		Click Magnet On
 		Click Globe On
@@ -148,6 +150,8 @@ Now that she has clicked some buttons she has somekind on idea what she need to 
     	*** Test Cases ***
 	Evelyn Opens Board That Was Created Before
 		Open Board    2    2
+		Open Help
+		Close Help
 
 Evelyn starts creating ticket as tasks what she need to do for the birthday party.
 

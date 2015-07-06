@@ -486,6 +486,21 @@ Login to Shared Board
     Click Button    //input[@class='btn-primary']
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
 
+Open Help
+    Click Element    //span[@class='fa fa-fw fa-info']
+    Wait Until Element Is Visible    //div[@class='infospace']    timeout=2    error=Help not open
+
+Close Help
+    Click Element    //span[@class='fa fa-fw fa-times']
+    Element Should Not Be Visible    //div[@class='infospace']
+
+Change Help Slides
+    Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[2]/button
+    Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[3]/button
+    Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[4]/button
+    Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[5]/button
+    Click Element    xpath=/html/body/div[2]/div/div/div/div[4]/ul/li[1]/button
+
 Use Tutorial
     Wait Until Page Contains Element    //div[@class='board']
     Click Element    //span[@class='fa fa-fw fa-info']

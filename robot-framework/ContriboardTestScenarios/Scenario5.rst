@@ -108,6 +108,8 @@ Test opening boards
     	*** Test Cases ***
 	Test Opening Boards
 		Open Board    2    16
+		Open Help
+		Close Help
 		Close Board
 		Open Board    2    16
 		Close Board
@@ -218,6 +220,8 @@ Test Board sharing
 	Open Shared Board
 		Open Shared Board
 		Login to Shared Board
+		Open Help
+		Close Help
 		Create Ticket    1    1
 		Random Edit Ticket    1    1
 		Log Out
