@@ -12,6 +12,14 @@ Create New Board
     New Board
     Edit Board    2    2
 
+Test Help
+    [Tags]    old
+    Open Board    2    6
+    Open Help
+    Change Help Slides
+    Close Help
+    Close Board
+
 Change Background
     [Tags]    new
     Open Board    2    2

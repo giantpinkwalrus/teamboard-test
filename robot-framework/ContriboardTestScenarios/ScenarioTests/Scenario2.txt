@@ -18,6 +18,8 @@ Jenny Creates a Board
 Jenny Opens Board and Create Tickets
     [Tags]    sc2
     Open Board    2    2
+    Open Help
+    Close Help
     Create Ticket    1    1
     Open Ticket Edit    1    1
     Input Ticket Text    Clean before party
@@ -56,6 +58,8 @@ Friend1 Creates Tickets
     [Tags]    sc2
     Open Shared Board
     Login to Shared Board    Friend1
+    Open Help
+    Close Help
     Create Ticket    7    7
     Open Ticket Edit    7    7
     Input Ticket Text    Friend1 suggestion
@@ -70,6 +74,8 @@ Friend2 Creates Tickets
     [Tags]    sc2
     Open Shared Board
     Login to Shared Board    Friend2
+    Open Help
+    Close Help
     Create Ticket    8    8
     Open Ticket Edit    8    8
     Input Ticket Text    Friend2 suggestion
@@ -84,6 +90,8 @@ Friend3 Creates Tickets
     [Tags]    sc2
     Open Shared Board
     Login to Shared Board    Friend3
+    Open Help
+    Close Help
     Create Ticket    9    9
     Open Ticket Edit    9    9
     Input Ticket Text    Friend3 suggestion
@@ -98,6 +106,8 @@ Friend4 Creates Tickets
     [Tags]    sc2
     Open Shared Board
     Login to Shared Board    Friend4
+    Open Help
+    Close Help
     Create Ticket    10    10
     Open Ticket Edit    10    10
     Input Ticket Text    Friend4 suggestion
@@ -112,6 +122,8 @@ Friend5 Creates Tickets
     [Tags]    sc2
     Open Shared Board
     Login to Shared Board    Friend5
+    Open Help
+    Close Help
     Create Ticket    11    11
     Open Ticket Edit    11    11
     Input Ticket Text    Friend5 suggestion
@@ -127,6 +139,8 @@ Jenny Comes Back
     Open Browser To Login Page
     Login User    jenny.porter@test.com    jennyporter
     Open Board    2    2
+    Open Help
+    Close Help
 
 Jenny Edit Tickets
     [Tags]    sc2
@@ -143,6 +157,8 @@ Friend 1 Edit Tickets
     [Tags]    sc2
     Open Shared Board
     Login to Shared Board    Friend1
+    Open Help
+    Close Help
     Open Ticket Edit    7    7
     Input Ticket Text    Friend1 suggestion: Friend 1
     Click Done Ticket Edit
@@ -156,6 +172,8 @@ Friend 2 Edit Tickets
     [Tags]    sc2
     Open Shared Board
     Login to Shared Board    Friend2
+    Open Help
+    Close Help
     Open Ticket Edit    8    8
     Input Ticket Text    Friend2 suggestion: Friend 2
     Click Done Ticket Edit
@@ -169,6 +187,8 @@ Friend 3 Edit Tickets
     [Tags]    sc2
     Open Shared Board
     Login to Shared Board    Friend3
+    Open Help
+    Close Help
     Open Ticket Edit    9    9
     Input Ticket Text    Friend3 suggestion: Friend 3
     Click Done Ticket Edit
@@ -182,6 +202,8 @@ Friend 4 Edit Tickets
     [Tags]    sc2
     Open Shared Board
     Login to Shared Board    Friend4
+    Open Help
+    Close Help
     Open Ticket Edit    10    10
     Input Ticket Text    Friend4 suggestion: Friend 4
     Click Done Ticket Edit
@@ -195,6 +217,8 @@ Friend 5 Edit Tickets
     [Tags]    sc2
     Open Shared Board
     Login to Shared Board    Friend5
+    Open Help
+    Close Help
     Open Ticket Edit    11    11
     Input Ticket Text    Friend5 suggestion: Friend 5
     Click Done Ticket Edit
@@ -209,6 +233,8 @@ TODO-List is finished
     Open Browser To Login Page
     Login User    jenny.porter@test.com    jennyporter
     Open Board    2    2
+    Open Help
+    Close Help
     Close Board
 
 Close Final

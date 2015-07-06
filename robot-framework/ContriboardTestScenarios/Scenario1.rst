@@ -95,6 +95,13 @@ Wallace start to explore the page and clicking different things
 	Wallace Explores part 1
 		Wallace First Try
 
+	Wallace Tests Help
+		Open Board    3    3
+		Open Help
+		Change Help Slides
+		Close Help
+		Close Board
+
 
 Wallace accidently clicked logout and page changed back to mainpage where he just started. Luckily Wallace didn't panic
 and he just does logs back in.
