@@ -95,13 +95,6 @@ Wallace start to explore the page and clicking different things
 	Wallace Explores part 1
 		Wallace First Try
 
-	Wallace Tests Help
-		Open Board    3    3
-		Open Help
-		Change Help Slides
-		Close Help
-		Close Board
-
 
 Wallace accidently clicked logout and page changed back to mainpage where he just started. Luckily Wallace didn't panic
 and he just does logs back in.
@@ -122,6 +115,13 @@ And Wallace is back on the page where he accidently left before. Wallace continu
     	*** Test Cases ***
 	Wallace Explores Part 2
 		Repeat Keyword    3    Create Board
+
+	Wallace Tests Help
+		Open Board    2    2
+		Open Help
+		Change Help Slides
+		Close Help
+		Close Board
 
 
 Wallace found how to create boards. And remembers that teacher said that he has to name his idea board and change background of the board.
