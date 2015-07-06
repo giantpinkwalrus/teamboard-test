@@ -82,6 +82,7 @@ Delete Ticket From Board
     Delete Ticket
 
 View Board Members
+    [Tags]    old
     Open Board Members
     Close Board Members
 

@@ -511,7 +511,7 @@ Export Board Image
     ${value}    Get Element Attribute    reactID@data-reactid
     Get Export    3
     Select From List By Value    //select[@id='export-select']    ${export}
-    Click Element    //button[@class='btn btn-secondary']
+    Click Element    //a[@class='btn btn-secondary']
     Click Element    //button[@class='btn-primary']
 
 Resize Board
@@ -649,7 +649,7 @@ Get Random Type
 Get Ticket Color
     [Arguments]    ${min}=0    ${max}=3
     ${int}    Evaluate    random.randint(${min}, ${max})    random
-    ${list}    Create List    $#eb584a    $#4f819a    $#724a7f    $#dcc75b
+    ${list}    Create List    \#eb584a    \#4f819a    \#724a7f    \#dcc75b
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    \${color}    ${EMPTY}
     Set Test Variable    ${color}    ${item}
