@@ -118,7 +118,6 @@ Open Share Board
     Login to Shared Board
     Open Help
     Close Help
-    Close Board
     Create Ticket    1    1
     Edit Ticket    1    1
     Log Out
