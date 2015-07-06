@@ -34,7 +34,7 @@ Wallace Explores Part 2
     Repeat Keyword    3    Create Board
 
 Wallace Tests Help
-    Open Board    3    3
+    Open Board    2    2
     Open Help
     Change Help Slides
     Close Help

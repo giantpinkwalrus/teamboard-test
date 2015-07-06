@@ -14,7 +14,7 @@ Create New Board
 
 Test Help
     [Tags]    old
-    Open Board    2    6
+    Open Board    2    2
     Open Help
     Change Help Slides
     Close Help
