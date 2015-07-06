@@ -22,7 +22,7 @@ John Uses Tutorial
 
 John Resizes Board
     [Tags]    sc6
-    Resize Board    10    10    10    10
+    Resize Board    1    10    1    10
 
 John Changes Board Name
     [Tags]    sc6
@@ -50,6 +50,10 @@ John Changes Password
     [Tags]    sc6
     Change Password    johnjohn    johnjohn2
     Change Password    johnjohn2    johnjohn
+
+John Set Username
+    [Tags]    sc6
+    Set Username    John
 
 John Checks Board Members
     [Tags]    sc6

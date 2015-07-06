@@ -11,10 +11,10 @@ ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
 #${SERVER}        localhost
 #${SServer}       http://localhost:8002
-${Protocol}       https://
-${SERVER}         sut-cb.n4sjamk.org
-#${Protocol}      http://
-#${SERVER}        localhost:8000
+#${Protocol}      https://
+#${SERVER}        sut-cb.n4sjamk.org
+${Protocol}       http://
+${SERVER}         localhost:8000
 ${MainUrl}        ${Protocol}${SERVER}
 ${LoginUrl}       ${Protocol}${SERVER}/login
 ${BoardUrl}       ${Protocol}${SERVER}/boards
@@ -257,22 +257,22 @@ Create Ticket with Markdown Text and Comment
     Double Click Element    //div[@class='ticket']
     Wait Until Page Contains Element    //form[@class='dialog edit-ticket-dialog']    timeout=2    error=Edit Ticket Dialog Not Found
     Input Markdown Text
-    Click Button    //button[contains(text(), "Save")]
+    Click Button    //button[@id='ticket-dialog-save']
     Double Click Element    //div[@class='ticket']
     Check Markdown Syntax
     #Add comment
     Input Text    //input[@class='comment-input']    ${comment}
-    Click Button    //button[contains(text(), "Add")]
+    Click Button    //button[@id='ticket-add-comment']
     Element Should Contain    //div[@class='comment']    ${comment}    error=Comment not found
-    Click Button    //button[contains(text(), "Save")]
+    Click Button    //button[@id='ticket-dialog-save']
 
 Check Markdown Syntax
-    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h1    error=H1 tag not found
-    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/p    error=P tag not found
-    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h2    error=H2 tag not found
-    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/ul    error=UL tag not found
-    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/h3    error=H3 tag not found
-    Page Should Contain Element    //html/body/div[2]/div/form/section[2]/section[2]/span/ol    error=OL tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/h1    error=H1 tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/p    error=P tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/h2    error=H2 tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/ul    error=UL tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/h3    error=H3 tag not found
+    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/ol    error=OL tag not found
 
 Change Background
     [Arguments]    ${min}=0    ${max}=8
@@ -398,13 +398,22 @@ Change Password
     Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
     Click Element    //li[@id='options-user']
     Wait Until Element Is Visible    //form[@class='login-info']    timeout=2    error=Profile information dialog not found
-    Click Element    //html/body/div/div/div[2]/div[1]/nav/ul/li[3]/p/span[2]
-    Wait Until Element Is Visible    //input[@type='password']    timeout=2
+    Click Element    //li[@id='Password']
+    Wait Until Page Contains Element    //input[@type='password']
     Input Text    //input[@name='oldPassword']    ${currentPassword}
     Input Text    //input[@name='newPassword']    ${newPassword}
     Input Text    //input[@name='newPasswordAgain']    ${newPassword}
     Click Button    //input[@class='btn-primary']
     Exit Profile Page
+
+Set Username
+    [Arguments]    ${newUsername}
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //li[@id='options-user']
+    Wait Until Element Is Visible    //form[@class='login-info']    timeout=2    error=Profile information dialog not found
+    Input Text    //input[@id='name']    ${newUsername}
+    Click Element    //input[@class='btn-primary']
 
 Exit Profile Page
     Click Element    //span[@class='fa fa-arrow-left']
