@@ -37,6 +37,8 @@ Evelyn Explores Everything
     Click Edit Board    3    3
     Click Done Board Edit
     Open Board    3    3
+    Open Help
+    Close Help
     Create Ticket    1    1
     Click Magnet On
     Click Globe On
@@ -54,6 +56,8 @@ Evelyn Explores Everything
 Evelyn Opens Board That Was Created Before
     [Tags]    sc3
     Open Board    2    2
+    Open Help
+    Close Help
 
 Evelyn Creates And Edits Tickets
     [Tags]    sc3

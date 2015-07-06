@@ -33,6 +33,13 @@ Wallace Explores Part 2
     [Tags]    sc1
     Repeat Keyword    3    Create Board
 
+Wallace Tests Help
+    Open Board    3    3
+    Open Help
+    Change Help Slides
+    Close Help
+    Close Board
+
 Wallace Tries Board buttons
     [Tags]    sc1
     Delete Board    4    4

@@ -13,6 +13,14 @@ Create New Board
     Repeat Keyword    5    New Board
     Edit Board
 
+Test Help
+    [Tags]    old
+    Open Board    2    6
+    Open Help
+    Change Help Slides
+    Close Help
+    Close Board
+
 Change Background
     [Tags]    old    edit
     Open Board    2    6
@@ -47,12 +55,6 @@ Test Controls From Board
     Click Globe On
     Click Magnet Off
     Click Globe Off
-
-Test Help
-    [Tags]    old
-    Open Help
-    Change Help Slides
-    Close Help
 
 Create and Move Tickets
     [Tags]    old    color    ticket
@@ -114,6 +116,8 @@ Open Share Board
     [Tags]    share    old
     Open Shared Board
     Login to Shared Board
+    Open Help
+    Close Help
     Create Ticket    1    1
     Edit Ticket    1    1
     Log Out

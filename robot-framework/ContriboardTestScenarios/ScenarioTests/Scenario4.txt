@@ -26,6 +26,8 @@ James Creates Sprint Plan Board
 James Opens SWOT Board
     [Tags]    sc4
     Open Board    3    3
+    Open Help
+    Close Help
 
 James Creates Tickets To SWOT Board
     [Tags]    sc4
@@ -125,6 +127,8 @@ James Creates Sprint Plan Board Again
 James Creates Tickets to Sprint Plan Board Again
     [Tags]    sc4
     Open Board    2    2
+    Open Help
+    Close Help
     Click Magnet On
     Create Ticket    1    1
     Open Ticket Edit    1    1

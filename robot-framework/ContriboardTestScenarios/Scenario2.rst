@@ -73,6 +73,8 @@ Now she add couple tasks to the board before sharing it to friends.
     	*** Test Cases ***
 	Jenny Opens Board and Create Tickets
 		Open Board    2    2
+		Open Help
+		Close Help
 		Create Ticket    1    1
 		Open Ticket Edit    1    1
 		Input Ticket Text    Clean before party
@@ -133,6 +135,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 	Friend1 Creates Tickets
 		Open Shared Board
 		Login to Shared Board    Friend1
+		Open Help
+		Close Help
 		Create Ticket    7    7
 		Open Ticket Edit    7    7
 		Input Ticket Text    Friend1 suggestion
@@ -145,6 +149,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 	Friend2 Creates Tickets
 		Open Shared Board
 		Login to Shared Board    Friend2
+		Open Help
+		Close Help
 		Create Ticket    8    8
 		Open Ticket Edit    8    8
 		Input Ticket Text    Friend2 suggestion
@@ -157,6 +163,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 	Friend3 Creates Tickets
 		Open Shared Board
 		Login to Shared Board    Friend3
+		Open Help
+		Close Help
 		Create Ticket    9    9
 		Open Ticket Edit    9    9
 		Input Ticket Text    Friend3 suggestion
@@ -169,6 +177,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 	Friend4 Creates Tickets
 		Open Shared Board
 		Login to Shared Board    Friend4
+		Open Help
+		Close Help
 		Create Ticket    10    10
 		Open Ticket Edit    10    10
 		Input Ticket Text    Friend4 suggestion
@@ -181,6 +191,8 @@ While Jenny is on a coffee break her friends starts editing the board.
 	Friend5 Creates Tickets
 		Open Shared Board
 		Login to Shared Board    Friend5
+		Open Help
+		Close Help
 		Create Ticket    11    11
 		Open Ticket Edit    11    11
 		Input Ticket Text    Friend5 suggestion
@@ -201,6 +213,8 @@ Jenny gets back. Jenny and her friends talk about who does what and when.
 		Open Browser To Login Page
 		Login User    jenny.porter@test.com    jennyporter
 		Open Board    2    2
+		Open Help
+		Close Help
 
 Now that they are decided what to do. They assign the tickets to each other and edit them accordingly. They all add their name for their task and moves them
 on their correct places. So they can see what has been done and what need to be done.
@@ -221,6 +235,8 @@ on their correct places. So they can see what has been done and what need to be 
 	Friend 1 Edit Tickets
 		Open Shared Board
 		Login to Shared Board    Friend1
+		Open Help
+		Close Help
 		Open Ticket Edit    7    7
 		Input Ticket Text    Friend1 suggestion: Friend 1
 		Click Done Ticket Edit
@@ -232,6 +248,8 @@ on their correct places. So they can see what has been done and what need to be 
 	Friend 2 Edit Tickets
 		Open Shared Board
 		Login to Shared Board    Friend2
+		Open Help
+		Close Help
 		Open Ticket Edit    8    8
 		Input Ticket Text    Friend2 suggestion: Friend 2
 		Click Done Ticket Edit
@@ -243,6 +261,8 @@ on their correct places. So they can see what has been done and what need to be 
 	Friend 3 Edit Tickets
 		Open Shared Board
 		Login to Shared Board    Friend3
+		Open Help
+		Close Help
 		Open Ticket Edit    9    9
 		Input Ticket Text    Friend3 suggestion: Friend 3
 		Click Done Ticket Edit
@@ -254,6 +274,8 @@ on their correct places. So they can see what has been done and what need to be 
 	Friend 4 Edit Tickets
 		Open Shared Board
 		Login to Shared Board    Friend4
+		Open Help
+		Close Help
 		Open Ticket Edit    10    10
 		Input Ticket Text    Friend4 suggestion: Friend 4
 		Click Done Ticket Edit
@@ -265,6 +287,8 @@ on their correct places. So they can see what has been done and what need to be 
 	Friend 5 Edit Tickets
 		Open Shared Board
 		Login to Shared Board    Friend5
+		Open Help
+		Close Help
 		Open Ticket Edit    11    11
 		Input Ticket Text    Friend5 suggestion: Friend 5
 		Click Done Ticket Edit
@@ -284,6 +308,8 @@ TODO-list is ready. So they log out and update the list when they are done tasks
 		Open Browser To Login Page
 		Login User    jenny.porter@test.com    jennyporter
 		Open Board    2    2
+		Open Help
+		Close Help
 		Close Board
 		Log Out
 		

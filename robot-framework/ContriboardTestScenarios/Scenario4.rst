@@ -83,6 +83,8 @@ James has created his boards so now he needs to start making his plans.
     	*** Test Cases ***
 	James Opens SWOT Board
 		Open Board    2    2
+		Open Help
+		Close Help
 
 
 James clicks magnet on because he knows that using magnet will set tickets in places.
