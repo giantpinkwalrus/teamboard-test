@@ -511,7 +511,7 @@ Export Board Image
     ${value}    Get Element Attribute    reactID@data-reactid
     Get Export    3
     Select From List By Value    //select[@id='export-select']    ${export}
-    Click Element    //button[@class='btn btn-secondary']
+    Click Element    //a[@class='btn btn-secondary']
     Click Element    //button[@class='btn-primary']
 
 Resize Board
