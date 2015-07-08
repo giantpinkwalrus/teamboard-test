@@ -4,17 +4,18 @@ Resource          resource.txt
 *** Test Cases ***
 Login User
     [Tags]    old    log    edit    feed    share    export
-    ...    color    size    ticket
+    ...    color    size    ticket    profile    about    help
     Open Browser To Login Page
     Login User
 
 Create New Board
     [Tags]    old    color    share    edit    size    ticket
+    ...    help
     Repeat Keyword    5    New Board
     Edit Board
 
 Test Help
-    [Tags]    old
+    [Tags]    old    help
     Open Board    2    6
     Open Help
     Change Help Slides
@@ -126,18 +127,42 @@ Close Shared Board
     [Tags]    share    old
     Close Browser
 
-Close Board Sharing
+Relogin
     [Tags]    share    old
     Open Browser To Login Page
     Login User
 
+Open About Dialog
+    [Tags]    old    about
+    Open About
+
+Change Username
+    [Tags]    old    profile
+    Open Profile
+    Change Username
+    Close Profile
+
+Change Avatar
+    [Tags]    old    profile
+    Open Profile
+    Change Avatar
+    Close Profile
+
+Change Password
+    [Tags]    old    profile
+    Open Profile
+    Change Password
+    Close Profile
+    Log Out
+    Login With Changed Password
+
 Log Out User
     [Tags]    old    share    edit    feed    export    color
-    ...    size    ticket
+    ...    size    ticket    profile    about    help
     Log Out
 
 Close
     [Tags]    old    share    edit    feed    export    color
-    ...    size    ticket
+    ...    size    ticket    profile    about    help
     Close Browser
     [Teardown]
