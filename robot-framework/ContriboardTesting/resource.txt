@@ -10,6 +10,7 @@ ${ValidUser}      testbaboon@test.com
 ${ValidPassword}    t3stmonkey
 ${NewUser}        new@test.com
 ${NewPassword}    t3stmonkey
+${ChangedPassword}    t3stbaboon
 ${Protocol}       https://
 ${SERVER}         sut-cb.n4sjamk.org
 #${Protocol}      http://
@@ -18,9 +19,11 @@ ${MainUrl}        ${Protocol}${SERVER}
 ${LoginUrl}       ${Protocol}${SERVER}/login
 ${BoardUrl}       ${Protocol}${SERVER}/boards
 ${RegUrl}         ${Protocol}${SERVER}/register
+${ProfileUrl}     ${Protocol}${SERVER}/profile
 ${LoginTitle}     Contriboard
 ${custombackground}    http://tinyurl.com/pevhhv7
 ${custombackground2}    http://tinyurl.com/khpx9d8
+${avatar}         http://bit.ly/1NRDL6V
 
 *** Keywords ***
 Register User
@@ -383,9 +386,60 @@ Open Board Members
 Close Board Members
     Click Button    //button[@class='btn-primary']
 
+Open Profile
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //li[@id='options-user']
+    Wait Until Page Contains Element    //div[@class='view-settings']
+    Location Should Be    ${ProfileUrl}
+
+Close Profile
+    Click Element    //li[@id='Workspace']
+    Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
+    Location Should Be    ${BoardUrl}
+
+Change Password
+    Click Element    //li[@id='Password']
+    Wait Until Page Contains Element    //form[@class='login-info']    error=Change Password Form Not Found
+    Input Text    //input[@id='oldPassword']    ${ValidPassword}
+    Input Text    //input[@id='newPassword']    ${ChangedPassword}
+    Input Text    //input[@id='newPasswordAgain']    ${ChangedPassword}
+    Click Element    //input[@class='btn-primary']
+
+Change Username
+    Input Text    //input[@id='name']    Testbaboon
+    Click Element    //input[@class='btn-primary']
+    #Add Check that username has changed!
+
+Change Avatar
+    Input Text    //input[@id='avatar']    ${avatar}
+    Click Element    //input[@class='btn-primary']
+    ${avatarchanged}    Get Element Attribute    //div[@class='avatar online']@style
+    ${avatarcheck}    Fetch From Right    ${avatarchanged}    image:${SPACE}
+    Should Be Equal    ${avatarcheck}    url("${avatar}");    error=Avatar Not Changed
+
+Login With Changed Password
+    Input Username    ${ValidUser}
+    Input User Password    ${ChangedPassword}
+    ${check}    Get Element Attribute    //input[@class='btn-primary']@value
+    Should Be Equal    ${check}    Login    error=Login button missing
+    Submit Credentials
+    Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
+    Location Should Be    ${BoardUrl}
+
+Open About
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //li[@id='options-question-circle']
+    Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
+    Click Button    //button[@class='btn-primary']
+    Element Should Not Be Visible    //form[@class='dialog dialog-about']
+    Click Element    //span[@class='fa fa-fw fa-user']
+    Element Should Not Be Visible    //ul[@class='dropdown undefined']
+
 Log Out
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
     Click Element    //li[@id='options-sign-out']
     Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
     Location Should Be    ${LoginUrl}
