@@ -5,12 +5,13 @@ Resource          resource.txt
 Login User
     [Tags]    old    log    edit    feed    share    export
     ...    color    size    ticket    profile    about    help
+    ...    members
     Open Browser To Login Page
     Login User
 
 Create New Board
     [Tags]    old    color    share    edit    size    ticket
-    ...    help
+    ...    help    members
     Repeat Keyword    5    New Board
     Edit Board
 
@@ -45,7 +46,7 @@ Delete Board
     Delete Board
 
 Edit Board From Board
-    [Tags]    old    color    size    ticket
+    [Tags]    old    color    size    ticket    members
     Open Board    2    5
     Edit Board From Board
     Resize Board    10    10    10    10
@@ -85,7 +86,7 @@ Delete Ticket From Board
     Delete Ticket
 
 View Board Members
-    [Tags]    old
+    [Tags]    old    members
     Open Board Members
     Close Board Members
 
@@ -158,11 +159,11 @@ Change Password
 
 Log Out User
     [Tags]    old    share    edit    feed    export    color
-    ...    size    ticket    profile    about    help
+    ...    size    ticket    profile    about    help    members
     Log Out
 
 Close
     [Tags]    old    share    edit    feed    export    color
-    ...    size    ticket    profile    about    help
+    ...    size    ticket    profile    about    help    members
     Close Browser
     [Teardown]

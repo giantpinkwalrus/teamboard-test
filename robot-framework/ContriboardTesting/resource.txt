@@ -13,6 +13,7 @@ ${NewPassword}    t3stmonkey
 ${ChangedPassword}    t3stbaboon
 ${Protocol}       https://
 ${SERVER}         sut-cb.n4sjamk.org
+#${SERVER}        contriboard.n4sjamk.org
 #${Protocol}      http://
 #${SERVER}        localhost:8000
 ${MainUrl}        ${Protocol}${SERVER}
@@ -283,7 +284,7 @@ Stop Share Board
     Click Button    //button[@class='btn-primary']
 
 Open Shared Board
-    Open Browser    ${Protocol}${Shared}    ${Browser}
+    Open Browser    ${Shared}    ${Browser}
     Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
