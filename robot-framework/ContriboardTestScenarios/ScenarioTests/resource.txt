@@ -13,7 +13,6 @@ ${InvalidPassword}    Invalid1
 #${SServer}       http://localhost:8002
 ${Protocol}       https://
 ${SERVER}         sut-cb.n4sjamk.org
-#${SERVER}        contriboard.n4sjamk.org
 #${Protocol}      http://
 #${SERVER}        localhost:8000
 ${MainUrl}        ${Protocol}${SERVER}
@@ -479,7 +478,7 @@ Open Shared Board
     Set Window Size    1920    1200
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
-    Location Should Be    ${Protocol}${Shared}
+    Location Should Be    ${Shared}
 
 Login to Shared Board
     [Arguments]    ${User}=Tester
