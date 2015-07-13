@@ -94,16 +94,16 @@ Go To Login Page
     Location Should Be    ${LoginUrl}
 
 Log Out
-    Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //div[@class='avatar online']
+    Wait Until Page Contains Element    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
     Click Element    //li[@id='options-sign-out']
     Wait Until Page Contains Element    //form[@class='form']    timeout=2    error=Login Form not found
     Location Should Be    ${LoginUrl}
 
 Wallace First Try
     #Scenario1
-    Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //div[@class='avatar online']
+    Wait Until Page Contains Element    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
     #Click Element    //div[@class='user-voice-trigger']
     #Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
     #Click Element    //i[@class='icon close-icon']
@@ -352,7 +352,7 @@ Click Magnet On
     Assign Id To Element    //div[@class='view view-board']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Element    //span[@class='fa fa-fw fa-magnet']
-    Assign Id To Element    //div[@data-reactid='${rid}.4.$magnet']    magnetOnID
+    Assign Id To Element    //div[@data-reactid='${rid}.5.$magnet']    magnetOnID
     ${class}    Get Element Attribute    magnetOnID@class
     Should Match    ${class}    control active
 
@@ -360,7 +360,7 @@ Click Magnet Off
     Assign Id To Element    //div[@class='view view-board']    reactID
     ${rid}    Get Element Attribute    reactID@data-reactid
     Click Element    //span[@class='fa fa-fw fa-magnet']
-    Assign Id To Element    //div[@data-reactid='${rid}.4.$magnet']    magnetOffID
+    Assign Id To Element    //div[@data-reactid='${rid}.5.$magnet']    magnetOffID
     ${class}    Get Element Attribute    magnetOffID@class
     Should Match    ${class}    control
 
@@ -369,7 +369,7 @@ Click Globe On
     ${rid}    Get Element Attribute    reactID@data-reactid
     Element Should Not Be Visible    //div[@data-reactid='${rid}.2.0.1']
     Click Element    //span[@class='fa fa-fw fa-globe']
-    Assign Id To Element    //div[@data-reactid='${rid}.4.$globe']    globeOnID
+    Assign Id To Element    //div[@data-reactid='${rid}.5.$globe']    globeOnID
     ${class}    Get Element Attribute    globeOnID@class
     Should Match    ${class}    control active
     Element Should Be Visible    //div[@data-reactid='${rid}.2.0.1']
@@ -379,23 +379,23 @@ Click Globe Off
     ${rid}    Get Element Attribute    reactID@data-reactid
     Element Should Be Visible    //div[@data-reactid='${rid}.2.0.1']
     Click Element    //span[@class='fa fa-fw fa-globe']
-    Assign Id To Element    //div[@data-reactid='${rid}.4.$globe']    globeOffID
+    Assign Id To Element    //div[@data-reactid='${rid}.5.$globe']    globeOffID
     ${class}    Get Element Attribute    globeOffID@class
     Should Match    ${class}    control
     Element Should Not Be Visible    //div[@data-reactid='${rid}.2.0.1']
 
 Click Profile
-    Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //div[@class='avatar online']
+    Wait Until Page Contains Element    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
 
 Close Profile
-    Click Element    //span[@class='fa fa-fw fa-user']
-    Element Should Not Be Visible    //ul[@class='dropdown undefined']    error=Dropdown not closed
+    Click Element    //div[@class='avatar online']
+    Wait Until Page Contains Element    //ul[@class='dropdown options']    error=Dropdown not closed
 
 Change Password
     [Arguments]    ${currentPassword}    ${newPassword}
-    Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //div[@class='avatar online']
+    Wait Until Element Is Visible    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
     Click Element    //li[@id='options-user']
     Wait Until Element Is Visible    //form[@class='login-info']    timeout=2    error=Profile information dialog not found
     Click Element    //html/body/div/div/div[2]/div[1]/nav/ul/li[3]/p/span[2]
@@ -419,8 +419,8 @@ Click Feedback
     Unselect Frame
 
 Send Feedback
-    Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Page Contains Element    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //div[@class='avatar online']
+    Wait Until Page Contains Element    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
     Click Element    //div[@class='user-voice-trigger']
     Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
     Wait Until Element Is Visible    //article[@class='widget large-widget']    timeout=2    error=Widget Not Open
@@ -478,7 +478,7 @@ Login to Shared Board
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
 
 Open Help
-    Click Element    //span[@class='fa fa-fw fa-info']
+    Click Element    //span[@class='fa fa-fw fa-question']
     Wait Until Element Is Visible    //div[@class='infospace']    timeout=2    error=Help not open
 
 Close Help
@@ -508,8 +508,8 @@ Use Tutorial
     Click Element    //span[@class='fa fa-fw fa-times']
 
 Click About Button
-    Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
+    Click Element    //div[@class='avatar online']
+    Wait Until Page Contains Element    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
     Click Element    //li[@id='options-question-circle']
     Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
     Click Button    //button[@class='btn-primary']
