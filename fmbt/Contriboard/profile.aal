@@ -1,0 +1,38 @@
+tag "profile" {
+	guard { return state == "profile" }
+	adapter { 
+	test.wait()
+	}
+
+	input "close_profile" {
+	adapter {
+	test.closeProfile()
+	test.wait()
+
+	}
+	body {
+	state = "boardmenu"
+	}
+	}
+
+	input "change_avatar" {
+	adapter {
+	test.changeAvatar()
+	test.wait()
+	}
+	}
+
+	input "change_username" {
+	adapter {
+	test.changeUsername()
+	test.wait()
+	}
+	}
+
+	input "change_password" {
+	adapter {
+	test.changePassword()
+	test.wait()
+	}
+	}
+}
