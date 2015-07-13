@@ -369,7 +369,7 @@ Open Help
     Wait Until Element Is Visible    //div[@class='infospace']    timeout=2    error=Help not open
 
 Close Help
-    Click Element    //span[@class='fa fa-fw fa-times]
+    Click Element    //span[@class='fa fa-fw fa-times']
     Element Should Not Be Visible    //div[@class='infospace']
 
 Change Help Slides
