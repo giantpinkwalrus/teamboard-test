@@ -49,7 +49,10 @@ stateAssets = {
 	"share_dialog" 	: ["//button[@class='btn-secondary']"],
 	"shared_dialog" 	: ["//button[@class='btn-neutral']"],
 	"ticket_edit_dialog" 	: ["//form[@class='dialog edit-ticket-dialog']"],
-	"help" 	: ["//div[@class='infospace']"]
+	"help" 	: ["//div[@class='infospace']"],
+	"about" 	: 	["//form[@class='dialog dialog-about']"],
+	"boardmembers" 	: 	["//form[@class='dialog dialog-board-members']"],
+	"profile" 	: 	["//div[@class='view-settings']"]
 }
 
 def rs():
@@ -159,7 +162,7 @@ def typePasswordAgain():
 
 def clickLogout():
 	rs()
-	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-user']").click()
+	driver.find_element_by_xpath("//div[@class='avatar online']").click()
 	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-sign-out']").click()
 	wait()
 
@@ -252,7 +255,7 @@ def moveTicket():
 
 def openHelp():
 	rs()
-	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-info']").click()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-question']").click()
 	wait()
 
 #boardedit
@@ -298,13 +301,15 @@ def decreaseHeight():
 
 def selectEmptyBackground():
 	rs()
-	select = Select(driver.find_element_by_xpath("//select"))
+	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
 	select.select_by_value("NONE")
 	wait()
 
 def selectCustomBackground():
 	rs()
-	select = Select(driver.find_element_by_xpath("//select"))
+	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
 	select.select_by_value("CUSTOM")
 	driver.find_element_by_xpath("//input[@placeholder='URL']").clear()
 	driver.find_element_by_xpath("//input[@placeholder='URL']").send_keys(custombackground)
@@ -312,43 +317,50 @@ def selectCustomBackground():
 
 def selectPlayBackground():
 	rs()
-	select = Select(driver.find_element_by_xpath("//select"))
+	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
 	select.select_by_value("PLAY")
 	wait()
 
 def selectSwotBackground():
 	rs()
-	select = Select(driver.find_element_by_xpath("//select"))
+	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
 	select.select_by_value("SWOT")
 	wait()
 
 def selectScrumBackground():
 	rs()
-	select = Select(driver.find_element_by_xpath("//select"))
+	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
 	select.select_by_value("SCRUM")
 	wait()
 
 def selectKanbanBackground():
 	rs()
-	select = Select(driver.find_element_by_xpath("//select"))
+	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
 	select.select_by_value("KANBAN")
 	wait()
 
 def selectKeendroptryBackground():
 	rs()
-	select = Select(driver.find_element_by_xpath("//select"))
+	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
 	select.select_by_value("KEEP_DROP_TRY")
 	wait()
 
 def selectCustomerjourneymapBackground():
 	rs()
-	select = Select(driver.find_element_by_xpath("//select"))
+	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
 	select.select_by_value("CUSTOMER_JOURNEY_MAP")
 	wait()
 
 def selectBusinessmodelcanvasBackground():
 	rs()
-	select = Select(driver.find_element_by_xpath("//select"))
+	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
 	select.select_by_value("BUSINESS_MODEL_CANVAS")
 	wait()
 
@@ -456,12 +468,16 @@ def clickYellow():
 
 def typeHeading():
 	rs()
+	driver.find_element_by_xpath("//section[@class='dialog-heading']").click()
+	driver.find_element_by_xpath("//section[@class='dialog-content']").click()
 	driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").clear()
 	driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Heading")
 	wait()
 
 def typeTicket():
 	rs()
+	driver.find_element_by_xpath("//section[@class='dialog-heading']").click()
+	driver.find_element_by_xpath("//section[@class='dialog-content']").click()
 	driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").clear()
 	driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").send_keys("ticket")
 	wait()
@@ -470,7 +486,7 @@ def typeComment():
 	rs()
 	driver.find_element_by_xpath("//input[@class='comment-input']").clear()
 	driver.find_element_by_xpath("//input[@class='comment-input']").send_keys("comment")
-	driver.find_element_by_xpath("btn-primary").click()
+	driver.find_element_by_xpath("button[@class='btn-primarybtn-primary']").click()
 	wait()
 
 def deleteTicket():
@@ -485,7 +501,7 @@ def ticketCancel():
 
 def ticketDone():
 	rs()
-	driver.find_element_by_xpath("//button[@class='btn-primary']").click()
+	driver.find_element_by_xpath("//button[@id='ticket-dialog-save']").click()
 	wait()
 
 # help
@@ -496,11 +512,63 @@ def changeSlide():
 	slide = random.choice(slides)
 	driver.find_element_by_xpath("/html/body/div[2]/div/div/div/div[4]/ul/li[" + slide + "]/button").click()
 	wait()
-
+	
 def clickCloseHelp():
 	rs()
 	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-times']").click()
 	wait()
+
+# boardmembers
+
+def openBoardMembers():
+	rs()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-users']").click()
+	wait()
+
+def closeBoardMembers():
+	rs()
+	driver.find_element_by_xpath("//button[@class='btn-primary']").click()
+	wait()
+
+# profile
+
+def openProfile():
+	rs()
+	driver.find_element_by_xpath("//div[@class='avatar online']").click()
+	drive.find_element_by_xpath("//span[@class='fa fa-fw fa-user']").click()
+	wait()
+
+def closeProfile():
+	rs()
+	driver.find_element_by_xpath("//li[@id='Workspace']").click()
+	wait()
+
+def changeUsername():
+	rs()
+	wait()
+
+def changePassword():
+	rs()
+	wait()
+
+def changeAvatar():
+	rs()
+	wait()
+
+# about
+
+def openAbout():
+	rs()
+	driver.find_element_by_xpath("//div[@class='avatar online']").click()
+	drive.find_element_by_xpath("//span[@class='fa fa-fw fa-info']").click()
+	wait()
+
+def closeAbout():
+	rs()
+	driver.find_element_by_xpath("//button[@class='btn-primary']").click()
+	driver.find_element_by_xpath("//div[@class='avatar online']").click()
+	wait()
+
 
 # checks
 

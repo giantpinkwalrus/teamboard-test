@@ -25,7 +25,7 @@ tag "boardmenu" {
 
     input "click_edit_board" {
     guard { return is_board }
-    adapter{
+    adapter {
     	test.editBoard()
     	test.wait()
     }
@@ -36,7 +36,7 @@ tag "boardmenu" {
 
     input "click_delete_board" {
     guard { return is_board }
-    adapter{
+    adapter {
     	test.deleteBoard()
     	test.wait()
     }
@@ -47,13 +47,33 @@ tag "boardmenu" {
 
     input "click_open_board" {
     guard { return is_board }
-    adapter{
+    adapter {
     	test.openBoard()
     	test.wait()
     }
     body {
     	state = "try_open_board"
     	try_open_board = True
+    }
+    }
+
+    input "open_about_from_boardmenu" {
+    adapter {
+        test.openAbout()
+        test.wait()
+    }
+    body {
+        state = "about"
+    }
+    }
+
+    input "open_profile_from_boardmenu" {
+    adapter {
+        test.openProfile()
+        test.wait()
+    }
+    body {
+        state = "profile"
     }
     }
 

@@ -1,0 +1,17 @@
+tag "boardmembers" {
+	guard { return state == "boardmembers" }
+	adapter { 
+	test.wait()
+	}
+	
+    input "close_board_members" {
+    adapter {
+        test.closeBoardMembers()
+        test.wait()
+    }
+    body {
+        state = "board"
+    }
+    }
+
+}

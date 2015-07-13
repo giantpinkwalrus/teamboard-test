@@ -1,0 +1,46 @@
+tag "about" {
+	guard { return state == "about" }
+	adapter { 
+	test.wait()
+	}
+
+	input "close_about" {
+	adapter {
+	test.closeAbout()
+	test.wait()
+	}
+	body {
+	try_close_about = True
+	state = "try_close_about"
+	}
+	}
+
+}
+
+tag "try_close_about" {
+	guard { return state == "try_close_about"}
+	output "about_closed_to_board" {
+	guard { return state == "try_close_about" and try_close_about == True }
+	adapter {
+	if state == "try_close_about" and try_close_about == True and test.checkState("board"):
+			try_close_about = False
+			state = "board"
+			return True
+	}
+	body {
+	state = "board"
+	}
+	}
+	output "about_closed_to_boardmenu" {
+	guard { return state == "try_close_about" and try_close_about == True}
+	adapter {
+	if state == "try_close_about" and try_close_about == True and test.checkState("boardmenu"):
+			try_close_about = False
+			state = "boardmenu"
+			return True
+	}
+	body {
+	state = "boardmenu"
+	}
+	}
+}

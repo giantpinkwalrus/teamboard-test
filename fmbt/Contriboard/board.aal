@@ -108,6 +108,36 @@ tag "board" {
     }
     }
 
+    input "open_board_members" {
+    adapter {
+        test.openBoardMembers()
+        test.wait()
+    }
+    body {
+        state = "boardmembers"
+    }
+    }
+
+    input "open_about_from_board" {
+    adapter {
+        test.openAbout()
+        test.wait()
+    }
+    body {
+        state = "about"
+    }
+    }
+
+    input "open_profile_from_board" {
+    adapter {
+        test.openProfile()
+        test.wait()
+    }
+    body {
+        state = "profile"
+    }
+    }
+
 output "set_ticket_true" {
     guard    { return state == "board" and is_ticket == False }
     adapter {
