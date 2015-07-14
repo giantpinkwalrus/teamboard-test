@@ -9,6 +9,8 @@
 ["boardmenu"] "i:click_edit_board"=100
 ["boardmenu"] "i:click_delete_board"=50
 ["boardmenu"] "i:click_open_board"=100
+["boardmenu"] "i:open_about_from_boardmenu"=50
+["boardmenu"] "i:open_profile_from_boardmenu"=50
 ["board_edit_dialog"] "i:click_done"=100
 ["board_edit_dialog"] "i:type_board_name"=100
 ["board_edit_dialog"] "i:increase_board_width"=20
@@ -37,6 +39,9 @@
 ["board"] "i:click_globe"=20
 ["board"] "i:move_ticket"=100
 ["board"] "i:open_help"=50
+["board"] "i:open_board_members"=50
+["board"] "i:open_about_from_board"=50
+["board"] "i:open_profile_from_board"=50
 ["ticket_edit_dialog"] "i:click_color_red"=100
 ["ticket_edit_dialog"] "i:click_color_blue"=100
 ["ticket_edit_dialog"] "i:click_color_purple"=100
@@ -58,3 +63,12 @@
 ["shared_dialog"] "i:click_hide"=50
 ["help"] "i:change_slide"=100
 ["help"] "i:close_help"=50
+["profile"] "i:close_profile"=100
+["profile"] "i:change_avatar"=50
+["profile"] "i:change_username"=50
+["profile"] "i:open_password_change"=10
+["about"] "i:close_about"=100
+["password"] "i:close_profile_view"=100
+["password"] "i:open_profile_view"=50
+["password"] "i:change_password"=10
+["boardmembers"] "i:close_board_members"=100
