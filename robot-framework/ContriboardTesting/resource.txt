@@ -296,9 +296,9 @@ Login to Shared Board
     Wait Until Page Contains Element    //div[@class='board']    timeout=2    error=Board Not Open
 
 Send Feedback
-    Click Element    //span[@class='fa fa-fw fa-user']
+    Click Element    //div[@class='avatar online']
     Wait Until Element Is Visible    //ul[@class='dropdown']    timeout=2    error=Dropdown List Not Found
-    Click Element    //div[@class='user-voice-trigger']
+    Click Element    //span[@class='fa fa-fw fa-bullhorn']
     Select Frame    //iframe[@class='uvw-dialog-iframe uv-popover-iframe']
     Wait Until Element Is Visible    //article[@class='widget large-widget']    timeout=2    error=Widget Not Open
     Element Text Should Be    //h1[@class='pane-title']    Send us a message    error=Write message page not open
@@ -317,7 +317,7 @@ Send Feedback
     Click Element    //i[@class='icon close-icon']
     Element Should Not Be Visible    //article[@class='widget large-widget']    error=Widget Not Closed
     Unselect Frame
-    Click Element    //span[@class='fa fa-fw fa-user']
+    Click Element    //div[@class='avatar online']
 
 Export Board
     [Arguments]    ${min}=2    ${max}=5
@@ -389,7 +389,7 @@ Close Board Members
 Open Profile
     Click Element    //div[@class='avatar online']
     Wait Until Page Contains Element    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
-    Click Element    //li[@id='options-user']
+    Click Element    //span[@class='fa fa-fw fa-user']
     Wait Until Page Contains Element    //div[@class='view-settings']
     Location Should Be    ${ProfileUrl}
 
@@ -430,8 +430,10 @@ Login With Changed Password
 Open About
     Click Element    //div[@class='avatar online']
     Wait Until Page Contains Element    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
-    Click Element    //li[@id='options-question-circle']
+    Click Element    //span[@class=fa fa-fw fa-info']
     Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
+
+Close About
     Click Button    //button[@class='btn-primary']
     Element Should Not Be Visible    //form[@class='dialog dialog-about']
     Click Element    //div[@class='avatar online']

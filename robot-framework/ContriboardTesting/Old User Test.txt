@@ -136,6 +136,7 @@ Relogin
 Open About Dialog
     [Tags]    old    about
     Open About
+    Close About
 
 Change Username
     [Tags]    old    profile
