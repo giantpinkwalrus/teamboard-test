@@ -206,7 +206,7 @@ Input to Empty Ticket
 
 Input to Edited Ticket
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Click Element    //section[@class='dialog-content']
+    Click Element    //span[@data-reactid='${rid}.1.1.0.0.$=10:0']
     Element Should Be Visible    //input[@placeholder='Ticket heading']
 
 Input Ticket Text
