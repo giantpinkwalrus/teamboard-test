@@ -6,7 +6,7 @@ tag "profile" {
 
 	input "close_profile" {
 	adapter {
-	test.closeProfile()
+	test.closeProfileView()
 	test.wait()
 
 	}
@@ -29,10 +29,13 @@ tag "profile" {
 	}
 	}
 
-	input "change_password" {
+	input "open_password_change" {
 	adapter {
-	test.changePassword()
+	test.openPasswordChange()
 	test.wait()
+	}
+	body{
+	state = "password"
 	}
 	}
 }
