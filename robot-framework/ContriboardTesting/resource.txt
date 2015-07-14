@@ -181,18 +181,18 @@ Input to Empty Ticket
     Input Text    //input[@placeholder='Ticket heading']    Ticket Heading
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
     Input Text    //input[@class='comment-input']    Ticket comment
-    Click Button    //button[@data-reactid='${rid}.0.0.$=11:0.2.0.1']
+    Click Button    //button[@data-reactid='${rid}.1.2.0.1']
     Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
     Click Button    //button[@id='ticket-dialog-save']
 
 Input to Edited Ticket
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Click Element    //span[@data-reactid='${rid}.0.0.$=11:0.1.0.0.$=10:0']
+    Click Element    //section[@class='dialog-content']
     Page Should Contain Element    //input[@placeholder='Ticket heading']
     Input Text    //input[@placeholder='Ticket heading']    Ticket Heading
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
     Input Text    //input[@class='comment-input']    Ticket comment
-    Click Button    //button[@data-reactid='${rid}.0.0.$=11:0.2.0.1']
+    Click Button    //button[@data-reactid='${rid}.1.2.0.1']
     Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
     Click Button    //button[@id='ticket-dialog-save']
 
