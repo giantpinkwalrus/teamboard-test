@@ -29,7 +29,7 @@
 ["board_delete_dialog"] "i:confirm_delete"=100
 ["board_delete_dialog"] "i:cancel_delete"=100
 ["board"] "i:click_logout_from_board"=10
-["board"] "i:create_ticket"=100
+["board"] "i:create_ticket"=80
 ["board"] "i:edit_ticket"=80
 ["board"] "i:close_board"=50
 ["board"] "i:edit_board_from_board"=50
