@@ -187,7 +187,7 @@ Input to Empty Ticket
 
 Input to Edited Ticket
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Click Element    //section[@class='dialog-content']
+    Click Element    //span[@data-reactid='${rid}.1.1.0.0.$=10:0']
     Page Should Contain Element    //input[@placeholder='Ticket heading']
     Input Text    //input[@placeholder='Ticket heading']    Ticket Heading
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
@@ -430,7 +430,7 @@ Login With Changed Password
 Open About
     Click Element    //div[@class='avatar online']
     Wait Until Page Contains Element    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
-    Click Element    //span[@class=fa fa-fw fa-info']
+    Click Element    //span[@class='fa fa-fw fa-info']
     Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
 
 Close About
