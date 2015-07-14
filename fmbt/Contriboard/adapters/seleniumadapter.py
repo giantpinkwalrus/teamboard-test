@@ -33,7 +33,7 @@ pollTime = 0.3
 
 timeoutTime = 2.0
 
-usename = "testbaboon"
+username = "testbaboon"
 email = "testbaboon@test.com"
 password = "t3stmonkey"
 newpassword = "t3stbaboon"
@@ -471,26 +471,49 @@ def clickYellow():
 	wait()
 
 def typeHeading():
-	rs()
-	driver.find_element_by_xpath("//section[@class='dialog-heading']").click()
-	driver.find_element_by_xpath("//section[@class='dialog-content']").click()
-	driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").clear()
-	driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Heading")
-	wait()
+	rs()	
+	rid = driver.find_element_by_xpath("//form[@class='dialog edit-ticket-dialog']").get_attribute("data-reactid")
+
+	if isElement("//span[@data-reactid='"+ rid + ".1.0.0']") == True:
+		driver.find_element_by_xpath("//span[@data-reactid='"+ rid + ".1.0.0']").click()
+		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").clear()
+		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Heading")
+		wait()
+	elif isElement("//span[@data-reactid='"+ rid + ".1.1.0.0.$=10:0']") == True:
+		driver.find_element_by_xpath("//span[@data-reactid='"+ rid + ".1.1.0.0.$=10:0']").click()
+		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").clear()
+		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Heading")
+		wait()
+	else:
+		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").clear()
+		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Heading")
+		wait()
 
 def typeTicket():
 	rs()
-	driver.find_element_by_xpath("//section[@class='dialog-heading']").click()
-	driver.find_element_by_xpath("//section[@class='dialog-content']").click()
-	driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").clear()
-	driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").send_keys("ticket")
-	wait()
+	rid = driver.find_element_by_xpath("//form[@class='dialog edit-ticket-dialog']").get_attribute("data-reactid")
+
+	if isElement("//span[@data-reactid='"+ rid + ".1.0.0']") == True:
+		driver.find_element_by_xpath("//span[@data-reactid='"+ rid + ".1.0.0']").click()
+		driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").clear()
+		driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").send_keys("ticket")
+		wait()
+	elif isElement("//span[@data-reactid='"+ rid + ".1.1.0.0.$=10:0']") == True:
+		driver.find_element_by_xpath("//span[@data-reactid='"+ rid + ".1.1.0.0.$=10:0']").click()
+		driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").clear()
+		driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").send_keys("ticket")
+		wait()
+	else:
+		driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").clear()
+		driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").send_keys("ticket")
+		wait()
 
 def typeComment():
 	rs()
 	driver.find_element_by_xpath("//input[@class='comment-input']").clear()
 	driver.find_element_by_xpath("//input[@class='comment-input']").send_keys("comment")
-	driver.find_element_by_xpath("button[@class='btn-primarybtn-primary']").click()
+	rid = driver.find_element_by_xpath("//form[@class='dialog edit-ticket-dialog']").get_attribute("data-reactid")
+	driver.find_element_by_xpath("//button[@data-reactid='" + rid + ".1.2.0.1']").click()
 	wait()
 
 def deleteTicket():
@@ -512,11 +535,11 @@ def ticketDone():
 
 def changeSlide():
 	rs()
-	slides =["1", "2", "3", "4", "5"]
+	slides =["1", "2", "3", "4", "5", "6", "7"]
 	slide = random.choice(slides)
-	driver.find_element_by_xpath("/html/body/div[2]/div/div/div/div[4]/ul/li[" + slide + "]/button").click()
+	driver.find_element_by_xpath("/html/body/div[2]/div/form/div/div[2]/ul/li[" + slide + "]/button").click()
 	wait()
-	
+
 def clickCloseHelp():
 	rs()
 	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-times']").click()
@@ -539,12 +562,12 @@ def closeBoardMembers():
 def openProfile():
 	rs()
 	driver.find_element_by_xpath("//div[@class='avatar online']").click()
-	drive.find_element_by_xpath("//span[@class='fa fa-fw fa-user']").click()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-user']").click()
 	wait()
 
 def closeProfileView():
 	rs()
-	driver.find_element_by_xpath("//li[@id='Workspace']").click()
+	driver.find_element_by_xpath("//span[@class='fa fa-arrow-left']").click()
 	wait()
 
 def changeUsername():
@@ -577,7 +600,7 @@ def changePassword():
 	password = newpassword
 	driver.find_element_by_xpath("//input[@id='newPassword']").send_keys(password)
 	driver.find_element_by_xpath("//input[@id='newPasswordAgain']").send_keys(password)
-	drive.find_element_by_xpath("//input[@class='btn-primary']").click()
+	driver.find_element_by_xpath("//input[@class='btn-primary']").click()
 	wait()
 
 # about
@@ -585,15 +608,31 @@ def changePassword():
 def openAbout():
 	rs()
 	driver.find_element_by_xpath("//div[@class='avatar online']").click()
-	drive.find_element_by_xpath("//span[@class='fa fa-fw fa-info']").click()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-info']").click()
 	wait()
 
 def closeAbout():
 	rs()
 	driver.find_element_by_xpath("//button[@class='btn-primary']").click()
+	wait()
 	driver.find_element_by_xpath("//div[@class='avatar online']").click()
 	wait()
 
+
+# ticket review 
+# not yet added to model
+
+def openTicketReview():
+	rs()
+	wait()
+
+def changeTicketSlide():
+	rs()
+	wait()
+
+def closeTicketReview():
+	rs()
+	wait()
 
 # checks
 
