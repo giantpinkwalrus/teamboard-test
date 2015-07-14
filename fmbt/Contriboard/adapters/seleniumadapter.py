@@ -33,10 +33,14 @@ pollTime = 0.3
 
 timeoutTime = 2.0
 
+usename = "testbaboon"
 email = "testbaboon@test.com"
 password = "t3stmonkey"
+newpassword = "t3stbaboon"
 
 custombackground = "http://bit.ly/1cMN0rG"
+
+avatar = "http://bit.ly/1O2SFXv"
 
 stateAssets = {
 	"login" 	: ["//input[@value='Login']"],
@@ -538,21 +542,42 @@ def openProfile():
 	drive.find_element_by_xpath("//span[@class='fa fa-fw fa-user']").click()
 	wait()
 
-def closeProfile():
+def closeProfileView():
 	rs()
 	driver.find_element_by_xpath("//li[@id='Workspace']").click()
 	wait()
 
 def changeUsername():
 	rs()
-	wait()
-
-def changePassword():
-	rs()
+	driver.find_element_by_xpath("//input[@id='name']").send_keys(username)
+	driver.find_element_by_xpath("//input[@class='btn-primary']").click()
 	wait()
 
 def changeAvatar():
 	rs()
+	driver.find_element_by_xpath("//input[@id='avatar']").send_keys(avatar)
+	driver.find_element_by_xpath("//input[@class='btn-primary']").click()
+	wait()
+
+# password change
+
+def openPasswordChange():
+	rs()
+	driver.find_element_by_xpath("//li[@id='Password']").click()
+	wait()
+
+def openProfileView():
+	rs()
+	driver.find_element_by_xpath("//li[@id='Profile settings']").click()
+	wait()
+
+def changePassword():
+	rs()
+	driver.find_element_by_xpath("//input[@id='oldPassword']").send_keys(password)
+	password = newpassword
+	driver.find_element_by_xpath("//input[@id='newPassword']").send_keys(password)
+	driver.find_element_by_xpath("//input[@id='newPasswordAgain']").send_keys(password)
+	drive.find_element_by_xpath("//input[@class='btn-primary']").click()
 	wait()
 
 # about
