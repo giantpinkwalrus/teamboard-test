@@ -1,0 +1,23 @@
+tag "ticketreview" {
+	guard { return state == "ticketreview" }
+	adapter { 
+	test.wait()
+	}
+
+	input "close_ticketreview" {
+	adapter {
+	test.closeTicketReview()
+	test.wait()
+	}
+	body {
+	state = "board"
+	}
+	}
+
+	input "change_ticket_slide" {
+	adapter {
+	test.changeTicketSlide()
+	test.wait()
+	}
+	}
+}
