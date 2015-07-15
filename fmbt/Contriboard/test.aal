@@ -41,6 +41,7 @@ adapter_exit {
 ^include "profile.aal"
 ^include "boardmembers.aal"
 ^include "password.aal"
+^include "ticketreview.aal"
 
 tag "timeout_error" {
     guard { return state == "timeout" }

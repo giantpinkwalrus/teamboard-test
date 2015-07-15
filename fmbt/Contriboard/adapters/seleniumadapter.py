@@ -56,7 +56,8 @@ stateAssets = {
 	"help" 	: ["//div[@class='infospace']"],
 	"about" 	: 	["//form[@class='dialog dialog-about']"],
 	"boardmembers" 	: 	["//form[@class='dialog dialog-board-members']"],
-	"profile" 	: 	["//div[@class='view-settings']"]
+	"profile" 	: 	["//div[@class='view-settings']"],
+	"ticketreview" 	: 	["//div[@class='review-overlay']"]
 }
 
 def rs():
@@ -624,14 +625,28 @@ def closeAbout():
 
 def openTicketReview():
 	rs()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-eye']").click()
 	wait()
 
-def changeTicketSlide():
+def changeTicketSlideRight():
 	rs()
-	wait()
+	if isElement("//span[@class='fa fa-chevron-right']") == True:
+		driver.find_element_by_xpath("//span[@class='fa fa-chevron-right']").click()
+		wait()
+	else:
+		wait()
+
+def changeTicketSlideLeft():
+	rs()
+	if isElement("//span[@class='fa fa-chevron-left']") == True:
+		driver.find_element_by_xpath("//span[@class='fa fa-chevron-left']").click()
+		wait()
+	else:
+		wait()
 
 def closeTicketReview():
 	rs()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-times']").click()
 	wait()
 
 # checks

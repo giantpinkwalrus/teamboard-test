@@ -138,6 +138,17 @@ tag "board" {
     }
     }
 
+    input "open_ticket_review" {
+    adapter {
+        test.openTicketReview()
+        test.wait()
+    }
+    body {
+        try_open_ticket_review = True
+        state = "ticketreview"
+    }
+    }
+
 output "set_ticket_true" {
     guard    { return state == "board" and is_ticket == False }
     adapter {
@@ -215,6 +226,34 @@ tag "try_open_share" {
     }
     body {
     state = "shared_dialog"
+    }
+    }
+}
+
+tag "try_open_ticket_review" {
+    guard { return state == "try_open_ticket_review"}
+    output "ticket_review_open" {
+    guard { return state == "try_open_ticket_review" and try_open_ticket_review == True }
+    adapter {
+    if state == "try_open_ticket_review" and try_open_ticket_review == True and test.checkState("ticketreview"):
+            try_open_ticket_review = False
+            state = "ticketreview"
+            return True
+    }
+    body {
+    state = "ticketreview"
+    }
+    }
+    output "ticket_review_not_open" {
+    guard { return state == "try_open_ticket_review" and try_open_ticket_review == True}
+    adapter {
+    if state == "try_open_ticket_review" and try_open_ticket_review == True and test.checkState("board"):
+            try_open_ticket_review = False
+            state = "board"
+            return True
+    }
+    body {
+    state = "board"
     }
     }
 }
