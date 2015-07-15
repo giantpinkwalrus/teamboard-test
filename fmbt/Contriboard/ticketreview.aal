@@ -21,7 +21,7 @@ tag "ticketreview" {
 	}
 	}
 
-	input "change_ticket_slide_Left" {
+	input "change_ticket_slide_left" {
 	adapter {
 	test.changeTicketSlideLeft()
 	test.wait()
