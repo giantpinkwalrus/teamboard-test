@@ -145,7 +145,7 @@ tag "board" {
     }
     body {
         try_open_ticket_review = True
-        state = "ticketreview"
+        state = "try_open_ticket_review"
     }
     }
 
