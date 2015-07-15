@@ -7,3 +7,4 @@ This compilation of several testing tools which we have been evaluating...
   * [Robot Framework](http://robotframework.org/)
   * [Locust](https://github.com/N4SJAMK/locust-contriboard) 
   * [Q-Automate](https://github.com/N4SJAMK/teamboard-test/tree/master/qautomate/ContriboardModel)
+  * [MBPet]()
