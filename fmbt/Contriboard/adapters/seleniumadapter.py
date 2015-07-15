@@ -573,12 +573,14 @@ def closeProfileView():
 
 def changeUsername():
 	rs()
+	driver.find_element_by_xpath("//input[@id='name']").clear()
 	driver.find_element_by_xpath("//input[@id='name']").send_keys(username)
 	driver.find_element_by_xpath("//input[@class='btn-primary']").click()
 	wait()
 
 def changeAvatar():
 	rs()
+	driver.find_element_by_xpath("//input[@id='avatar']").clear()
 	driver.find_element_by_xpath("//input[@id='avatar']").send_keys(avatar)
 	driver.find_element_by_xpath("//input[@class='btn-primary']").click()
 	wait()
@@ -597,9 +599,12 @@ def openProfileView():
 
 def changePassword():
 	rs()
+	driver.find_element_by_xpath("//input[@id='oldPassword']").clear()
 	driver.find_element_by_xpath("//input[@id='oldPassword']").send_keys(password)
 	password = newpassword
+	driver.find_element_by_xpath("//input[@id='newPassword']").clear()
 	driver.find_element_by_xpath("//input[@id='newPassword']").send_keys(password)
+	driver.find_element_by_xpath("//input[@id='newPasswordAgain']").clear()
 	driver.find_element_by_xpath("//input[@id='newPasswordAgain']").send_keys(password)
 	driver.find_element_by_xpath("//input[@class='btn-primary']").click()
 	wait()
