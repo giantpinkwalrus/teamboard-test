@@ -42,6 +42,7 @@
 ["board"] "i:open_board_members"=50
 ["board"] "i:open_about_from_board"=50
 ["board"] "i:open_profile_from_board"=50
+["board"] "i:open_ticket_review"=50
 ["ticket_edit_dialog"] "i:click_color_red"=100
 ["ticket_edit_dialog"] "i:click_color_blue"=100
 ["ticket_edit_dialog"] "i:click_color_purple"=100
@@ -72,3 +73,6 @@
 ["password"] "i:open_profile_view"=50
 ["password"] "i:change_password"=10
 ["boardmembers"] "i:close_board_members"=100
+["ticketreview"] "i:close_ticketreview"=100
+["ticketreview"] "i:change_ticket_slide_right"=100
+["ticketreview"] "i:change_ticket_slide_left"=100
