@@ -229,7 +229,7 @@ Random Edit Ticket
     Run Keyword Unless    '${status}'=='PASS'    Random Input to Edited Ticket
 
 Random Input to Empty Ticket
-    Element Should Be Visible    //input[@placeholder='Ticket heading']
+    Element Should Be Visible    //input[@placeholder='Ticket header']
     Input Text    //textarea[@placeholder='Ticket content']    Typing something
     Click Button    //button[@id='ticket-dialog-save']
 
