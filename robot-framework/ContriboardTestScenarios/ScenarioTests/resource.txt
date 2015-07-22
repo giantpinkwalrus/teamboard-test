@@ -206,7 +206,7 @@ Input to Empty Ticket
 
 Input to Edited Ticket
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Click Element    //span[@data-reactid='${rid}.1.0.0']
+    Click Element    //span[@data-reactid='${rid}.1.1.0.0.0']
     Element Should Be Visible    //input[@placeholder='Ticket header']
 
 Input Ticket Text
@@ -235,7 +235,7 @@ Random Input to Empty Ticket
 
 Random Input to Edited Ticket
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Click Element    //span[@data-reactid='${rid}.1.0.0']
+    Click Element    //span[@data-reactid='${rid}.1.1.0.0.0']
     Element Should Be Visible    //input[@placeholder='Ticket header']
     Input Text    //textarea[@placeholder='Ticket content']    Typing something
     Click Button    //button[@id='ticket-dialog-save']

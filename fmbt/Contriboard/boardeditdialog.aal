@@ -50,9 +50,9 @@ tag "board_edit_dialog" {
 	}
 	}
 
-	input "select_empty_background" {
+	input "select_default_background" {
 	adapter {
-	test.selectEmptyBackground()
+	test.selectDefaultBackground()
 	test.wait()
 	}
 	}
@@ -64,9 +64,9 @@ tag "board_edit_dialog" {
 	}
 	}
 
-	input "select_play_background" {
+	input "select_blank_background" {
 	adapter {
-	test.selectPlayBackground()
+	test.selectBlankBackground()
 	test.wait()
 	}
 	}
@@ -78,9 +78,9 @@ tag "board_edit_dialog" {
 	}
 	}
 
-	input "select_scrum_background" {
+	input "select_play_background" {
 	adapter {
-	test.selectScrumBackground()
+	test.selectPlayBackground()
 	test.wait()
 	}
 	}
@@ -99,16 +99,23 @@ tag "board_edit_dialog" {
 	}
 	}
 
-	input "select_customerjourneymap_background" {
+	input "select_smooth_brainstorming_background" {
 	adapter {
-	test.selectCustomerjourneymapBackground()
+	test.selectSmoothBrainstormingBackground()
 	test.wait()
 	}
 	}
 
-	input "select_businessmodelcanvas_background" {
+	input "select_lean_canvas_background" {
 	adapter {
-	test.selectBusinessmodelcanvasBackground()
+	test.selectLeanCanvasBackground()
+	test.wait()
+	}
+	}
+
+	input "select_idea_gathering_background" {
+	adapter {
+	test.selectIdeaGatheringBackground()
 	test.wait()
 	}
 	}
