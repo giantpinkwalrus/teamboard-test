@@ -45,7 +45,7 @@ Login User
     Input Username    ${ValidUser}
     Input User Password    ${ValidPassword}
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
-    Should Be Equal    ${check}    Login    error=Login button missing
+    Should Be Equal    ${check}    Log in    error=Login button missing
     Submit Credentials
     Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
@@ -63,14 +63,14 @@ Edit Board
     Get Edit Xpath    ${min}    ${max}
     Click Element    ${Expath}
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
-    Input Text    //input[@placeholder='Board Name']    Typing board name
+    Input Text    //input[@name='board-name']    Typing board name
     Click Element    //button[@class='btn-primary']
 
 Edit Board From Board
     Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
     Click Element    //span[@class='fa fa-fw fa-pencil']
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
-    Input Text    //input[@placeholder='Board Name']    Typing new board name
+    Input Text    //input[@name='board-name']    Typing new board name
     Click Button    //button[@class='btn-primary']
 
 Set Board Background
@@ -81,10 +81,11 @@ Set Board Background
     Assign Id To Element    //div[@class='dialog-overlay']    Content
     ${rid}    Get Element Attribute    Content@data-reactid
     Get Random Background    ${min}    ${max}
-    Select From List By Value    //select[@data-reactid='${rid}.0.1.3.1.0']    ${background}
-    Run Keyword If    '${background}'=='NONE'    Empty Background
+    Select From List By Value    //select[@data-reactid='${rid}.0.1.4.0.0']    ${background}
+    Run Keyword If    '${background}'=='BLANK'    Empty Background
     Run Keyword If    '${background}'=='CUSTOM'    Custom Background
-    Run Keyword Unless    '${background}'=='NONE' or '${background}'=='CUSTOM'    Default Background
+    Run Keyword If    '${background}'=='SMOOTH_BRAINSTORMING'    Gif Background
+    Run Keyword Unless    '${background}'=='BLANK' or '${background}'=='CUSTOM' or '${background}'=='SMOOTH_BRAINSTORMING'    Default Background
 
 Empty Background
     Wait Until Page Contains Element    //div[@class='minimap']
@@ -128,6 +129,23 @@ Check Default Background
     ${default2}    Fetch From Left    ${checkdefault}    ${SPACE}transition
     ${default3}    Fetch From Right    ${default2}    px;
     Should Be Equal    ${default3}    ${SPACE}background-image: url("/dist/assets/img/bg/${bcheck}.png");    error=Background Not Changed
+
+Gif Background
+    Wait Until Page Contains Element    //div[@class='minimap']
+    Click Element    //button[@class='btn-primary']
+    ${checkgif}    Get Element Attribute    //div[@class='board']@style
+    ${gif}    Fetch From Right    ${checkgif}    x);
+    Set Test Variable    ${gifcheck}    ${SPACE}background-image: url("/dist/assets/img/bg/${bcheck}.gif");
+    Run Keyword If    '${gif}'=='${gifcheck}'    Check Gif Background Empty
+    Run Keyword If    '${gif}'!='${gifcheck}'    Check Gif Background
+
+Check Gif Background Empty
+    Should Be Equal    ${gif}    ${SPACE}background-image: url("/dist/assets/img/bg/${bcheck}.gif");    error=Background Not Changed
+
+Check Gif Background
+    ${gif2}    Fetch From Left    ${checkgif}    ${SPACE}transition
+    ${gif3}    Fetch From Right    ${gif2}    px;
+    Should Be Equal    ${gif3}    ${SPACE}background-image: url("/dist/assets/img/bg/${bcheck}.gif");    error=Background Not Changed
 
 Open Board
     [Arguments]    ${min}=2    ${max}=6
@@ -175,25 +193,25 @@ Edit Ticket
     Run Keyword Unless    '${status}'=='PASS'    Input to Edited Ticket
 
 Check Ticket Edit Dialog
-    Page Should Contain Element    //input[@placeholder='Ticket heading']
+    Page Should Contain Element    //input[@placeholder='Ticket header']
 
 Input to Empty Ticket
-    Input Text    //input[@placeholder='Ticket heading']    Ticket Heading
+    Input Text    //input[@placeholder='Ticket header']    Ticket Header
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
     Input Text    //input[@class='comment-input']    Ticket comment
     Click Button    //button[@data-reactid='${rid}.1.2.0.1']
-    Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
+    Input Text    //textarea[@placeholder='Ticket content']    Typing something
     Click Button    //button[@id='ticket-dialog-save']
 
 Input to Edited Ticket
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
-    Click Element    //span[@data-reactid='${rid}.1.1.0.0.$=10:0']
-    Page Should Contain Element    //input[@placeholder='Ticket heading']
-    Input Text    //input[@placeholder='Ticket heading']    Ticket Heading
+    Click Element    //span[@data-reactid='${rid}.1.0.0']
+    Page Should Contain Element    //input[@placeholder='Ticket header']
+    Input Text    //input[@placeholder='Ticket header']    Ticket Header
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
     Input Text    //input[@class='comment-input']    Ticket comment
     Click Button    //button[@data-reactid='${rid}.1.2.0.1']
-    Input Text    //textarea[@placeholder='Ticket content']    Typing somenthing
+    Input Text    //textarea[@placeholder='Ticket content']    Typing something
     Click Button    //button[@id='ticket-dialog-save']
 
 Change Ticket Color
@@ -265,7 +283,7 @@ Share Board
     Click Element    //span[@class='fa fa-fw fa-share-alt']
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']    timeout=2    error=Board Edit Dialog Not Found
     Click Button    //button[@class='btn-secondary']
-    ${SharedUrl}    Get Value    //input[@placeholder='Shared link']
+    ${SharedUrl}    Get Value    //input[@name='board-share']
     Should Not Be Equal    ${SharedUrl}    ${EMPTY}
     Set Suite Variable    ${Shared}    ${SharedUrl}
     Click Button    //button[@class='btn-primary']
@@ -373,13 +391,31 @@ Close Help
     Element Should Not Be Visible    //div[@class='infospace']
 
 Change Help Slides
+    Wait Until Element Is Visible    //div[@class='info-view-active slide-0-admin']    timeout=2    error=Slide not open
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[2]/button    error=Slide change button missing
     Click Element    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[2]/button
+    Wait Until Element Is Visible    //div[@class='info-view-active slide-1-admin']    timeout=2    error=Slide not changed
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[3]/button    error=Slide change button missing
     Click Element    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[3]/button
+    Wait Until Element Is Visible    //div[@class='info-view-active slide-2-admin']    timeout=2    error=Slide not changed
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[4]/button    error=Slide change button missing
     Click Element    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[4]/button
+    Wait Until Element Is Visible    //div[@class='info-view-active slide-3-admin']    timeout=2    error=Slide not changed
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[5]/button    error=Slide change button missing
     Click Element    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[5]/button
+    Wait Until Element Is Visible    //div[@class='info-view-active slide-4-admin']    timeout=2    error=Slide not changed
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[6]/button    error=Slide change button missing
     Click Element    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[6]/button
+    Wait Until Element Is Visible    //div[@class='info-view-active slide-5-admin']    timeout=2    error=Slide not changed
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[7]/button    error=Slide change button missing
     Click Element    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[7]/button
+    Wait Until Element Is Visible    //div[@class='info-view-active slide-6-admin']    timeout=2    error=Slide not changed
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[8]/button    error=Slide change button missing
+    Click Element    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[8]/button
+    Wait Until Element Is Visible    //div[@class='info-view-active slide-7-admin']    timeout=2    error=Slide not changed
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[1]/button    error=Slide change button missing
     Click Element    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[1]/button
+    Wait Until Element Is Visible    //div[@class='info-view-active slide-0-admin']    timeout=2    error=Slide not changed
 
 Open Board Members
     Click Element    //span[@class='fa fa-fw fa-users']
@@ -396,27 +432,27 @@ Open Profile
     Location Should Be    ${ProfileUrl}
 
 Close Profile
-    Click Element    //li[@id='Workspace']
+    Click Element    //span[@class='fa fa-arrow-left']
     Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
 
 Change Password
-    Click Element    //li[@id='Password']
-    Wait Until Page Contains Element    //form[@class='login-info']    error=Change Password Form Not Found
-    Input Text    //input[@id='oldPassword']    ${ValidPassword}
-    Input Text    //input[@id='newPassword']    ${ChangedPassword}
-    Input Text    //input[@id='newPasswordAgain']    ${ChangedPassword}
-    Click Element    //input[@class='btn-primary']
+    ${rid}    Get Element Attribute    //div[@class='view-settings']@data-reactid
+    Click Element    //span[@data-reactid='${rid}.2.0.1.0.2.0.1']
+    Wait Until Page Contains Element    //input[@name='oldPassword']    error=Change Password Form Not Found
+    Input Text    //input[@name='oldPassword']    ${ValidPassword}
+    Input Text    //input[@name='newPassword']    ${ChangedPassword}
+    Input Text    //input[@name='newPasswordAgain']    ${ChangedPassword}
+    Click Element    //input[@name='submitPassword']
 
 Change Username
-    Input Text    //input[@id='name']    Testbaboon
-    Click Element    //input[@class='btn-primary']
-    #Add Check that username has changed!
+    Input Text    //input[@name='name']    Testbaboon
+    Click Element    //input[@name='submitProfile']
 
 Change Avatar
-    Input Text    //input[@id='avatar']    ${avatar}
-    Click Element    //input[@class='btn-primary']
-    ${avatarchanged}    Get Element Attribute    //div[@class='avatar online']@style
+    Input Text    //input[@type='avatar']    ${avatar}
+    Click Element    //input[@name='submitProfile']
+    ${avatarchanged}    Get Element Attribute    //div[@id='avatar-64']@style
     ${avatarcheck}    Fetch From Right    ${avatarchanged}    image:${SPACE}
     Should Be Equal    ${avatarcheck}    url("${avatar}");    error=Avatar Not Changed
 
@@ -424,7 +460,7 @@ Login With Changed Password
     Input Username    ${ValidUser}
     Input User Password    ${ChangedPassword}
     ${check}    Get Element Attribute    //input[@class='btn-primary']@value
-    Should Be Equal    ${check}    Login    error=Login button missing
+    Should Be Equal    ${check}    Log in    error=Login button missing
     Submit Credentials
     Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
     Location Should Be    ${BoardUrl}
@@ -569,15 +605,15 @@ Get Minimap Ticket
     Set Test Variable    ${MTxpath}    xpath=/html/body/div/div/div[2]/div/div[2]/div[${int}]
 
 Get Random Background
-    [Arguments]    ${min}=0    ${max}=8
+    [Arguments]    ${min}=0    ${max}=10
     ${int}    Evaluate    random.randint(${min}, ${max})    random
-    ${list}    Create List    NONE    CUSTOM    PLAY    SWOT    SCRUM
-    ...    KANBAN    KEEP_DROP_TRY    CUSTOMER_JOURNEY_MAP    BUSINESS_MODEL_CANVAS
+    ${list}    Create List    DEFAULT    CUSTOM    BLANK    SWOT    PLAY
+    ...    KANBAN    KEEP_DROP_TRY    SMOOTH_BRAINSTORMING    LEAN_CANVAS    IDEA_GATHERING
     ${item}    Get From List    ${list}    ${int}
     Set Test Variable    \${background}    ${EMPTY}
     Set Suite Variable    ${background}    ${item}
-    ${list2}    Create List    blank    custom    play    swot    scrum
-    ...    kanban    keep_drop_try    customer_journey_map    business_model_canvas
+    ${list2}    Create List    1    custom    blank    4    5
+    ...    6    7    8    9    10
     ${item2}    Get From List    ${list2}    ${int}
     Set Test Variable    \${bcheck}    ${EMPTY}
     Set Test Variable    ${bcheck}    ${item2}

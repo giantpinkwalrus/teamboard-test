@@ -13,7 +13,7 @@ Create New Board
     Edit Board    2    2
 
 Test Help
-    [Tags]    old
+    [Tags]    new
     Open Board    2    2
     Open Help
     Change Help Slides
