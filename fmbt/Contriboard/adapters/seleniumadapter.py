@@ -304,69 +304,76 @@ def decreaseHeight():
 		driver.find_element_by_xpath("//input[@placeholder='Board Height']").send_keys(Keys.ARROW_DOWN)
 		wait()
 
-def selectEmptyBackground():
+def selectDefaultBackground():
 	rs()
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
-	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
-	select.select_by_value("NONE")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
+	select.select_by_value("DEFAULT")
 	wait()
 
 def selectCustomBackground():
 	rs()
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
-	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
 	select.select_by_value("CUSTOM")
-	driver.find_element_by_xpath("//input[@placeholder='URL']").clear()
-	driver.find_element_by_xpath("//input[@placeholder='URL']").send_keys(custombackground)
+	driver.find_element_by_xpath("//input[@name=board-custom-background']").clear()
+	driver.find_element_by_xpath("//input[@name=board-custom-background']").send_keys(custombackground)
 	wait()
 
-def selectPlayBackground():
+def selectBlankBackground():
 	rs()
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
-	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
-	select.select_by_value("PLAY")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
+	select.select_by_value("BLANK")
 	wait()
 
 def selectSwotBackground():
 	rs()
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
-	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
 	select.select_by_value("SWOT")
 	wait()
 
-def selectScrumBackground():
+def selectPlayBackground():
 	rs()
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
-	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
-	select.select_by_value("SCRUM")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
+	select.select_by_value("PLAY")
 	wait()
 
 def selectKanbanBackground():
 	rs()
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
-	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
 	select.select_by_value("KANBAN")
 	wait()
 
 def selectKeendroptryBackground():
 	rs()
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
-	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
 	select.select_by_value("KEEP_DROP_TRY")
 	wait()
 
-def selectCustomerjourneymapBackground():
+def selectSmoohtBrainstormingBackground():
 	rs()
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
-	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
-	select.select_by_value("CUSTOMER_JOURNEY_MAP")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
+	select.select_by_value("SMOOTH_BRAINSTORMING")
 	wait()
 
-def selectBusinessmodelcanvasBackground():
+def selectLeanCanvasBackground():
 	rs()
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
-	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.3.1.0']"))
-	select.select_by_value("BUSINESS_MODEL_CANVAS")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
+	select.select_by_value("LEAN_CANVAS")
+	wait()
+
+def selectIdeaGatheringBackground():
+	rs()
+	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
+	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
+	select.select_by_value("IDEA_GATHERING")
 	wait()
 
 #deleteboard
@@ -477,17 +484,17 @@ def typeHeading():
 
 	if isElement("//span[@data-reactid='"+ rid + ".1.0.0']") == True:
 		driver.find_element_by_xpath("//span[@data-reactid='"+ rid + ".1.0.0']").click()
-		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").clear()
-		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Heading")
+		driver.find_element_by_xpath("//input[@placeholder='Ticket header']").clear()
+		driver.find_element_by_xpath("//input[@placeholder='Ticket header']").send_keys("Ticket Header")
 		wait()
-	elif isElement("//span[@data-reactid='"+ rid + ".1.1.0.0.$=10:0']") == True:
-		driver.find_element_by_xpath("//span[@data-reactid='"+ rid + ".1.1.0.0.$=10:0']").click()
-		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").clear()
-		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Heading")
+	elif isElement("//span[@data-reactid='"+ rid + ".1.1.0.0.0']") == True:
+		driver.find_element_by_xpath("//span[@data-reactid='"+ rid + ".1.1.0.0.0']").click()
+		driver.find_element_by_xpath("//input[@placeholder='Ticket header']").clear()
+		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Header")
 		wait()
 	else:
-		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").clear()
-		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Heading")
+		driver.find_element_by_xpath("//input[@placeholder='Ticket header']").clear()
+		driver.find_element_by_xpath("//input[@placeholder='Ticket header']").send_keys("Ticket Header")
 		wait()
 
 def typeTicket():
@@ -499,8 +506,8 @@ def typeTicket():
 		driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").clear()
 		driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").send_keys("ticket")
 		wait()
-	elif isElement("//span[@data-reactid='"+ rid + ".1.1.0.0.$=10:0']") == True:
-		driver.find_element_by_xpath("//span[@data-reactid='"+ rid + ".1.1.0.0.$=10:0']").click()
+	elif isElement("//span[@data-reactid='"+ rid + ".1.1.0.0.0']") == True:
+		driver.find_element_by_xpath("//span[@data-reactid='"+ rid + ".1.1.0.0.0']").click()
 		driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").clear()
 		driver.find_element_by_xpath("//textarea[@placeholder='Ticket content']").send_keys("ticket")
 		wait()
@@ -536,7 +543,7 @@ def ticketDone():
 
 def changeSlide():
 	rs()
-	slides =["1", "2", "3", "4", "5", "6", "7"]
+	slides =["1", "2", "3", "4", "5", "6", "7" ,"8"]
 	slide = random.choice(slides)
 	driver.find_element_by_xpath("/html/body/div[2]/div/form/div/div[2]/ul/li[" + slide + "]/button").click()
 	wait()
@@ -573,40 +580,40 @@ def closeProfileView():
 
 def changeUsername():
 	rs()
-	driver.find_element_by_xpath("//input[@id='name']").clear()
-	driver.find_element_by_xpath("//input[@id='name']").send_keys(username)
+	driver.find_element_by_xpath("//input[@name='name']").clear()
+	driver.find_element_by_xpath("//input[@name='name']").send_keys(username)
 	driver.find_element_by_xpath("//input[@class='btn-primary']").click()
 	wait()
 
 def changeAvatar():
 	rs()
-	driver.find_element_by_xpath("//input[@id='avatar']").clear()
-	driver.find_element_by_xpath("//input[@id='avatar']").send_keys(avatar)
-	driver.find_element_by_xpath("//input[@class='btn-primary']").click()
+	driver.find_element_by_xpath("//input[@type='avatar']").clear()
+	driver.find_element_by_xpath("//input[@type='avatar']").send_keys(avatar)
+	driver.find_element_by_xpath("//input[@name='submitProfile']").click()
 	wait()
 
 # password change
 
 def openPasswordChange():
 	rs()
-	driver.find_element_by_xpath("//li[@id='Password']").click()
+	driver.find_element_by_xpath("//li[@id='PROFILE_CHANGEPASSWORD']").click()
 	wait()
 
 def openProfileView():
 	rs()
-	driver.find_element_by_xpath("//li[@id='Profile settings']").click()
+	driver.find_element_by_xpath("//li[@id='PROFILE_SETTINGS']").click()
 	wait()
 
 def changePassword():
 	rs()
-	driver.find_element_by_xpath("//input[@id='oldPassword']").clear()
-	driver.find_element_by_xpath("//input[@id='oldPassword']").send_keys(password)
+	driver.find_element_by_xpath("//input[@name='oldPassword']").clear()
+	driver.find_element_by_xpath("//input[@name='oldPassword']").send_keys(password)
 	password = newpassword
-	driver.find_element_by_xpath("//input[@id='newPassword']").clear()
-	driver.find_element_by_xpath("//input[@id='newPassword']").send_keys(password)
-	driver.find_element_by_xpath("//input[@id='newPasswordAgain']").clear()
-	driver.find_element_by_xpath("//input[@id='newPasswordAgain']").send_keys(password)
-	driver.find_element_by_xpath("//input[@class='btn-primary']").click()
+	driver.find_element_by_xpath("//input[@name='newPassword']").clear()
+	driver.find_element_by_xpath("//input[@name='newPassword']").send_keys(password)
+	driver.find_element_by_xpath("//input[@name='newPasswordAgain']").clear()
+	driver.find_element_by_xpath("//input[@name='newPasswordAgain']").send_keys(password)
+	driver.find_element_by_xpath("//input[@name='submitPassword']").click()
 	wait()
 
 # about
@@ -625,8 +632,7 @@ def closeAbout():
 	wait()
 
 
-# ticket review 
-# not yet added to model
+# ticket review
 
 def openTicketReview():
 	rs()
