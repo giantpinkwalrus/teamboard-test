@@ -119,7 +119,6 @@ And Wallace is back on the page where he accidently left before. Wallace continu
 	Wallace Tests Help
 		Open Board    2    2
 		Open Help
-		Change Help Slides
 		Close Help
 		Close Board
 

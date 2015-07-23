@@ -19,7 +19,7 @@ Test Help
     [Tags]    old    help
     Open Board    2    6
     Open Help
-    Change Help Slides
+    #Change Help Slides
     Close Help
     Close Board
 
