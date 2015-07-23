@@ -56,7 +56,8 @@ stateAssets = {
 	"help" 	: ["//div[@class='infospace']"],
 	"about" 	: 	["//form[@class='dialog dialog-about']"],
 	"boardmembers" 	: 	["//form[@class='dialog dialog-board-members']"],
-	"profile" 	: 	["//div[@class='view-settings']"],
+	"profile" 	: 	["//input[@name='avatar']"],
+	"password" 	: 	["//input[@name='oldPassword']"],
 	"ticketreview" 	: 	["//div[@class='review-overlay']"]
 }
 
@@ -272,36 +273,36 @@ def clickDone():
 
 def typeBoardName():
 	rs()
-	driver.find_element_by_xpath("//input[@placeholder='Board Name']").clear()
-	driver.find_element_by_xpath("//input[@placeholder='Board Name']").send_keys("Boardname")
+	driver.find_element_by_xpath("//input[@name='board-name']").clear()
+	driver.find_element_by_xpath("//input[@name='board-name']").send_keys("Boardname")
 	wait()
 
 def increaseWidth():
 	rs()
-	width = driver.find_element_by_xpath("//input[@placeholder='Board Width']").get_attribute("value")
+	width = driver.find_element_by_xpath("//input[@name='board-width']").get_attribute("value")
 	if width < 10:
-		driver.find_element_by_xpath("//input[@placeholder='Board Width']").send_keys(Keys.ARROW_UP)
+		driver.find_element_by_xpath("//input[@name='board-width']").send_keys(Keys.ARROW_UP)
 		wait()
 
 def increaseHeight():
 	rs()
-	height = driver.find_element_by_xpath("//input[@placeholder='Board Height']").get_attribute("value")
+	height = driver.find_element_by_xpath("//input[@name='board-height']").get_attribute("value")
 	if height < 10:
-		driver.find_element_by_xpath("//input[@placeholder='Board Height']").send_keys(Keys.ARROW_UP)
+		driver.find_element_by_xpath("//input[@name='board-height']").send_keys(Keys.ARROW_UP)
 		wait()
 
 def decreaseWidth():
 	rs()
-	width = driver.find_element_by_xpath("//input[@placeholder='Board Width']").get_attribute("value")
+	width = driver.find_element_by_xpath("//input[@name='board-width']").get_attribute("value")
 	if width > 1:
-		driver.find_element_by_xpath("//input[@placeholder='Board Width']").send_keys(Keys.ARROW_DOWN)
+		driver.find_element_by_xpath("//input[@name='board-width']").send_keys(Keys.ARROW_DOWN)
 		wait()
 
 def decreaseHeight():
 	rs()
-	height = driver.find_element_by_xpath("//input[@placeholder='Board Height']").get_attribute("value")
+	height = driver.find_element_by_xpath("//input[@name='board-height']").get_attribute("value")
 	if height > 1:
-		driver.find_element_by_xpath("//input[@placeholder='Board Height']").send_keys(Keys.ARROW_DOWN)
+		driver.find_element_by_xpath("//input[@name='board-height']").send_keys(Keys.ARROW_DOWN)
 		wait()
 
 def selectDefaultBackground():
@@ -316,8 +317,8 @@ def selectCustomBackground():
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
 	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
 	select.select_by_value("CUSTOM")
-	driver.find_element_by_xpath("//input[@name=board-custom-background']").clear()
-	driver.find_element_by_xpath("//input[@name=board-custom-background']").send_keys(custombackground)
+	driver.find_element_by_xpath("//input[@name='board-custom-background']").clear()
+	driver.find_element_by_xpath("//input[@name='board-custom-background']").send_keys(custombackground)
 	wait()
 
 def selectBlankBackground():
@@ -355,7 +356,7 @@ def selectKeendroptryBackground():
 	select.select_by_value("KEEP_DROP_TRY")
 	wait()
 
-def selectSmoohtBrainstormingBackground():
+def selectSmoothBrainstormingBackground():
 	rs()
 	rid = driver.find_element_by_xpath("//form[@class='dialog dialog-edit-board']").get_attribute("data-reactid")
 	select = Select(driver.find_element_by_xpath("//select[@data-reactid='"+ rid +".1.4.0.0']"))
@@ -490,7 +491,7 @@ def typeHeading():
 	elif isElement("//span[@data-reactid='"+ rid + ".1.1.0.0.0']") == True:
 		driver.find_element_by_xpath("//span[@data-reactid='"+ rid + ".1.1.0.0.0']").click()
 		driver.find_element_by_xpath("//input[@placeholder='Ticket header']").clear()
-		driver.find_element_by_xpath("//input[@placeholder='Ticket heading']").send_keys("Ticket Header")
+		driver.find_element_by_xpath("//input[@placeholder='Ticket header']").send_keys("Ticket Header")
 		wait()
 	else:
 		driver.find_element_by_xpath("//input[@placeholder='Ticket header']").clear()
@@ -521,7 +522,7 @@ def typeComment():
 	driver.find_element_by_xpath("//input[@class='comment-input']").clear()
 	driver.find_element_by_xpath("//input[@class='comment-input']").send_keys("comment")
 	rid = driver.find_element_by_xpath("//form[@class='dialog edit-ticket-dialog']").get_attribute("data-reactid")
-	driver.find_element_by_xpath("//button[@data-reactid='" + rid + ".1.2.0.1']").click()
+	driver.find_element_by_xpath("//button[@data-reactid='" + rid + ".1.4.0.1']").click()
 	wait()
 
 def deleteTicket():
@@ -545,7 +546,9 @@ def changeSlide():
 	rs()
 	slides =["1", "2", "3", "4", "5", "6", "7" ,"8"]
 	slide = random.choice(slides)
-	driver.find_element_by_xpath("/html/body/div[2]/div/form/div/div[2]/ul/li[" + slide + "]/button").click()
+	#StaleElementReferenceException: Message: Element is no longer attached to the DOM
+	#Fix!!!
+	#driver.find_element_by_xpath("/html/body/div[2]/div/form/div/div[2]/ul/li[" + slide + "]/button").click()
 	wait()
 
 def clickCloseHelp():
@@ -575,7 +578,7 @@ def openProfile():
 
 def closeProfileView():
 	rs()
-	driver.find_element_by_xpath("//span[@class='fa fa-arrow-left']").click()
+	driver.find_element_by_xpath("//span[@class='fa fa-times']").click()
 	wait()
 
 def changeUsername():
@@ -587,9 +590,9 @@ def changeUsername():
 
 def changeAvatar():
 	rs()
-	driver.find_element_by_xpath("//input[@type='avatar']").clear()
-	driver.find_element_by_xpath("//input[@type='avatar']").send_keys(avatar)
-	driver.find_element_by_xpath("//input[@name='submitProfile']").click()
+	driver.find_element_by_xpath("//input[@name='avatar']").clear()
+	driver.find_element_by_xpath("//input[@name='avatar']").send_keys(avatar)
+	driver.find_element_by_xpath("//input[@class='btn-primary']").click()
 	wait()
 
 # password change
@@ -613,7 +616,8 @@ def changePassword():
 	driver.find_element_by_xpath("//input[@name='newPassword']").send_keys(password)
 	driver.find_element_by_xpath("//input[@name='newPasswordAgain']").clear()
 	driver.find_element_by_xpath("//input[@name='newPasswordAgain']").send_keys(password)
-	driver.find_element_by_xpath("//input[@name='submitPassword']").click()
+	rid = driver.find_element_by_xpath("//div[@class='form-container dialog']").get_attribute("data-reactid")
+	driver.find_element_by_xpath("//input[@data-reactid='"+ rid +".1:1.2']").click()
 	wait()
 
 # about
@@ -641,19 +645,23 @@ def openTicketReview():
 
 def changeTicketSlideRight():
 	rs()
-	if isElement("//span[@class='fa fa-chevron-right']") == True:
-		driver.find_element_by_xpath("//span[@class='fa fa-chevron-right']").click()
-		wait()
-	else:
-		wait()
+	#StaleElementReferenceException: Message: Element is no longer attached to the DOM
+	#Fix!!
+	#if isElement("//span[@class='fa fa-chevron-right']") == True:
+	#	driver.find_element_by_xpath("//span[@class='fa fa-chevron-right']").click()
+	#	wait()
+	#else:
+	wait()
 
 def changeTicketSlideLeft():
 	rs()
-	if isElement("//span[@class='fa fa-chevron-left']") == True:
-		driver.find_element_by_xpath("//span[@class='fa fa-chevron-left']").click()
-		wait()
-	else:
-		wait()
+	#StaleElementReferenceException: Message: Element is no longer attached to the DOM
+	#Fix!!
+	#if isElement("//span[@class='fa fa-chevron-left']") == True:
+	#	driver.find_element_by_xpath("//span[@class='fa fa-chevron-left']").click()
+	#	wait()
+	#else:
+	wait()
 
 def closeTicketReview():
 	rs()
