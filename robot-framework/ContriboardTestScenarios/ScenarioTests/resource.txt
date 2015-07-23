@@ -275,11 +275,10 @@ Check Markdown Syntax
     Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/ol    error=OL tag not found
 
 Change Background
-    [Arguments]    ${min}=0    ${max}=8
-    Get Random Background    ${min}    ${max}
+    [Arguments]    ${min}=0    ${max}=9
     Assign Id To Element    //div[@class='dialog-overlay']    Content
     ${rid}    Get Element Attribute    Content@data-reactid
-    Get Random Background
+    Get Random Background    ${min}    ${max}
     Select From List By Value    //select[@data-reactid='${rid}.0.1.4.0.0']    ${background}
     Set Test Variable    ${set}    changebackground
     Run Keyword If    '${background}'=='BLANK'    Empty Background
@@ -390,7 +389,7 @@ Click Profile
 
 Close Profile
     Click Element    //div[@class='avatar online']
-    Wait Until Page Contains Element    //ul[@class='dropdown options']    error=Dropdown not closed
+    Element Should Not Be Visible    //ul[@class='dropdown options']    error=Dropdown not closed
 
 Change Password
     [Arguments]    ${currentPassword}    ${newPassword}
@@ -669,7 +668,7 @@ Get X Coordinate
     Set Test Variable    ${x}    ${int}
 
 Get Random Background
-    [Arguments]    ${min}=0    ${max}=10
+    [Arguments]    ${min}=0    ${max}=9
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     ${list}    Create List    DEFAULT    CUSTOM    BLANK    SWOT    PLAY
     ...    KANBAN    KEEP_DROP_TRY    SMOOTH_BRAINSTORMING    LEAN_CANVAS    IDEA_GATHERING

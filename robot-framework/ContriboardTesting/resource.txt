@@ -74,7 +74,7 @@ Edit Board From Board
     Click Button    //button[@class='btn-primary']
 
 Set Board Background
-    [Arguments]    ${min}=0    ${max}=8
+    [Arguments]    ${min}=0    ${max}=9
     Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
     Click Element    //span[@class='fa fa-fw fa-pencil']
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
@@ -97,7 +97,7 @@ Empty Background
 Custom Background
     Wait Until Page Contains Element    //div[@class='minimap']
     Element Should Be Visible    //input[@type='url']
-    Input Text    //input[@placeholder='URL']    ${custombackground}
+    Input Text    //input[@name='board-custom-background']    ${custombackground}
     Click Element    //button[@class='btn-primary']
     ${checkcustom}    Get Element Attribute    //div[@class='board']@style
     ${image}    Fetch From Right    ${checkcustom}    x);
@@ -199,7 +199,7 @@ Input to Empty Ticket
     Input Text    //input[@placeholder='Ticket header']    Ticket Header
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
     Input Text    //input[@class='comment-input']    Ticket comment
-    Click Button    //button[@data-reactid='${rid}.1.2.0.1']
+    Click Button    //button[@data-reactid='${rid}.1.4.0.1']
     Input Text    //textarea[@placeholder='Ticket content']    Typing something
     Click Button    //button[@id='ticket-dialog-save']
 
@@ -210,7 +210,7 @@ Input to Edited Ticket
     Input Text    //input[@placeholder='Ticket header']    Ticket Header
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
     Input Text    //input[@class='comment-input']    Ticket comment
-    Click Button    //button[@data-reactid='${rid}.1.2.0.1']
+    Click Button    //button[@data-reactid='${rid}.1.4.0.1']
     Input Text    //textarea[@placeholder='Ticket content']    Typing something
     Click Button    //button[@id='ticket-dialog-save']
 
@@ -428,30 +428,28 @@ Open Profile
     Click Element    //div[@class='avatar online']
     Wait Until Page Contains Element    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
     Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Page Contains Element    //div[@class='view-settings']
-    Location Should Be    ${ProfileUrl}
+    Wait Until Page Contains Element    //form[@class='login-info']
 
 Close Profile
-    Click Element    //span[@class='fa fa-arrow-left']
-    Wait Until Page Contains Element    //div[@class='view view-workspace']    timeout=2    error=Board list Not Found
-    Location Should Be    ${BoardUrl}
+    Click Element    //span[@class='fa fa-times']
+    Element Should Not Be Visible    //form[@class='login-info']
 
 Change Password
-    ${rid}    Get Element Attribute    //div[@class='view-settings']@data-reactid
-    Click Element    //span[@data-reactid='${rid}.2.0.1.0.2.0.1']
+    ${rid}    Get Element Attribute    //div[@class='form-container dialog']@data-reactid
+    Click Element    //span[@data-reactid='${rid}.0:$1.0.1']
     Wait Until Page Contains Element    //input[@name='oldPassword']    error=Change Password Form Not Found
     Input Text    //input[@name='oldPassword']    ${ValidPassword}
     Input Text    //input[@name='newPassword']    ${ChangedPassword}
     Input Text    //input[@name='newPasswordAgain']    ${ChangedPassword}
-    Click Element    //input[@name='submitPassword']
+    Click Element    //input[@data-reactid='${rid}.1:1.2']
 
 Change Username
     Input Text    //input[@name='name']    Testbaboon
-    Click Element    //input[@name='submitProfile']
+    Click Element    //input[@class='btn-primary']
 
 Change Avatar
-    Input Text    //input[@type='avatar']    ${avatar}
-    Click Element    //input[@name='submitProfile']
+    Input Text    //input[@name='avatar']    ${avatar}
+    Click Element    //input[@class='btn-primary']
     ${avatarchanged}    Get Element Attribute    //div[@id='avatar-64']@style
     ${avatarcheck}    Fetch From Right    ${avatarchanged}    image:${SPACE}
     Should Be Equal    ${avatarcheck}    url("${avatar}");    error=Avatar Not Changed
@@ -605,7 +603,7 @@ Get Minimap Ticket
     Set Test Variable    ${MTxpath}    xpath=/html/body/div/div/div[2]/div/div[2]/div[${int}]
 
 Get Random Background
-    [Arguments]    ${min}=0    ${max}=10
+    [Arguments]    ${min}=0    ${max}=9
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     ${list}    Create List    DEFAULT    CUSTOM    BLANK    SWOT    PLAY
     ...    KANBAN    KEEP_DROP_TRY    SMOOTH_BRAINSTORMING    LEAN_CANVAS    IDEA_GATHERING
