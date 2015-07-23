@@ -6,7 +6,7 @@ aal "login" {
     language "python" {
     	from adapters import seleniumadapter as test
     }
-    variables { state, logged, registered, try_login, try_register, try_open_board, try_close_board, try_close_board_edit, is_ticket, is_board, try_open_share, try_close_about, try_open_ticket_review, try_close_profile }
+    variables { state, logged, registered, try_login, try_register, try_open_board, is_ticket, is_board, try_open_share, try_open_ticket_review, try_close }
     initial_state {
         state = "login"
         logged = False
@@ -56,4 +56,31 @@ tag "state_error" {
         print '\033[91m' +"        <error>Error: undetermined state (lag?).</error>" + '\033[0m'
     }
 }
+
+tag "try_close" {
+    guard { return state == "try_close"}
+    output "closed_to_board" {
+    guard { return state == "try_close" and try_close == True }
+    adapter {
+    if state == "try_close" and try_close == True and test.checkState("board"):
+            try_close = False
+            return True
+    }
+    body {
+    state = "board"
+    }
+    }
+    output "closed_to_boardmenu" {
+    guard { return state == "try_close" and try_close== True}
+    adapter {
+    if state == "try_close" and try_close == True and test.checkState("boardmenu"):
+            try_close = False
+            return True
+    }
+    body {
+    state = "boardmenu"
+    }
+    }
+}
+
 }
