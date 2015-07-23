@@ -16,7 +16,7 @@ Test Help
     [Tags]    new
     Open Board    2    2
     Open Help
-    Change Help Slides
+    #Change Help Slides
     Close Help
     Close Board
 
