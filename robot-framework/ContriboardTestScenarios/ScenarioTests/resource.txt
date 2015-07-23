@@ -11,10 +11,10 @@ ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
 #${SERVER}        localhost
 #${SServer}       http://localhost:8002
-${Protocol}       https://
-${SERVER}         sut-cb.n4sjamk.org
-#${Protocol}      http://
-#${SERVER}        localhost:8000
+#${Protocol}      https://
+#${SERVER}        sut-cb.n4sjamk.org
+${Protocol}       http://
+${SERVER}         localhost:8000
 ${MainUrl}        ${Protocol}${SERVER}
 ${LoginUrl}       ${Protocol}${SERVER}/login
 ${BoardUrl}       ${Protocol}${SERVER}/boards
@@ -259,7 +259,7 @@ Create Ticket with Markdown Text and Comment
     Input Markdown Text
     Click Button    //button[@id='ticket-dialog-save']
     Double Click Element    //div[@class='ticket']
-    Check Markdown Syntax
+    #Check Markdown Syntax
     #Add comment
     Input Text    //input[@class='comment-input']    ${comment}
     Click Button    //button[@id='ticket-add-comment']
@@ -267,12 +267,12 @@ Create Ticket with Markdown Text and Comment
     Click Button    //button[@id='ticket-dialog-save']
 
 Check Markdown Syntax
-    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/h1    error=H1 tag not found
-    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/p    error=P tag not found
-    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/h2    error=H2 tag not found
-    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/ul    error=UL tag not found
-    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/h3    error=H3 tag not found
-    Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/ol    error=OL tag not found
+    #Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/h1    error=H1 tag not found
+    #Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/p    error=P tag not found
+    #Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/h2    error=H2 tag not found
+    #Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/ul    error=UL tag not found
+    #Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/h3    error=H3 tag not found
+    #Page Should Contain Element    //html/body/div[2]/div/form/div/div[1]/section[2]/section[2]/div/div[1]/span/ol    error=OL tag not found
 
 Change Background
     [Arguments]    ${min}=0    ${max}=8
@@ -383,6 +383,13 @@ Click Globe Off
     ${class}    Get Element Attribute    globeOffID@class
     Should Match    ${class}    control
     Element Should Not Be Visible    //div[@data-reactid='${rid}.2.0.1']
+
+Review Tickets
+    Click Element    //span[@class='fa fa-fw fa-eye']
+    Wait Until Page Contains Element    //div[@class='review-dialog-container']
+    Click Element    //span[@class='fa fa-chevron-right']
+    Click Element    //span[@class='fa fa-chevron-left']
+    Click Element    //span[@class='fa fa-fw fa-times']
 
 Click Profile
     Click Element    //div[@class='avatar online']
@@ -520,21 +527,6 @@ Change Help Slides
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[1]/button    error=Slide change button missing
     Click Element    xpath=/html/body/div[2]/div/form/div/div[2]/ul/li[1]/button
     Wait Until Element Is Visible    //div[@class='info-view-active slide-0-admin']    timeout=2    error=Slide not changed
-
-Use Tutorial
-    Wait Until Page Contains Element    //div[@class='board']
-    Click Element    //span[@class='fa fa-fw fa-info']
-    #Check
-    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[1]/div/div
-    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[2]/button
-    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[2]/div/div/img[2]
-    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[3]/button
-    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[3]/div/div/img
-    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[4]/button
-    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[4]/div/div/img
-    Click Button    //html/body/div[2]/div/div/div/div[4]/ul/li[5]/button
-    Page Should Contain Element    //html/body/div[2]/div/div/div/div[1]/ul/li[5]/div/div/img
-    Click Element    //span[@class='fa fa-fw fa-times']
 
 Click About Button
     Click Element    //div[@class='avatar online']
