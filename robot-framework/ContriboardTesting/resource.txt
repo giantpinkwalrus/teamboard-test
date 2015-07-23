@@ -97,7 +97,7 @@ Empty Background
 Custom Background
     Wait Until Page Contains Element    //div[@class='minimap']
     Element Should Be Visible    //input[@type='url']
-    Input Text    //input[@placeholder='URL']    ${custombackground}
+    Input Text    //input[@name='board-custom-background']    ${custombackground}
     Click Element    //button[@class='btn-primary']
     ${checkcustom}    Get Element Attribute    //div[@class='board']@style
     ${image}    Fetch From Right    ${checkcustom}    x);
