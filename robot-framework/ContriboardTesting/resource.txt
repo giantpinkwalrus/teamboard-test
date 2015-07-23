@@ -74,7 +74,7 @@ Edit Board From Board
     Click Button    //button[@class='btn-primary']
 
 Set Board Background
-    [Arguments]    ${min}=0    ${max}=8
+    [Arguments]    ${min}=0    ${max}=9
     Wait Until Page Contains Element    //div[@class='controls']    timeout=2    error=Controls Not Found
     Click Element    //span[@class='fa fa-fw fa-pencil']
     Wait Until Page Contains Element    //form[@class='dialog dialog-edit-board']
@@ -199,7 +199,7 @@ Input to Empty Ticket
     Input Text    //input[@placeholder='Ticket header']    Ticket Header
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
     Input Text    //input[@class='comment-input']    Ticket comment
-    Click Button    //button[@data-reactid='${rid}.1.2.0.1']
+    Click Button    //button[@data-reactid='${rid}.1.4.0.1']
     Input Text    //textarea[@placeholder='Ticket content']    Typing something
     Click Button    //button[@id='ticket-dialog-save']
 
@@ -210,7 +210,7 @@ Input to Edited Ticket
     Input Text    //input[@placeholder='Ticket header']    Ticket Header
     ${rid}    Get Element Attribute    //form[@class='dialog edit-ticket-dialog']@data-reactid
     Input Text    //input[@class='comment-input']    Ticket comment
-    Click Button    //button[@data-reactid='${rid}.1.2.0.1']
+    Click Button    //button[@data-reactid='${rid}.1.4.0.1']
     Input Text    //textarea[@placeholder='Ticket content']    Typing something
     Click Button    //button[@id='ticket-dialog-save']
 
@@ -605,7 +605,7 @@ Get Minimap Ticket
     Set Test Variable    ${MTxpath}    xpath=/html/body/div/div/div[2]/div/div[2]/div[${int}]
 
 Get Random Background
-    [Arguments]    ${min}=0    ${max}=10
+    [Arguments]    ${min}=0    ${max}=9
     ${int}    Evaluate    random.randint(${min}, ${max})    random
     ${list}    Create List    DEFAULT    CUSTOM    BLANK    SWOT    PLAY
     ...    KANBAN    KEEP_DROP_TRY    SMOOTH_BRAINSTORMING    LEAN_CANVAS    IDEA_GATHERING
