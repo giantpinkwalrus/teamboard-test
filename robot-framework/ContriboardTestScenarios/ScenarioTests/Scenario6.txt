@@ -16,9 +16,11 @@ John Opens Board
     [Tags]    sc6
     Open Board    2    2
 
-John Uses Tutorial
+John Uses Help
     [Tags]    sc6
-    Use Tutorial
+    Open Help
+    Change Help Slides
+    Close Help
 
 John Resizes Board
     [Tags]    sc6
@@ -58,6 +60,11 @@ John Set Username
 John Checks Board Members
     [Tags]    sc6
     Check Board Members
+
+John Reviews Ticket
+    [Tags]    sc6
+    Create Ticket    1    1
+    Review Tickets
 
 Close
     [Tags]    sc6
