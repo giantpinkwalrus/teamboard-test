@@ -10,8 +10,8 @@ tag "profile" {
 	test.wait()
 	}
 	body {
-	try_close_profile = True
-	state = "try_close_profile"
+    try_close = True
+    state = "try_close"
 	}
 	}
 
@@ -36,32 +36,6 @@ tag "profile" {
 	}
 	body{
 	state = "password"
-	}
-	}
-}
-
-tag "try_close_profile" {
-	guard { return state == "try_close_profile"}
-	output "profile_closed_to_board" {
-	guard { return state == "try_close_profile" and try_close_profile == True }
-	adapter {
-	if state == "try_close_profile" and try_close_profile == True and test.checkState("board"):
-			try_close_profile = False
-			return True
-	}
-	body {
-	state = "board"
-	}
-	}
-	output "profile_closed_to_boardmenu" {
-	guard { return state == "try_close_profile" and try_close_profile == True}
-	adapter {
-	if state == "try_close_profile" and try_close_profile == True and test.checkState("boardmenu"):
-			try_close_profile = False
-			return True
-	}
-	body {
-	state = "boardmenu"
 	}
 	}
 }
