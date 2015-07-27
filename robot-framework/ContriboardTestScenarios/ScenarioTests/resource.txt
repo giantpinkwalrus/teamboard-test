@@ -399,30 +399,29 @@ Close Profile
     Element Should Not Be Visible    //ul[@class='dropdown options']    error=Dropdown not closed
 
 Change Password
-    [Arguments]    ${currentPassword}    ${newPassword}
+    [Arguments]    ${ValidPassword}    ${ChangedPassword}
+    Click Element    //div[@class='avatar online']
+    Wait Until Element Is Visible    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
+    Click Element    //li[@id='options-user']
+    ${rid}    Get Element Attribute    //div[@class='form-container dialog']@data-reactid
+    Click Element    //span[@data-reactid='${rid}.0:$1.0.1']
+    Wait Until Page Contains Element    //input[@name='oldPassword']    error=Change Password Form Not Found
+    Input Text    //input[@name='oldPassword']    ${ValidPassword}
+    Input Text    //input[@name='newPassword']    ${ChangedPassword}
+    Input Text    //input[@name='newPasswordAgain']    ${ChangedPassword}
+    Click Element    //input[@data-reactid='${rid}.1:1.2']
+
+Set Username
+    [Arguments]    ${newUsername}
     Click Element    //div[@class='avatar online']
     Wait Until Element Is Visible    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
     Click Element    //li[@id='options-user']
     Wait Until Element Is Visible    //form[@class='login-info']    timeout=2    error=Profile information dialog not found
-    Click Element    //li[@id='Password']
-    Wait Until Page Contains Element    //input[@type='password']
-    Input Text    //input[@name='oldPassword']    ${currentPassword}
-    Input Text    //input[@name='newPassword']    ${newPassword}
-    Input Text    //input[@name='newPasswordAgain']    ${newPassword}
-    Click Button    //input[@class='btn-primary']
-    Exit Profile Page
-
-Set Username
-    [Arguments]    ${newUsername}
-    Click Element    //span[@class='fa fa-fw fa-user']
-    Wait Until Element Is Visible    //ul[@class='dropdown undefined']    timeout=2    error=Dropdown List Not Found
-    Click Element    //li[@id='options-user']
-    Wait Until Element Is Visible    //form[@class='login-info']    timeout=2    error=Profile information dialog not found
-    Input Text    //input[@id='name']    ${newUsername}
+    Input Text    //input[@name='name']    ${newUsername}
     Click Element    //input[@class='btn-primary']
 
 Exit Profile Page
-    Click Element    //span[@class='fa fa-arrow-left']
+    Click Element    //span[@class='fa fa-times']
 
 Click Feedback
     Click Element    //div[@class='user-voice-trigger']
@@ -494,7 +493,7 @@ Login to Shared Board
 
 Open Help
     Click Element    //span[@class='fa fa-fw fa-question']
-    Wait Until Element Is Visible    //div[@class='infospace']    timeout=2    error=Help not open
+    Wait Until Element Is Visible    //div[@class='infospace']    timeout=3    error=Help not open
 
 Close Help
     Click Element    //span[@class='fa fa-fw fa-times']
@@ -528,9 +527,9 @@ Change Help Slides
     Wait Until Element Is Visible    //div[@class='info-view-active slide-0-admin']    timeout=2    error=Slide not changed
 
 Click About Button
-    Click Element    //div[@class='avatar online']
+    Click Element    //div[@id='avatar']
     Wait Until Page Contains Element    //ul[@class='dropdown options']    timeout=2    error=Dropdown List Not Found
-    Click Element    //li[@id='options-question-circle']
+    Click Element    //li[@id='options-info']
     Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
     Click Button    //button[@class='btn-primary']
 

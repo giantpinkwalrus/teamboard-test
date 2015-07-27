@@ -12,10 +12,6 @@ John Creates and Opens Board
     Create Board
     Open Board    2    2
 
-John Opens Board
-    [Tags]    sc6
-    Open Board    2    2
-
 John Uses Help
     [Tags]    sc6
     Open Help
@@ -24,7 +20,8 @@ John Uses Help
 
 John Resizes Board
     [Tags]    sc6
-    Resize Board    1    10    1    10
+    : FOR    ${index}    IN RANGE    0    3
+    \    Resize Board    3    10    3    10
 
 John Changes Board Name
     [Tags]    sc6
@@ -68,6 +65,6 @@ John Reviews Ticket
 
 Close
     [Tags]    sc6
-    #Log Out
+    Log Out
     Close Browser
     [Teardown]
