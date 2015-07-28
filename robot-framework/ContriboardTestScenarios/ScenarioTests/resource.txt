@@ -410,6 +410,7 @@ Change Password
     Input Text    //input[@name='newPassword']    ${ChangedPassword}
     Input Text    //input[@name='newPasswordAgain']    ${ChangedPassword}
     Click Element    //input[@data-reactid='${rid}.1:1.2']
+    Click Element    //span[@class='fa fa-times']
 
 Set Username
     [Arguments]    ${newUsername}
