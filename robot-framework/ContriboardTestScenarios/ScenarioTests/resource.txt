@@ -388,7 +388,7 @@ Review Tickets
     Wait Until Page Contains Element    //div[@class='review-dialog-container']
     Click Element    //span[@class='fa fa-chevron-right']
     Click Element    //span[@class='fa fa-chevron-left']
-    Click Element    //span[@class='fa fa-fw fa-times']
+    Click Element    //span[@class="fa fa-fw fa-arrow-left board-link"]
 
 Click Profile
     Click Element    //div[@class='avatar online']
@@ -420,6 +420,7 @@ Set Username
     Wait Until Element Is Visible    //form[@class='login-info']    timeout=2    error=Profile information dialog not found
     Input Text    //input[@name='name']    ${newUsername}
     Click Element    //input[@class='btn-primary']
+    Click Element    //span[@class="fa fa-times"]
 
 Exit Profile Page
     Click Element    //span[@class='fa fa-times']
@@ -533,6 +534,7 @@ Click About Button
     Click Element    //li[@id='options-info']
     Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
     Click Button    //button[@class='btn-primary']
+    Click Element    //div[@class='board']
 
 Check Board Members
     Click Element    //span[@class='fa fa-fw fa-users']
