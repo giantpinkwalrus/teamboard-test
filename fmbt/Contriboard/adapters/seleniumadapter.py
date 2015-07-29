@@ -34,7 +34,7 @@ pollTime = 0.3
 timeoutTime = 2.0
 
 username = "testbaboon"
-email = "testbaboon@test.com"
+email = "testbaboon1@test.com"
 password = "t3stmonkey"
 newpassword = "t3stbaboon"
 
@@ -58,7 +58,7 @@ stateAssets = {
 	"boardmembers" 	: 	["//form[@class='dialog dialog-board-members']"],
 	"profile" 	: 	["//input[@name='avatar']"],
 	"password" 	: 	["//input[@name='oldPassword']"],
-	"ticketreview" 	: 	["//div[@class='review-overlay']"]
+	"ticketreview" 	: 	["//div[@class='review-dialog-container']"]
 }
 
 def rs():
@@ -665,7 +665,7 @@ def changeTicketSlideLeft():
 
 def closeTicketReview():
 	rs()
-	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-times']").click()
+	driver.find_element_by_xpath("//span[@class='fa fa-fw fa-arrow-left board-link']").click()
 	wait()
 
 # checks
