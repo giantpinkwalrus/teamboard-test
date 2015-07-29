@@ -11,10 +11,10 @@ ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
 #${SERVER}        localhost
 #${SServer}       http://localhost:8002
-#${Protocol}      https://
-#${SERVER}        sut-cb.n4sjamk.org
-${Protocol}       http://
-${SERVER}         localhost:8000
+${Protocol}       https://
+${SERVER}         sut-cb.n4sjamk.org
+#${Protocol}      http://
+#${SERVER}        localhost:8000
 ${MainUrl}        ${Protocol}${SERVER}
 ${LoginUrl}       ${Protocol}${SERVER}/login
 ${BoardUrl}       ${Protocol}${SERVER}/boards
