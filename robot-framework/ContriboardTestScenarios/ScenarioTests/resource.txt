@@ -340,12 +340,12 @@ Set Custom Background
     Run Keyword If    '${image}'!='${customcheck}'    Check Custom Background
 
 Check Custom Background Empty
-    Should Be Equal    ${image}    ${SPACE}background-image: url("${custombackground}");    error=Custom Background Not Changed
+    Should Be Equal    ${image}    ${SPACE}background-image: url("${custombackground2}");    error=Custom Background Not Changed
 
 Check Custom Background
     ${image2}    Fetch From Left    ${checkcustom}    ${SPACE}transition
     ${image3}    Fetch From Right    ${image2}    px;
-    Should Be Equal    ${image3}    ${SPACE}background-image: url("${custombackground}");    error=Background Not Empty
+    Should Be Equal    ${image3}    ${SPACE}background-image: url("${custombackground2}");    error=Background Not Empty
 
 Click Magnet On
     Assign Id To Element    //div[@class='view view-board']    reactID
