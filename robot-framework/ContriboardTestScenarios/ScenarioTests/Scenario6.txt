@@ -63,6 +63,10 @@ John Reviews Ticket
     Create Ticket    1    1
     Review Tickets
 
+John Shares Board
+    [Tags]    sc6
+    Share Board From Board
+
 Close
     [Tags]    sc6
     Log Out

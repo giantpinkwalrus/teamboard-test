@@ -11,10 +11,10 @@ ${InvalidUser}    invalid@test.com
 ${InvalidPassword}    Invalid1
 #${SERVER}        localhost
 #${SServer}       http://localhost:8002
-${Protocol}       https://
-${SERVER}         sut-cb.n4sjamk.org
-#${Protocol}      http://
-#${SERVER}        localhost:8000
+#${Protocol}      https://
+#${SERVER}        sut-cb.n4sjamk.org
+${Protocol}       http://
+${SERVER}         localhost:8000
 ${MainUrl}        ${Protocol}${SERVER}
 ${LoginUrl}       ${Protocol}${SERVER}/login
 ${BoardUrl}       ${Protocol}${SERVER}/boards
@@ -340,12 +340,12 @@ Set Custom Background
     Run Keyword If    '${image}'!='${customcheck}'    Check Custom Background
 
 Check Custom Background Empty
-    Should Be Equal    ${image}    ${SPACE}background-image: url("${custombackground}");    error=Custom Background Not Changed
+    Should Be Equal    ${image}    ${SPACE}background-image: url("${custombackground2}");    error=Custom Background Not Changed
 
 Check Custom Background
     ${image2}    Fetch From Left    ${checkcustom}    ${SPACE}transition
     ${image3}    Fetch From Right    ${image2}    px;
-    Should Be Equal    ${image3}    ${SPACE}background-image: url("${custombackground}");    error=Background Not Empty
+    Should Be Equal    ${image3}    ${SPACE}background-image: url("${custombackground2}");    error=Background Not Empty
 
 Click Magnet On
     Assign Id To Element    //div[@class='view view-board']    reactID
@@ -388,7 +388,7 @@ Review Tickets
     Wait Until Page Contains Element    //div[@class='review-dialog-container']
     Click Element    //span[@class='fa fa-chevron-right']
     Click Element    //span[@class='fa fa-chevron-left']
-    Click Element    //span[@class='fa fa-fw fa-times']
+    Click Element    //span[@class="fa fa-fw fa-arrow-left board-link"]
 
 Click Profile
     Click Element    //div[@class='avatar online']
@@ -410,6 +410,7 @@ Change Password
     Input Text    //input[@name='newPassword']    ${ChangedPassword}
     Input Text    //input[@name='newPasswordAgain']    ${ChangedPassword}
     Click Element    //input[@data-reactid='${rid}.1:1.2']
+    Click Element    //span[@class='fa fa-times']
 
 Set Username
     [Arguments]    ${newUsername}
@@ -419,6 +420,7 @@ Set Username
     Wait Until Element Is Visible    //form[@class='login-info']    timeout=2    error=Profile information dialog not found
     Input Text    //input[@name='name']    ${newUsername}
     Click Element    //input[@class='btn-primary']
+    Click Element    //span[@class="fa fa-times"]
 
 Exit Profile Page
     Click Element    //span[@class='fa fa-times']
@@ -532,6 +534,7 @@ Click About Button
     Click Element    //li[@id='options-info']
     Wait Until Page Contains Element    //form[@class='dialog dialog-about']    timeout=2    error=About Dialog Not Open
     Click Button    //button[@class='btn-primary']
+    Click Element    //div[@class='board']
 
 Check Board Members
     Click Element    //span[@class='fa fa-fw fa-users']
