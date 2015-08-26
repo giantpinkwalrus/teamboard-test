@@ -1,0 +1,97 @@
+*** Settings ***
+Resource          resource.txt
+
+*** Test Cases ***
+Login Screen
+    [Tags]    userguide    test
+    Open Browser To Login Page
+
+Register and Workspace Screen
+    [Tags]    userguide    test
+    Register User
+
+Create Board
+    [Tags]    userguide
+    Create Board
+    Create Board
+    Create Board
+    Capture Page Screenshot    createboard.png
+
+Edit Board Dialog
+    [Tags]    userguide
+    Open Board Edit Dialog
+
+Boardview Screen
+    [Tags]    userguide
+    Open Board
+
+Ticket Creation
+    [Tags]    userguide
+    Create Ticket    1    1
+    Create Ticket    2    2
+    Create Ticket    3    3
+    Create Ticket    4    4
+    Create Ticket    5    5
+    Capture Page Screenshot    createticket.png
+
+Ticket Edit Dialog
+    [Tags]    userguide
+    Opent Ticket Edit Dialog
+
+Show Markdown
+    [Tags]    userguide
+    Create Ticket with Markdown Text
+
+Export Dialog
+    [Tags]    userguide
+    Open Export Dialog
+
+Share Dialog
+    [Tags]    userguide
+    Open Share Dialog
+
+Show Ticket review
+    [Tags]    userguide
+    Review Tickets
+
+Show Minimap
+    [Tags]    userguide
+    Click Globe On
+    Click Globe Off
+
+Show SnaptoGrid
+    [Tags]    userguide
+    Click Magnet On
+    Click Magnet Off
+
+Help Screen
+    [Tags]    userguide
+    Open Help
+    Close Help
+
+Boardmembers Dialog
+    [Tags]    userguide
+    Open Board Members
+    Close Board Members
+
+Profile Edit Dialog
+    [Tags]    userguide
+    Open Profile
+    Close Profile
+
+Show Localization Options
+    [Tags]    userguide    test
+    Open Localization Dialog
+
+Show Feedback
+    [Tags]    userguide    test
+    Open Feedback
+
+Show Logout
+    [Tags]    userguide    test
+    Log Out
+
+Close
+    [Tags]    userguide    test
+    Close Browser
+    [Teardown]
