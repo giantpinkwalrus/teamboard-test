@@ -6,20 +6,16 @@
 - - -
 
 1. First
- * item
- * item
- * item
 2. Second
 3. Third
-
 ___
 
-- item
-- item
-- item
+- *item*
+- **item**
+- **_item_**
 
 ***
 
-Click Link to Google: [Inline link](https://www.google.fi).
+Click Link: [Link](https://www.google.fi).
 
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
