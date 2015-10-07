@@ -2,6 +2,7 @@
 
 This compilation of several testing tools which we have been using to test Contriboard Service...
 
+  * [Exploratory Testing Method](exploratory-testing-session)
   * [Testlink](http://testlink.org)
   * [fMBT](https://01.org/fmbt)
   * [Robot Framework](http://robotframework.org/)
