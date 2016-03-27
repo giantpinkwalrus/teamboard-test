@@ -1,0 +1,170 @@
+*** Settings ***
+Resource          resource.txt
+
+*** Test Cases ***
+Login User
+    [Tags]    old    log    edit    feed    share    export
+    ...    color    size    ticket    profile    about    help
+    ...    members
+    Open Browser To Login Page
+    Login User
+
+Create New Board
+    [Tags]    old    color    share    edit    size    ticket
+    ...    help    members
+    Repeat Keyword    5    New Board
+    Edit Board
+
+Test Help
+    [Tags]    old    help
+    Open Board    2    6
+    Open Help
+    #Change Help Slides
+    Close Help
+    Close Board
+
+Change Background
+    [Tags]    old    edit
+    Open Board    2    6
+    Set Board Background
+    Close Board
+    Open Board    2    6
+    Set Board Background
+    Close Board
+    Open Board    2    6
+    Set Board Background
+    Close Board
+    Open Board    2    6
+    Set Board Background
+    Close Board
+    Open Board    2    6
+    Set Board Background
+    Close Board
+
+Delete Board
+    [Tags]    old
+    Delete Board
+
+Edit Board From Board
+    [Tags]    old    color    size    ticket    members
+    Open Board    2    5
+    Edit Board From Board
+    Resize Board    10    10    10    10
+
+Test Controls From Board
+    [Tags]    old
+    Click Magnet On
+    Click Globe On
+    Click Magnet Off
+    Click Globe Off
+
+Create and Move Tickets
+    [Tags]    old    color    ticket
+    Create Ticket    1    1
+    Create Ticket    2    2
+    Create Ticket    3    3
+    Create Ticket    4    4
+    Create Ticket    5    5
+    Reload Page
+
+Edit Created Ticket
+    [Tags]    old    color    ticket
+    Repeat Keyword    5    Edit Ticket
+
+Change Created Ticket Color
+    [Tags]    old    color    ticket
+    Repeat Keyword    5    Change Ticket Color
+
+Check Minimap Ticket Color Change
+    [Tags]    old    color    ticket
+    Click Globe On
+    Repeat Keyword    5    Minimap Ticket Color
+    Click Globe Off
+
+Delete Ticket From Board
+    [Tags]    old
+    Delete Ticket
+
+View Board Members
+    [Tags]    old    members
+    Open Board Members
+    Close Board Members
+
+Share Board Url
+    [Tags]    share    old
+    Share Board
+
+Close Board
+    [Tags]    old    color
+    Close Board
+
+Export Board
+    [Tags]    export    old
+    Export Board
+    Close Board
+    #Send Feedback
+    #[Tags]    feed
+    #Send Feedback
+
+Log Out User Share
+    [Tags]    share    old
+    Log Out
+
+Close Browser Share
+    [Tags]    share    old
+    Close Browser
+
+Open Share Board
+    [Tags]    share    old
+    Open Shared Board
+    Login to Shared Board
+    Open Help
+    Close Help
+    Create Ticket    1    1
+    Edit Ticket    1    1
+    Log Out
+
+Close Shared Board
+    [Tags]    share    old
+    Close Browser
+
+Relogin
+    [Tags]    share    old
+    Open Browser To Login Page
+    Login User
+
+Open About Dialog
+    [Tags]    old    about
+    Open About
+    Close About
+
+Change Username
+    [Tags]    old    profile
+    Open Profile
+    Change Username
+    Close Profile
+
+Change Avatar
+    [Tags]    old    profile
+    Open Profile
+    Change Avatar
+    Close Profile
+
+Change Password
+    [Tags]    old    profile
+    Open Profile
+    Change Password
+    Close Profile
+    Log Out
+    Login With Changed Password
+
+Log Out User
+    [Tags]    old    share    edit    feed    export    color
+    ...    size    ticket    profile    about    help    members
+    Log Out
+
+Close
+    [Tags]    old    share    edit    feed    export    color
+    ...    size    ticket    profile    about    help    members
+    Close Browser
+    [Teardown]

@@ -1,0 +1,46 @@
+*** Settings ***
+Suite Setup       Open Browser To Login Page
+Suite Teardown    Close Browser
+Test Setup        Go To Login Page
+Test Template     Login With Invalid Credentials Should Fail
+Resource          resource.txt
+
+*** Test Cases ***    User Email      Password
+Invalid Username      [Tags]          invalid
+                      invalid         ${ValidPassword}
+                      [Teardown]
+
+Invalid Password      [Tags]          invalid
+                      ${ValidUser}    invalid
+                      [Teardown]
+
+Invalid Username And Password
+                      [Tags]          invalid
+                      invalid         invalid
+                      [Teardown]
+
+Empty Username        [Tags]          invalid
+                      ${EMPTY}        ${ValidPassword}
+                      [Teardown]
+
+Empty Password        [Tags]          invalid
+                      ${ValidUser}    ${EMPTY}
+                      [Teardown]
+
+Empty Username And Password
+                      [Tags]          invalid
+                      ${EMPTY}        ${EMPTY}
+                      [Teardown]
+
+*** Keywords ***
+Login With Invalid Credentials Should Fail
+    [Arguments]    ${username}    ${password}
+    Input Username    ${username}
+    Input User Password    ${password}
+    Submit Credentials
+    Login Should Have Failed
+
+Login Should Have Failed
+    Location Should Be    ${LoginUrl}
+    #Temporary fix for new login alerts
+    Element Should Not Be Visible    //div[@class='view view-workspace']    error=Login Succeeded

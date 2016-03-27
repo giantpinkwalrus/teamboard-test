@@ -1,0 +1,55 @@
+*** Settings ***
+Resource          resource.txt
+
+*** Test Cases ***
+Register User and Login
+    [Tags]    new
+    Open Browser To Login Page
+    Register User    ${NewUser}    ${NewPassword}
+
+Create New Board
+    [Tags]    new
+    New Board
+    Edit Board    2    2
+
+Test Help
+    [Tags]    new
+    Open Board    2    2
+    Open Help
+    #Change Help Slides
+    Close Help
+    Close Board
+
+Change Background
+    [Tags]    new
+    Open Board    2    2
+    Set Board Background    2    2
+
+Create Ticket Into Board
+    [Tags]    new
+    Edit Board From Board
+    Create Ticket    1    1
+    Create Ticket    2    2
+    Reload Page
+    Edit Ticket    2    2
+
+Delete Ticket From Board
+    [Tags]    new
+    Delete Ticket    2    2
+
+Delete Board
+    [Tags]    new
+    Close Board
+    Delete Board    2    2
+    #Send Feedback
+    #[Tags]    new
+    #Send Feedback
+
+Log Out
+    [Tags]    new
+    Log Out
+
+Close
+    [Tags]    new
+    Close Browser
+    [Teardown]

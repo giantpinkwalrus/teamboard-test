@@ -1,0 +1,38 @@
+#preview-show-vars: state
+aal "robotModel" {
+    language "python" {
+        from adapters import robotadapter as arobot
+    }
+        variables { state, logged, registered, try_login, try_register }
+    initial_state {
+        state = "invalid_login",
+        logged = False,
+        registered = False,
+        try_login = False,
+        try_register = False
+    }
+    input "invalid_login" {
+    guard { return state == "invalid_login" }
+    adapter {
+    arobot.runTest('Invalid_Login_Test.txt')
+    }
+    body {
+        state = "reg_test_user"
+    }
+    }
+    input "reg_test_user" {
+    guard { return state == "reg_test_user" }
+    adapter {
+    arobot.runTest('RegTestUsers.txt')
+    }
+    body { state = "login" }
+    }
+    input "login" {
+    guard { return state == "login" }
+    adapter {
+    arobot.runTest('Login.txt')
+    }
+    body {
+    }
+    }
+}
